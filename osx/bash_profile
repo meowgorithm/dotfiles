@@ -4,6 +4,7 @@ export TERM=xterm-256color
 # Variables for later
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper.sh
 GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
+BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
 # For coloring the prompt
 function prompt_func() {
@@ -57,6 +58,7 @@ PROMPT_COMMAND=prompt_func
 # Bash completion (via Homebrew)
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
+    source $BREW_BASH_COMPLETION_SCRIPT
 fi
 
 # Miscellaneous coloring and formatting
