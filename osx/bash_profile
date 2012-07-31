@@ -58,7 +58,6 @@ PROMPT_COMMAND=prompt_func
 # Bash completion (via Homebrew)
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
-    source $BREW_BASH_COMPLETION_SCRIPT
 fi
 
 # Miscellaneous coloring and formatting
