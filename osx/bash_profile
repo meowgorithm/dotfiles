@@ -118,6 +118,7 @@ alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias js="jumpstat"
 alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
 alias delete_orig="find . -name \"*.orig\" -exec rm -f {} \;"
+alias runserver="python manage.py runserver `hostname`:8000"
 
 # Print local IPs and copy them to the clipboard
 alias ethernet_ip="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
@@ -155,7 +156,7 @@ complete -o default -F _pip_completion pip
 # Virtualbox Commands for an Ubuntu Server (named 'Ubuntu Server 64')
 ubuntu () {
 
-    USAGE="Usage: ubuntu (start|stop|freeze|revert|hotrevert)"
+    USAGE="Usage: ubuntu (start|stop|freeze|revert|hotrevert|ssh)"
     SERVERNAME="Ubuntu Server 64"
 
     if [[ -z $1 ]]
@@ -178,8 +179,14 @@ ubuntu () {
         ubuntu stop
         ubuntu revert
         ubuntu start
+    elif [[ $1 == "ssh" ]]
+    then
+        ssh -p 2222 localhost
+    elif [[ $1 == "sshroot" ]]
+    then
+        ssh -p 2222 root@localhost
     else
-        echo $USAGE
+        echo $usage
     fi
 
     unset USAGE
@@ -219,7 +226,7 @@ arch () {
     then
         ssh -p 2222 root@localhost
     else
-        echo $USAGE
+        echo $usage
     fi
 
     unset USAGE
