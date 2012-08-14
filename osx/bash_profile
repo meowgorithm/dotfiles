@@ -279,3 +279,9 @@ elif compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ### End NPM Completion ###
+
+# Z
+Z_SCRIPT=`brew --prefix`/etc/profile.d/z.sh
+if [ -f $Z_SCRIPT ]; then
+    . $Z_SCRIPT
+fi
