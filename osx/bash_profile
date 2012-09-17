@@ -129,8 +129,8 @@ if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    export PIP_LOG_FILE='/tmp/pip-log.txt' # Don't litter pip_log.txt in cwd, please
-    export PIP_DOWNLOAD_CACHE='/tmp/pip_cache' # Use a cache
+    export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
+    export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
     export WORKON_HOME=~/.virtualenvs
     source $VIRTUALENVWRAPPER_SCRIPT
 fi
@@ -285,12 +285,3 @@ fi
 if [ -f `brew --prefix`/etc/profile.d/z.sh ]; then
     . `brew --prefix`/etc/profile.d/z.sh
 fi
-
-# {{{
-# Node Completion - Auto-generated, do not touch.
-shopt -s progcomp
-for f in $(command ls ~/.node-completion); do
-  f="$HOME/.node-completion/$f"
-  test -f "$f" && . "$f"
-done
-# }}}
