@@ -26,6 +26,11 @@ function prompt_func() {
     LIGHT_GRAY="\[\033[0;37m\]"
     COLOR_NONE="\[\e[0m\]"
 
+    NICE_GREEN="\[\e[38;05;34m\]"
+    NICE_DARK_GREEN="\[\e[38;05;28m\]"
+    NICE_GREY="\[\e[38;05;239m\]"
+    NICE_BRIGHT_GREY="\[\e[38;05;244m\]"
+
     # Show Git branch in prompt
     if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
         export GIT_PS1_SHOWDIRTYSTATE=true
@@ -43,11 +48,11 @@ function prompt_func() {
         fi
     fi
 
-	#prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${RED}${YELLOW}${git_branch}${CYAN}${COLOR_NONE}"
-	prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\W${CYAN} \u${RED}${YELLOW}${git_branch}${CYAN}${COLOR_NONE}"
+    #prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\W${CYAN} \u${YELLOW}${git_branch}${CYAN}${COLOR_NONE}"
+    prompt="${NICE_DARK_GREEN}${virtualenv}${NICE_GREY}\h:${NICE_GREEN}\W${NICE_GREY} \u${NICE_DARK_GREEN}${git_branch}${NICE_BRIGHT_GREY}\$${COLOR_NONE}"
 
     #PS1="${prompt} ★ "
-    PS1="${prompt}$ "
+    PS1="${prompt} "
 
 	unset virtualenv
 	unset git_branch
