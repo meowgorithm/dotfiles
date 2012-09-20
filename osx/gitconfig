@@ -9,7 +9,7 @@
 	co = checkout
 	i = instaweb
 	count = !git log --pretty=oneline | wc -l
-	housekeeping = !git fsck && git fsck --unreachable && git gc --aggressive --prune
+	housekeeping = !git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed
 [instaweb]
 	httpd = webrick
 [merge]
