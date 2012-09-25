@@ -85,7 +85,8 @@ fi
 
 # Editors
 #export EDITOR="/usr/bin/see -w"
-export EDITOR='vim -f -c'
+#export EDITOR='vim -f -c'
+export EDITOR=vim
 #export EDITOR='mvim -f -c "au VimLeave * !open -a Terminal"'
 #export EDITOR="/usr/local/bin/mate -w"
 
