@@ -48,8 +48,8 @@ function prompt_func() {
         fi
     fi
 
-    #prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\W${CYAN} \u${YELLOW}${git_branch}${CYAN}${COLOR_NONE}"
-    prompt="${NICE_DARK_GREEN}${virtualenv}${NICE_GREY}\h:${NICE_GREEN}\W${NICE_GREY} \u${NICE_DARK_GREEN}${git_branch}${NICE_BRIGHT_GREY}\$${COLOR_NONE}"
+    prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\W${CYAN} \u${YELLOW}${git_branch}${CYAN}${COLOR_NONE}"
+    #prompt="${NICE_DARK_GREEN}${virtualenv}${NICE_GREY}\h:${NICE_GREEN}\W${NICE_GREY} \u${NICE_DARK_GREEN}${git_branch}${NICE_BRIGHT_GREY}\$${COLOR_NONE}"
 
     #PS1="${prompt} ★ "
     PS1="${prompt} "
