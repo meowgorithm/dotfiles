@@ -117,7 +117,6 @@ alias vless='/Applications/MacVim.app/Contents/Resources/vim/runtime/macros/less
 alias install_rvm='bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
-alias js="jumpstat"
 alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
 alias delete_orig="find . -name \"*.orig\" -exec rm -f {} \;"
 alias runserver="python manage.py runserver `hostname`:8000"
