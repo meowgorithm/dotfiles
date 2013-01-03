@@ -54,9 +54,9 @@ function prompt_func() {
     #PS1="${prompt} ★ "
     PS1="${prompt} "
 
-	unset virtualenv
-	unset git_branch
-	unset prompt
+    unset virtualenv
+    unset git_branch
+    unset prompt
 }
 
 # Color the prompt
@@ -241,6 +241,11 @@ arch () {
 # Initialize autojump
 [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
+# Z
+if [ -f `brew --prefix`/etc/profile.d/z.sh ]; then
+    . `brew --prefix`/etc/profile.d/z.sh
+fi
+
 ### Begin NPM Completion ###
 #
 # npm command completion script
@@ -283,8 +288,3 @@ elif compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ### End NPM Completion ###
-
-# Z
-if [ -f `brew --prefix`/etc/profile.d/z.sh ]; then
-    . `brew --prefix`/etc/profile.d/z.sh
-fi
