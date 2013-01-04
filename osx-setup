@@ -2,6 +2,10 @@
 
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+echo
+echo Making symlinks...
+echo
+
 ln -s $THISDIR/gitignore ~/.gitignore
 ln -s $THISDIR/gemrc ~/.gemrc
 ln -s $THISDIR/tmux.conf ~/.tmux.conf
@@ -10,3 +14,7 @@ ln -s $THISDIR/osx/bashrc ~/.bashrc
 ln -s $THISDIR/osx/gitconfig ~/.gitconfig
 
 unset THISDIR
+
+echo
+echo Done.
+echo
