@@ -112,6 +112,7 @@ alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias tree='tree -C'
 alias vless='/Applications/MacVim.app/Contents/Resources/vim/runtime/macros/less.sh'
 alias install_rvm='bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)'
+alias install_homebrew='ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
