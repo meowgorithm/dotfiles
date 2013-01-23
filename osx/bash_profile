@@ -73,6 +73,7 @@ export PATH="/usr/local/share/python:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 
 # Git bash completion
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
