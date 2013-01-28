@@ -112,3 +112,14 @@ export EDITOR=vim
 if [ -f /usr/share/autojump/autojump.sh ]; then
     source /usr/share/autojump/autojump.sh
 fi
+
+# vitualenvwrapper
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
+    export PIP_REQUIRE_VIRTUALENV=false
+    export PIP_RESPECT_VIRTUALENV=true
+    export PIP_LOG_FILE=~/.cache/pip-log.txt
+    export PIP_DOWNLOAD_CACHE=~/.cache/pip-cache
+    export WORKON_HOME=~/.virtualenvs
+    source $VIRTUALENVWRAPPER_SCRIPT
+fi
