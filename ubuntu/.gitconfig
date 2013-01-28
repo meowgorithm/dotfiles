@@ -1,0 +1,16 @@
+[color]
+	ui = auto
+[user]
+	name = Roshambo
+	email = ro@roshambo.la
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	count = !git log --pretty=oneline | wc -l
+	housekeeping = !git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+[push]
+	default = matching
