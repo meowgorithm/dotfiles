@@ -9,9 +9,9 @@ rm ~/.{gitignore,gemrc,tmux.conf,gitconfig,bashrc}
 
 echo Making symlinks...
 
-ln -s $THISDIR/gitignore ~/.gitignore
-ln -s $THISDIR/gemrc ~/.gemrc
-ln -s $THISDIR/tmux.conf ~/.tmux.conf
+ln -s $THISDIR/.gitignore ~/.gitignore
+ln -s $THISDIR/.gemrc ~/.gemrc
+ln -s $THISDIR/.tmux.conf ~/.tmux.conf
 ln -s $THISDIR/ubuntu/.gitconfig ~/.gitconfig
 ln -s $THISDIR/ubuntu/.bashrc ~/.bashrc
 
