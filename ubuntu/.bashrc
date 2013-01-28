@@ -123,3 +123,8 @@ if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export WORKON_HOME=~/.virtualenvs
     source $VIRTUALENVWRAPPER_SCRIPT
 fi
+
+# force locales (needed to get UTF-8 working right in Postgres)
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
