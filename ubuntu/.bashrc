@@ -112,3 +112,5 @@ export EDITOR=vim
 if [ -f /usr/share/autojump/autojump.sh ]; then
     source /usr/share/autojump/autojump.sh
 fi
+
+PIP_USE_MIRRORS=true # really helps when PyPi is down
