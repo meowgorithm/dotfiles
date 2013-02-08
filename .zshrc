@@ -50,14 +50,28 @@ setopt hist_ignore_space
 
 export EDITOR=vim
 export PAGER=less
-export SHELL=/bin/zsh
+export TERM=xterm-256color # make sure terminals know we can handle 256 colors A-OK
+
+export CLICOLOR=1
+export LSCOLORS=dxfxcxdxbxegedabagacad
+export ls='ls -h'
+
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
+
+if [[ HAS_BREW -eq 1 ]]; then
+    export SHELL=/usr/local/bin/zsh
+else
+    export SHELL=/bin/zsh
+fi
 
 # Virtualenv Stuff
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper.sh
 if [[ -f $VIRTUALENVWRAPPER_SCRIPT ]]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
-    if [[ IS_MAC -eq 1 ]]; then
+    if [[ HAS_BREW -eq 1 ]]; then
         export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     fi
     export VIRTUAL_ENV_DISABLE_PROMPT=false # No need for this as we do our ourselves elsewhere (so we can set the color)
