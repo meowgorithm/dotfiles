@@ -62,8 +62,13 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
 
+
 if [[ HAS_BREW -eq 1 ]]; then
     export SHELL=/usr/local/bin/zsh
+
+    # Git completion (requires bash-completion)
+    zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
+
 else
     export SHELL=/bin/zsh
 fi
@@ -116,7 +121,8 @@ RPROMPT='%F{yellow}$vcs_info_msg_0_'
 # Path stuff
 if [[ $IS_MAC -eq 1 ]]; then
     PATH=$PATH:/usr/local/share/python
-    PATH=$PATH:/usr/local/bin:/usr/local/sbin
+    PATH=$PATH:/usr/local/bin
+    PATH=$PATH:/usr/local/sbin
     PATH=$PATH:/usr/local/share/npm/bin
     PATH=$PATH:$HOME/.cabal/bin
     PATH=$PATH:$HOME/.rvm/bin # add RVM to PATH for scripting
