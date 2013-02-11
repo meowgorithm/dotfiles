@@ -66,7 +66,7 @@ zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
 if [[ HAS_BREW -eq 1 ]]; then
     export SHELL=/usr/local/bin/zsh
 
-    # Git completion (requires bash-completion)
+    # Git completion (requires the bash-completion package in Homebrew)
     zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
 
 else
