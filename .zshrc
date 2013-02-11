@@ -171,6 +171,16 @@ fi
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+# OS X aliases
+if [[ IS_MAC -eq 1 ]]; then
+    alias eth0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
+    alias eth1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
+fi
+
+# Miscellaneous aliases
+alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
+alias delete_orig="find . -name \"*.orig\" -exec rm -f {} \;"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
