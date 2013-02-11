@@ -116,12 +116,12 @@ function +vi-git-st() {
     if [[ -n ${remote} ]] ; then
         # for git prior to 1.7
         # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed 's# ##g')
         (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
 
         # for git prior to 1.7
         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed 's# ##g')
         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
 
         hook_com[branch]="${hook_com[branch]} [${remote}${(j:/:)gitstatus}]"
