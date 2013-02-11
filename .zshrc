@@ -100,8 +100,8 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*:*' get-revision true
 zstyle ':vcs_info:git*:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "(%s) %12.12i %c%u %b%m"
-zstyle ':vcs_info:git*' actionformats "(%s|%a) %12.12i %c%u %b%m"
+zstyle ':vcs_info:git*' formats "(%b) %12.12i %c%u%m"
+zstyle ':vcs_info:git*' actionformats "(%b|%a) %12.12i %c%u%m"
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
 
 # Show remote ref name and number of commits ahead-of or behind
@@ -124,7 +124,7 @@ function +vi-git-st() {
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
 
-        hook_com[branch]="${hook_com[branch]} [${remote} ${(j:/:)gitstatus}]"
+        hook_com[branch]="${hook_com[branch]} [${remote}${(j:/:)gitstatus}]"
     fi
 }
 
@@ -133,7 +133,7 @@ function +vi-git-stash() {
     local -a stashes
 
     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
-        stashes=$(git stash list 2>/dev/null | wc -l)
+        stashes=$(git stash list 2>/dev/null | wc -l | sed 's# ##g')
         hook_com[misc]+=" (${stashes} stashed)"
     fi
 }
