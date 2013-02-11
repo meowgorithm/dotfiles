@@ -90,16 +90,14 @@ fi
 
 # Verson Control Information
 #
-# %s the current version control system, like git or svn
-# %r the name of the root directory of the repository
-# %S the current path relative to the repository root directory
-# %b branch information, like master
-# %m in case of Git, show information about stashes
-# %u show unstaged changes in the repository
-# %c how staged changes in the repository
+# http://www.gsp.com/cgi-bin/man.cgi?section=1&topic=zshcontrib
+# http://eseth.org/2010/git-in-zsh.html
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats '(%s:%b)'
+zstyle ':vcs_info:git*:*' get-revision true
+zstyle ':vcs_info:git*:*' check-for-changes true
+zstyle ':vcs_info:git*' formats "(%s) %12.12i %c%u %b%m"
+zstyle ':vcs_info:git*' actionformats "(%s|%a) %12.12i %c%u %b%m"
 
 function precmd() {
     vcs_info
