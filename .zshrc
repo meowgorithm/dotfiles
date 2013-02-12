@@ -157,12 +157,12 @@ RPROMPT='%F{yellow}$vcs_info_msg_0_'
 
 # Path stuff
 if [[ $IS_MAC -eq 1 ]]; then
-    PATH=$PATH:/usr/local/share/python
-    PATH=$PATH:/usr/local/bin
-    PATH=$PATH:/usr/local/sbin
-    PATH=$PATH:/usr/local/share/npm/bin
-    PATH=$PATH:$HOME/.cabal/bin
-    PATH=$PATH:$HOME/.rvm/bin # add RVM to PATH for scripting
+    PATH=/usr/local/share/python:$PATH
+    PATH=/usr/local/bin:$PATH
+    PATH=/usr/local/sbin:$PATH
+    PATH=/usr/local/share/npm/bin:$PATH
+    PATH=$HOME/.cabal/bin:$PATH
+    PATH=$HOME/.rvm/bin:$PATH # add RVM to PATH for scripting
 fi
 
 # Initialize Z
