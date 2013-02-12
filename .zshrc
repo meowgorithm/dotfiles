@@ -73,14 +73,14 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path .zcache
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
-#Completion Options
+# Completion options
 zstyle ':completion:*:match:*' original only
 zstyle ':completion::prefix-1:*' completer _complete
 zstyle ':completion:predict:*' completer _complete
 zstyle ':completion:incremental:*' completer _complete _correct
 zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
 
-# Path Expansion
+# Path expansion
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-shlashes 'yes'
 zstyle ':completion::complete:*' '\\'
@@ -94,6 +94,10 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 zstyle ':completion:*' list-colors 'di=33:ln=35:so=32:ex=31:lc=\e[:rc=m:ec=:mi=37;41'
 
+zstyle ':completion:*:messages' format $'%{\e[01;35m%} -! %d !- %{\e[00;00m%}'
+zstyle ':completion:*:warnings' format $'%{\e[01;31m%} -- No Matches Found -- %{\e[00;00m%}'
+zstyle ':completion:*:descriptions' format $'%{\e[01;33m%} -! %d -- %{\e[00;00m%}'
+
 compdef pkill=kill
 compdef pkill=killall
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -103,9 +107,9 @@ zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
-zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
-zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
-zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+zstyle ':completion:*:descriptions' format '%F{yellow}⚡ %F{green}%d%f'
+zstyle ':completion:*:messages' format $'%F{cyan} -- %d --%f'
+zstyle ':completion:*:warnings' format $'%F{red}✖ No Matches Found%f'
 
 if [[ HAS_BREW -eq 1 ]]; then
     export SHELL=/usr/local/bin/zsh
