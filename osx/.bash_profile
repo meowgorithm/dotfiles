@@ -233,7 +233,8 @@ arch () {
 }
 
 # Initialize autojump
-[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+export AUTOJUMP_IGNORE_CASE=1
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # Z
 if [ -f `brew --prefix`/etc/profile.d/z.sh ]; then
