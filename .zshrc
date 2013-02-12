@@ -59,9 +59,49 @@ export LSCOLORS=dxfxcxdxbxegedabagacad
 export ls='ls -h'
 
 autoload -U compinit && compinit
-compinit
+
+setopt auto_list
+setopt auto_menu
+setopt menu_complete
+
+# Completion caching
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path .zcache
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+#Completion Options
+zstyle ':completion:*:match:*' original only
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+
+# Path Expansion
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-shlashes 'yes'
+zstyle ':completion::complete:*' '\\'
+
+zstyle ':completion:*:*:*:default' menu yes select
+zstyle ':completion:*:*:default' force-list always
+
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
 zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
 
+compdef pkill=kill
+compdef pkill=killall
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:processes' command 'ps -au$USER'
+
+# Group matches and Describe
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
 
 if [[ HAS_BREW -eq 1 ]]; then
     export SHELL=/usr/local/bin/zsh
