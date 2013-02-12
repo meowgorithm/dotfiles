@@ -30,7 +30,6 @@ setopt multios
 setopt cdablevarS
 setopt transient_rprompt
 setopt extended_glob
-setopt correct_all
 zle -N self-insert url-quote-magic
 autoload -U url-quote-magic
 autoload -U zmv
@@ -50,6 +49,10 @@ setopt inc_append_history
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_ignore_space
+
+# Autocorrect
+setopt correct_all
+alias vim='nocorrect vim'
 
 export EDITOR=vim
 export PAGER=less
