@@ -58,7 +58,7 @@ export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
 export ls='ls -h'
 
-autoload -Uz compinit
+autoload -U compinit && compinit
 compinit
 zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
 
@@ -165,8 +165,12 @@ if [[ $IS_MAC -eq 1 ]]; then
     PATH=$PATH:$HOME/.rvm/bin # add RVM to PATH for scripting
 fi
 
-# Z
+# Initialize Z
 [[ -f `brew --prefix`/etc/profile.d/z.sh ]] && . `brew --prefix`/etc/profile.d/z.sh
+
+# Initialize autojump (requires compunit in Zsh!)
+export AUTOJUMP_IGNORE_CASE=1
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
