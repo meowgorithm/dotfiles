@@ -88,7 +88,7 @@ zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
-zstyle ':completion:*' list-colors 'dxfxcxdxbxegedabagacad'
+zstyle ':completion:*' list-colors 'di=33:ln=35:so=32:ex=31:lc=\e[:rc=m:ec=:mi=37;41'
 
 compdef pkill=kill
 compdef pkill=killall
