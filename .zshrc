@@ -30,6 +30,7 @@ setopt multios
 setopt cdablevarS
 setopt transient_rprompt
 setopt extended_glob
+setopt correct_all
 zle -N self-insert url-quote-magic
 autoload -U url-quote-magic
 autoload -U zmv
