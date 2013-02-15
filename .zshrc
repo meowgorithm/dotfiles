@@ -94,10 +94,6 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 zstyle ':completion:*' list-colors 'di=33:ln=35:so=32:ex=31:lc=\e[:rc=m:ec=:mi=37;41'
 
-zstyle ':completion:*:messages' format $'%{\e[01;35m%} -! %d !- %{\e[00;00m%}'
-zstyle ':completion:*:warnings' format $'%{\e[01;31m%} -- No Matches Found -- %{\e[00;00m%}'
-zstyle ':completion:*:descriptions' format $'%{\e[01;33m%} -! %d -- %{\e[00;00m%}'
-
 compdef pkill=kill
 compdef pkill=killall
 zstyle ':completion:*:*:kill:*' menu yes select
