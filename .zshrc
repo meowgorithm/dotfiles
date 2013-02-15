@@ -57,6 +57,7 @@ alias vim='nocorrect vim'
 export EDITOR=vim
 export PAGER=less
 export TERM=xterm-256color # make sure terminals know we can handle 256 colors A-OK
+export SHELL=/bin/zsh
 
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
@@ -107,22 +108,12 @@ zstyle ':completion:*:descriptions' format '%F{yellow}⚡ %F{green}%d%f'
 zstyle ':completion:*:messages' format $'%F{cyan} -- %d --%f'
 zstyle ':completion:*:warnings' format $'%F{red}✖ No Matches Found%f'
 
-if [[ HAS_BREW -eq 1 ]]; then
-    export SHELL=/usr/local/bin/zsh
-
-    # Git completion (requires the bash-completion package in Homebrew)
-    zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
-
-else
-    export SHELL=/bin/zsh
-fi
-
 # Virtualenv Stuff
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper.sh
 if [[ -f $VIRTUALENVWRAPPER_SCRIPT ]]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
-    if [[ HAS_BREW -eq 1 ]]; then
+    if [[ $HAS_BREW -eq 1 ]]; then
         export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     fi
     export VIRTUAL_ENV_DISABLE_PROMPT=false # No need for this as we do our ourselves elsewhere (so we can set the color)
@@ -190,7 +181,7 @@ function virtualenv_info() {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
-function prompt_char {
+function prompt_char { # Courtesy Steve Losh
     git branch >/dev/null 2>/dev/null && echo ' ±' && return
     hg root >/dev/null 2>/dev/null && echo ' ☿' && return
     echo ' ⚡︎'
@@ -199,31 +190,42 @@ function prompt_char {
 PROMPT='%F{yellow}$(virtualenv_info)%F{cyan}%m:%F{red}%~ %F{cyan}%n%F{grey}%F{red}$(prompt_char)%f '
 RPROMPT='%F{yellow}$vcs_info_msg_0_'
 
-# Path stuff
+# OS X Settings
 if [[ $IS_MAC -eq 1 ]]; then
+
+    # Path stuff
     PATH=/usr/local/share/python:$PATH
     PATH=/usr/local/bin:$PATH
     PATH=/usr/local/sbin:$PATH
     PATH=/usr/local/share/npm/bin:$PATH
     PATH=$HOME/.cabal/bin:$PATH
     PATH=$HOME/.rvm/bin:$PATH # add RVM to PATH for scripting
+
+    # OS X specific aliases
+    alias eth0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
+    alias eth1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
+
+    if [[ $HAS_BREW -eq 1 ]]; then
+
+        # Set shell var
+        export SHELL=/usr/local/bin/zsh
+
+        # Init git completion (requires the bash-completion package in Homebrew)
+        zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
+
+        # Initialize Z
+        [[ -f `brew --prefix`/etc/profile.d/z.sh ]] && . `brew --prefix`/etc/profile.d/z.sh
+
+        # Initialize Autojump (requires compunit it Zsh)
+        export AUTOJUMP_IGNORE_CASE=1
+        [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+    fi
+
 fi
-
-# Initialize Z
-[[ -f `brew --prefix`/etc/profile.d/z.sh ]] && . `brew --prefix`/etc/profile.d/z.sh
-
-# Initialize autojump (requires compunit in Zsh!)
-export AUTOJUMP_IGNORE_CASE=1
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-# OS X aliases
-if [[ IS_MAC -eq 1 ]]; then
-    alias eth0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
-    alias eth1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
-fi
 
 # Miscellaneous aliases
 alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
