@@ -187,7 +187,12 @@ function prompt_char { # Courtesy Steve Losh
     echo ' ⚡︎'
 }
 
-PROMPT='%F{yellow}$(virtualenv_info)%F{cyan}%m:%F{red}%~ %F{cyan}%n%F{grey}%F{red}$(prompt_char)%f '
+if [[ $HAS_PACMAN -eq 1 ]]; then
+    PROMPT='%F{yellow}$(virtualenv_info)%F{red}%m:%F{cyan}%~ %F{red}%n%F{cyan}$(prompt_char)%f '
+else
+    PROMPT='%F{yellow}$(virtualenv_info)%F{cyan}%m:%F{red}%~ %F{cyan}%n%F{red}$(prompt_char)%f '
+fi
+
 RPROMPT='%F{yellow}$vcs_info_msg_0_'
 
 # OS X Settings
