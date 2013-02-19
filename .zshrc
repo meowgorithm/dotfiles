@@ -188,7 +188,7 @@ function prompt_char { # Courtesy Steve Losh
 }
 
 if [[ $HAS_PACMAN -eq 1 ]]; then
-    PROMPT='%F{yellow}$(virtualenv_info)%F{red}%m:%F{cyan}%~ %F{red}%n%F{cyan}$(prompt_char)%f '
+    PROMPT='%F{yellow}$(virtualenv_info)%F{red}%m:%F{cyan}%~ %F{red}%n%F{yellow}$(prompt_char)%f '
 else
     PROMPT='%F{yellow}$(virtualenv_info)%F{cyan}%m:%F{red}%~ %F{cyan}%n%F{red}$(prompt_char)%f '
 fi
