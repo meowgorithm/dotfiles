@@ -116,7 +116,7 @@ if [[ -f $VIRTUALENVWRAPPER_SCRIPT ]]; then
     if [[ $HAS_BREW -eq 1 ]]; then
         export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     fi
-    export VIRTUAL_ENV_DISABLE_PROMPT=false # No need for this as we do our ourselves elsewhere (so we can set the color)
+    export VIRTUAL_ENV_DISABLE_PROMPT=false # No need for this as we do this our ourselves elsewhere (so we can set the color)
     export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
     export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
     export WORKON_HOME=~/.virtualenvs
