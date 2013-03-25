@@ -53,6 +53,7 @@ setopt hist_ignore_space
 # Autocorrect
 setopt correct_all
 alias vim='nocorrect vim'
+alias vagrant='nocorrect vagrant'
 
 export EDITOR=vim
 export PAGER=less
@@ -62,6 +63,11 @@ export SHELL=/bin/zsh
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
 export ls='ls -h'
+
+# Editing
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 autoload -U compinit && compinit
 
@@ -209,6 +215,10 @@ if [[ $IS_MAC -eq 1 ]]; then
     # OS X specific aliases
     alias eth0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
     alias eth1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
+
+    # zsh-completions
+    # https://github.com/zsh-users/zsh-completions
+    fpath=(/usr/local/share/zsh-completions $fpath)
 
     if [[ $HAS_BREW -eq 1 ]]; then
 
