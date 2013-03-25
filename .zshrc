@@ -243,6 +243,7 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Miscellaneous aliases
+alias ls="ls -h" # show human readable file sizes
 alias delete_pyc="find . -name \"*.pyc\" -exec rm -f {} \;"
 alias delete_orig="find . -name \"*.orig\" -exec rm -f {} \;"
 
