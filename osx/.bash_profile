@@ -6,6 +6,7 @@ export TERM=xterm-256color
 
 # Variables for later
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper.sh
+LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper_.sh
 GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
 BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
@@ -40,7 +41,7 @@ function prompt_func() {
     fi
 
     # Show virtualenv in prompt
-    if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
+    if [ -f $VIRTUALENVWRAPPER_LAZY_SCRIPT ]; then
         if [ "$(showvirtualenv)" == 'showvirtualenv [env]' ]; then
             virtualenv=""
         else
@@ -48,8 +49,7 @@ function prompt_func() {
         fi
     fi
 
-    prompt="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} ⚡︎${COLOR_NONE}"
-    PS1="${prompt} "
+    PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} ⚡︎${COLOR_NONE} "
 
 }
 
