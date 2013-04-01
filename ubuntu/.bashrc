@@ -53,12 +53,25 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Git PS1 Settings
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWSTASHSTATE=true
+
+# Shorten long cwd's (\w) to show a given number of directories only (Bash 4+)
+PROMPT_DIRTRIM=2
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    red="\[\033[00;31m\]"
+    yellow="\[\033[00;33m\]"
+    cyan="\[\033[00;36m\]"
+    no_color="\[\033[00m\]"
+    PS1="${yellow}${debian_chroot:+($debian_chroot)}${cyan}\u@\h:${red}\w${yellow}$(__git_ps1 ' (%s)') ${red}⚡︎${no_color} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-unset color_prompt force_color_prompt
+
+unset color_prompt force_color_prompt yellow red
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -72,7 +85,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls -h --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
