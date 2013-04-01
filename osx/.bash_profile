@@ -116,8 +116,8 @@ if [ -f /usr/local/bin/vim ]; then
 fi
 
 # Print local network adapter IPs and copy them to the clipboard
-alias etho="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
-alias eth1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
+alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
+alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
 # For tailing the Flash error logs
 alias flashtail='tail -f ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt'
