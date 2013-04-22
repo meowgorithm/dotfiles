@@ -146,3 +146,5 @@ export LC_ALL=en_US.UTF-8
 # Aliases
 alias createdb='sudo -u postgres createdb'
 alias dropdb='sudo -u postgres dropdb'
+alias createuser='sudo -u postgres createuser'
+alias dropuser='sudo -u postgres dropuser'
