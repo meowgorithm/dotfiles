@@ -18,15 +18,15 @@ function prompt_func() {
     PROMPT_DIRTRIM=2
 
     # Ascii color escape codes
-    RED="\[\033[0;31m\]"
-    GREEN="\[\033[0;32m\]"
-    YELLOW="\[\033[0;33m\]"
-    BLUE="\[\033[0;34m\]"
-    PURPLE="\[\033[0;35m\]"
-    CYAN="\[\033[0;36m\]"
-    LIGHT_GREEN="\[\033[1;32m\]"
-    WHITE="\[\033[1;37m\]"
-    LIGHT_GRAY="\[\033[0;37m\]"
+    RED="\[\e[0;31m\]"
+    GREEN="\[\e[0;32m\]"
+    YELLOW="\[\e[0;33m\]"
+    BLUE="\[\e[0;34m\]"
+    PURPLE="\[\e[0;35m\]"
+    CYAN="\[\e[0;36m\]"
+    LIGHT_GREEN="\[\e[1;32m\]"
+    WHITE="\[\e[1;37m\]"
+    LIGHT_GRAY="\[\e[0;37m\]"
     COLOR_NONE="\[\e[0m\]"
 
     # 256 color foreground codes follow the following format:
@@ -53,7 +53,7 @@ function prompt_func() {
 
 }
 
-# Color the prompt
+# Format the prompt
 PROMPT_COMMAND=prompt_func
 
 # Enable Vi mode
