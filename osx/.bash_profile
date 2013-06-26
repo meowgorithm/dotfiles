@@ -6,7 +6,7 @@ export TERM=xterm-256color
 
 # Variables for later
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper.sh
-LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper_.sh
+LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/share/python/virtualenvwrapper_lazy.sh
 GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
 BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
@@ -41,7 +41,7 @@ function prompt_func() {
     fi
 
     # Show virtualenv in prompt
-    if [ -f $VIRTUALENVWRAPPER_LAZY_SCRIPT ]; then
+    if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
         if [ "$(showvirtualenv)" == 'showvirtualenv [env]' ]; then
             virtualenv=""
         else
@@ -142,7 +142,7 @@ if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
     export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
     export WORKON_HOME=~/.virtualenvs
-    source $VIRTUALENVWRAPPER_SCRIPT
+    source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
 
 ### Begin PIP Bash completion ###
