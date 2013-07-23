@@ -72,6 +72,7 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
 
 # Git bash completion
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
