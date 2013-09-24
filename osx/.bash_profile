@@ -49,7 +49,7 @@ function prompt_func() {
         fi
     fi
 
-    PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} ⚡︎${COLOR_NONE} "
+    PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
 
 }
 
