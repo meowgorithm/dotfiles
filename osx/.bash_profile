@@ -66,7 +66,6 @@ export LSCOLORS=dxfxcxdxbxegedabagacad
 alias ls='ls -h'
 
 # Path
-export PATH="/usr/local/share/python:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
