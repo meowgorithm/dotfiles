@@ -41,12 +41,11 @@ function prompt_func() {
     fi
 
     # Show virtualenv in prompt
-    if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
-        if [ "$(showvirtualenv)" == 'showvirtualenv [env]' ]; then
-            virtualenv=""
-        else
-            virtualenv="($(showvirtualenv)) "
-        fi
+    #if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
+    if [ -z $VIRTUAL_ENV ]; then
+        virtualenv=""
+    else
+        virtualenv="(`basename \"$VIRTUAL_ENV\"`) "
     fi
 
     PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
