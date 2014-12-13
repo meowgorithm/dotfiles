@@ -77,8 +77,8 @@ if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
 fi
 
 # Go Stuff
-export GOPATH=/usr/local/opt/go/libexec/bin
-export PATH=$PATH:$GOPATH
+export GOPATH=~/.go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Editors
 #export EDITOR="/usr/bin/see -w"
