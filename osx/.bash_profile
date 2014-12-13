@@ -67,7 +67,6 @@ alias ls='ls -h'
 # Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
@@ -76,6 +75,10 @@ export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
     source $GIT_BASH_COMPLETION_SCRIPT
 fi
+
+# Go Stuff
+export GOPATH=/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$GOPATH
 
 # Editors
 #export EDITOR="/usr/bin/see -w"
