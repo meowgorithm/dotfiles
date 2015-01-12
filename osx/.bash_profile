@@ -78,7 +78,8 @@ fi
 
 # Go Stuff
 export GOPATH=~/.go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN
 
 # Editors
 #export EDITOR="/usr/bin/see -w"
