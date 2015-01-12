@@ -143,7 +143,7 @@ if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_RESPECT_VIRTUALENV=true
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
-    export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
+    #export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
     export WORKON_HOME=~/.virtualenvs
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
