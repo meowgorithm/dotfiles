@@ -114,6 +114,10 @@ alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc="find . -name '*.pyc' -delete"
 alias delete_orig="find . -name '*.orig' -delete"
 
+# Project aliases
+alias gl="cd ~/Code/glitter/"
+alias gls="cd ~/Code/glitter-server/"
+
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
     alias vless='/usr/local/share/vim/vim73/macros/less.sh'

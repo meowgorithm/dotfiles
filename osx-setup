@@ -19,6 +19,7 @@ ln -s $THISDIR/.gitignore ~/.gitignore
 ln -s $THISDIR/.gemrc ~/.gemrc
 ln -s $THISDIR/.tmux.conf ~/.tmux.conf
 ln -s $THISDIR/.zshrc ~/.zshrc
+ln -s $THISDIR/.eslintrc ~/.eslintrc
 ln -s $THISDIR/osx/.bash_profile ~/.bash_profile
 ln -s $THISDIR/osx/.bashrc ~/.bashrc
 ln -s $THISDIR/osx/.gitconfig ~/.gitconfig
