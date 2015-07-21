@@ -70,6 +70,7 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
+export PATH=$PATH:$HOME/.local/lib/aws/bin # ugh aws
 
 # Git bash completion
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
@@ -117,6 +118,7 @@ alias delete_orig="find . -name '*.orig' -delete"
 # Project aliases
 alias gl="cd ~/Code/glitter/"
 alias gls="cd ~/Code/glitter-server/"
+alias gla="cd ~/Code/glitter-api/"
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
@@ -204,3 +206,6 @@ elif compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ### End NPM Completion ###
+
+# Cute apple logo
+[[ -f `brew --prefix`/bin/archey ]] && archey --color
