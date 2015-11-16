@@ -83,7 +83,6 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN
 
 # Editors
-#export EDITOR="/usr/bin/see -w"
 export EDITOR=vim
 
 # History Management
@@ -165,29 +164,49 @@ _pip_completion() {
 complete -o default -F _pip_completion pip
 ### End PIP Bash completion ###
 
-### Begin NPM Completion ###
+# Cute apple logo
+[[ -f `brew --prefix`/bin/archey ]] && archey --color
+
+#!/bin/bash
+
+###-begin-npm-completion-###
 #
 # npm command completion script
 #
 # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
 # Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
 
-COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
-COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
-export COMP_WORDBREAKS
-
-if complete &>/dev/null; then
+if type complete &>/dev/null; then
   _npm_completion () {
+    local words cword
+    if type _get_comp_words_by_ref &>/dev/null; then
+      _get_comp_words_by_ref -n = -n @ -w words -i cword
+    else
+      cword="$COMP_CWORD"
+      words=("${COMP_WORDS[@]}")
+    fi
+
     local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
                            COMP_LINE="$COMP_LINE" \
                            COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${COMP_WORDS[@]}" \
+                           npm completion -- "${words[@]}" \
                            2>/dev/null)) || return $?
     IFS="$si"
   }
-  complete -F _npm_completion npm
-elif compctl &>/dev/null; then
+  complete -o default -F _npm_completion npm
+elif type compdef &>/dev/null; then
+  _npm_completion() {
+    local si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+elif type compctl &>/dev/null; then
   _npm_completion () {
     local cword line point words si
     read -Ac words
@@ -205,7 +224,4 @@ elif compctl &>/dev/null; then
   }
   compctl -K _npm_completion npm
 fi
-### End NPM Completion ###
-
-# Cute apple logo
-[[ -f `brew --prefix`/bin/archey ]] && archey --color
+###-end-npm-completion-###
