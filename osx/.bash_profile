@@ -10,7 +10,7 @@ LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
 GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
 BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
-# For formatting the prompt
+# Format the prompt
 function prompt_func() {
 
     # Shorted the pwd in the prompt to show only the n number of characters
@@ -107,8 +107,6 @@ alias postgres_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias postgres='postgres -D /usr/local/var/postgres'
 alias reload_profile='source ~/.bash_profile'
 alias tree='tree -C'
-alias install_rvm='bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)'
-alias install_homebrew='ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc="find . -name '*.pyc' -delete"
