@@ -126,10 +126,6 @@ fi
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
-# For tailing the Flash error logs
-alias flashtail='tail -f ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt'
-alias flashclear='rm ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt'
-
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
