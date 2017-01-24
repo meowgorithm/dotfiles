@@ -1,0 +1,31 @@
+#!/bin/bash
+
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo
+echo Removing existing files
+rm \
+    ~/.gitignore \
+    ~/.gemrc \
+    ~/.tmux.conf \
+    ~/.bash_profile \
+    ~/.bashrc \
+    ~/.gitconfig \
+    ~/.zshrc \
+
+echo Making symlinks...
+
+ln -s $THISDIR/.gitignore ~/.gitignore
+ln -s $THISDIR/.gemrc ~/.gemrc
+ln -s $THISDIR/.tmux.conf ~/.tmux.conf
+ln -s $THISDIR/.zshrc ~/.zshrc
+ln -s $THISDIR/.eslintrc ~/.eslintrc
+ln -s $THISDIR/osx/.bash_profile ~/.bash_profile
+ln -s $THISDIR/osx/.bashrc ~/.bashrc
+ln -s $THISDIR/osx/.gitconfig ~/.gitconfig
+
+unset THISDIR
+
+echo
+echo Done.
+echo
