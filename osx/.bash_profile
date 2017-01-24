@@ -55,22 +55,19 @@ function prompt_func() {
 # Format the prompt
 PROMPT_COMMAND=prompt_func
 
-# Enable Vi mode
+# Enable Vi mode in Bash
 #set -o vi
 
 # Miscellaneous coloring and formatting
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
-#export LSCOLORS=ExFxCxDxBxegedabagacad
 alias ls='ls -h'
 
 # Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
-export PATH=$PATH:$HOME/.local/lib/aws/bin # ugh aws
 
 # Git bash completion
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
@@ -103,17 +100,11 @@ alias mongotail='tail -f /usr/local/var/log/mongodb/mongo.log'
 alias apache='sudo apachectl'
 alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
 alias postgres='postgres -D /usr/local/var/postgres'
-alias reload_profile='source ~/.bash_profile'
 alias tree='tree -C'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc="find . -name '*.pyc' -delete"
 alias delete_orig="find . -name '*.orig' -delete"
-
-# Project aliases
-alias gl="cd ~/Code/glitter/"
-alias gls="cd ~/Code/glitter-server/"
-alias gla="cd ~/Code/glitter-api/"
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
@@ -123,9 +114,6 @@ fi
 # Print local network adapter IPs and copy them to the clipboard
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
-
-# Load RVM function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Initialize autojump
 export AUTOJUMP_IGNORE_CASE=1
@@ -140,7 +128,6 @@ if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_RESPECT_VIRTUALENV=true
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
-    #export PIP_DOWNLOAD_CACHE='~/.cache/pip_cache' # Use a cache
     export WORKON_HOME=~/.virtualenvs
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
@@ -167,8 +154,6 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
-
-#!/bin/bash
 
 ###-begin-npm-completion-###
 #
