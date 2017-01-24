@@ -12,6 +12,7 @@ rm \
     ~/.bashrc \
     ~/.gitconfig \
     ~/.zshrc \
+    ~/.eslintrc
 
 echo Making symlinks...
 
