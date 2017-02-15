@@ -1,0 +1,18 @@
+super + Return
+    urxvt
+
+#
+# bspwm
+#
+
+# Move focus across windows
+super + {h,j,k,l}
+    bspc window -s {left,down,up,right}
+
+# Balance window sizes
+super + b
+    bspc desktop -B
+
+# Swap current window with previous window
+super + apostrophe
+    bspc window -s last

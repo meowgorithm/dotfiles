@@ -1,0 +1,17 @@
+[color]
+	ui = auto
+[user]
+	name = Christian Rocha
+	email = christian@rocha.is
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	i = instaweb
+	count = !git log --pretty=oneline | wc -l
+	housekeeping = !git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed
+[core]
+	excludesfile = /Users/christian/.gitignore
+	editor = vim
+[push]
+	default = matching
