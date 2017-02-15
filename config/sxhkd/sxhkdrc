@@ -16,3 +16,6 @@ super + b
 # Swap current window with previous window
 super + apostrophe
     bspc window -s last
+
+super + m
+    bscp desktop -l next
