@@ -13,7 +13,7 @@ link gitignore gitignore
 link gemrc gemrc
 link eslintrc eslintrc
 link tmux.conf tmux.conf
-link config/bspwm config/bspem
+link config/bspwm config/bspwm
 link config/sxhkd config/sxhkd
 link gitconfig archlinux/gitconfig
 link bashrc archlinux/bashrc
