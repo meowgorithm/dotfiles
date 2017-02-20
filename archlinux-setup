@@ -7,14 +7,18 @@ function link() {
     ln -s $THISDIR/$2 ~/.$1
 }
 
+mkdir -p ~/.config
+
 link gitignore gitignore
 link gemrc gemrc
 link eslintrc eslintrc
-link zshrc zshrc
 link tmux.conf tmux.conf
-link gitconfig macos/gitconfig
-link bash_profile macos/bash_profile
-link bashrc macos/bashrc
+link config/bspwm config/bspwm
+link config/sxhkd config/sxhkd
+link gitconfig archlinux/gitconfig
+link bashrc archlinux/bashrc
+
+unset THISDIR
 
 echo
 echo Done.

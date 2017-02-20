@@ -1,0 +1,18 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+alias start='sudo systemctl start '
+alias stop='sudo systemctl stop'
+alias restart='sudo systemctl restart'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
+alias status='sudo systemctl status'
+alias pacman='sudo pacman'
+alias restart_network='sudo systemctl restart dhcpcd'
