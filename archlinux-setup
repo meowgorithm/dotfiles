@@ -7,7 +7,7 @@ function link() {
     ln -s $THISDIR/$2 ~/.$1
 }
 
-mkdir -p ~/.config
+mkdir -p ~/.config/{bspwm,panel,sxhkd}
 
 link gitignore gitignore
 link gemrc gemrc
@@ -15,6 +15,12 @@ link eslintrc eslintrc
 link tmux.conf tmux.conf
 link gitconfig archlinux/gitconfig
 link bashrc archlinux/bashrc
+link Xresources archlinux/Xresources
+link xinitrc archlinux/xinitrc
+
+link config/bspwm archlinux/config/bspwm
+link config/sxhkd archlinux/config/sxhkd
+link config/panel archlinux/config/panel
 
 unset THISDIR
 
