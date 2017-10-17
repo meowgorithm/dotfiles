@@ -3,23 +3,27 @@
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function link() {
-    rm -rf ~/.$1
-    ln -s $THISDIR/$2 ~/.$1
+    rm -rf ~/$1
+    ln -s $THISDIR/$2 ~/$1
 }
 
-link gitignore gitignore
-link gemrc gemrc
-link eslintrc eslintrc
-link zshrc zshrc
-link tmux.conf tmux.conf
-link gitconfig macos/gitconfig
-link bash_profile macos/bash_profile
+link .gitignore gitignore
+link .gemrc gemrc
+link .eslintrc eslintrc
+link .zshrc zshrc
+link .tmux.conf tmux.conf
+link .gitconfig macos/gitconfig
+link .bash_profile macos/bash_profile
+
+# Kitty
+mkdir -p ~/Library/Preferences/kitty
+link Library/Preferences/kitty/kitty.conf kitty.conf
 
 # XCode Themes
-XCODE_THEMES=~/Library/Developer/Xcode/UserData/FontAndColorThemes/
-mkdir -p $XCODE_THEMES
-ln -s $THISDIR/xcode/Meowgorithm.dvtcolortheme $XCODE_THEMES/Meowgorithm.dvtcolortheme
-ln -s $THISDIR/xcode/MeowgorithmMorning.dvtcolortheme $XCODE_THEMES/MeowgorithmMorning.dvtcolortheme
+XCODE_THEMES=Library/Developer/Xcode/UserData/FontAndColorThemes/
+mkdir -p ~/$XCODE_THEMES
+link $XCODE_THEMES/Meowgorithm.dvtcolortheme $THISDIR/xcode/Meowgorithm.dvtcolortheme
+link $XCODE_THEMES/MeowgorithmMorning.dvtcolortheme $THISDIR/xcode/MeowgorithmMorning.dvtcolortheme
 
 echo
 echo Done.
