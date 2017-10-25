@@ -10,7 +10,7 @@ while read -r line ; do
 	case $line in
 		S*)
 			# clock output
-			#sys="%{F$COLOR_SYS_FG}%{B$COLOR_SYS_BG} ${line#?} %{B-}%{F-}"
+			sys="%{F$COLOR_SYS_FG}%{B$COLOR_SYS_BG} ${line#?} %{B-}%{F-}"
 			;;
 		T*)
 			# xtitle output
