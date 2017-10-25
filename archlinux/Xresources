@@ -1,27 +1,23 @@
 ! https://wiki.archlinux.org/index.php/Rxvt-unicode
 URxvt.scrollBar: false
-/*URxvt.font: xft:ttyp0:style=regular:pixelsize=20:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false */
-/* URxvt.font: xft:Input:style=regular:pixelsize=20:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false */
+/*URxvt.font: xft:ttyp0:style=regular:pixelsize=10:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false*/
+/*URxvt.font: xft:ttyp0:style=regular:pixelsize=10:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false*/
+URxvt.font: xft:SF Mono:size=9:antialias=true:hinting=slight
 URxvt.boldFont:
 URxvt.perl-ext-common: default,keyboard-select,clipboard,font-size
 URxvt.saveLines: 1000000
 URxvt.iso14755: false
-URxvt.internalBorder: 12
-URxvt.lineSpace: 4
-!URxvt*.transparent: true
-!URxvt*.shading: 12
-!URxvt.letterSpace: -1
+URxvt.internalBorder: 24
+URxvt.lineSpace: 6
+
+! 1337 transparency. To disable, remove the following two lines.
+URxvt.transparent: true
+URxvt.shading: 10
 
 ! Meta key is "alt" by default, so "alt+esc" to activate keyboard selection.
 ! Use hjkl to navigate (other vim movement commands supported too)
 ! v to select, y or enter to copy selection, q or esc to cancel.
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-p: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste-escaped
-URxvt.copyCommand: xsel -ib
-URxvt.pasteCommand: xsel -ob
 
 ! alt+c to copy selected text (using the keyboard-select method from above)
 ! alt-p to paste.
@@ -30,8 +26,8 @@ URxvt.pasteCommand: xsel -ob
 ! CLIPBOARD buffer is what the desktop ctrl+c/ctrl+v works off of.
 ! Also note that this uses xsel, so install that first, and set it to be
 ! your system clipboard manager.
-!URxvt.keysym.M-c: perl:clipboard:copy
-!URxvt.keysym.M-p: perl:clipboard:paste
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-p: perl:clipboard:paste
 
 ! Easily scale fonts up/down
 URxvt.keysym.C-Up:     perl:font-size:increase
