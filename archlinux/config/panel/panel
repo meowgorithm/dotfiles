@@ -27,12 +27,12 @@ bspc config top_padding 0
 bspc config bottom_padding $PANEL_HEIGHT
 bspc subscribe report > "$PANEL_FIFO" &
 xtitle -sf 'T%s\n' > "$PANEL_FIFO" &
-echo S$(date '+%a %H:%M') > "$PANEL_FIFO" &
 #clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
+date '+S%a %H:%M' > "$PANEL_FIFO" &
 
 . "$panel_colors"
 
-"$panel_bar" < "$PANEL_FIFO" | lemonbar -b -a 32 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+"$panel_bar" < "$PANEL_FIFO" | lemonbar -a 32 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 
 wid=$(xdo id -a "$PANEL_WM_NAME")
 tries_left=20
