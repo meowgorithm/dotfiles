@@ -1,7 +1,7 @@
 #! /bin/sh
 
 sxhkd &
-compton -cb -o 0.4 -r 8 -l -8 -t -8
+#compton -cb -o 0.4 -r 8 -l -8 -t -8 &
 ~/.config/panel/panel &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
