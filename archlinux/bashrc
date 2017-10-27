@@ -5,8 +5,21 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+function prompt_func() {
+    red='\[\e[0;31m\]'
+    green='\[\e[0;32m\]'
+    yellow='\[\e[0;33m\]'
+    blue='\[\e[0;34m\]'
+    purple='\[\e[0;35m\]'
+    cyan='\[\e[0;36m\]'
+    no_color='\[\e[0m\]'
+
+    PS1="$cyan\u$red@$cyan\h $red\W$cyan\$$no_color "
+}
+
+PROMPT_COMMAND=prompt_func
+
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
 
 alias start='sudo systemctl start '
 alias stop='sudo systemctl stop'
