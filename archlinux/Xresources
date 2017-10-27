@@ -2,7 +2,7 @@
 URxvt.scrollBar: false
 /*URxvt.font: xft:ttyp0:style=regular:pixelsize=10:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false*/
 /*URxvt.font: xft:ttyp0:style=regular:pixelsize=10:antialias=true:hinting=slight,xft:Kochi Gothic:antialias=false*/
-URxvt.font: xft:SF Mono:size=9:antialias=true:hinting=slight
+URxvt.font: xft:SF Mono:weight=Medium:size=9:antialias=true:hinting=slight
 URxvt.boldFont:
 URxvt.perl-ext-common: default,keyboard-select,clipboard,font-size
 URxvt.saveLines: 1000000
