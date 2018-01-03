@@ -28,6 +28,9 @@ alias enable='sudo systemctl enable'
 alias disable='sudo systemctl disable'
 alias status='sudo systemctl status'
 alias pacman='sudo pacman'
-alias restart_network='sudo systemctl restart dhcpcd'
+alias createuser='sudo -u postgres -i createuser'
+alias dropuser='sudo -u postgres -i dropuser'
+alias createdb='sudo -u postgres -i createdb'
+alias dropdb='sudo -u postgres -i dropdb'
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
