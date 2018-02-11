@@ -114,6 +114,7 @@ alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc='find . -name '*.pyc' -delete'
 alias delete_orig='find . -name '*.orig' -delete'
 alias rc='source ~/.bashrc'
+alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
