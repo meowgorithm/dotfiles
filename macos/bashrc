@@ -1,3 +1,10 @@
+# Path
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
+export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
+
 # Bash completion (via Homebrew)
 [[ -f `brew --prefix`/etc/bash_completion ]] && . `brew --prefix`/etc/bash_completion
 
@@ -66,13 +73,6 @@ PROMPT_COMMAND=prompt_func
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
 alias ls='ls -h'
-
-# Path
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
-export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
 
 # Git bash completion
 if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
