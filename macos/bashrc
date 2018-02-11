@@ -10,12 +10,12 @@ LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
 GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
 BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
+# Shorted the pwd in the prompt to show only the n number of characters
+# NOTE: Bash 4+ only
+PROMPT_DIRTRIM=2
+
 # Format the prompt
 function prompt_func() {
-
-    # Shorted the pwd in the prompt to show only the n number of characters
-    # NOTE: Bash 4+ only
-    PROMPT_DIRTRIM=2
 
     # Ascii color escape codes
     RED="\[\e[0;31m\]"
