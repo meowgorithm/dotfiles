@@ -111,8 +111,9 @@ alias tail_postgres='tail -f /usr/local/var/log/postgres.log'
 alias tree='tree -C'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
-alias delete_pyc="find . -name '*.pyc' -delete"
-alias delete_orig="find . -name '*.orig' -delete"
+alias delete_pyc='find . -name '*.pyc' -delete'
+alias delete_orig='find . -name '*.orig' -delete'
+alias rc='source ~/.bashrc'
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
