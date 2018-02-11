@@ -14,23 +14,22 @@ BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completio
 # NOTE: Bash 4+ only
 PROMPT_DIRTRIM=2
 
+# Ascii color escape codes
+# Note that 256 color foreground codes follow the following format:
+# SAMPLE_256_COLOR="\[\e[38;05;255m\]"
+RED="\[\e[0;31m\]"
+GREEN="\[\e[0;32m\]"
+YELLOW="\[\e[0;33m\]"
+BLUE="\[\e[0;34m\]"
+PURPLE="\[\e[0;35m\]"
+CYAN="\[\e[0;36m\]"
+LIGHT_GREEN="\[\e[1;32m\]"
+WHITE="\[\e[1;37m\]"
+LIGHT_GRAY="\[\e[0;37m\]"
+COLOR_NONE="\[\e[0m\]"
+
 # Format the prompt
 function prompt_func() {
-
-    # Ascii color escape codes
-    RED="\[\e[0;31m\]"
-    GREEN="\[\e[0;32m\]"
-    YELLOW="\[\e[0;33m\]"
-    BLUE="\[\e[0;34m\]"
-    PURPLE="\[\e[0;35m\]"
-    CYAN="\[\e[0;36m\]"
-    LIGHT_GREEN="\[\e[1;32m\]"
-    WHITE="\[\e[1;37m\]"
-    LIGHT_GRAY="\[\e[0;37m\]"
-    COLOR_NONE="\[\e[0m\]"
-
-    # 256 color foreground codes follow the following format:
-    # SAMPLE_256_COLOR="\[\e[38;05;255m\]"
 
     # Show Git branch in prompt
     if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
@@ -55,7 +54,6 @@ function prompt_func() {
     fi
 
     PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
-
 }
 
 # Format the prompt
@@ -222,4 +220,5 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
+# Init Virtualgo
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
