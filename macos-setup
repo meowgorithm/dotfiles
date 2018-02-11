@@ -13,6 +13,7 @@ link .eslintrc eslintrc
 link .zshrc zshrc
 link .tmux.conf tmux.conf
 link .gitconfig macos/gitconfig
+link .bashrc macos/bashrc
 link .bash_profile macos/bash_profile
 
 # Kitty
