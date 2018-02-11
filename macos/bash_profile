@@ -40,12 +40,18 @@ function prompt_func() {
         git_branch=$(__git_ps1 " (%s)")
     fi
 
-    # Show virtualenv in prompt
-    #if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
+    # Python: Show virtualenv in prompt
     if [ -z $VIRTUAL_ENV ]; then
         virtualenv=""
     else
         virtualenv="(`basename \"$VIRTUAL_ENV\"`) "
+    fi
+
+    # Go: Show virtualgo env in prompt
+    if [ -z $VIRTUALGO ]; then
+        virtualenv=""
+    else
+        virtualenv="($VIRTUALGO) "
     fi
 
     PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
@@ -213,3 +219,5 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
