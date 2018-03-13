@@ -15,6 +15,7 @@ link .tmux.conf tmux.conf
 link .gitconfig macos/gitconfig
 link .bashrc macos/bashrc
 link .bash_profile macos/bash_profile
+link .grc .grc
 
 # Kitty
 mkdir -p ~/Library/Preferences/kitty
