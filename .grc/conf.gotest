@@ -15,3 +15,10 @@ colour=red
 -
 regexp=[^\s]+\.go(:\d+)?
 colour=cyan
+-
+regexp=\[ERROR\] .*
+colour=red
+-
+regexp=\[WARN\] .*
+colour=yellow
+-
