@@ -54,13 +54,6 @@ function prompt_func() {
         virtualenv="(`basename \"$VIRTUAL_ENV\"`) "
     fi
 
-    # Go: Show virtualgo env in prompt
-    if [ -z $VIRTUALGO ]; then
-        virtualenv=""
-    else
-        virtualenv="($VIRTUALGO) "
-    fi
-
     PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
 }
 
@@ -220,9 +213,6 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
-# Init Virtualgo
-command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
 
 # direnv
 # See: https://direnv.net
