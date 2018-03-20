@@ -128,7 +128,7 @@ export AUTOJUMP_IGNORE_CASE=1
 if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd, please
     export WORKON_HOME=~/.virtualenvs
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
