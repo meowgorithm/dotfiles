@@ -22,10 +22,10 @@ mkdir -p ~/Library/Preferences/kitty
 link Library/Preferences/kitty/kitty.conf kitty.conf
 
 # XCode Themes
-XCODE_THEMES=Library/Developer/Xcode/UserData/FontAndColorThemes/
+XCODE_THEMES=Library/Developer/Xcode/UserData/FontAndColorThemes
 mkdir -p ~/$XCODE_THEMES
-link $XCODE_THEMES/Meowgorithm.dvtcolortheme $THISDIR/xcode/Meowgorithm.dvtcolortheme
-link $XCODE_THEMES/MeowgorithmMorning.dvtcolortheme $THISDIR/xcode/MeowgorithmMorning.dvtcolortheme
+link $XCODE_THEMES/Meowgorithm.dvtcolortheme xcode/Meowgorithm.dvtcolortheme
+link $XCODE_THEMES/MeowgorithmMorning.dvtcolortheme xcode/MeowgorithmMorning.dvtcolortheme
 
 echo
 echo Done.
