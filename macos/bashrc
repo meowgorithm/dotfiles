@@ -10,7 +10,7 @@ export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
 [[ -f `brew --prefix`/etc/bash_completion ]] && . `brew --prefix`/etc/bash_completion
 
 # Set the terminal into 256 color mode
-#export TERM=xterm-256color
+export TERM=xterm-256color
 
 # Variables for later
 VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
