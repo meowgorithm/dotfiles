@@ -74,7 +74,8 @@ if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
 fi
 
 # Go Stuff
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/Code/Go
+mkdir -p $GOPATH/{src,bin}
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$(go env GOPATH)
 
@@ -154,6 +155,12 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# direnv
+# See: https://direnv.net
+if hash direnv 2>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
@@ -210,9 +217,3 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
-# direnv
-# See: https://direnv.net
-if hash direnv 2>/dev/null; then
-    eval "$(direnv hook bash)"
-fi
