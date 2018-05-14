@@ -7,3 +7,6 @@
 
     # eslint stuff
     yarn global add eslint babel-eslint eslint-plugin-react
+
+    # elm stuff
+    yarn global add elm elm-test elm-oracle elm-format
