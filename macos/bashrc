@@ -5,7 +5,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix ruby)/bin:$PATH # rubygems
 export PATH="/usr/local/opt/python/libexec/bin:$PATH" # Homebrew Python (typically 3)
 export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
-export PATH="$HOME/.local/bin" # Stack (Haskell) puts stuff here
+export PATH="$HOME/.local/bin:$PATH" # Stack (Haskell) puts stuff here
 
 # Bash completion (via Homebrew)
 [[ -f `brew --prefix`/etc/bash_completion ]] && . `brew --prefix`/etc/bash_completion
