@@ -1,5 +1,5 @@
 regexp==== RUN .*
-colour=blue
+colour=cyan
 -
 regexp=--- PASS: .*
 colour=green
@@ -14,7 +14,7 @@ regexp=--- FAIL: .*
 colour=red
 -
 regexp=[^\s]+\.go(:\d+)?
-colour=cyan
+colour=magenta
 -
 regexp=\[ERROR\] .*
 colour=red
