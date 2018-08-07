@@ -1,6 +1,7 @@
 #!/bin/bash
 
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DROPBOX=$HOME/Magic\ Numbers\ Dropbox/Christian\ Rocha
 
 function link() {
     rm -rf ~/$1
@@ -16,6 +17,18 @@ link .gitconfig macos/gitconfig
 link .bashrc macos/bashrc
 link .bash_profile macos/bash_profile
 link .grc .grc
+
+# SSH
+rm -rf ~/.ssh
+ln -s "${DROPBOX}"/System/ssh ~/.ssh
+chmod 0700 ~/.ssh
+chmod 0600 ~/.ssh/id_rsa*
+
+# AWS Credentials
+rm -rf ~/.aws
+ln -s "${DROPBOX}"/System/aws ~/.aws
+chmod 0700 ~/.aws
+chmod 0600 ~/.aws/*
 
 # Kitty
 mkdir -p ~/Library/Preferences/kitty

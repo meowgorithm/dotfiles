@@ -4,7 +4,8 @@
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=52
 #PANEL_FONT="-*-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-PANEL_FONT="SF Mono:weight=Medium:pixelsize=24:antialias=true:hinting=slight"
+#PANEL_FONT="SF Mono:weight=Medium:pixelsize=12:antialias=true:hinting=slight"
+PANEL_FONT="Deja Vu Sans Mono:pixelsize=24:antialias=true:hinting=slight"
 PANEL_WM_NAME=bspwm_panel
 
 panel_bar=~/.config/panel/panel_bar

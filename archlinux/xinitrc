@@ -1,4 +1,4 @@
 startxfce4 &
 sxhkd &
-urxvt &
+kitty &
 bspwm

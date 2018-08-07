@@ -7,7 +7,7 @@ function link() {
     ln -s $THISDIR/$2 ~/.$1
 }
 
-mkdir -p ~/.config/{bspwm,panel,sxhkd}
+mkdir -p ~/.config/{bspwm,panel,sxhkd,kitty}
 
 link gitignore gitignore
 link gemrc gemrc
@@ -17,6 +17,7 @@ link gitconfig archlinux/gitconfig
 link bashrc archlinux/bashrc
 link Xresources archlinux/Xresources
 link xinitrc archlinux/xinitrc
+link config/kitty archlinux/config/kitty
 
 link config/bspwm archlinux/config/bspwm
 link config/sxhkd archlinux/config/sxhkd
