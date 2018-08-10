@@ -219,6 +219,3 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
- export NVM_DIR="$HOME/.nvm"
- . "/usr/local/opt/nvm/nvm.sh"
