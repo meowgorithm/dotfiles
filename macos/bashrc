@@ -115,6 +115,11 @@ alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 alias stt='kitty @ set-tab-title'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
 
+# Helper vars
+export MEOW='git@github.com:meowgorithm'
+export MAGIC='git@github.com:magicnumbers'
+export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
+
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
     alias vless='/usr/local/share/vim/vim73/macros/less.sh'
