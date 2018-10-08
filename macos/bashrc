@@ -91,9 +91,6 @@ shopt -s histappend
 # Keep TAR from tarring-up resource forks
 export COPYFILE_DISABLE=true
 
-export MEOW='git@github.com:meowgorithm'
-export MAGIC='git@github.com:magicnumbers'
-
 # Miscellaneous aliases
 alias h='history'
 alias g='grep'
