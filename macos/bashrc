@@ -114,6 +114,7 @@ alias rc='source ~/.bashrc'
 alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 alias stt='kitty @ set-tab-title'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
+alias throttle_dropbox='sudo cputhrottle $(pgrep -o Dropbox) 20'
 
 # Helper vars
 export MEOW='git@github.com:meowgorithm'
