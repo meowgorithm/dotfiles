@@ -117,6 +117,7 @@ alias throttle_dropbox='sudo cputhrottle $(pgrep -o Dropbox) 20'
 export MEOW='git@github.com:meowgorithm'
 export MAGIC='git@github.com:magicnumbers'
 export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
+export PEKKA='git+ssh://pekka.land/var/git'
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
