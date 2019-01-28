@@ -22,6 +22,9 @@ super + Escape
 super + ctrl + Escape
 	pkill -x panel; bspc quit
 
+super + ctrl + u
+	pkill -x panel; ~/.config/panel/panel
+
 # close and kill
 super + {_,shift + }w
 	bspc node -{c,k}
