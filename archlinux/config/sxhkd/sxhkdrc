@@ -127,5 +127,6 @@ super + {Left,Down,Up,Right}
 # et cetera
 #
 
+# For the font to work you'll need to install `dmenux-git` from AUR`
 alt + space
-	dmenu_run -l 10
+	dmenu_run -l 10 -fn 'SF Mono-10' -nf '#9FFED4' -nb '#1a1a1a' -sf '#FDFF91' -sb '#1265FB' -p '>'
