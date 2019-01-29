@@ -19,6 +19,8 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
+export PATH=$HOME/.local/bin:$PATH
+
 alias ls='ls --color=auto'
 
 alias start='sudo systemctl start '
