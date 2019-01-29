@@ -171,6 +171,9 @@ if hash direnv 2>/dev/null; then
     eval "$(direnv hook bash)"
 fi
 
+# FZF
+export FZF_DEFAULT_OPTS='--margin=1,2,0,2 --height=20 --inline-info --border'
+
 # Homebrew/FZF
 if [ -f /usr/local/bin/fzf ]; then
     function brew_info {
