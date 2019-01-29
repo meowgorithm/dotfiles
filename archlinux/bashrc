@@ -36,3 +36,5 @@ alias createdb='sudo -u postgres -i createdb'
 alias dropdb='sudo -u postgres -i dropdb'
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
