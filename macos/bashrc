@@ -171,6 +171,18 @@ if hash direnv 2>/dev/null; then
     eval "$(direnv hook bash)"
 fi
 
+# Homebrew/FZF
+if [ -f /usr/local/bin/fzf ]; then
+    function brew_info {
+        local inst=$(brew search | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[brew:info]'")
+        if [[ $inst ]]; then
+        for prog in $(echo $inst)
+        do brew info $prog
+        done
+        fi
+    }
+fi
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
