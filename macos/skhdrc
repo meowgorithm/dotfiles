@@ -23,7 +23,8 @@
 #
 #                       proc_map_lst = * <proc_map>
 #
-#                       proc_map     = <string> ':' <command>
+#                       proc_map     = <string> ':' <command> | <string>     '~' |
+#                                      '*'      ':' <command> | '*'          '~'
 #
 #                       string       = '"' 'sequence of characters' '"'
 #
@@ -79,7 +80,9 @@
 #
 # cmd - n [
 #     "kitty"       : echo "hello kitty"
+#     *             : echo "hello everyone"
 #     "qutebrowser" : echo "hello qutebrowser"
+#     "terminal"    ~
 #     "finder"      : false
 # ]
 
@@ -142,8 +145,8 @@ cmd + alt - n : chunkc tiling::desktop --create;\
 cmd + alt - w : chunkc tiling::desktop --annihilate
 
 # fast focus desktop
-#cmd + alt - x : chunkc tiling::desktop --focus $(chunkc get _last_active_desktop)
-#cmd + alt - z : chunkc tiling::desktop --focus prev
+cmd + alt - x : chunkc tiling::desktop --focus $(chunkc get _last_active_desktop)
+cmd + alt - z : chunkc tiling::desktop --focus prev
 cmd + alt - c : chunkc tiling::desktop --focus next
 cmd + alt - 1 : chunkc tiling::desktop --focus 1
 cmd + alt - 2 : chunkc tiling::desktop --focus 2
@@ -257,3 +260,4 @@ ctrl + alt - s : chunkc tiling::desktop --layout monocle
 ctrl + alt - d : chunkc tiling::desktop --layout float
 
 ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
+
