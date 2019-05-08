@@ -1,12 +1,10 @@
-# The Roshambo Dotfiles, Collectors’ Edition
+# The Meowgorithm Dotfiles, Collectors’ Edition
 
-## some tools you should install
+## Some tools you may want to install
 
-    # various helpful commandline tools
-    brew install grc z fzf yarn the_silver_searcher direnv
+    # MacOS
+    brew install grc z node ripgrep
 
-    # eslint stuff
-    yarn global add eslint babel-eslint eslint-plugin-react
+    # ArchLinux
 
-    # elm stuff
-    yarn global add elm elm-test elm-oracle elm-format
+    sudo pacman -S grc z nodejs npm ripgrep
