@@ -16,7 +16,7 @@
 	tool = opendiff
 [core]
 	excludesfile = /Users/christian/.gitignore
-	editor = nvim
+	editor = vim
 [push]
 	default = matching
 [url "git@github.com:"]
