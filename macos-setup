@@ -8,6 +8,8 @@ function link() {
     ln -s $THISDIR/$2 ~/$1
 }
 
+mkdir -p $HOME/.config
+
 link .gitignore gitignore
 link .gemrc gemrc
 link .eslintrc eslintrc
@@ -19,6 +21,7 @@ link .bash_profile macos/bash_profile
 link .grc .grc
 link .chunkwmrc macos/chunkwmrc
 link .skhdrc macos/skhdrc
+link .config/.floskell.json floskell.json
 
 # SSH
 rm -rf ~/.ssh
