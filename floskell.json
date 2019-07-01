@@ -47,7 +47,9 @@
                 "linebreaks": "after"
             },
             ". in expression": {
-                "spaces": "none"
+                "force-linebreak": false,
+                "spaces": "none",
+                "linebreaks": "after"
             }
         },
         "layout": {
