@@ -22,6 +22,7 @@ link .grc .grc
 link .chunkwmrc macos/chunkwmrc
 link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
+link .hindent.yaml hindent.yaml
 
 # SSH
 rm -rf ~/.ssh
