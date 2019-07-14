@@ -252,3 +252,8 @@ fi
 if [ -f "$HOME/Code/google-cloud-sdk/completion.bash.inc" ]; then
     . "$HOME/Code/google-cloud-sdk/completion.bash.inc";
 fi
+
+# Nix
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+    . $HOME/.nix-profile/etc/profile.d/nix.sh;
+fi
