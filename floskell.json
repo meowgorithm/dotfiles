@@ -1,5 +1,5 @@
 {
-    "style": "base",
+    "style": "chris-done",
     "extensions": [],
     "fixities": [],
     "formatting": {
@@ -16,7 +16,7 @@
             },
             ". in expression": {
                 "force-linebreak": false,
-                "spaces": "both",
+                "spaces": "none",
                 "linebreaks": "before"
             },
             ". in type": {
@@ -83,7 +83,7 @@
             "do": "indent-by 4",
             "app": "indent-by 4",
             "case": "indent-by 4",
-            "let-in": "indent-by 4",
+            "let-in": "indent-by 0",
             "where-binds": "indent-by 2",
             "let": "indent-by 4",
             "export-spec-list": "indent-by 4",
@@ -96,8 +96,8 @@
             "matches": false,
             "limits": [10, 25],
             "case": true,
-            "import-module": true,
-            "import-spec": true,
+            "import-module": false,
+            "import-spec": false,
             "class": false,
             "record-fields": true
         },
