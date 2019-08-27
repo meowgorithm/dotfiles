@@ -23,7 +23,7 @@ link .chunkwmrc macos/chunkwmrc
 link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
-link .config/fish_variables config/fish_variables
+link .config/fish config/fish
 
 # SSH
 rm -rf ~/.ssh
