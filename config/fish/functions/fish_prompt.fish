@@ -116,7 +116,7 @@ function fish_prompt --description 'Write out the prompt'
     # Last status
     if not test $last_status -eq 0
         set_color $fish_color_error
-        echo -n "[$last_status] "
+        echo -n " [$last_status]"
         set_color normal
     end
 
