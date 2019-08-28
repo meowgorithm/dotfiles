@@ -1,6 +1,7 @@
 function fish_prompt --description 'Write out the prompt'
 	set -l last_status $status
 
+    # General Git settings
     if not set -q __fish_git_prompt_show_informative_status
         set -g __fish_git_prompt_show_informative_status 1
     end
@@ -8,9 +9,7 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_hide_untrackedfiles 1
     end
 
-    if not set -q __fish_git_prompt_color_branch
-        set -g __fish_git_prompt_color_branch magenta --bold
-    end
+    # Upstream
     if not set -q __fish_git_prompt_showupstream
         set -g __fish_git_prompt_showupstream "informative"
     end
@@ -24,6 +23,7 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_char_upstream_prefix " "
     end
 
+    # State
     if not set -q __fish_git_prompt_char_stagedstate
         set -g __fish_git_prompt_char_stagedstate "●"
     end
@@ -40,6 +40,14 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_char_cleanstate "✔"
     end
 
+    # COLORS
+
+    # Branch
+    if not set -q __fish_git_prompt_color_branch
+        set -g __fish_git_prompt_color_branch magenta --bold
+    end
+
+    # State
     if not set -q __fish_git_prompt_color_dirtystate
         set -g __fish_git_prompt_color_dirtystate cyan
     end
@@ -56,6 +64,12 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_color_cleanstate green --bold
     end
 
+    # Upstream
+    if not set -q __fish_git_prompt_color_upstream
+        set -g __fish_git_prompt_color_upstream white
+    end
+
+    # "Normal"
     if not set -q __fish_prompt_normal
         set -g __fish_prompt_normal (set_color normal)
     end
@@ -87,6 +101,8 @@ function fish_prompt --description 'Write out the prompt'
     set_color $color_cwd
     printf ' %s' (whoami)
 
+    # Print Git info. We basically hack the one Fish gives us and reformat it
+    # a little bit here.
     if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
         set_color yellow
         echo -n ' ('
@@ -97,13 +113,18 @@ function fish_prompt --description 'Write out the prompt'
         set_color normal
     end
 
+    # Last status
     if not test $last_status -eq 0
         set_color $fish_color_error
         echo -n "[$last_status] "
         set_color normal
     end
 
+    # Suffix
     set_color red
     echo -n " $suffix "
+
+    # Okay done
     set_color normal
+
 end
