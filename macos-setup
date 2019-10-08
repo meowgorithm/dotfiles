@@ -38,7 +38,7 @@ chmod 0700 ~/.aws
 chmod 0600 ~/.aws/*
 
 # Kitty
-mkdir -p ~/config/kitty
+mkdir -p ~/.config/kitty
 link .config/kitty/kitty.conf kitty.conf
 
 # XCode Themes
