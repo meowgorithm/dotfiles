@@ -38,8 +38,8 @@ chmod 0700 ~/.aws
 chmod 0600 ~/.aws/*
 
 # Kitty
-mkdir -p ~/Library/Preferences/kitty
-link Library/Preferences/kitty/kitty.conf kitty.conf
+mkdir -p ~/config/kitty
+link .config/kitty/kitty.conf kitty.conf
 
 # XCode Themes
 XCODE_THEMES=Library/Developer/Xcode/UserData/FontAndColorThemes
