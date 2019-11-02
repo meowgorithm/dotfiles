@@ -85,9 +85,10 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$(go env GOPATH)
 export EDITOR=vim
 
 # History Management
-export HISTCONTROL=erasedups
-export HISTSIZE=500
 shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=500
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Keep TAR from tarring-up resource forks
 export COPYFILE_DISABLE=true
