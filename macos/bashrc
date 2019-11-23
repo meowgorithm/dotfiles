@@ -9,7 +9,7 @@ export PATH="$HOME/.local/bin:$PATH" # Stack (Haskell) puts stuff here
 export PATH="$HOME/.cabal/bin:$PATH" # Cabal (Haskell) puts stuff here
 
 # Bash completion (via Homebrew)
-[[ -f $(brew --prefix)/etc/bash_completion ]] && . $(brew --prefix)/etc/bash_completion
+[[ -f $(brew --prefix)/etc/bash_completion ]] && . "$(brew --prefix)/etc/bash_completion"
 
 # Set the terminal into 256 color mode
 export TERM=xterm-256color
@@ -77,7 +77,7 @@ fi
 
 # Go Stuff
 export GOPATH=$HOME/.go
-mkdir -p $GOPATH/{src,bin}
+mkdir -p "$GOPATH/{src,bin}"
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$(go env GOPATH)
 
@@ -107,8 +107,8 @@ alias tail_postgres='tail -f /usr/local/var/log/postgres.log'
 alias tree='tree -C'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
-alias delete_pyc='find . -name '*.pyc' -delete'
-alias delete_orig='find . -name '*.orig' -delete'
+alias delete_pyc='find . -name '\*.pyc' -delete'
+alias delete_orig='find . -name '\*.orig' -delete'
 alias rc='source ~/.bashrc'
 alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 alias stt='kitty @ set-tab-title'
@@ -132,14 +132,14 @@ alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
 # Initialize Z
-[[ -f `brew --prefix`/etc/profile.d/z.sh ]] && . `brew --prefix`/etc/profile.d/z.sh
+[[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
 # PIP + Virtualenv Stuff
 if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
     #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    export PIP_LOG_FILE='~/.cache/pip-log.txt' # Don't litter pip_log.txt in cwd please
+    export PIP_LOG_FILE="$HOME/.cache/pip-log.txt" # Don't litter pip_log.txt in cwd please
     export WORKON_HOME=~/.virtualenvs
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
@@ -156,7 +156,7 @@ complete -o default -F _pip_completion pip
 ### End PIP Bash completion ###
 
 # Cute apple logo
-[[ -f `brew --prefix`/bin/archey ]] && archey --color
+[[ -f $(brew --prefix)/bin/archey ]] && archey --color
 
 # Colored man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -256,6 +256,6 @@ if [ -f "$HOME/Code/google-cloud-sdk/completion.bash.inc" ]; then
 fi
 
 # Nix
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . $HOME/.nix-profile/etc/profile.d/nix.sh;
 fi
