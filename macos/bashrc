@@ -120,6 +120,7 @@ export MEOW='git@github.com:meowgorithm'
 export MAGIC='git@github.com:magicnumbers'
 export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
 export PEKKA='git+ssh://pekka.land/var/git'
+export CHARM='git@github.com:charmbracelet'
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
