@@ -110,6 +110,10 @@ export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
 export PEKKA='git+ssh://pekka.land/var/git'
 export CHARM='git@github.com:charmbracelet'
 
+# Git
+export GOPRIVATE="github.com/charmbracelet"
+export GOPRIVATE="github.com/magicnumbers"
+
 # Print local network adapter IPs and copy them to the clipboard
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
