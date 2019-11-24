@@ -136,6 +136,7 @@ alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
 # Initialize Z
+# shellcheck source=/usr/local/etc/profile.d/z.sh
 [[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
 # PIP + Virtualenv Stuff
