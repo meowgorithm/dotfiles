@@ -4,11 +4,11 @@ THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DROPBOX=$HOME/Soft\ Power\ Dropbox/Christian\ Rocha
 
 function link() {
-    rm -rf ~/$1
-    ln -s $THISDIR/$2 ~/$1
+    rm -rf "${HOME:?}/$1"
+    ln -s "$THISDIR/$2" "$HOME/$1"
 }
 
-mkdir -p $HOME/.config
+mkdir -p "$HOME/.config"
 
 link .gitignore gitignore
 link .gemrc gemrc
