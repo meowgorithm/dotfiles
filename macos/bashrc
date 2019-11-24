@@ -1,28 +1,20 @@
-brew_prefix=$(brew --prefix)
-ruby_prefix=$(brew --prefix ruby)/bin
 
 # Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH=$ruby_prefix/bin:$PATH # rubygems
 export PATH="/usr/local/opt/python/libexec/bin:$PATH" # Homebrew Python (typically 3)
 export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
 export PATH="$HOME/.local/bin:$PATH" # Stack (Haskell) puts stuff here
 export PATH="$HOME/.cabal/bin:$PATH" # Cabal (Haskell) puts stuff here
+ruby_prefix=$(brew --prefix ruby)/bin
+export PATH=$ruby_prefix/bin:$PATH # rubygems
 
-# Bash completion (via Homebrew)
-# shellcheck source=/usr/local/etc/bash_completion
-[[ -f $(brew --prefix)/etc/bash_completion ]] && . "$(brew --prefix)/etc/bash_completion"
+# Bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Set the terminal into 256 color mode
 export TERM=xterm-256color
-
-# Variables for later
-VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
-GIT_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/git-completion.bash
-BREW_BASH_COMPLETION_SCRIPT=/usr/local/etc/bash_completion.d/brew_bash_completion.sh
 
 # Shorten the pwd in the prompt to show only the n number of characters
 # NOTE: Bash 4+ only
@@ -46,7 +38,7 @@ COLOR_NONE="\[\e[0m\]"
 function prompt_func() {
 
     # Show Git branch in prompt
-    if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
+    if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
         export GIT_PS1_SHOWDIRTYSTATE=true
         export GIT_PS1_SHOWUNTRACKEDFILES=true
         export GIT_PS1_SHOWSTASHSTATE=true
@@ -57,7 +49,7 @@ function prompt_func() {
     if [ -z "$VIRTUAL_ENV" ]; then
         virtualenv=""
     else
-        virtualenv="($(basename \"$VIRTUAL_ENV\")) "
+        virtualenv="($(basename "$VIRTUAL_ENV")) "
     fi
 
     PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
@@ -74,16 +66,12 @@ export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
 alias ls='ls -h'
 
-# Git bash completion
-if [ -f $GIT_BASH_COMPLETION_SCRIPT ]; then
-    source $GIT_BASH_COMPLETION_SCRIPT
-fi
-
 # Go Stuff
 export GOPATH=$HOME/.go
 mkdir -p "$GOPATH/{src,bin}"
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$(go env GOPATH)
+env_gopath=$(go env GOPATH)
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$env_gopath
 
 # Editors
 export EDITOR=vim
@@ -131,12 +119,15 @@ alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 [[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
 # PIP + Virtualenv Stuff
-if [ -f $VIRTUALENVWRAPPER_SCRIPT ]; then
+#VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
+if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_REQUIRE_VIRTUALENV=true
     export PIP_RESPECT_VIRTUALENV=true
-    #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PIP_LOG_FILE="$HOME/.cache/pip-log.txt" # Don't litter pip_log.txt in cwd please
     export WORKON_HOME=~/.virtualenvs
+    # shellcheck source=/usr/local/bin/virtualenvwrapper_lazy.sh
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
 
