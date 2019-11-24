@@ -91,20 +91,13 @@ export EDITOR=vim
 # History Management
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
-export HISTSIZE=500
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export HISTSIZE=1000
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Keep TAR from tarring-up resource forks
 export COPYFILE_DISABLE=true
 
 # Miscellaneous aliases
-alias h='history'
-alias g='grep'
-alias a='ack'
-alias mancat='man cat'
-alias redis-server='redis-server /usr/local/etc/redis.conf'
-alias mongotail='tail -f /usr/local/var/log/mongodb/mongo.log'
-alias apache='sudo apachectl'
 alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
 alias postgres='postgres -D /usr/local/var/postgres'
 alias tail_postgres='tail -f /usr/local/var/log/postgres.log'
@@ -115,9 +108,12 @@ alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
 alias rc='source ~/.bashrc'
 alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
-alias stt='kitty @ set-tab-title'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
-alias throttle_dropbox='sudo cputhrottle $(pgrep -o Dropbox) 20'
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
 
 # Helper vars
 export MEOW='git@github.com:meowgorithm'
@@ -125,11 +121,6 @@ export MAGIC='git@github.com:magicnumbers'
 export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
 export PEKKA='git+ssh://pekka.land/var/git'
 export CHARM='git@github.com:charmbracelet'
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
 
 # Print local network adapter IPs and copy them to the clipboard
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
@@ -156,6 +147,26 @@ _pip_completion() {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
                    COMP_CWORD=$COMP_CWORD \
                    PIP_AUTO_COMPLETE=1 $1 ) )
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
 }
 complete -o default -F _pip_completion pip
 ### End PIP Bash completion ###
