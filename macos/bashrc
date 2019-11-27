@@ -104,10 +104,11 @@ if [ -f /usr/local/bin/vim ]; then
 fi
 
 # Helper vars
+export PEKKA='git+ssh://pekka.land/var/git'
 export MEOW='git@github.com:meowgorithm'
 export MAGIC='git@github.com:magicnumbers'
 export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
-export PEKKA='git+ssh://pekka.land/var/git'
+export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
 
 # Git
