@@ -58,9 +58,6 @@ function prompt_func() {
 # Format the prompt
 PROMPT_COMMAND=prompt_func
 
-# Enable Vi mode in Bash
-#set -o vi
-
 # Miscellaneous coloring and formatting
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
@@ -80,7 +77,6 @@ export EDITOR=vim
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=1000
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Keep TAR from tarring-up resource forks
 export COPYFILE_DISABLE=true
@@ -94,9 +90,27 @@ alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
-alias rc='source ~/.bashrc'
-alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
@@ -143,26 +157,6 @@ _pip_completion() {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
                    COMP_CWORD=$COMP_CWORD \
                    PIP_AUTO_COMPLETE=1 $1 ) )
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
 }
 complete -o default -F _pip_completion pip
 ### End PIP Bash completion ###
@@ -184,18 +178,6 @@ fi
 
 # FZF
 export FZF_DEFAULT_OPTS='--margin=1,2,0,2 --height=20 --inline-info --border'
-
-# Homebrew/FZF
-if [ -f /usr/local/bin/fzf ]; then
-    function brew_info {
-        local inst=$(brew search | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[brew:info]'")
-        if [[ $inst ]]; then
-        for prog in $(echo $inst)
-        do brew info $prog
-        done
-        fi
-    }
-fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/Code/google-cloud-sdk/path.bash.inc" ]; then
