@@ -167,9 +167,6 @@ fi
 complete -o default -F _pip_completion pip
 ### End PIP Bash completion ###
 
-# Cute apple logo
-[[ -f $(brew --prefix)/bin/archey ]] && archey --color
-
 # Colored man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
