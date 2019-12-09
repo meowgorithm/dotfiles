@@ -150,17 +150,6 @@ if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
 
-### Begin PIP Bash completion ###
-# Install the following with:
-# `pip completion --bash >> ~/.profile
-_pip_completion() {
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
-}
-complete -o default -F _pip_completion pip
-### End PIP Bash completion ###
-
 # Colored man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
