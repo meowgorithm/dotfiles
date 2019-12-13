@@ -201,6 +201,11 @@ if [ -f /usr/local/bin/fzf ]; then
     }
 fi
 
+# Move global NPM installs
+mkdir -p $HOME/.local/npm
+export NPM_CONFIG_PREFIX=$HOME/.local/npm
+export PATH=$HOME/.local/npm/bin:$PATH
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
