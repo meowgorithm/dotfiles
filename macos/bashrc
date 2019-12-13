@@ -59,9 +59,6 @@ function prompt_func() {
 # Format the prompt
 PROMPT_COMMAND=prompt_func
 
-# Enable Vi mode in Bash
-#set -o vi
-
 # Miscellaneous coloring and formatting
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
@@ -81,7 +78,6 @@ export EDITOR=vim
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=1000
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Keep TAR from tarring-up resource forks
 export COPYFILE_DISABLE=true
@@ -95,9 +91,27 @@ alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
-alias rc='source ~/.bashrc'
-alias kittyconf='vim /Users/christian/Library/Preferences/kitty/kitty.conf'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
+
+if [ -f /usr/local/bin/vim ]; then
+    alias vim='/usr/local/bin/vim'
+    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
+fi
 
 if [ -f /usr/local/bin/vim ]; then
     alias vim='/usr/local/bin/vim'
@@ -137,40 +151,6 @@ if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
     source $LAZY_VIRTUALENVWRAPPER_SCRIPT
 fi
 
-### Begin PIP Bash completion ###
-# Install the following with:
-# `pip completion --bash >> ~/.profile
-_pip_completion() {
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-
-if [ -f /usr/local/bin/vim ]; then
-    alias vim='/usr/local/bin/vim'
-    alias vless='/usr/local/share/vim/vim73/macros/less.sh'
-fi
-}
-complete -o default -F _pip_completion pip
-### End PIP Bash completion ###
-
-# Cute apple logo
-[[ -f $(brew --prefix)/bin/archey ]] && archey --color
-
 # Colored man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -188,90 +168,6 @@ fi
 
 # FZF
 export FZF_DEFAULT_OPTS='--margin=1,2,0,2 --height=20 --inline-info --border'
-
-# Homebrew/FZF
-if [ -f /usr/local/bin/fzf ]; then
-    function brew_info {
-        local inst=$(brew search | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[brew:info]'")
-        if [[ $inst ]]; then
-        for prog in $(echo $inst)
-        do brew info $prog
-        done
-        fi
-    }
-fi
-
-# Move global NPM installs
-mkdir -p $HOME/.local/npm
-export NPM_CONFIG_PREFIX=$HOME/.local/npm
-export PATH=$HOME/.local/npm/bin:$PATH
-
-###-begin-npm-completion-###
-#
-# npm command completion script
-#
-# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _npm_completion npm
-fi
-###-end-npm-completion-###
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Code/google-cloud-sdk/path.bash.inc" ]; then
-    . "$HOME/Code/google-cloud-sdk/path.bash.inc";
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Code/google-cloud-sdk/completion.bash.inc" ]; then
-    . "$HOME/Code/google-cloud-sdk/completion.bash.inc";
-fi
 
 # Nix
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
