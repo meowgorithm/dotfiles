@@ -16,7 +16,7 @@
             },
             ". in expression": {
                 "force-linebreak": false,
-                "spaces": "none",
+                "spaces": "both",
                 "linebreaks": "before"
             },
             ". in type": {
