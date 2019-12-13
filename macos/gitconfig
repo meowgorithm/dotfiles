@@ -3,6 +3,7 @@
 [user]
 	name = Christian Rocha
 	email = christian@rocha.is
+	signingkey = D6CC7A16E5878018
 [alias]
 	st = status
 	ci = commit
@@ -24,3 +25,5 @@
 	default = matching
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[commit]
+	gpgsign = true
