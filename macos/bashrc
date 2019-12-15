@@ -26,14 +26,8 @@ PROMPT_DIRTRIM=2
 # Note that 256 color foreground codes follow the following format:
 # SAMPLE_256_COLOR="\[\e[38;05;255m\]"
 RED="\[\e[0;31m\]"
-GREEN="\[\e[0;32m\]"
 YELLOW="\[\e[0;33m\]"
-BLUE="\[\e[0;34m\]"
-PURPLE="\[\e[0;35m\]"
 CYAN="\[\e[0;36m\]"
-LIGHT_GREEN="\[\e[1;32m\]"
-WHITE="\[\e[1;37m\]"
-LIGHT_GRAY="\[\e[0;37m\]"
 COLOR_NONE="\[\e[0m\]"
 
 # Format the prompt
@@ -115,7 +109,6 @@ alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 [[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
 # PIP + Virtualenv Stuff
-#VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 LAZY_VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
 if [ -f $LAZY_VIRTUALENVWRAPPER_SCRIPT ]; then
     export PIP_REQUIRE_VIRTUALENV=true
