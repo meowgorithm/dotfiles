@@ -1,3 +1,5 @@
+set -o vi
+
 tty=$(tty)
 export GPG_TTY=$tty
 
@@ -142,3 +144,9 @@ fi
 
 # FZF
 export FZF_DEFAULT_OPTS='--margin=1,2,0,2 --height=20 --inline-info --border'
+
+# NPM
+# Make "global" installs local
+mkdir -p ~/.config/npm
+npm config set prefix "$HOME/.config/npm"
+export PATH=$HOME/.config/npm/bin:$PATH
