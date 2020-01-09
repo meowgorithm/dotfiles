@@ -1,4 +1,3 @@
-
 # Path
 set -x PATH $PATH:$HOME/.local/bin
 
@@ -16,6 +15,7 @@ kitty + complete setup fish | source
 set -x GOPATH $HOME/.go
 mkdir -p $GOPATH/{src,bin}
 set -x PATH $PATH:/$GOPATH/bin
+set -x GOPRIVATE github.com/charmbracelet
 
 # NPM
 mkdir -p $HOME/.config/npm
