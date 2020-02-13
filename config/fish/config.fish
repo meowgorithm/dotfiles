@@ -20,7 +20,7 @@ set -x GOPRIVATE github.com/charmbracelet
 # NPM
 mkdir -p $HOME/.config/npm
 npm config set prefix $HOME/.config/npm
-set -x PATH $PATH:$HOME/.config/npm/bin
+set -x PATH $HOME/.config/npm/bin:$PATH
 
 # Aliases
 set -x MEOW 'git@github.com:meowgorithm'
