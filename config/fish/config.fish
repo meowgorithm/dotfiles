@@ -28,3 +28,5 @@ set -x MAGIC 'git@github.com:magicnumbers'
 set -x BIT 'https://meowgorithm@bitbucket.org/meowgorithm'
 set -x GITLAB 'git@gitlab.com:meowgorithm'
 set -x CHARM 'git@github.com:charmbracelet'
+
+set -x XDG_CONFIG_HOME $HOME/.config
