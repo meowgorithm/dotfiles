@@ -18,9 +18,9 @@ set -x PATH $PATH:/$GOPATH/bin
 set -x GOPRIVATE github.com/charmbracelet
 
 # NPM
+set -x PATH $HOME/.config/npm/bin:$PATH
 mkdir -p $HOME/.config/npm
 npm config set prefix $HOME/.config/npm
-set -x PATH $HOME/.config/npm/bin:$PATH
 
 # Aliases
 set -x MEOW 'git@github.com:meowgorithm'
