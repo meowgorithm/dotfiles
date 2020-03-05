@@ -94,6 +94,7 @@ alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
 alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
+alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
 
 # Helper vars
 export PEKKA='git+ssh://pekka.land/var/git'
