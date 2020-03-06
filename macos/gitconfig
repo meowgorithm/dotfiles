@@ -20,7 +20,7 @@
 	tool = opendiff
 [core]
 	excludesfile = /Users/christian/.gitignore
-	editor = vim
+	editor = kak
 [push]
 	default = matching
 [url "git@github.com:"]
