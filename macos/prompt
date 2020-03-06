@@ -1,0 +1,46 @@
+#!/bin/env bash
+
+#
+# Bash Prompt, Classic Edition
+#
+
+# Shorten the pwd in the prompt to show only the n number of characters
+# NOTE: Bash 4+ only
+PROMPT_DIRTRIM=2
+
+# Ascii color escape codes
+# Note that 256 color foreground codes follow the following format:
+# SAMPLE_256_COLOR="\[\e[38;05;255m\]"
+RED="\[\e[0;31m\]"
+YELLOW="\[\e[0;33m\]"
+CYAN="\[\e[0;36m\]"
+COLOR_NONE="\[\e[0m\]"
+
+# Show Git branch in prompt
+git_completion=/usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f $git_completion ]; then
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWSTASHSTATE=true
+fi
+
+# Format the prompt
+function prompt_func() {
+
+    # Show Git branch in prompt
+    if [ -f $git_completion ]; then
+        git_branch=$(__git_ps1 " (%s)")
+    fi
+
+    # Python: Show virtualenv in prompt
+    if [ -z "$VIRTUAL_ENV" ]; then
+        virtualenv=""
+    else
+        virtualenv="($(basename "$VIRTUAL_ENV")) "
+    fi
+
+    PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
+}
+
+# Format the prompt
+PROMPT_COMMAND=prompt_func
