@@ -1,0 +1,9 @@
+[aws]
+disabled = true
+
+[git_branch]
+symbol = ""
+
+[git_status]
+ahead = "↑"
+behind = "↓"
