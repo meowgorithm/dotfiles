@@ -3,12 +3,15 @@
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DROPBOX=$HOME/Soft\ Power\ Dropbox/Christian\ Rocha
 
+if [[ -z $XDG_CONFIG_HOME ]]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+fi
+mkdir -p "$XDG_CONFIG_HOME"
+
 function link() {
     rm -rf "${HOME:?}/$1"
     ln -s "$THISDIR/$2" "$HOME/$1"
 }
-
-mkdir -p "$HOME/.config"
 
 link .gitignore gitignore
 link .gemrc gemrc
@@ -19,12 +22,16 @@ link .gitconfig macos/gitconfig
 link .bashrc macos/bashrc
 link .bash_profile macos/bash_profile
 link .grc .grc
-mkdir "$HOME/.config/yabai"
-link .config/yabai/yabairc macos/yabairc
 link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
 link .config/fish config/fish
+
+# Yabai
+YABAI_DIR="$XDG_CONFIG_HOME/yabai"
+rm -rf "$YABAI_DIR"
+mkdir "$YABAI_DIR"
+ln -s "$THISDIR/macos/yabairc" "$XDG_CONFIG_HOME/yabai/yabairc"
 
 # SSH
 rm -rf ~/.ssh
@@ -39,14 +46,22 @@ chmod 0700 ~/.aws
 chmod 0600 ~/.aws/*
 
 # Kitty
-mkdir -p ~/.config/kitty
-link .config/kitty/kitty.conf kitty.conf
+KITTY_DIR="$HOME/.config/kitty"
+rm -rf "$KITTY_DIR"
+mkdir -p "$KITTY_DIR"
+ln -s "$THISDIR/kitty.conf" "$KITTY_DIR/kitty.conf"
+
+# Starship
+STARSHIP_FILE="$HOME/.config/starship.toml"
+rm -f "$STARSHIP_FILE"
+ln -s "$THISDIR/macos/starship.toml" "$STARSHIP_FILE"
 
 # XCode Themes
-XCODE_THEMES=Library/Developer/Xcode/UserData/FontAndColorThemes
-mkdir -p ~/$XCODE_THEMES
-link $XCODE_THEMES/Meowgorithm.dvtcolortheme xcode/Meowgorithm.dvtcolortheme
-link $XCODE_THEMES/MeowgorithmMorning.dvtcolortheme xcode/MeowgorithmMorning.dvtcolortheme
+XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
+rm -rf "$XCODE_THEMES"
+mkdir -p "$XCODE_THEMES"
+ln -s "$THISDIR/xcode/Meowgorithm.dvtcolortheme" "$XCODE_THEMES/Meowgorithm.dvtcolortheme"
+ln -s "$HOME/xcode/MeowgorithmMorning.dvtcolortheme" "$XCODE_THEMES/MeowgorithmMorning.dvtcolortheme"
 
 echo
 echo Done.
