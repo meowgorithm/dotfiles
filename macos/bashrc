@@ -1,18 +1,31 @@
-set -o vi
-
-tty=$(tty)
-export GPG_TTY=$tty
+# Make sure XDG_CONFIG_HOME is a thing
+if [[ -z $XDG_CONFIG_HOME ]]; then
+    export XDG_CONFIG_HOME="$HOME/.config"
+fi
+mkdir -p "$XDG_CONFIG_HOME"
 
 # Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH" # Homebrew Python (typically 3)
-export PATH="$HOME/Library/Python/3.6/bin:$PATH" # Python 3 bin
 export PATH="$HOME/.local/bin:$PATH" # Stack (Haskell) puts stuff here
 export PATH="$HOME/.cabal/bin:$PATH" # Cabal (Haskell) puts stuff here
 ruby_prefix=$(brew --prefix ruby)/bin
 export PATH=$ruby_prefix/bin:$PATH # rubygems
+
+tty=$(tty)
+export GPG_TTY=$tty
+
+export EDITOR=kak
+export TERM=xterm-256color
+
+export CLICOLOR=1
+export LSCOLORS=dxfxcxdxbxegedabagacad
+alias ls='ls -h'
+
+# Keep TAR from tarring-up resource forks
+export COPYFILE_DISABLE=true
 
 # Bash completion
 bash_completion=/usr/local/etc/profile.d/bash_completion.sh
@@ -24,14 +37,6 @@ if [[ -f $(brew --prefix)/bin/starship ]]; then
     eval "$(starship init bash)"
 fi
 
-# Set the terminal into 256 color mode
-export TERM=xterm-256color
-
-# Miscellaneous coloring and formatting
-export CLICOLOR=1
-export LSCOLORS=dxfxcxdxbxegedabagacad
-alias ls='ls -h'
-
 # Go Stuff
 export GOPATH=$HOME/.go
 mkdir -p "$GOPATH/{src,bin}"
@@ -39,16 +44,10 @@ export GOBIN=$GOPATH/bin
 env_gopath=$(go env GOPATH)
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOBIN:$env_gopath
 
-# Editors
-export EDITOR=vim
-
 # History Management
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=1000
-
-# Keep TAR from tarring-up resource forks
-export COPYFILE_DISABLE=true
 
 # Miscellaneous aliases
 alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
@@ -76,7 +75,7 @@ export GOPRIVATE="github.com/magicnumbers"
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
 alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
-# Initialize Z
+# Z
 # shellcheck source=/usr/local/etc/profile.d/z.sh
 [[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
@@ -101,8 +100,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# direnv
-# See: https://direnv.net
+# direnv. See: https://direnv.net
 if hash direnv 2>/dev/null; then
     eval "$(direnv hook bash)"
 fi
@@ -110,8 +108,8 @@ fi
 # FZF
 export FZF_DEFAULT_OPTS='--margin=1,2,0,2 --height=20 --inline-info --border'
 
-# NPM
-# Make "global" installs local
-mkdir -p ~/.config/npm
-npm config set prefix "$HOME/.config/npm"
-export PATH=$HOME/.config/npm/bin:$PATH
+# NPM. Make "global" installs local
+NPM_DIR="$XDG_CONFIG_HOME/npm"
+mkdir -p "$NPM_DIR"
+npm config set prefix "$NPM_DIR"
+export PATH=$NPM_DIR:$PATH
