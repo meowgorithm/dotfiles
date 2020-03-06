@@ -16,7 +16,6 @@ function link() {
 link .gitignore gitignore
 link .gemrc gemrc
 link .eslintrc eslintrc
-link .zshrc zshrc
 link .tmux.conf tmux.conf
 link .gitconfig macos/gitconfig
 link .bashrc macos/bashrc
