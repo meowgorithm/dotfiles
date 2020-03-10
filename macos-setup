@@ -24,6 +24,12 @@ link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
 link .config/fish config/fish
 
+# Prompt
+MEOW="$XDG_CONFIG_HOME/meowgorithm"
+rm -rf "$MEOW"
+mkdir -p "$MEOW"
+ln -s "$THISDIR/macos/prompt" "$MEOW/prompt"
+
 # Gitignore
 GITIGNORE_FILE="$HOME/.gitignore"
 rm -f "$GITIGNORE_FILE"
@@ -57,11 +63,6 @@ KITTY_DIR="$HOME/.config/kitty"
 rm -rf "$KITTY_DIR"
 mkdir -p "$KITTY_DIR"
 ln -s "$THISDIR/kitty.conf" "$KITTY_DIR/kitty.conf"
-
-# Starship
-STARSHIP_FILE="$HOME/.config/starship.toml"
-rm -f "$STARSHIP_FILE"
-ln -s "$THISDIR/macos/starship.toml" "$STARSHIP_FILE"
 
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"

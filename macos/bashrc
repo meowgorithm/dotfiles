@@ -33,9 +33,9 @@ bash_completion=/usr/local/etc/profile.d/bash_completion.sh
 [[ -r $bash_completion ]] && . $bash_completion
 
 # Prompt
-if [[ -f $(brew --prefix)/bin/starship ]]; then
-    eval "$(starship init bash)"
-fi
+meow_prompt="$XDG_CONFIG_HOME/meowgorithm/prompt"
+# shellcheck disable=1090
+[[ -f $meow_prompt ]] && . "$XDG_CONFIG_HOME/meowgorithm/prompt"
 
 # Go Stuff
 export GOPATH=$HOME/.go
