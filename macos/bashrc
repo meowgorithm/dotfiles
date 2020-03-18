@@ -113,3 +113,6 @@ NPM_DIR="$XDG_CONFIG_HOME/npm"
 mkdir -p "$NPM_DIR"
 npm config set prefix "$NPM_DIR"
 export PATH=$NPM_DIR:$PATH
+
+# GHCUP
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
