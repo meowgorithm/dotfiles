@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CWD=$(pwd)
+
+function link() {
+    rm -rf "$2"
+    ln -s "$CWD/$1" "$2"
+}
+
+link macos/gitconfig "$HOME/.gitconfig" # for now
+link tmux.conf "$HOME/.tmux.conf"
