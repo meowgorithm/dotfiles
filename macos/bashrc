@@ -68,8 +68,8 @@ export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
 
 # Git
-export GOPRIVATE="github.com/charmbracelet"
 export GOPRIVATE="github.com/magicnumbers"
+export GOPRIVATE="github.com/charmbracelet"
 
 # Print local network adapter IPs and copy them to the clipboard
 alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
