@@ -1,0 +1,178 @@
+#!/usr/bin/env bash
+
+# This is an Archlinux installation script for a VMWare virtual machine.
+
+#
+# PROMPT FOR USERNAME AND PASSWORDS
+#
+
+username=""
+username_confirm=""
+password=""
+password_confirm=""
+root_password=""
+root_password_confirm=""
+
+while [[ $username == "" || $username != $username_confirm ]]
+do
+    printf "Enter a username:\n> "
+    read username
+    printf "Confirm the username:\n> "
+    read username_confirm
+    if [[ $username != $username_confirm ]]; then
+        printf "Those usernames don't match. "
+    fi
+done
+
+while [[ $password == "" || $password != $password_confirm ]]
+do
+    printf "\nEnter a password for that user:\n> "
+    read -s password
+    printf "\nConfirm the password:\n> "
+    read -s password_confirm
+    printf "\n"
+    if [[ $password != $password_confirm ]]; then
+        printf "Those passwords don't match. "
+    fi
+done
+
+while [[ $root_password == "" || $root_password != $root_password_confirm ]]
+do
+    printf "\nFinally, enter a root password:\n> "
+    read -s root_password
+    printf "\nConfirm the root password:\n> "
+    read -s root_password_confirm
+    printf "\n"
+    if [[ $root_password != $root_password_confirm ]]; then
+        printf "Those passwords don't match. "
+    fi
+done
+
+set -x
+
+#
+# BASE SETUP
+#
+
+timedatectl set-ntp true
+
+# Partition. This assumes an EFI setup. Also note that we're not defining a
+# swap partition here. We'll do that later with a swapfile.
+parted --script --align=optimal /dev/sda -- \
+    mklabel gpt \
+    mkpart ESP fat32 2048s 512MiB \
+    mkpart ext4 512MiB -1MiB \
+
+# Set boot flag on EFI partition
+parted --script /dev/sda set 1 boot on
+
+# Format filesystems
+mkfs.vfat /dev/sda1
+mkfs.ext4 /dev/sda2
+
+# Mount partitions
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+# Manipulate the package mirror list to use a faster server
+#mirror='Server = http://arch.mirror.constant.com/\$repo/os/\$arch'
+#sed -i "8i$mirror/" /etc/pacman.d/mirrorlist
+
+# Get some base packages
+pacstrap /mnt \
+    base linux linux-headers dhcpcd \
+    base-devel \
+    go nodejs npm cmake ctags yarn \
+    vim wget openssh z ripgrep \
+    open-vm-tools xf86-video-vmware \
+    ttf-ubuntu-font-family ttf-dejavu ttf-jetbrains-mono \
+    rxvt-unicode kitty \
+    firefox \
+    xorg xorg-xinit xfwm4 xfce4-session gtk2 \
+    bspwm sxhkd
+
+# Generate fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+
+#
+# CHROOT SETUP
+#
+
+arch-chroot /mnt <<-EOS
+
+# Timezone and clock
+#ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+timedatectl set-timezone America/New_York
+hwclock --systohc
+
+# Swapfile
+fallocate -l 2G /swapfile
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+
+# Locale
+sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+# Hostname
+echo babysquid > /etc/hostname
+
+# No longer necessary?
+#sed -i "8i127.0.0.1	babysquid.localhost.localdomain	babysquid" /etc/hosts
+
+# Visudo
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
+
+# Root password
+echo "root:$root_password" | chpasswd
+
+# Main user
+useradd -m -g users -G wheel $username
+echo "$username:$password" | chpasswd
+
+# DHCP
+sudo systemctl enable dhcpcd
+
+# Kernel #######################################################################
+
+sed -i s/MODULES=\(\)/MODULES=\(vmw_balloon vmw_pvscsi vsock vmw_vmci vmw_vsock_vmci_transport vmwgfx vmxnet3\)/ /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+# Bootloader ###################################################################
+
+bootctl install
+
+cat <<- EOF > /boot/loader/loader.conf
+default  arch
+timeout  5
+editor   0
+EOF
+
+# We also need to setup the entry for Arch, but we'll do it outside of this
+# heredoc where it's easier to do non-interactively.
+
+# More Setup ####################################################################
+
+# Necessary for setting video properly in general and when the VM resizes
+sudo sysctmctl enable vmtoolsd
+
+EOS
+
+# Get UUID of the main partition. This is the part that would be really hard
+# to do in a heredoc.
+uuid=$(grep -ioP '[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}' /mnt/etc/fstab)
+
+# Finish setting up bootloader now that we have the UUID of the main partion.
+cat <<- EOF > /mnt/boot/loader/entries/arch.conf
+title          Arch Linux
+linux          /vmlinuz-linux
+initrd         /initramfs-linux.img
+options        root=UUID=$uuid rw
+EOF
+
+echo -e "\nWell, that went well. Remove the installation media and reboot."

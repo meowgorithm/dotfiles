@@ -9,9 +9,9 @@ function link() {
 
 mkdir -p "$HOME/.config/{bspwm,panel,sxhkd,kitty}"
 
-link Xresources Xresources
-link xinitrc xinitrc
+link .Xresources Xresources
+link .xinitrc xinitrc
+link .gitconfig gitconfig
 
 # ghcup
-su christian
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
