@@ -82,7 +82,7 @@ mount /dev/sda1 /mnt/boot
 # Get some base packages
 pacstrap /mnt \
     base linux linux-headers dhcpcd \
-    base-devel \
+    base-devel git \
     go nodejs npm cmake ctags yarn \
     vim wget openssh z ripgrep \
     open-vm-tools xf86-video-vmware \
@@ -158,8 +158,8 @@ EOF
 
 # More Setup ####################################################################
 
-# Necessary for setting video properly in general and when the VM resizes
-sudo sysctmctl enable vmtoolsd
+# Necessary for setting video properly in general and when the VM window resizes
+sysctmctl enable vmtoolsd
 
 EOS
 
