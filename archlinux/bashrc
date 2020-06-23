@@ -19,7 +19,7 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 alias ls='ls --color=auto'
 
@@ -35,6 +35,16 @@ alias dropuser='sudo -u postgres -i dropuser'
 alias createdb='sudo -u postgres -i createdb'
 alias dropdb='sudo -u postgres -i dropdb'
 
+# Z
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Go
+export GOPATH=$HOME/.go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
+# Git
+export GOPRIVATE="github.com/charmbracelet"
