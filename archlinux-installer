@@ -83,7 +83,7 @@ mount /dev/sda1 /mnt/boot
 pacstrap /mnt \
     base linux linux-headers dhcpcd \
     base-devel git \
-    go nodejs npm cmake ctags yarn \
+    go nodejs npm cmake ctags yarn jq \
     vim wget openssh z ripgrep \
     open-vm-tools xf86-video-vmware gtkmm3 \
     ttf-ubuntu-font-family ttf-dejavu ttf-jetbrains-mono \
