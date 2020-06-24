@@ -4,15 +4,23 @@
 
 # terminal emulator
 super + Return
-	kitty
+    kitty
 
 # program launcher
-super + @space
-	dmenu_run
+alt + space
+    rofi -modi drun -show drun \
+        -lines 24 \
+        -separator-style none \
+        -hide-scrollbar \
+        -font "JetBrains Mono 20" \
+        -color-window "#222222, #222222, #b1b4b3" \
+        -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" \
+        -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
+        -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3"
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
 #
 # bspwm hotkeys
@@ -20,26 +28,26 @@ super + Escape
 
 # quit bspwm normally
 super + ctrl + Escape
-	pkill -x panel; bspc quit
+    pkill -x panel; bspc quit
 
 super + ctrl + u
-	pkill -x panel; ~/.config/panel/panel
+    pkill -x panel; ~/.config/panel/panel
 
 # close and kill
 super + {_,shift + }w
-	bspc node -{c,k}
+    bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
 super + m
-	bspc desktop -l next
+    bspc desktop -l next
 
 # if the current node is automatic, send it to the last manual, otherwise pull the last leaf
 super + y
-	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+    bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
 # swap the current node and the biggest node
 super + g
-	bspc node -s biggest
+    bspc node -s biggest
 
 #
 # state/flags
@@ -47,11 +55,11 @@ super + g
 
 # set the window state
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {x,y,z}
-	bspc node -g {locked,sticky,private}
+    bspc node -g {locked,sticky,private}
 
 #
 # focus/swap
@@ -59,33 +67,33 @@ super + ctrl + {x,y,z}
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+    bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+    bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
-	bspc node -f {next,prev}.local
+    bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+    bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
-	bspc {node,desktop} -f last
+    bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -93,19 +101,19 @@ super + {_,shift + }{1-9,0}
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+    bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
 super + ctrl + space
-	bspc node -p cancel
+    bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
@@ -113,20 +121,20 @@ super + ctrl + shift + space
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node -z {left -40 0,bottom 0 40,top 0 -40,right 40 0}
+    bspc node -z {left -40 0,bottom 0 40,top 0 -40,right 40 0}
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
-	bspc node -z {right -40 0,top 0 40,bottom 0 -40,left 40 0}
+    bspc node -z {right -40 0,top 0 40,bottom 0 -40,left 40 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-40 0,0 40,0 -40,40 0}
+    bspc node -v {-40 0,0 40,0 -40,40 0}
 
 #
 # et cetera
 #
 
 # For the font to work you'll need to install `dmenux-git` from AUR`
-alt + space
-	dmenu_run -l 10 -fn 'SF Mono-10' -nf '#9FFED4' -nb '#1a1a1a' -sf '#FDFF91' -sb '#1265FB' -p '>'
+#alt + space
+#    dmenu_run -l 10 -fn 'SF Mono-10' -nf '#9FFED4' -nb '#1a1a1a' -sf '#FDFF91' -sb '#1265FB' -p '>'
