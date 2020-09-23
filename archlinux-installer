@@ -140,7 +140,7 @@ sudo systemctl enable dhcpcd
 
 # Kernel #######################################################################
 
-sed -i s/MODULES=\(\)/MODULES=\(vmw_balloon vmw_pvscsi vsock vmw_vmci vmw_vsock_vmci_transport vmwgfx vmxnet3\)/ /etc/mkinitcpio.conf
+sed -i s/MODULES=\(\)/MODULES=\(vmw_balloon\ vmw_pvscsi\ vsock\ vmw_vmci\ vmw_vsock_vmci_transport\ vmwgfx\ vmxnet3\)/ /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 # Bootloader ###################################################################

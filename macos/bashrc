@@ -106,7 +106,7 @@ if hash direnv 2>/dev/null; then
 fi
 
 # FZF
-export FZF_DEFAULT_OPTS='--height=10'
+#export FZF_DEFAULT_OPTS='--height=10'
 
 # NPM. Make "global" installs local
 NPM_DIR="$XDG_CONFIG_HOME/npm"
@@ -116,3 +116,5 @@ export PATH=$NPM_DIR/bin:$PATH
 
 # GHCUP
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
