@@ -10,11 +10,12 @@ PROMPT_DIRTRIM=2
 
 # Ascii color escape codes
 # Note that 256 color foreground codes follow the following format:
-# SAMPLE_256_COLOR="\[\e[38;05;255m\]"
-RED="\[\e[0;31m\]"
-YELLOW="\[\e[0;33m\]"
-CYAN="\[\e[0;36m\]"
-COLOR_NONE="\[\e[0m\]"
+CSI="\[\e["
+RED="${CSI}0;31m\]"
+YELLOW="${CSI}0;33m\]"
+CYAN="${CSI}0;36m\]"
+COLOR_NONE="${CSI}0m\]"
+INDIGO="${CSI}38;2;90;86;224m\]"
 
 # Show Git branch in prompt
 git_completion=/usr/local/etc/bash_completion.d/git-completion.bash
@@ -39,7 +40,11 @@ function prompt_func() {
         virtualenv="($(basename "$VIRTUAL_ENV")) "
     fi
 
-    PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
+    if [[ -z $DEMO_PROMPT ]]; then
+        PS1="${YELLOW}${virtualenv}${CYAN}\h:${RED}\w${CYAN} \u${YELLOW}${git_branch}${RED} \$${COLOR_NONE} "
+    else
+        PS1="${INDIGO}>${COLOR_NONE} "
+    fi
 }
 
 # Format the prompt
