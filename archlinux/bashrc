@@ -5,6 +5,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+alias ls='ls --color=auto'
+
+PROMPT_DIRTRIM=2
+
 function prompt_func() {
     red='\[\e[0;31m\]'
     green='\[\e[0;32m\]'
@@ -19,21 +23,15 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
-export PATH="$HOME/.local/bin:$PATH"
+# Git
+export GOPRIVATE="github.com/charmbracelet"
 
-alias ls='ls --color=auto'
-
-alias start='sudo systemctl start '
-alias stop='sudo systemctl stop'
-alias restart='sudo systemctl restart'
-alias enable='sudo systemctl enable'
-alias disable='sudo systemctl disable'
-alias status='sudo systemctl status'
-alias pacman='sudo pacman'
-alias createuser='sudo -u postgres -i createuser'
-alias dropuser='sudo -u postgres -i dropuser'
-alias createdb='sudo -u postgres -i createdb'
-alias dropdb='sudo -u postgres -i dropdb'
+# Go
+export GOPATH=$HOME/.go
+mkdir -p "$GOPATH/{src,bin}"
+export GOBIN=$GOPATH/bin
+env_gopath=$(go env GOPATH)
+export PATH=$PATH:$GOBIN:$env_gopath
 
 # Z
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
@@ -41,10 +39,15 @@ alias dropdb='sudo -u postgres -i dropdb'
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Go
-export GOPATH=$HOME/.go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
+# Aliases
+alias suspend='sudo systemctl suspend'
+alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
+alias start='sudo systemctl start '
+alias stop='sudo systemctl stop'
+alias restart='sudo systemctl restart'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
+alias status='sudo systemctl status'
 
-# Git
-export GOPRIVATE="github.com/charmbracelet"
+# GHCUP
+[ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env

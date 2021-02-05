@@ -7,21 +7,26 @@ function link() {
     ln -s $THISDIR/$2 ~/.$1
 }
 
-mkdir -p ~/.config/{bspwm,panel,sxhkd,kitty}
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+rm -rf yay
 
-link gitignore gitignore
-link gemrc gemrc
-link eslintrc eslintrc
-link tmux.conf tmux.conf
-link gitconfig archlinux/gitconfig
-link bashrc archlinux/bashrc
-link Xresources archlinux/Xresources
-link xinitrc archlinux/xinitrc
-link config/kitty archlinux/config/kitty
+mkdir -p ~/.config/{sx,i3,i3status,kitty,rofi}
 
-link config/bspwm archlinux/config/bspwm
-link config/sxhkd archlinux/config/sxhkd
-link config/panel archlinux/config/panel
+link gitignore         gitignore
+link gemrc             gemrc
+link eslintrc          eslintrc
+link tmux.conf         tmux.conf
+link gitconfig         archlinux/gitconfig
+link bashrc            archlinux/bashrc
+link Xresources        archlinux/Xresources
+link config/sx         archlinux/config/sx
+link config/kitty      archlinux/config/kitty
+link config/i3         archlinux/config/i3
+link config/i3status   archlinux/config/i3status
+link config/rofi       archlinux/config/rofi
+link config/picom.conf archlinux/config/picom.conf
 
 unset THISDIR
 

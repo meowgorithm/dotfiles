@@ -1,0 +1,90 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        markup = "pango"
+        interval = 5
+        colors = true
+        color_good = "#69dbb3"
+        color_bad = "#de4e6d"
+        color_degraded = "#91877e"
+}
+
+order += "ipv6"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "disk /"
+order += "load"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+order += "tztime local"
+order += "tztime berlin"
+order += "volume master"
+
+ipv6 {
+    format_down = ""
+}
+
+wireless _first_ {
+        format_up = "W: %quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet _first_ {
+        format_up = "🌎 %ip (%speed)"
+        format_down = "🌎 down"
+}
+
+battery all {
+        format = "🔋 %status %percentage %remaining"
+        format_down = "🔌"
+}
+
+disk "/" {
+        format = "💽 %avail"
+}
+
+load {
+        format = "Load %1min"
+}
+
+memory {
+        format = "🐏 %used / %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "🐂 %Y年%m月%d日 %H:%M"
+}
+
+tztime berlin {
+    format = "🇩🇪 %time"
+    format_time = "%H:%M %Z"
+    timezone = "Europe/Berlin"
+    hide_if_equals_localtime = true
+}
+
+cpu_usage {
+    format = "👾 CPU %usage"
+    max_threshold = 75
+}
+
+cpu_temperature 0 {
+    format = "🍦 CPU %degrees °C"
+    max_threshold = 75
+    format_above_threshold = "🥵 CPU %degrees °C"
+}
+
+volume master {
+        format = "🔊 %volume "
+        format_muted = "🔇 muted (%volume) "
+        device = "pulse:1"
+}

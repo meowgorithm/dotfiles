@@ -76,16 +76,18 @@ mount $bootPartition /mnt/boot
 # Get some base packages
 pacstrap /mnt \
     base linux linux-headers \
-	dhcpcd bluez bluez-utils \
+    dhcpcd bluez bluez-utils \
     base-devel git gnupg openssh \
-    nvidia xf86-video-nouveau \
-    xorg sx \
     go nodejs npm cmake ctags yarn jq bash-completion \
     vim wget z ripgrep \
-    ttf-ubuntu-font-family ttf-dejavu ttf-jetbrains-mono \
+    ttf-ubuntu-font-family ttf-dejavu ttf-jetbrains-mono inter-font \
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
     rxvt-unicode kitty \
-	xfwm4 compton bspwm sxhkd \
+    nvidia ffnvcodec-headers libxnvctrl nvidia-settings opencl-nvidia \
+    cuda cuda-tools nvtop \
+    xorg sx \
+    xfwm4 xfce4-settings picom \
+    i3-gaps i3lock i3status \
     firefox \
 
 # Generate fstab
@@ -123,14 +125,6 @@ echo "$username:$password" | chpasswd
 
 # Enable services
 sudo systemctl enable dhcpcd bluetooth
-
-# Yay
-cd ~
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
-rm -rf yay
 
 cat <<- EOF > /boot/loader/loader.conf
 default  arch
