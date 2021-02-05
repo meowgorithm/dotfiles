@@ -3,7 +3,7 @@
 [user]
 	name = Christian Rocha
 	email = christian@rocha.is
-	signingkey = D6CC7A16E5878018
+	signingkey = 782ABD7E56DD173F
 [alias]
 	st = status
 	ci = commit
