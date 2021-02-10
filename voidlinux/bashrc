@@ -1,0 +1,19 @@
+# .bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+[ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
+
+# Z
+[[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
+
+# Go
+export GOPATH="$HOME/.go"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOBIN"
+
+# Git
+export GOPRIVATE="github.com/charmbracelet"

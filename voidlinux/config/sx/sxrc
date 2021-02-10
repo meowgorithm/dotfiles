@@ -1,0 +1,4 @@
+picom &
+startxfce4 &
+setxkbmap -option caps:escape &
+exec i3

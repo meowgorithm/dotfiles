@@ -51,3 +51,5 @@ fc-cache -v
 # Make Thunderbolt USB "just work"
 # Note that on Arch the path here would be /etc/udev/rules.d/99-removable.rules
 sudo sh -c $'echo \'ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"\' > /usr/lib/udev/rules.d/99-removable-rules'
+
+mkdir -p "$HOME/.go"
