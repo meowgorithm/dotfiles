@@ -12,7 +12,7 @@ sudo xbps-install -S \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     curl wget bash-completion ripgrep jq \
     sx xfce4 picom i3-gaps i3status \
-    nvim kitty firefox
+    kitty firefox
 
 # Vim
 git clone https://github.com/vim/vim.git
@@ -38,9 +38,9 @@ chmod u+x "$HOME/.ghcup/bin/ghcup"
 
 # Z
 git clone https://github.com/rupa/z.git
-sudo mv z.sh /usr/local/bin/
+sudo mv ./z/z.sh /usr/local/bin/
 sudo mkdir -p /usr/local/man/man1
-sudo mv z.1 /usr/local/man/man1/
+sudo mv ./z/z.1 /usr/local/man/man1/
 rm -rf z
 
 # Bonus Fonts
