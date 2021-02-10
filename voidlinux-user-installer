@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sudo xbps-install -S void-repo-nonfree
+sudo xbps-install -S
+
+sudo xbps-install -S \
+    base-devel vpm \
+    vim ripgrep jq \
+    gcc6 go nodejs yarn \
+    nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
+    xorg-minimal xorg-input-drivers xorg-fonts \
+    noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
+    sx xfce4 picom i3-gaps i3status \
+    kitty firefox
