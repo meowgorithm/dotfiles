@@ -1,18 +1,20 @@
 #!/bin/bash
 
-sudo xbps-install -S void-repo-nonfree
-sudo xbps-install -S
+sudo xbps-install -Sy void-repo-nonfree
+sudo xbps-install -Sy
 
-sudo xbps-install -S \
+sudo xbps-install -Sy \
     base-devel vpm \
-    ncurses ncurses-devel ctags \
-    gcc6 go nodejs yarn ruby python python3-devel \
-    xorg-minimal xorg-input-drivers \
+    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
+    gcc6 gmp gmp-devel \
+    go nodejs yarn ruby python python3-devel \
+    xorg-minimal xorg-input-drivers setxkbmap \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
-    curl wget bash-completion ripgrep jq \
+    dejavu-fonts-ttf ttf-ubuntu-font-family \
+    ctags curl wget bash-completion ripgrep jq \
     sx xfce4 picom i3-gaps i3status \
-    kitty firefox
+    rofi kitty firefox
 
 # Vim
 git clone https://github.com/vim/vim.git
@@ -27,7 +29,7 @@ cd vim
     --enable-cscope \
     --prefix=/usr/local
 make -j16
-make install
+sudo make install
 cd ..
 rm -rf vim
 
@@ -45,7 +47,7 @@ rm -rf z
 
 # Bonus Fonts
 mkdir -p "$HOME/.fonts"
-curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf -C "$HOME/.fonts"
+curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
 fc-cache -v
 
 # Make Thunderbolt USB "just work"

@@ -7,6 +7,20 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 [ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
 
+function prompt_func() {
+    red='\[\e[0;31m\]'
+    green='\[\e[0;32m\]'
+    yellow='\[\e[0;33m\]'
+    blue='\[\e[0;34m\]'
+    purple='\[\e[0;35m\]'
+    cyan='\[\e[0;36m\]'
+    no_color='\[\e[0m\]'
+
+    PS1="$cyan\u$red@$cyan\h $red\W$cyan\$$no_color "
+}
+
+PROMPT_COMMAND=prompt_func
+
 # Z
 [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
 
@@ -17,3 +31,10 @@ export PATH="$PATH:$GOBIN"
 
 # Git
 export GOPRIVATE="github.com/charmbracelet"
+
+# CUDA
+export PATH="$PATH:/usr/local/cuda-11.2/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
+
+# GHCUP
+export PATH="$PATH:$HOME/.ghcup/bin"
