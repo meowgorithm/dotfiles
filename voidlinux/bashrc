@@ -21,6 +21,10 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
+export GPG_TTY=$(tty)
+export TERM=xterm-256color
+export EDITOR=vim
+
 # Z
 [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
 

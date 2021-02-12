@@ -1,0 +1,25 @@
+[color]
+	ui = auto
+[user]
+	name = Christian Rocha
+	email = christian@rocha.is
+	signingkey = BD1D27192AB22C5DEC9D5256782ABD7E56DD173F
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	count = !git log --pretty=oneline | wc -l
+	housekeeping = !git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''		   %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git lg1"
+    pr = !"git fetch origin pull/$1/head:pr-$1; git co pr-$1 #"
+[core]
+	excludesfile = /home/christian/.gitignore
+	editor = vim
+[push]
+	default = matching
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[commit]
+	gpgsign = true

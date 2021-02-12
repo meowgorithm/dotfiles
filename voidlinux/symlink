@@ -1,0 +1,20 @@
+#!/bin/bash
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+function link() {
+    rm -rf ~/.$1
+    ln -s $THISDIR/$2 ~/.$1
+}
+
+mkdir -p ~/.config/{bspwm,panel,sxhkd,kitty}
+
+link profile profile
+link bash_profile bash_profile
+link bashrc bashrc
+link Xresources Xresources
+link gitconfig gitconfig
+link config/sx config/sx
+link config/picom config/picom
+link config/kitty config/kitty
+link config/i3 config/i3
+link config/i3status config/i3status
