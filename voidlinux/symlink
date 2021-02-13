@@ -14,7 +14,7 @@ link bashrc bashrc
 link Xresources Xresources
 link gitconfig gitconfig
 link config/sx config/sx
-link config/picom config/picom
+link config/picom.conf config/picom.conf
 link config/kitty config/kitty
 link config/i3 config/i3
 link config/i3status config/i3status
