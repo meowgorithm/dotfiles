@@ -19,17 +19,17 @@ sudo xbps-install -Sy \
     base-devel vpm \
     gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
-    chrony alsa-utils apulse bluez \
+    chrony alsa-utils apulse pulsemixer bluez \
     git gnupg gnupg2 \
     go nodejs yarn ruby python python3-devel \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
     ctags curl wget bash-completion ripgrep jq \
-    xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
+    mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
-    sx picom i3-gaps i3status \
     adwaita-icon-theme \
+    sx picom i3-gaps i3status feh \
     rofi kitty firefox
 
 # Enable services

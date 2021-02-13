@@ -1,4 +1,5 @@
 setxkbmap -option caps:escape &
-xrdb /home/christian/.Xresources &
+xrdb $HOME/.Xresources &
 picom &
+feh --bg-fill $HOME/wallpaper.jpg
 exec i3
