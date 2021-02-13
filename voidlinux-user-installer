@@ -1,17 +1,30 @@
 #!/bin/bash
 
+# Some system notes
+#
+# * NVIDIA GeForce RTX 3090
+# * GC-Titan Ridge 2.0 for Thunderbolt support
+# * LG Ultrafine 5K Thunderbolt display, Connected via the GC-Titan Ridge. It
+#   has several features which are activated once Thunderbolt support is
+#   enabled:
+#     * Camera
+#     * Speakers
+#     * USB-C hub
+#   Also note that the brightness controls are proprietary; see the section for
+#   LG Ultrafine brightness below.
+
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
 
 sudo xbps-install -Sy \
     base-devel vpm \
+    gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
-    gcc6 gmp gmp-devel bsdtar gcc-ada \
+    chrony alsa-utils apulse bluez \
     git gnupg gnupg2 \
     go nodejs yarn ruby python python3-devel \
     xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
-    chrony alsa-utils bluez \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
@@ -42,6 +55,29 @@ sudo make install
 cd ..
 rm -rf vim
 
+# Make Thunderbolt USB "just work"
+# Note that on Arch the path here would be /etc/udev/rules.d/99-removable.rules
+sudo sh -c $'echo \'ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"\' > /usr/lib/udev/rules.d/99-removable.rules'
+
+# LG Ultrafine brightness controls
+git clone https://github.com/velum/lguf-brightness.git
+cd lguf-brightness
+cmake .
+make
+sudo mv lguf_brightness /usr/local/bin/
+cd ..
+rm -rf lguf-brightness
+
+# Audio
+(cat <<-EOF
+defaults.ctl.card 2
+defaults.pcm.card 2
+defaults.hwdep.card 2
+defaults.timer.card 2
+EOF
+) > asound.conf
+sudo mv asound.conf /etc/
+
 # GHCUP
 mkdir -p "$HOME/.ghcup/bin"
 curl https://downloads.haskell.org/~ghcup/x86_64-linux-ghcup --output "$HOME/.ghcup/bin/ghcup"
@@ -54,13 +90,9 @@ sudo mkdir -p /usr/local/man/man1
 sudo mv ./z/z.1 /usr/local/man/man1/
 rm -rf z
 
-# Bonus Fonts
+# Extra fonts
 mkdir -p "$HOME/.fonts"
 curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
 fc-cache -v
-
-# Make Thunderbolt USB "just work"
-# Note that on Arch the path here would be /etc/udev/rules.d/99-removable.rules
-sudo sh -c $'echo \'ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"\' > /usr/lib/udev/rules.d/99-removable.rules'
 
 mkdir -p "$HOME/.go"
