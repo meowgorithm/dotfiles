@@ -56,7 +56,7 @@ cd ..
 rm -rf vim
 
 # Make Thunderbolt USB "just work"
-# Note that on Arch the path here would be /etc/udev/rules.d/99-removable.rules
+# Note that on Arch the path would be /etc/udev/rules.d/99-removable.rules
 sudo sh -c $'echo \'ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"\' > /usr/lib/udev/rules.d/99-removable.rules'
 
 # LG Ultrafine brightness controls
@@ -90,9 +90,20 @@ sudo mkdir -p /usr/local/man/man1
 sudo mv ./z/z.1 /usr/local/man/man1/
 rm -rf z
 
-# Extra fonts
+# Extra fonts (note: requires charm binary in path to decrypt)
 mkdir -p "$HOME/.fonts"
 curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
 fc-cache -v
 
-mkdir -p "$HOME/.go"
+mkdir -p "$HOME/{.go,src}"
+mkdir -p "$HOME/src"
+
+# Clone and setup xbps-src repo
+git clone git://github.com/void-linux/void-packages.git
+cd void-packages
+./xbps-src binary-bootstrap
+echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
+
+# Install Slack
+./xbps-src pkg slack-desktop
+sudo xbps-install --repository hostdir/binpkgs/nonfree slack-desktop
