@@ -23,8 +23,6 @@ gaps inner 12
 #gaps bottom 16
 smart_borders on
 
-client.focused #4F1EE9 #285577 #FFFFFF #2E9EF4 #285577
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -214,6 +212,12 @@ bindsym $mod+Control+Shift+h resize shrink width 10 px or 10 ppt
 bindsym $mod+Control+Shift+j resize grow height 10 px or 10 ppt
 bindsym $mod+Control+Shift+k resize shrink height 10 px or 10 ppt
 bindsym $mod+Control+Shift+l resize grow width 10 px or 10 ppt
+
+client.background       #000000
+client.focused          #262626 #7951e077 #262626 #7951e0cc
+client.focused_inactive #262626 #262626 #262626 #262626
+client.unfocused        #262626 #262626 #262626 #262626
+client.urgent           #262626 #f51668 #262626 #f51668
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
