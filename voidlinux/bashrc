@@ -5,7 +5,18 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-[ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
+
+# Git
+export GOPRIVATE="github.com/charmbracelet"
+
+# Git prompt
+git_prompt="/usr/share/git/git-prompt.sh"
+if [ -f $git_prompt ]; then
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWSTASHSTATE=true
+    source $git_prompt
+fi
 
 function prompt_func() {
     red='\[\e[0;31m\]'
@@ -16,7 +27,10 @@ function prompt_func() {
     cyan='\[\e[0;36m\]'
     no_color='\[\e[0m\]'
 
-    PS1="$cyan\u$red@$cyan\h $red\W$cyan\$$no_color "
+    PROMPT_DIRTRIM=2
+
+    git_branch=$(__git_ps1 " (%s)")
+    PS1="$cyan\h:$red\w $cyan\u$yellow$git_branch $red\$ $no_color"
 }
 
 PROMPT_COMMAND=prompt_func
@@ -33,12 +47,10 @@ export GOPATH="$HOME/.go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
 
-# Git
-export GOPRIVATE="github.com/charmbracelet"
-
 # CUDA
 export PATH="$PATH:/usr/local/cuda-11.2/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
 
 # GHCUP
+[ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
 export PATH="$PATH:$HOME/.ghcup/bin"
