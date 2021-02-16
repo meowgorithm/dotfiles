@@ -27,6 +27,7 @@ sudo xbps-install -Sy \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
     ctags curl wget bash-completion ripgrep jq \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
+    libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
     adwaita-icon-theme \
     sx picom i3-gaps i3status feh \

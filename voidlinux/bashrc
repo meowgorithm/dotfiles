@@ -38,6 +38,7 @@ PROMPT_COMMAND=prompt_func
 export GPG_TTY=$(tty)
 export TERM=xterm-256color
 export EDITOR=vim
+export PATH="$PATH:$HOME/.bin"
 
 # Z
 [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
@@ -54,3 +55,9 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
 # GHCUP
 [ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
 export PATH="$PATH:$HOME/.ghcup/bin"
+
+# Cabal
+export PATH="$PATH:$HOME/.cabal/bin"
+
+alias hey="nohup hey >/dev/null 2>&1 &"
+alias gmail="nohup gmail >/dev/null 2>&1 &"
