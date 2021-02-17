@@ -18,17 +18,18 @@ sudo xbps-install -Sy
 sudo xbps-install -Sy \
     base-devel vpm \
     gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
-    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
+    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel zlib-devel \
     chrony alsa-utils apulse pulsemixer bluez \
     git gnupg gnupg2 \
-    go nodejs yarn ruby python python3-devel \
+    ctags curl wget bash-completion ripgrep jq slop \
+    go rust cargo nodejs yarn ruby python python3-devel \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
-    ctags curl wget bash-completion ripgrep jq \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
+    xdg-user-dirs \
     adwaita-icon-theme \
     sx picom i3-gaps i3status feh \
     rofi kitty firefox
@@ -38,6 +39,8 @@ sudo ln -s /etc/sv/chronyd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/bluetoothd /var/service/
 sudo ln -s /etc/sv/alsa /var/service/
+
+mkdir -p "$HOME/{.go,src}"
 
 # Vim
 git clone https://github.com/vim/vim.git
@@ -96,15 +99,12 @@ mkdir -p "$HOME/.fonts"
 curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
 fc-cache -v
 
-mkdir -p "$HOME/{.go,src}"
-mkdir -p "$HOME/src"
-
 # Clone and setup xbps-src repo
 git clone git://github.com/void-linux/void-packages.git
 cd void-packages
 ./xbps-src binary-bootstrap
 echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
 
-# Install Slack
+# Slack
 ./xbps-src pkg slack-desktop
 sudo xbps-install --repository hostdir/binpkgs/nonfree slack-desktop

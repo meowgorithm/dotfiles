@@ -1,5 +1,5 @@
 setxkbmap -option caps:escape &
-xrdb $HOME/.Xresources &
+xrdb -merge $HOME/.Xresources &
+feh --bg-fill $HOME/.wallpaper.png &
 picom &
-feh --bg-fill $HOME/wallpaper.jpg
-exec i3
+$HOME/.xmonad/xmonad-x86_64-linux

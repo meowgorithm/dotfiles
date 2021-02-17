@@ -6,15 +6,16 @@ function link() {
     ln -s $THISDIR/$2 ~/.$1
 }
 
-mkdir -p ~/.config/{bspwm,panel,sxhkd,kitty}
+mkdir -p ~/.config
 
 link profile profile
 link bash_profile bash_profile
 link bashrc bashrc
-link Xresources Xresources
 link gitconfig gitconfig
+link Xresources Xresources
+link xmonad xmonad
 link config/sx config/sx
 link config/picom.conf config/picom.conf
 link config/kitty config/kitty
-link config/i3 config/i3
-link config/i3status config/i3status
+link config/rofi config/rofi
+link floskell.json config/.floskell.json

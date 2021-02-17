@@ -59,5 +59,10 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 # Cabal
 export PATH="$PATH:$HOME/.cabal/bin"
 
+# Cargo
+export PATH="$PATH:$HOME/.cargo/bin"
+
 alias hey="nohup hey >/dev/null 2>&1 &"
 alias gmail="nohup gmail >/dev/null 2>&1 &"
+alias install-xmonad-libs="cabal install -z --lib --package-env=$HOME/.xmonad/ xmonad xmonad-contrib"
+alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
