@@ -118,3 +118,6 @@ export PATH=$NPM_DIR/bin:$PATH
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 [ -f "$HOME/.profile" ] && . "$HOME/.profile"
+
+NIX_SCRIPT=$HOME/.nix-profile/etc/profile.d/nix.sh
+[ -f $NIX_SCRIPT ] && . $NIX_SCRIPT

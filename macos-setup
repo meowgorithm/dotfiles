@@ -23,6 +23,7 @@ link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
 link .config/fish config/fish
+link .nixpkgs nixpkgs
 
 # Prompt
 MEOW="$XDG_CONFIG_HOME/meowgorithm"
@@ -31,14 +32,14 @@ mkdir -p "$MEOW"
 ln -s "$THISDIR/macos/prompt" "$MEOW/prompt"
 
 # Gitignore
-GITIGNORE_FILE="$HOME/.gitignore"
-rm -f "$GITIGNORE_FILE"
-ln -s "$THISDIR/gitignore" "$GITIGNORE_FILE"
+#GITIGNORE_FILE="$HOME/.gitignore"
+#rm -f "$GITIGNORE_FILE"
+#ln -s "$THISDIR/gitignore" "$GITIGNORE_FILE"
 
 # Gitconfig
-GITCONFIG_FILE="$HOME/.gitconfig"
-rm -f "$GITCONFIG_FILE"
-ln -s "$THISDIR/macos/gitconfig" "$GITCONFIG_FILE"
+#GITCONFIG_FILE="$HOME/.gitconfig"
+#rm -f "$GITCONFIG_FILE"
+#ln -s "$THISDIR/macos/gitconfig" "$GITCONFIG_FILE"
 
 # Yabai
 YABAI_DIR="$XDG_CONFIG_HOME/yabai"
