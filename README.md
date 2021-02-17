@@ -1,9 +1,7 @@
 # The Meowgorithm Dotfiles, Collectors’ Edition
 
-## Some tools you may want to install
+This repo contains dotfiles to support a few systems, but the main ones are:
 
-    # MacOS
-    brew install grc z node ripgrep
-
-    # ArchLinux
-    sudo pacman -S grc z nodejs npm ripgrep
+* macOS
+* Void Linux
+* Arch Linux in a VMware VM
