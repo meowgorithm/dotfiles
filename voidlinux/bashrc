@@ -62,7 +62,11 @@ export PATH="$PATH:$HOME/.cabal/bin"
 # Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
 
-alias hey="nohup hey >/dev/null 2>&1 &"
-alias gmail="nohup gmail >/dev/null 2>&1 &"
+alias mail="nohup hey --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
+alias mail="nohup chromium --new-window --app=https://mail.superhuman.com > /dev/null 2>&1 &" # sigh
+alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
+
 alias install-xmonad-libs="cabal install -z --lib --package-env=$HOME/.xmonad/ xmonad xmonad-contrib"
 alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
+
+command -v direnv > /dev/null 2>&1 && eval "$(direnv hook bash)"

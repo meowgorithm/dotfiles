@@ -32,7 +32,7 @@ sudo xbps-install -Sy \
     xdg-user-dirs \
     adwaita-icon-theme \
     sx picom i3-gaps i3status feh \
-    rofi kitty firefox
+    rofi kitty firefox gthumb
 
 # Enable services
 sudo ln -s /etc/sv/chronyd /var/service/
