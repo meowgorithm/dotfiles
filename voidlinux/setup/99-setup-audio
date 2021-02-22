@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Audio
+(cat <<-EOF
+defaults.ctl.card 2
+defaults.pcm.card 2
+defaults.hwdep.card 2
+defaults.timer.card 2
+EOF
+) > asound.conf
+sudo mv asound.conf /etc/

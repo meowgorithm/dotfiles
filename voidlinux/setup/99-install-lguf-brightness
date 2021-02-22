@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Install LG Ultrafine brightness controls. The LG Ultrafine 5K (and probably
+# 4K) have a nonstandard interface for setting brightness.
+
+mkdir -p "$HOME/src"
+cd "$HOME/src"
+
+git clone https://github.com/velum/lguf-brightness.git
+cd lguf-brightness
+cmake .
+make
+sudo mv lguf_brightness /usr/local/bin/
+cd ..
+rm -rf lguf-brightness

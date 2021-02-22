@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo ln -s /etc/sv/chronyd /var/service/
+sudo ln -s /etc/sv/dbus /var/service/
+sudo ln -s /etc/sv/bluetoothd /var/service/
+sudo ln -s /etc/sv/alsa /var/service/

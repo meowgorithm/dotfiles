@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p "$HOME/.ghcup/bin"
+curl https://downloads.haskell.org/~ghcup/x86_64-linux-ghcup --output "$HOME/.ghcup/bin/ghcup"
+chmod u+x "$HOME/.ghcup/bin/ghcup"
