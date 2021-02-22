@@ -5,10 +5,11 @@ sudo xbps-install -Sy
 sudo xbps-install -Sy \
     base-devel vpm \
     gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
-    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel zlib-devel \
+    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
+    zlib-devel libusb-devel \
     chrony alsa-utils apulse pulsemixer bluez \
     git gnupg gnupg2 \
-    ctags curl wget bash-completion ripgrep jq \
+    ctags curl wget bash-completion ripgrep jq direnv \
     go rust cargo nodejs yarn ruby python python3-devel \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
