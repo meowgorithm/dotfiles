@@ -19,7 +19,9 @@
 	editor = vim
 [push]
 	default = matching
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+[url "git@github.com:charmbracelet"]
+	insteadOf = https://github.com/charmbracelet
+[url "git@github.com:meowgorithm"]
+	insteadOf = https://github.com/meowgorithm
 [commit]
 	gpgsign = true
