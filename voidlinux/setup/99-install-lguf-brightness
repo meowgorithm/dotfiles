@@ -10,6 +10,7 @@ git clone https://github.com/velum/lguf-brightness.git
 cd lguf-brightness
 cmake .
 make
+sudo chown root:root ./lguf_brightness
 sudo mv lguf_brightness /usr/local/bin/
 cd ..
 rm -rf lguf-brightness
