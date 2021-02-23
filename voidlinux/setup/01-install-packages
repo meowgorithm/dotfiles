@@ -3,11 +3,10 @@
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
 sudo xbps-install -Sy \
-    base-devel vpm \
-    gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
+    base-devel vpm gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
     zlib-devel libusb-devel \
-    chrony alsa-utils apulse pulsemixer bluez \
+    chrony alsa-utils apulse pulsemixer bluez bolt \
     git gnupg gnupg2 \
     ctags curl wget bash-completion ripgrep jq direnv \
     go rust cargo nodejs yarn ruby python python3-devel \
@@ -19,6 +18,6 @@ sudo xbps-install -Sy \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
     xdg-user-dirs \
     adwaita-icon-theme \
-    sx picom feh slop \
+    sx picom feh slop gcolor2 \
     gthumb rofi \
     kitty firefox
