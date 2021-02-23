@@ -7,8 +7,8 @@ sudo xbps-install -Sy \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
     zlib-devel libusb-devel \
     chrony alsa-utils apulse pulsemixer bluez bolt \
-    git gnupg gnupg2 \
-    ctags curl wget bash-completion ripgrep jq direnv \
+    git gnupg gnupg2 nix \
+    ctags curl wget bash-completion ripgrep jq direnv fzf shellcheck \
     go rust cargo nodejs yarn ruby python python3-devel \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
