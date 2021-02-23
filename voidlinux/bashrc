@@ -53,16 +53,13 @@ export PATH="$PATH:/usr/local/cuda-11.2/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
 
 # GHCUP
-[ -f "/home/christian/.ghcup/env" ] && source "/home/christian/.ghcup/env" # ghcup-env
-export PATH="$PATH:$HOME/.ghcup/bin"
-
-# Cabal
-export PATH="$PATH:$HOME/.cabal/bin"
+GHCUP_ENV="$HOME/.ghcup/env"
+[ -f $GHCUP_ENV ] && source $GHCUP_ENV
 
 # Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
 
-alias mail="nohup hey --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
+alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
 alias mail="nohup chromium --new-window --app=https://mail.superhuman.com > /dev/null 2>&1 &" # sigh
 alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
 
