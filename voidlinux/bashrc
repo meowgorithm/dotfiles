@@ -18,6 +18,20 @@ if [ -f $git_prompt ]; then
     source $git_prompt
 fi
 
+function nixPrompt() {
+    case $IN_NIX_SHELL in
+        pure)
+            printf ' <nix>'
+            ;;
+        impure)
+            printf ' <nix*>'
+            ;;
+        *)
+            printf ''
+            ;;
+    esac
+}
+
 function prompt_func() {
     red='\[\e[0;31m\]'
     green='\[\e[0;32m\]'
@@ -25,12 +39,14 @@ function prompt_func() {
     blue='\[\e[0;34m\]'
     purple='\[\e[0;35m\]'
     cyan='\[\e[0;36m\]'
+    violet='\[\e[38;5;63m\]'
     no_color='\[\e[0m\]'
 
     PROMPT_DIRTRIM=2
 
     git_branch=$(__git_ps1 " (%s)")
-    PS1="$cyan\h:$red\w $cyan\u$yellow$git_branch $red\$ $no_color"
+    nix=$(nixPrompt)
+    PS1="$cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
 }
 
 PROMPT_COMMAND=prompt_func
