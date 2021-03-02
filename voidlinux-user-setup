@@ -16,7 +16,7 @@
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
 sudo xbps-install -Sy \
-    base-devel vpm \
+    base-devel vpm psmisc \
     gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel zlib-devel \
     chrony alsa-utils apulse pulsemixer bluez \
