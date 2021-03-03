@@ -81,6 +81,7 @@ export PATH="$PATH:$HOME/.nix-profile/bin"
 alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
 alias mail="nohup chromium --new-window --app=https://mail.superhuman.com > /dev/null 2>&1 &" # sigh
 alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
+alias thunderbolt-up="sudo boltctl authorize 00b62260-4590-1e00-ffff-ffffffffffff"
 
 alias install-xmonad-libs="cabal install -z --lib --package-env=$HOME/.xmonad/ xmonad xmonad-contrib"
 alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
