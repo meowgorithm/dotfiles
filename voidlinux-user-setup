@@ -33,8 +33,9 @@ sudo xbps-install -Sy \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
     xset xseticon xsetmode xsetpointer xsetroot xsettingsd xinput \
     xdg-user-dirs \
+    nix \
     adwaita-icon-theme \
-    sx picom i3-gaps i3status feh \
+    sx picom i3-gaps i3status feh neofetch \
     rofi kitty firefox gthumb
 
 # Enable services
@@ -42,6 +43,7 @@ sudo ln -s /etc/sv/chronyd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/bluetoothd /var/service/
 sudo ln -s /etc/sv/alsa /var/service/
+sudo ln -s /etc/sv/nix-daemon /var/service/
 
 mkdir -p "$HOME/{.go,src}"
 
