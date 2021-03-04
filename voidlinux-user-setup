@@ -2,16 +2,19 @@
 
 # Some system notes
 #
+# * X570 Aorus Master
+# * AMD Ryzen 9 5950X 16-Core
 # * NVIDIA GeForce RTX 3090
+# * 64GB Ram
 # * GC-Titan Ridge 2.0 for Thunderbolt support
-# * LG Ultrafine 5K Thunderbolt display, Connected via the GC-Titan Ridge. It
-#   has several features which are activated once Thunderbolt support is
+# * LG Ultrafine 5K Thunderbolt display, Connected via the GC-Titan Ridge 2.0.
+#   It has several features which are activated once Thunderbolt support is
 #   enabled:
 #     * Camera
 #     * Speakers
 #     * USB-C hub
-#   Also note that the brightness controls are proprietary; see the section for
-#   LG Ultrafine brightness below.
+#   The brightness controls are proprietary; see the section for LG Ultrafine
+#   brightness below.
 
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
@@ -28,7 +31,7 @@ sudo xbps-install -Sy \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
-    xset xseticon xsetmode xsetpointer xsetroot xsettingsd \
+    xset xseticon xsetmode xsetpointer xsetroot xsettingsd xinput \
     xdg-user-dirs \
     adwaita-icon-theme \
     sx picom i3-gaps i3status feh \

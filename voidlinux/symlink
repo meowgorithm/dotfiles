@@ -8,13 +8,12 @@ function link() {
 
 mkdir -p ~/.config
 
+link bin .bin
 link profile .profile
 link bash_profile .bash_profile
 link bashrc .bashrc
 link gitconfig .gitconfig
 link Xresources .Xresources
-link xmonad .xmonad
-link xmobarrc .xmobarrc
 link config/sx .config/sx
 link config/picom.conf .config/picom.conf
 link config/kitty .config/kitty

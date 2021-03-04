@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mouse='Microsoft Microsoft Pro Intellimouse Mouse'
+
+xinput --set-prop "$mouse" 'libinput Accel Speed' 0
+xinput --set-prop "$mouse" 'libinput Natural Scrolling Enabled' 1
