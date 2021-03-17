@@ -78,13 +78,16 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Nix
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
+# General aliases
 alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
 alias mail="nohup chromium --new-window --app=https://mail.superhuman.com > /dev/null 2>&1 &" # sigh
 alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
 alias thunderbolt-up="sudo boltctl authorize 00b62260-4590-1e00-ffff-ffffffffffff"
 
-alias install-xmonad-libs="cabal install -z --lib --package-env=$HOME/.xmonad/ xmonad xmonad-contrib"
+# Fix various things on demand
 alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
+alias fix-caps-lock="setxkbmap -option caps:escape"
+alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
 
 export CHARM="git@github.com:charmbracelet"
 export MEOW="git@github.com:meowgorithm"
