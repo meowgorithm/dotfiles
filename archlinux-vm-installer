@@ -85,7 +85,7 @@ pacstrap /mnt \
     base-devel git gnupg \
     open-vm-tools xf86-video-vmware gtkmm3 \
     xorg xorg-xinit xfwm4 xfce4-session gtk2 \
-    go nodejs npm cmake ctags yarn jq gpg bash-completion \
+    go nodejs npm cmake ctags yarn jq bash-completion \
     vim wget openssh z ripgrep \
     bspwm sxhkd \
     ttf-ubuntu-font-family ttf-dejavu ttf-jetbrains-mono \
