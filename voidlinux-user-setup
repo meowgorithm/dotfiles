@@ -18,5 +18,7 @@
 
 for f in ./voidlinux/setup/*; do
     bash "$f" || break
-    read -n 1 -s -r -p "\nDone.Press any key to continue.\n"
+    printf '\n%s finished.\n\n' $(basename $f)
+    read -n 1 -s -r -p "Press any key to continue..."
+    printf '\n'
 done

@@ -1,11 +1,10 @@
 #!/bin/bash
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-printf "Symlinking...\n"
+SOURCE_DIR="$HOME/.dotfiles/voidlinux"
 
 function link() {
     rm -rf ~/$2
-    ln -s ../$THISDIR/$1 ~/$2
+    ln -s $SOURCE_DIR/$1 ~/$2
 }
 
 mkdir -p ~/.config

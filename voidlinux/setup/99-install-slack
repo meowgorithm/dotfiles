@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Installing Slack...\n\n"
-
 cd "$HOME/src/void-packages"
 
 ./xbps-src pkg slack-desktop

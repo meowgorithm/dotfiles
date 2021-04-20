@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Pulling down fonts...\n\n"
-
 mkdir -p "$HOME/.fonts"
 curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
 fc-cache -v

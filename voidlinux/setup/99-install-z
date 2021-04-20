@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Installing z...\n\n"
-
 git clone https://github.com/rupa/z.git
 sudo mv ./z/z.sh /usr/local/bin/
 sudo mkdir -p /usr/local/man/man1

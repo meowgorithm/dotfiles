@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Setting up xbps-src...\n\n"
-
 mkdir -p "$HOME/src"
 cd "$HOME/src"
 

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Setting up Audio...\n\n"
-
 # Audio
 (cat <<-EOF
 defaults.ctl.card 2

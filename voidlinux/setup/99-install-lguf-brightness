@@ -3,8 +3,6 @@
 # Install LG Ultrafine brightness controls. The LG Ultrafine 5K (and probably
 # 4K) have a nonstandard interface for setting brightness.
 
-printf "Installing LG Ultrafine brightness controls...\n\n"
-
 mkdir -p "$HOME/src"
 cd "$HOME/src"
 

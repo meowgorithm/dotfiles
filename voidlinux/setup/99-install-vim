@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Installing Vim...\n\n"
-
 mkdir -p "$HOME/src"
 cd "$HOME/src"
 

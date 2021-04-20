@@ -1,7 +1,5 @@
 #!bin/bash
 
-printf "Installing Shotgun...\n\n"
-
 mkdir -p $"HOME/src"
 cd "$HOME/src"
 
