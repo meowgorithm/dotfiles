@@ -1,9 +1,11 @@
 #!/bin/bash
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+printf "Symlinking...\n"
+
 function link() {
     rm -rf ~/$2
-    ln -s $THISDIR/$1 ~/$2
+    ln -s ../$THISDIR/$1 ~/$2
 }
 
 mkdir -p ~/.config

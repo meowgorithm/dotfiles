@@ -13,103 +13,10 @@
 #     * Camera
 #     * Speakers
 #     * USB-C hub
-#   The brightness controls are proprietary; see the section for LG Ultrafine
-#   brightness below.
+#   The brightness controls are proprietary; see the script that installs
+#   the LG Ultrafine brightness controls.
 
-sudo xbps-install -Sy void-repo-nonfree
-sudo xbps-install -Sy
-sudo xbps-install -Sy \
-    base-devel vpm psmisc \
-    gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
-    ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel zlib-devel \
-    chrony alsa-utils apulse pulsemixer bluez \
-    git gnupg gnupg2 \
-    ctags curl wget bash-completion ripgrep jq slop \
-    go rust cargo nodejs yarn ruby python python3-devel \
-    nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
-    noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
-    dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
-    mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
-    libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
-    xset xseticon xsetmode xsetpointer xsetroot xsettingsd xinput \
-    xdg-user-dirs \
-    nix \
-    adwaita-icon-theme \
-    sx picom i3-gaps i3status feh neofetch \
-    rofi kitty firefox gthumb
-
-# Enable services
-sudo ln -s /etc/sv/chronyd /var/service/
-sudo ln -s /etc/sv/dbus /var/service/
-sudo ln -s /etc/sv/bluetoothd /var/service/
-sudo ln -s /etc/sv/alsa /var/service/
-sudo ln -s /etc/sv/nix-daemon /var/service/
-
-mkdir -p "$HOME/{.go,src}"
-
-# Vim
-git clone https://github.com/vim/vim.git
-cd vim
-./configure --with-features=huge \
-    --enable-multibyte \
-    --enable-rubyinterp=yes \
-    --enable-python3interp=yes \
-    --with-python3-config-dir=/usr/lib64/python3.9/config-3.9m-x86_64-linux-gnu \
-    --enable-perlinterp=yes \
-    --enable-luainterp=yes \
-    --enable-cscope \
-    --prefix=/usr/local
-make -j16
-sudo make install
-cd ..
-rm -rf vim
-
-# Make Thunderbolt USB "just work"
-# Note that on Arch the path would be /etc/udev/rules.d/99-removable.rules
-sudo sh -c $'echo \'ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"\' > /usr/lib/udev/rules.d/99-removable.rules'
-
-# LG Ultrafine brightness controls
-git clone https://github.com/velum/lguf-brightness.git
-cd lguf-brightness
-cmake .
-make
-sudo mv lguf_brightness /usr/local/bin/
-cd ..
-rm -rf lguf-brightness
-
-# Audio
-(cat <<-EOF
-defaults.ctl.card 2
-defaults.pcm.card 2
-defaults.hwdep.card 2
-defaults.timer.card 2
-EOF
-) > asound.conf
-sudo mv asound.conf /etc/
-
-# GHCUP
-mkdir -p "$HOME/.ghcup/bin"
-curl https://downloads.haskell.org/~ghcup/x86_64-linux-ghcup --output "$HOME/.ghcup/bin/ghcup"
-chmod u+x "$HOME/.ghcup/bin/ghcup"
-
-# Z
-git clone https://github.com/rupa/z.git
-sudo mv ./z/z.sh /usr/local/bin/
-sudo mkdir -p /usr/local/man/man1
-sudo mv ./z/z.1 /usr/local/man/man1/
-rm -rf z
-
-# Extra fonts (note: requires charm binary in path to decrypt)
-mkdir -p "$HOME/.fonts"
-curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
-fc-cache -v
-
-# Clone and setup xbps-src repo
-git clone git://github.com/void-linux/void-packages.git
-cd void-packages
-./xbps-src binary-bootstrap
-echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
-
-# Slack
-./xbps-src pkg slack-desktop
-sudo xbps-install --repository hostdir/binpkgs/nonfree slack-desktop
+for f in ./voidlinux/setup/*; do
+    bash "$f" || break
+    read -n 1 -s -r -p "\nDone.Press any key to continue.\n"
+done
