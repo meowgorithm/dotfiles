@@ -9,16 +9,22 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH" # Homebrew Python (typically 3)
-export PATH="$HOME/.local/bin:$PATH" # Stack (Haskell) puts stuff here
-export PATH="$HOME/.cabal/bin:$PATH" # Cabal (Haskell) puts stuff here
+export PATH="$HOME/.local/bin:$PATH" # Stack
+export PATH="$HOME/.cabal/bin:$PATH" # Cabal
+export PATH="$HOME/.cargo/bin:$PATH" # Rust
 ruby_prefix=$(brew --prefix ruby)/bin
 export PATH=$ruby_prefix/bin:$PATH # rubygems
 
 tty=$(tty)
 export GPG_TTY=$tty
 
-export EDITOR=kak
-export TERM=xterm-256color
+#export EDITOR=kak
+#export TERM=xterm-256color
+
+if [[ $TERM = 'xterm-kitty' ]]; then
+    # This has proved to work better than the ssh kitten for some reason.
+    alias ssh='TERM=xterm-256color && ssh'
+fi
 
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
