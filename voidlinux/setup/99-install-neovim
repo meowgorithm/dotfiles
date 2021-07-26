@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir -p "$HOME/src"
+cd "$HOME/src"
+
+if [[ ! -d "$HOME/src/neovim" ]]; then
+    git clone https://github.com/neovim/neovim.git
+fi
+
+cd neovim
+git pull
+git checkout release-0.5
+
+make CMAKE_BUILD_TYPE=Release -j20
+sudo make install
