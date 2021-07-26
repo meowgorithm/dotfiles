@@ -3,8 +3,13 @@
 mkdir -p "$HOME/src"
 cd "$HOME/src"
 
-git clone https://github.com/vim/vim.git
+if [[ ! -d "$HOME/src/vim" ]]; then
+    git clone https://github.com/vim/vim.git
+fi
+
 cd vim
+git pull
+
 ./configure --with-features=huge \
     --enable-multibyte \
     --enable-rubyinterp=yes \
@@ -14,7 +19,5 @@ cd vim
     --enable-luainterp=yes \
     --enable-cscope \
     --prefix=/usr/local
-make -j16
+make -j20
 sudo make install
-cd ..
-rm -rf vim
