@@ -78,6 +78,9 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Nix
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
+# VSCode
+export PATH="$PATH:/usr/local/vscode/bin"
+
 # General aliases
 alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
 alias mail="nohup chromium --new-window --app=https://mail.superhuman.com > /dev/null 2>&1 &" # sigh
