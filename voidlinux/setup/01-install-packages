@@ -3,13 +3,13 @@
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
 sudo xbps-install -Sy \
-    base-devel vpm gcc6 cmake gmp gmp-devel bsdtar gcc-ada libusb \
+    base-devel vpm gcc6 cmake gmp gmp-devel gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
     zlib-devel libusb-devel \
     chrony alsa-utils apulse pulsemixer bluez bolt \
     git gnupg gnupg2 nix \
-    ctags curl wget bash-completion ripgrep jq direnv fzf shellcheck \
-    go rust cargo nodejs yarn ruby python python3-devel \
+    bsdtar psmisc ctags curl wget bash-completion ripgrep jq direnv fzf \
+    go rust cargo nodejs yarn ruby python python3-devel shellcheck \
     nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
@@ -20,5 +20,4 @@ sudo xbps-install -Sy \
     xdg-user-dirs \
     adwaita-icon-theme \
     sx picom feh slop gcolor2 \
-    gthumb rofi \
-    kitty firefox
+    gthumb rofi kitty firefox
