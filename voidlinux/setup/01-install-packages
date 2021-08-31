@@ -1,5 +1,21 @@
 #!/bin/bash
 
+other_packages=""
+
+while true; do
+    read -p "Is this a VM? [yn] " yn
+    case $yn in
+        [yY]* )
+            other_packages="xf86-video-vmware open-vm-tools"
+            break;;
+        [nN]* )
+            other_packages="nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers"
+            break;;
+        * )
+            printf "Please enter yes or no\n";;
+    esac
+done
+
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy
 sudo xbps-install -Sy \
@@ -11,7 +27,6 @@ sudo xbps-install -Sy \
     bsdtar psmisc ctags curl wget bash-completion ripgrep jq direnv fzf \
     moreutils \
     go rust cargo nodejs yarn ruby python python3-devel shellcheck \
-    nvidia nvidia-libs nvidia-opencl nvidia-gtklibs nvidia-dkms nv-codec-headers \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
@@ -21,4 +36,5 @@ sudo xbps-install -Sy \
     xdg-user-dirs \
     adwaita-icon-theme \
     sx picom feh slop gcolor2 \
-    gthumb rofi kitty firefox
+    gthumb rofi kitty firefox \
+    $other_packages
