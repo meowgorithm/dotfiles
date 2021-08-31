@@ -1,4 +1,4 @@
-# .bash_profile
+#!/usr/bin/env bash
 
 # Pull in profile stuff
 [ -f $HOME/.profile ] && . $HOME/.profile
