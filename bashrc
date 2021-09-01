@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-os=$(./which-os)
+os=$(./bin/which-os)
 
 # OS/Distro specific stuff
 case "$os" in

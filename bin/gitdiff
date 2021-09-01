@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ $(./which-os) == "darwin" ]]; then
+    opendiff
+else
+    vimdiff
+fi
+

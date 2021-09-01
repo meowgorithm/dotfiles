@@ -13,11 +13,12 @@ function link() {
     ln -s "$THISDIR/$2" "$HOME/$1"
 }
 
+link .bashrc bashrc
+link .bash_profile bash_profile
+link .gitconfig gitconfig
 link .gemrc gemrc
 link .eslintrc eslintrc
 link .tmux.conf tmux.conf
-link .bashrc bashrc
-link .bash_profile bash_profile
 link .grc .grc
 link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
@@ -29,11 +30,6 @@ link .nixpkgs nixpkgs
 GITIGNORE_FILE="$HOME/.gitignore"
 rm -f "$GITIGNORE_FILE"
 ln -s "$THISDIR/gitignore" "$GITIGNORE_FILE"
-
-# Gitconfig
-GITCONFIG_FILE="$HOME/.gitconfig"
-rm -f "$GITCONFIG_FILE"
-ln -s "$THISDIR/macos/gitconfig" "$GITCONFIG_FILE"
 
 # Yabai
 YABAI_DIR="$XDG_CONFIG_HOME/yabai"
@@ -54,10 +50,8 @@ chmod 0700 ~/.aws
 chmod 0600 ~/.aws/*
 
 # Kitty
-KITTY_DIR="$HOME/.config/kitty"
-rm -rf "$KITTY_DIR"
-mkdir -p "$KITTY_DIR"
-ln -s "$THISDIR/kitty.conf" "$KITTY_DIR/kitty.conf"
+mkdir -p "$HOME/.config/kitty"
+link .config/kitty/kitty.conf kitty.conf
 
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
