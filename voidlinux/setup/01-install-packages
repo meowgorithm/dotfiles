@@ -31,8 +31,8 @@ sudo xbps-install -Sy \
     dejavu-fonts-ttf ttf-ubuntu-font-family font-material-design-icons-ttf \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
+    libXpm libXft libXft-devel \
     xset xsel xseticon xsetmode xsetpointer xsetroot xsettingsd \
-    libXft libXpm \
     xdg-user-dirs \
     adwaita-icon-theme \
     sx picom feh slop gcolor2 \
