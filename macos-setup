@@ -13,6 +13,9 @@ function link() {
     ln -s "$THISDIR/$2" "$HOME/$1"
 }
 
+mkdir -p "$HOME/Library/LaunchAgents"
+link Library/LaunchAgents/is.rocha.env.plist Library/LaunchAgents/is.rocha.env.plist
+
 link .bashrc bashrc
 link .bash_profile bash_profile
 link .gitconfig gitconfig
