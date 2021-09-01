@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if command -v $1 &> /dev/null
+then
+    printf 1
+    exit
+fi
+printf 0

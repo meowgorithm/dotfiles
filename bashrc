@@ -3,7 +3,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-os=$(./bin/which-os)
+thisdir=$(dirname "$(realpath ~/.bashrc)")
+os="$($thisdir/bin/which-os)"
 
 # OS/Distro specific stuff
 case "$os" in
@@ -52,7 +53,7 @@ case "$os" in
         alias ls='ls -h'
 
         # Bash completion
-        bash_completion=/usr/local/etc/profile.d/bash_completion.sh
+        bash_completion="$(brew --prefix)/etc/profile.d/bash_completion.sh"
         # shellcheck disable=1090
         [[ -r $bash_completion ]] && . $bash_completion
 
@@ -107,8 +108,15 @@ no_color='\[\e[0m\]'
 indigo='\[\e[38;2;90;86;224m\]'
 
 function prompt_func() {
-    git_branch=$(__git_ps1 " (%s)")
     nix=$(nixPrompt)
+
+    if [[ $os == "darwin" ]]; then
+        if [[ -r "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]]; then
+            git_branch=$(__git_ps1 " (%s)")
+        fi
+    else
+        git_branch=$(__git_ps1 " (%s)")
+    fi
 
     if [[ ! -z $DEMO_PROMPT ]]; then
         PS1="$indigo>$no_color "
@@ -169,5 +177,5 @@ case "$os" in
         [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh ;;
     darwin )
         # shellcheck disable=1091
-        [[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh" ;;
+        [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh" ;;
 esac

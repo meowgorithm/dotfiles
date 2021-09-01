@@ -13,7 +13,7 @@ link bin .bin
 link profile .profile
 link ../bash_profile .bash_profile
 link ../bashrc .bashrc
-link gitconfig .gitconfig
+link ../gitconfig .gitconfig
 link Xresources .Xresources
 link config/sx .config/sx
 link config/picom.conf .config/picom.conf

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Returns the appropriate diff program for our given OS
 if [[ $(./which-os) == "darwin" ]]; then
     opendiff
 else

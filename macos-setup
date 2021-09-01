@@ -6,7 +6,7 @@ DROPBOX=$HOME/Soft\ Power\ Dropbox/Christian\ Rocha
 if [[ -z $XDG_CONFIG_HOME ]]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
-mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_CONFIG_HOME/{kitty,yabai}"
 
 function link() {
     rm -rf "${HOME:?}/$1"
@@ -16,42 +16,18 @@ function link() {
 link .bashrc bashrc
 link .bash_profile bash_profile
 link .gitconfig gitconfig
+link .gitignore gitignore
+link .config/kitty/kitty.conf kitty.conf
 link .gemrc gemrc
 link .eslintrc eslintrc
 link .tmux.conf tmux.conf
 link .grc .grc
-link .skhdrc macos/skhdrc
 link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
 link .config/fish config/fish
 link .nixpkgs nixpkgs
-
-# Gitignore
-GITIGNORE_FILE="$HOME/.gitignore"
-rm -f "$GITIGNORE_FILE"
-ln -s "$THISDIR/gitignore" "$GITIGNORE_FILE"
-
-# Yabai
-YABAI_DIR="$XDG_CONFIG_HOME/yabai"
-rm -rf "$YABAI_DIR"
-mkdir "$YABAI_DIR"
-ln -s "$THISDIR/macos/yabairc" "$XDG_CONFIG_HOME/yabai/yabairc"
-
-# SSH
-rm -rf ~/.ssh
-ln -s "${DROPBOX}"/System/ssh ~/.ssh
-chmod 0700 ~/.ssh
-chmod 0600 ~/.ssh/id_rsa*
-
-# AWS Credentials
-rm -rf ~/.aws
-ln -s "${DROPBOX}"/System/aws ~/.aws
-chmod 0700 ~/.aws
-chmod 0600 ~/.aws/*
-
-# Kitty
-mkdir -p "$HOME/.config/kitty"
-link .config/kitty/kitty.conf kitty.conf
+link .config/yabai/yabairc yabairc
+link .skhdrc skhdrc
 
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
@@ -59,6 +35,8 @@ rm -rf "$XCODE_THEMES"
 mkdir -p "$XCODE_THEMES"
 ln -s "$THISDIR/xcode/Meowgorithm.dvtcolortheme" "$XCODE_THEMES/Meowgorithm.dvtcolortheme"
 ln -s "$HOME/xcode/MeowgorithmMorning.dvtcolortheme" "$XCODE_THEMES/MeowgorithmMorning.dvtcolortheme"
+
+gpg --decrypt ./macos/extra.gpg | bash
 
 echo
 echo Done.
