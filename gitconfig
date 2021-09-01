@@ -16,6 +16,8 @@
     lg = !"git lg1"
     pr = !"git fetch origin pull/$1/head:pr-$1; git co pr-$1 #"
     quickfix = rebase --interactive HEAD^^
+[instaweb]
+    httpd = webrick
 [merge]
     tool = !"~/.dotfiles/bin/gitdiff"
 [core]
