@@ -21,7 +21,7 @@ sudo xbps-install -Sy
 sudo xbps-install -Sy \
     base-devel vpm gcc6 cmake gmp gmp-devel gcc-ada libusb \
     ncurses ncurses-devel ncurses-libtinfo-libs ncurses-libtinfo-devel \
-    zlib-devel libusb-devel \
+    zlib-devel libusb-devel alsa-lib-devel \
     chrony alsa-utils apulse pulsemixer bluez bolt \
     git gnupg gnupg2 nix \
     bsdtar psmisc ctags curl wget bash-completion ripgrep jq direnv fzf \
