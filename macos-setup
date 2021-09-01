@@ -20,7 +20,7 @@ link .bashrc bashrc
 link .bash_profile bash_profile
 link .gitconfig gitconfig
 link .gitignore gitignore
-link .config/kitty/kitty.conf kitty.conf
+link .config/kitty config/kitty
 link .gemrc gemrc
 link .eslintrc eslintrc
 link .tmux.conf tmux.conf

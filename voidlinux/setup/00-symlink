@@ -17,6 +17,6 @@ link ../gitconfig .gitconfig
 link Xresources .Xresources
 link config/sx .config/sx
 link config/picom.conf .config/picom.conf
-link config/kitty .config/kitty
+link ../config/kitty .config/kitty
 link config/rofi .config/rofi
 link ../floskell.json .config/.floskell.json
