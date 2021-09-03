@@ -186,3 +186,7 @@ case "$os" in
         # shellcheck disable=1091
         [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh" ;;
 esac
+
+if [[ $($thisdir/bin/command-exists skate) ]]; then
+    export GITHUB_TOKEN=$(skate get github_token)
+fi
