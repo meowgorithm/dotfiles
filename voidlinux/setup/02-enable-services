@@ -6,3 +6,4 @@ sudo ln -s /etc/sv/bluetoothd /var/service/
 sudo ln -s /etc/sv/alsa /var/service/
 sudo ln -s /etc/sv/boltd /var/service/
 sudo ln -s /etc/sv/nix-daemon /var/service/
+sudo ln -s /etc/sv/sshd /var/service
