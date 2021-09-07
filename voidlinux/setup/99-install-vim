@@ -19,5 +19,5 @@ git pull
     --enable-luainterp=yes \
     --enable-cscope \
     --prefix=/usr/local
-make -j20
+make -j32
 sudo make install
