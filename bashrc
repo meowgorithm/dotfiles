@@ -38,6 +38,10 @@ case "$os" in
         export PATH="$PATH:/usr/local/cuda-11.2/bin"
         export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
 
+        # VSCode
+        vsCodePath=/usr/local/vscode/bin
+        [[ -d $vsCodePath ]] && PATH="$PATH:$vsCodePath"
+
         ;;
 
     darwin )
