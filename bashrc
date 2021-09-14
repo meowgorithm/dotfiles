@@ -196,5 +196,5 @@ case "$os" in
 esac
 
 if [[ $($thisdir/bin/command-exists skate) ]]; then
-    export GITHUB_TOKEN=$(skate get github_token)
+    export GITHUB_TOKEN=$(skate get github-token)
 fi
