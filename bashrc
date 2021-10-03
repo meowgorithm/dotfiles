@@ -99,6 +99,9 @@ case "$os" in
         export LESS_TERMCAP_ue=$'\E[0m'
         export LESS_TERMCAP_us=$'\E[01;32m'
 
+        # Node
+        export PATH="$PATH:$HOME/.config/npm/bin"
+
         ;;
 
 esac
