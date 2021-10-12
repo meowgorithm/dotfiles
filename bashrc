@@ -6,6 +6,19 @@
 thisdir=$(dirname "$(realpath ~/.bashrc)")
 os="$($thisdir/bin/which-os)"
 
+function thunderboltUp() {
+    local $id
+    case "$HOSTNAME" in
+    stardust)
+        id="00968984-4c6a-1e00-ffff-ffffffffffff"
+        ;;
+    *)
+        id="0b62260-4590-1e00-ffff-ffffffffffff"
+        ;;
+    esac
+    sudo boltctl authorize "$id"
+}
+
 # OS/Distro specific stuff
 case "$os" in
 
@@ -27,7 +40,7 @@ case "$os" in
         # General aliases
         alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
         alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
-        alias thunderbolt-up="sudo boltctl authorize 00b62260-4590-1e00-ffff-ffffffffffff"
+        alias thunderbolt-up=thunderboltUp
 
         # Fixes for various things on demand
         alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
