@@ -20,5 +20,6 @@ link config/picom.conf .config/picom.conf
 link ../config/kitty .config/kitty
 link config/rofi .config/rofi
 link ../floskell.json .config/.floskell.json
+link ../../tmux.conf .tmux.conf
 
 source $HOME/.bashrc
