@@ -13,7 +13,7 @@ function thunderboltUp() {
         id="00968984-4c6a-1e00-ffff-ffffffffffff"
         ;;
     *)
-        id="0b62260-4590-1e00-ffff-ffffffffffff"
+        id="00b62260-4590-1e00-ffff-ffffffffffff"
         ;;
     esac
     sudo boltctl authorize "$id"
