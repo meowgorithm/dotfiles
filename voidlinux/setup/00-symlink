@@ -13,6 +13,7 @@ link bin .bin
 link profile .profile
 link ../bash_profile .bash_profile
 link ../bashrc .bashrc
+link ../inputrc .inputrc
 link ../gitconfig .gitconfig
 link Xresources .Xresources
 link config/sx .config/sx

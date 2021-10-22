@@ -18,6 +18,7 @@ link Library/LaunchAgents/is.rocha.env.plist Library/LaunchAgents/is.rocha.env.p
 
 link .bashrc bashrc
 link .bash_profile bash_profile
+link .inputrc inputrc
 link .gitconfig gitconfig
 link .gitignore gitignore
 link .config/kitty config/kitty
