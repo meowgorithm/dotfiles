@@ -1,6 +1,5 @@
 setxkbmap -option caps:escape &
 xrdb -merge $HOME/.Xresources &
-feh --bg-fill $HOME/.wallpaper.png &
+hsetroot -solid "#333333" &
 picom &
-startxfce4 &
 $HOME/.xmonad/xmonad-x86_64-linux

@@ -33,7 +33,7 @@ sudo xbps-install -Sy \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
     libXpm-devel libXft libXft-devel \
     xclip xset xsel xseticon xsetmode xsetpointer xsetroot xsettingsd \
-    xdg-user-dirs \
+    xdg-user-dirs hsetroot \
     adwaita-icon-theme \
     sx picom feh slop gcolor2 \
     gthumb rofi kitty firefox \
