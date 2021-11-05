@@ -6,7 +6,6 @@ DROPBOX=$HOME/Soft\ Power\ Dropbox/Christian\ Rocha
 if [[ -z $XDG_CONFIG_HOME ]]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
-mkdir -p "$XDG_CONFIG_HOME/{kitty,yabai}"
 
 function link() {
     rm -rf "${HOME:?}/$1"
@@ -30,8 +29,6 @@ link .config/.floskell.json floskell.json
 link .hindent.yaml hindent.yaml
 link .config/fish config/fish
 link .nixpkgs nixpkgs
-link .config/yabai/yabairc yabairc
-link .skhdrc skhdrc
 
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
