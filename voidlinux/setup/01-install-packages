@@ -32,7 +32,7 @@ sudo xbps-install -Sy \
     mesa xorg-minimal xorg-input-drivers setxkbmap xrandr xrdb \
     libX11-devel libXrandr-devel libXScrnSaver-devel libXinerama-devel \
     libXpm-devel libXft libXft-devel \
-    xclip xset xsel xseticon xsetmode xsetpointer xsetroot xsettingsd \
+    xclip xset xsel xseticon xsetmode xsetpointer xsetroot xsettingsd xinput \
     xdg-user-dirs hsetroot \
     adwaita-icon-theme \
     sx picom feh slop gcolor2 \
