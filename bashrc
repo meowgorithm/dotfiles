@@ -37,6 +37,9 @@ case "$os" in
             source $git_prompt
         fi
 
+        # Services
+        alias sv="sudo sv"
+
         # General aliases
         alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
         alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
