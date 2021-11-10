@@ -35,6 +35,7 @@ sudo xbps-install -Sy \
     xclip xset xsel xseticon xsetmode xsetpointer xsetroot xsettingsd xinput \
     xdg-user-dirs hsetroot \
     adwaita-icon-theme \
+    neovim python3-neovim \
     sx picom feh slop gcolor2 \
     gthumb rofi kitty firefox \
     $other_packages
