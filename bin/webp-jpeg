@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ! command -v cwebp &> /dev/null; then
+    printf "'cwebp' not found. Please install WebP and try again.\n\n"
+    exit 1
+fi
+
+function usage {
+    printf "Convert an image to a JPEG-style WebP image.\n\n"
+    printf "Usage:\n    $0 quality source\n"
+}
+
+if [[ $# < 2 || $1 == "-h" ]]; then
+    usage
+    exit 1
+fi
+
+cwebp -q $1 -m 6 $2 -o "${2%.*}".webp
