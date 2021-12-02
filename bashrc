@@ -162,7 +162,7 @@ function prompt_func() {
 PROMPT_COMMAND=prompt_func
 
 export GPG_TTY=$(tty)
-export EDITOR=vim
+export EDITOR=nvim
 export PATH="$PATH:$HOME/.bin"
 export HISTCONTROL=ignoredups:erasedups
 
