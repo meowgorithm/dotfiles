@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 thisdir=$(dirname "$(realpath ~/.bashrc)")
-os="$($thisdir/bin/which-os)"
+os="$($thisdir/utils/which-os)"
 
 function thunderboltUp() {
     local $id
@@ -214,6 +214,6 @@ case "$os" in
         [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh" ;;
 esac
 
-if [[ $($thisdir/bin/command-exists skate) ]]; then
+if [[ $($thisdir/utils/command-exists skate) ]]; then
     export GITHUB_TOKEN=$(skate get github-token)
 fi
