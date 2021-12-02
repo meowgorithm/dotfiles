@@ -1,7 +1,6 @@
 #!/bin/bash
 
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DROPBOX=$HOME/Soft\ Power\ Dropbox/Christian\ Rocha
 
 if [[ -z $XDG_CONFIG_HOME ]]; then
     XDG_CONFIG_HOME="$HOME/.config"
@@ -15,6 +14,7 @@ function link() {
 mkdir -p "$HOME/Library/LaunchAgents"
 link Library/LaunchAgents/is.rocha.env.plist Library/LaunchAgents/is.rocha.env.plist
 
+link .bin bin
 link .bashrc bashrc
 link .bash_profile bash_profile
 link .inputrc inputrc

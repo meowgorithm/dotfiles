@@ -9,7 +9,8 @@ function link() {
 
 mkdir -p ~/.config
 
-link bin .bin
+link ../bin .bin
+link ../bin-linux .bin-linux
 link profile .profile
 link ../bash_profile .bash_profile
 link ../bashrc .bashrc

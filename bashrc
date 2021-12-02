@@ -163,8 +163,10 @@ PROMPT_COMMAND=prompt_func
 
 export GPG_TTY=$(tty)
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.bin"
 export HISTCONTROL=ignoredups:erasedups
+export PATH="$PATH:$HOME/.bin"
+
+[ "$OSTYPE" == "linux" ] && export PATH="$PATH:$HOME/.bin-linux"
 
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
