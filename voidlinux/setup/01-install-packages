@@ -24,7 +24,7 @@ sudo xbps-install -Sy \
     zlib-devel libusb-devel alsa-lib-devel \
     chrony alsa-utils apulse pulsemixer bluez bolt \
     git gnupg gnupg2 nix \
-    bsdtar psmisc ctags curl wget bash-completion ripgrep jq direnv fzf \
+    bsdtar psmisc ctags curl wget bash-completion ripgrep jq direnv fzf duf \
     moreutils \
     go rust cargo nodejs yarn ruby python python3-devel shellcheck \
     noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
