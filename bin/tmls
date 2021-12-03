@@ -1,0 +1,30 @@
+#!/bin/bash
+
+ensure() {
+    if ! command -v "$1" &> /dev/null; then
+        printf "%s not found. Please install it (or check your PATH) and try again.\n" $1
+        exit 1
+    fi
+}
+
+filter() {
+    local height=""
+    if [ "$2" != "" ]; then
+        height="--height $2"
+    fi
+    tmux list-sessions -F "#S" | fzf --header "$1" $height
+}
+
+ensure tmux
+ensure fzf
+
+if ! tmux ls &> /dev/null; then
+    printf "no sessions\n"
+    exit 1
+fi
+
+if [ "$TMUX" != "" ]; then
+    tmux switch-client -t $(filter "switch session")
+else
+    tmux attach-session -t $(filter "attach session" 20)
+fi
