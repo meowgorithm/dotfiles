@@ -166,7 +166,9 @@ export EDITOR=nvim
 export HISTCONTROL=ignoredups:erasedups
 export PATH="$PATH:$HOME/.bin"
 
-[ "$OSTYPE" == "linux" ] && export PATH="$PATH:$HOME/.bin-linux"
+if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
+    export PATH="$PATH:$HOME/.bin-linux"
+fi
 
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
