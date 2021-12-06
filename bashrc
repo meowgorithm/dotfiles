@@ -64,6 +64,17 @@ case "$os" in
 
         ;;
 
+    debian )
+
+        if ! shopt -oq posix; then
+            if [ -f /usr/share/bash-completion/bash_completion ]; then
+                . /usr/share/bash-completion/bash_completion
+            elif [ -f /etc/bash_completion ]; then
+                . /etc/bash_completion
+            fi
+        fi
+        ;;
+
     darwin )
 
         # Make sure XDG_CONFIG_HOME is a thing
@@ -210,13 +221,12 @@ export GOPRIVATE="github.com/charmbracelet"
 command -v direnv > /dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # Z
-case "$os" in
-    void )
-        [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh ;;
-    darwin )
-        # shellcheck disable=1091
-        [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh" ;;
-esac
+if [[ "$os" == "void" || "$os" == "debian" ]]; then
+    [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
+elif [[ "$os" == "darwin" ]];  then
+    # shellcheck disable=1091
+    [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
+fi
 
 if [[ $($thisdir/utils/command-exists skate) ]]; then
     export GITHUB_TOKEN=$(skate get github-token)
