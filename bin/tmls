@@ -26,5 +26,5 @@ fi
 if [ "$TMUX" != "" ]; then
     tmux switch-client -t $(filter "switch session")
 else
-    tmux attach-session -t $(filter "attach session" 20)
+    tmux attach-session -t $(filter "attach session" 12)
 fi
