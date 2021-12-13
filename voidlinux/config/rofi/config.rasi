@@ -4,7 +4,6 @@ configuration {
     lines: 20;
     dpi: 192; // -1 to disable
     font: "Inter 12";
-    theme: "meowgorithm";
 /*	modi: "window,run,ssh";*/
 /*	columns: 1;*/
 /*	bw: 1;*/
@@ -150,3 +149,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "meowgorithm"
