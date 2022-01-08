@@ -1,34 +1,12 @@
 #!/bin/bash
 
-THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+basedir=$(dirname "$(realpath ~/.bashrc)")
 
 if [[ -z $XDG_CONFIG_HOME ]]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
 
-function link() {
-    rm -rf "${HOME:?}/$1"
-    ln -s "$THISDIR/$2" "$HOME/$1"
-}
-
-mkdir -p "$HOME/Library/LaunchAgents"
-link Library/LaunchAgents/is.rocha.env.plist Library/LaunchAgents/is.rocha.env.plist
-
-link .bin bin
-link .bashrc bashrc
-link .bash_profile bash_profile
-link .inputrc inputrc
-link .gitconfig gitconfig
-link .gitignore gitignore
-link .config/kitty config/kitty
-link .gemrc gemrc
-link .eslintrc eslintrc
-link .tmux.conf tmux.conf
-link .grc .grc
-link .config/.floskell.json floskell.json
-link .hindent.yaml hindent.yaml
-link .config/fish config/fish
-link .nixpkgs nixpkgs
+$basedir/bin/symlink
 
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"

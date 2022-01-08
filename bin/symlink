@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+#set -x
+
+basedir=$(dirname "$(realpath ~/.bashrc)")
+os="$($basedir/utils/which-os)"
+
+symlinksFile="$basedir/symlinks.yml"
+
+# Ensure the given program exists, exiting with error if not.
+function require() {
+    if [[ ! "$("$basedir/utils/command-exists" "$1")" ]]; then
+        printf '%s is required. Please install it and try again.\n' $1
+        exit 1
+    fi
+}
+
+# Get a top grouping of symlinks.
+#
+# Example:
+#     getSymlinkGroup common
+function getSymlinkGroup() {
+    printf '%s\n' "$(yq ".$1[]" "$symlinksFile")"
+}
+
+# Get symlinks as key-value pairs, one per line. Common symlinks are merged
+# into the target group.
+#
+# Example:
+#     getSymlinkGroup void
+function getSymlinks() {
+    local IFS=' '
+    printf '%s%s\n' "$(getSymlinkGroup 'common') $(getSymlinkGroup "$1")" \
+        | jq -s \
+        | jq ".[] | .src + \" \" + .dst" \
+        | xargs -n1 printf "%s\n"
+}
+
+# Perform symlinking, removing any existing file or directory at the
+# destination. The local path is relative to the repository root. The remote
+# path is relative to the user's home directory.
+#
+# Example:
+#     link myCuteBashrc .bashrc
+function link() {
+    local src="$basedir/$1"
+    local dst="$HOME/$2"
+
+    if [[ ! -f $src && ! -d $src ]]; then
+        printf 'Warning:\n    %s does not exist\n    ...so we cannot symlink it to %s\n' "$src" "$dst"
+        return 1
+    fi
+
+    rm -rf "$dst"
+    ln -s "$src" "$dst"
+}
+
+require yq
+require jq
+
+mkdir -p "$HOME/.config"
+
+IFR=''
+while read -r line; do
+    read -a pairs <<< "$line"
+    link "${pairs[0]}" "${pairs[1]}"
+    if [[ $? == 0 ]]; then
+        printf "Symlinked: ${pairs[0]} -> ${pairs[1]}\n"
+    fi
+done <<< $(getSymlinks "$os")

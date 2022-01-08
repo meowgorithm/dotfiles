@@ -1,0 +1,35 @@
+common:
+  - src: inputrc
+    dst: .inputrc
+  - src: gitconfig
+    dst: .gitconfig
+  - src: gitignore
+    dst: .gitignore
+  - src: config/floskell.json
+    dst: .config/.floskell.json
+  - src: bashrc
+    dst: .bashrc
+  - src: bash_profile
+    dst: .bash_profile
+  - src: tmux.conf
+    dst: .tmux.conf
+  - src: config/kitty
+    dst: .config/kitty
+  - src: bin
+    dst: .bin
+void:
+  - src: voidlinux/profile
+    dst: .profile
+  - src: Xresources
+    dst: .Xresources
+  - src: config/sx
+    dst: .config/sx
+  - src: config/rofi
+    dst: .config/rofi
+  - src: config/picom.conf
+    dst: .config/picom.conf
+  - src: bin-linux
+    dst: .bin-linux
+darwin:
+  - src: Library/LaunchAgents/is.rocha.env.plist
+    dst: Library/LaunchAgents/is.rocha.env.plist

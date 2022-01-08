@@ -3,3 +3,4 @@
 *.hi
 *.pyc
 *.pyo
+nohup.out
