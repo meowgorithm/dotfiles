@@ -7,20 +7,17 @@ os="$($basedir/utils/which-os)"
 
 symlinksFile="$basedir/symlinks.yml"
 
-# Ensure the given program exists, exiting with error if not.
-function require() {
-    if [[ ! "$("$basedir/utils/command-exists" "$1")" ]]; then
-        printf '%s is required. Please install it and try again.\n' $1
-        exit 1
-    fi
-}
-
-# Get a top grouping of symlinks.
+# Ensure the given programs exists, exiting with error if not.
 #
 # Example:
-#     getSymlinkGroup common
-function getSymlinkGroup() {
-    printf '%s\n' "$(yq ".$1[]" "$symlinksFile")"
+#     require sponge realpath
+function require() {
+    for arg in "$@"; do
+        if [[ ! "$("$basedir/utils/command-exists" "$arg")" ]]; then
+            printf '%s is required. Please install it and try again.\n' $arg
+            exit 1
+        fi
+    done
 }
 
 # Get symlinks as key-value pairs, one per line. Common symlinks are merged
@@ -29,11 +26,7 @@ function getSymlinkGroup() {
 # Example:
 #     getSymlinkGroup void
 function getSymlinks() {
-    local IFS=' '
-    printf '%s%s\n' "$(getSymlinkGroup 'common') $(getSymlinkGroup "$1")" \
-        | jq -s \
-        | jq ".[] | .src + \" \" + .dst" \
-        | xargs -n1 printf "%s\n"
+    yq e ".common *+ .$1 | .[] | .src + \" \" + .dst" "$symlinksFile"
 }
 
 # Perform symlinking, removing any existing file or directory at the
@@ -55,8 +48,12 @@ function link() {
     ln -s "$src" "$dst"
 }
 
-require yq
-require jq
+require dirname realpath yq
+
+if [[ ! -f "$symlinksFile" ]]; then
+    printf 'Error: %s not found' "$symlinksFile"
+    exit 1
+fi
 
 mkdir -p "$HOME/.config"
 
