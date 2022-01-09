@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+tmpDir="/tmp/yq"
+assetUrl="https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64.tar.gz"
+
+# Cleanup
+rm -rf $tmpDir
+sudo rm -f /usr/local/bin/yq
+sudo rm -f /usr/local/share/man/man1/yq.1
+
+# Download
+mkdir -p $tmpDir
+curl -sL $assetUrl | tar -xzv -C $tmpDir
+
+# Install
+sudo mv "$tmpDir/yq_linux_amd64" /usr/local/bin/yq
+sudo mv "$tmpDir/yq.1" /usr/local/share/man/man1/
+sudo makewhatis /usr/local/share/man
+
+# Cleanup
+sudo rm -rf $tmpDir
+
+yq --version
