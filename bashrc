@@ -185,6 +185,9 @@ alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
 alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
+alias ggbt='go get github.com/charmbracelet/bubbletea@latest'
+alias ggb='go get github.com/charmbracelet/bubbles@latest'
+alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
