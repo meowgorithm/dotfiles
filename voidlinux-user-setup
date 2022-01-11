@@ -17,6 +17,9 @@
 #   the LG Ultrafine brightness controls.
 
 for f in ./voidlinux/setup/*; do
+    if [ ! -f $d ]; then
+        continue
+    fi
     bash "$f" || break
     printf '\n%s finished.\n\n' $(basename $f)
     read -n 1 -s -r -p "Press any key to continue..."
