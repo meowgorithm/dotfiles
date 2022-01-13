@@ -189,6 +189,12 @@ alias ggbt='go get github.com/charmbracelet/bubbletea@latest'
 alias ggb='go get github.com/charmbracelet/bubbles@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 
+# List outdated modules in a Go package. Required go-mod-outdated:
+#
+#   go install github.com/psampaz/go-mod-outdated
+#
+alias gmo='go list -u -m -json all | go-mod-outdated -style markdown -direct -update | glow --width 120 -'
+
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
     # This has proved to work better than the ssh kitten for some reason.
