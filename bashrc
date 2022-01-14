@@ -193,7 +193,7 @@ alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 #
 #   go install github.com/psampaz/go-mod-outdated
 #
-alias gmo='go list -u -m -json all | go-mod-outdated -style markdown -direct -update | glow --width 120 -'
+alias gmo="go list -u -m -json all | go-mod-outdated -style markdown -direct -update | glow --width $(tput cols) -"
 
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
