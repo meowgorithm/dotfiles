@@ -3,5 +3,5 @@
 # Pull in profile stuff
 [ -f $HOME/.profile ] && . $HOME/.profile
 
-# Get the aliases and functions
+# Pull in bashrc
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
