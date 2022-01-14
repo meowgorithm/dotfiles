@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+setxkbmap -option
+xmodmap ~/.Xmodmap

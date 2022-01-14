@@ -18,10 +18,12 @@ common:
   - src: bin
     dst: .bin
 void:
-  - src: voidlinux/profile
-    dst: .profile
   - src: Xresources
     dst: .Xresources
+  - src: Xmodmap
+    dst: .Xmodmap
+  - src: voidlinux/profile
+    dst: .profile
   - src: config/sx
     dst: .config/sx
   - src: config/rofi

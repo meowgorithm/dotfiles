@@ -47,7 +47,6 @@ case "$os" in
 
         # Fixes for various things on demand
         alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
-        alias fix-caps-lock="setxkbmap -option caps:escape"
         alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
 
         # CUDA

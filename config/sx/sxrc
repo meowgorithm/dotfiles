@@ -1,4 +1,4 @@
-setxkbmap -option caps:escape &
+xmodmap $HOME/.Xmodmap &
 xrdb -merge $HOME/.Xresources &
 hsetroot -solid "#333333" &
 picom &
