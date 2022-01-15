@@ -13,7 +13,7 @@ packagesFile="$DOTFILES/void-packages.txt"
 get() {
     xbps-query -m \
         | xargs -n1 xbps-uhelper getpkgname \
-        | sed -r 's/(slack-desktop|discord)//' \
+        | sed -r 's/(base-system|grub-x86_64-efi|slack-desktop|discord)//' \
         | grep "\S"
 }
 
