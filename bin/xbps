@@ -4,14 +4,12 @@
 # Void Linux package utilities
 #
 
-thisdir=$(dirname "$(realpath ~/.bashrc)")
-packagesFile="$thisdir/void-packages.txt"
+packagesFile="$DOTFILES/void-packages.txt"
 
 # Get user-installed xbps packages and strip version info.
 #
 # We could also list all installed packages with:
 #    xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | fmt
-
 get() {
     xbps-query -m \
         | xargs -n1 xbps-uhelper getpkgname \
@@ -19,14 +17,12 @@ get() {
         | grep "\S"
 }
 
-# Write list of packages to disk
-
-write() {
+# Write list of packages to disk.
+save() {
    get > "$packagesFile"
 }
 
-# Install package and write package listing to disk
-
+# Install package and write update package listing to disk.
 install() {
     sudo xbps-install $1
     if [[ $? == 0 ]]; then
@@ -34,6 +30,7 @@ install() {
     fi
 }
 
+# Remove a package and write updated package listing to disk.
 remove() {
     sudo xbps-remove $1
     if [[ $? == 0 ]]; then
@@ -41,8 +38,7 @@ remove() {
     fi
 }
 
-# Install packages from package file
-
+# Install any missing packages from package file.
 ensure() {
     if [[ ! -f $packagesFile ]]; then
         printf "Error: package file %s not found\n" $packagesFile
