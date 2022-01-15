@@ -26,16 +26,21 @@ save() {
 install() {
     sudo xbps-install $1
     if [[ $? == 0 ]]; then
-        write_packages
+        save
     fi
 }
 
 # Remove a package and write updated package listing to disk.
-remove() {
+uninstall() {
     sudo xbps-remove $1
     if [[ $? == 0 ]]; then
-        write_packages
+        save
     fi
+}
+
+# Uninstall alias
+remove() {
+    uninstall $1
 }
 
 # Install any missing packages from package file.
