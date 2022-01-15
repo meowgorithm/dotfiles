@@ -17,6 +17,8 @@ common:
     dst: .config/kitty
   - src: bin
     dst: .bin
+  - src: grc
+    dst: .grc
 void:
   - src: Xresources
     dst: .Xresources
