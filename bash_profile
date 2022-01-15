@@ -5,3 +5,6 @@
 
 # Pull in bashrc
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
+
+# Use (some of) bashrc for non-interactive shells
+export BASH_ENV="$HOME/.bashrc"

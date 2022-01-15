@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-#set -x
+os="$(which_os)"
 
-basedir=$(dirname "$(realpath ~/.bashrc)")
-os="$($basedir/utils/which-os)"
-
-symlinksFile="$basedir/symlinks.yml"
+symlinksFile="$DOTFILES/symlinks.yml"
 
 # Ensure the given programs exists, exiting with error if not.
 #
@@ -13,7 +10,7 @@ symlinksFile="$basedir/symlinks.yml"
 #     require sponge realpath
 function require() {
     for arg in "$@"; do
-        if [[ ! "$("$basedir/utils/command-exists" "$arg")" ]]; then
+        if [[ $(command_exists $arg) != 1 ]]; then
             printf '%s is required. Please install it and try again.\n' $arg
             exit 1
         fi
@@ -36,7 +33,7 @@ function getSymlinks() {
 # Example:
 #     link myCuteBashrc .bashrc
 function link() {
-    local src="$basedir/$1"
+    local src="$DOTFILES/$1"
     local dst="$HOME/$2"
 
     if [[ ! -f $src && ! -d $src ]]; then

@@ -1,4 +1,3 @@
 #!/bin/bash
 
-basedir=$(dirname "$(realpath ~/.bashrc)")
-$basedir/bin/symlink
+$HOME/.dotfiles/bin/symlink

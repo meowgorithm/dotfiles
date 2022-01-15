@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+which_os() {
+    case "$OSTYPE" in
+        darwin*)
+            printf "darwin" ;;
+
+        linux*)
+            if [[ -f "/etc/issue" ]]; then
+                issue=$(cat /etc/issue)
+                if   [[ $issue =~ "Void"   ]]; then printf "void"
+                elif [[ $issue =~ "Arch"   ]]; then printf "arch"
+                elif [[ $issue =~ "Debian" ]]; then printf "debian"
+                else printf "linux"
+                fi
+            fi ;;
+    esac
+    printf ""
+}
+
+command_exists() {
+    if command -v "$1" &> /dev/null
+    then
+        printf 1
+        return
+    fi
+    printf 0
+}
+
+commands_exist() {
+    for arg in "$@"; do
+        if [[ ! command_exists != "$arg" ]]; then
+            printf '%s' "$arg"
+        fi
+    done
+    printf ""
+}
+
+gitdiff() {
+    if [[ $(which_os) == darwin ]]; then
+        opendiff
+    else
+        vimdiff
+    fi
+}

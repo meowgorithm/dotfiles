@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-# If not running interactively, don't do anything
+# Where our dotfiles repo lives
+export DOTFILES="$HOME/.dotfiles"
+
+[ -f "$DOTFILES/bash_funcs" ] && . "$DOTFILES/bash_funcs"
+
+# If not running interactively, don't do anything else
 [[ $- != *i* ]] && return
 
-thisdir=$(dirname "$(realpath ~/.bashrc)")
-os="$($thisdir/utils/which-os)"
+os="$(which_os)"
 
 function thunderboltUp() {
     local $id
@@ -236,6 +240,6 @@ elif [[ "$os" == "darwin" ]];  then
     [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 fi
 
-if [[ $($thisdir/utils/command-exists skate) ]]; then
+if [[ $(command_exists skate) == 1 ]]; then
     export GITHUB_TOKEN=$(skate get github-token)
 fi

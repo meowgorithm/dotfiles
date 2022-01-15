@@ -1,6 +1,6 @@
 #!/bin/bash
 
-basedir=$(dirname "$(realpath ~/.bashrc)")
+basedir="$HOME/.dotfiles"
 
 if [[ -z $XDG_CONFIG_HOME ]]; then
     XDG_CONFIG_HOME="$HOME/.config"
