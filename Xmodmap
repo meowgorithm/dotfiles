@@ -22,3 +22,5 @@ keysym Caps_Lock = Escape
 
 ! Map escape to ` (and shift+escape to ~)
 keysym Escape = grave asciitilde
+
+keysym Control_R = Multi_key
