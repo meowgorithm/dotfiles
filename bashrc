@@ -225,6 +225,16 @@ export MAGIC='git@github.com:magicnumbers'
 export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
 export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
+export GOCHARM='github.com/charmbracelet'
+export GOMEOW='github.com/charmbracelet'
+
+gmr() {
+    if [[ $# != 2 ]]; then
+        printf 'We need two arguments\n'
+        return
+    fi
+    go mod edit -replace github.com/charmbracelet/$1=$2
+}
 
 # Git
 export GOPRIVATE="github.com/charmbracelet"
