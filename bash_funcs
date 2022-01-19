@@ -45,7 +45,13 @@ gitdiff() {
 }
 
 find_pid() {
-    ps -u $USER | sed '1d' | fzf | awk '{print$1}'
+    local awkArg
+    if [[ $(which_os) == "darwin" ]]; then
+        awkArg='{print$2}'
+    else
+        awkArg='{print$1}'
+    fi
+    ps -u $USER | sed '1d' | fzf | awk $awkArg
 }
 
 filterkill() {
