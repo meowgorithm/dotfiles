@@ -43,3 +43,11 @@ gitdiff() {
         vimdiff
     fi
 }
+
+find_pid() {
+    ps -u $USER | sed '1d' | fzf | awk '{print$1}'
+}
+
+filterkill() {
+    kill $(find_pid)
+}
