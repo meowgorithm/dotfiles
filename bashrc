@@ -209,6 +209,7 @@ if [[ $TERM = 'xterm-kitty' ]]; then
     # This has proved to work better than the ssh kitten for some reason.
     alias ssh='TERM=xterm-256color && ssh'
 fi
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 
 # Go
 export GOPATH="$HOME/.go"
