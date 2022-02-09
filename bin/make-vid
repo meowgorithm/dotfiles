@@ -1,0 +1,84 @@
+#!/bin/bash
+
+if [[ $(command_exists ffmpeg) == 0 ]]; then
+    printf "Can't find ffmpeg. Please install it (or check your path).\n"
+    exit 1
+fi
+
+pngSeq='pngs/frame-%5d.png'
+
+function usage {
+    local cmd=$(basename $0)
+    printf "Create a video from a PNG sequence.\n\n"
+    printf "Usage:\n"
+    printf "    $cmd [gif|mp4|webm] framerate width basename [max-gif-colors]\n\n"
+    printf "The input is expected to be a PNG sequence relative to the current\ndirectory with the format 'pngs/frame-%%5d.png'\n"
+}
+
+function makeGIF {
+    local framerate=$1
+    local width=$2
+    local basename=$3
+    local maxColors=$5
+
+    # GIFs of 60fps videos have to be 50fps
+    if [[ $framerate == "60" ]]; then
+        framerate=50
+    fi
+
+    if [[ $maxColors == "" ]]; then
+        maxColors=256
+    fi
+
+    ffmpeg \
+        -framerate $framerate \
+        -i $pngSeq \
+        -vf "fps=$framerate,scale=$width:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=$maxColors[p];[s1][p]paletteuse" \
+        $basename.gif
+}
+
+function makeMP4 {
+    local framerate=$1
+    local width=$2
+    local basename=$3
+
+    ffmpeg \
+         -framerate $framerate \
+         -i $pngSeq \
+         -vcodec libx264 \
+         -pix_fmt yuv420p \
+         -an \
+         -crf 20 \
+         -filter:v scale=$width:-1 \
+         $basename.mp4
+}
+
+function makeWebM {
+    local framerate=$1
+    local width=$2
+    local basename=$3
+
+    ffmpeg -framerate $framerate \
+        -i $pngSeq \
+        -pix_fmt yuv420p \
+        -an \
+        -crf 30 \
+        -b:v 0 \
+        -filter:v scale=$width:-1 \
+        $basename.webm
+}
+
+if [[ $# < 4 || $1 == "-h" ]]; then
+    usage
+    exit 1
+fi
+
+case $1 in
+    gif)
+        if [[ $# < 5 ]]; then exit 1; fi
+        makeGIF $2 $3 $4 $5
+        ;;
+    mp4)  makeMP4 $2 $3 $4 ;;
+    webm) makeWebM $2 $3 $4 ;;
+    *)    usage ;;
+esac
