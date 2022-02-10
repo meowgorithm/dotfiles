@@ -57,3 +57,10 @@ find_pid() {
 filterkill() {
     kill $(find_pid)
 }
+
+remove_headerbar() {
+    case "$OSTYPE" in
+        linux*) xprop -format _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS 2 ;;
+        *) return ;;
+    esac
+}

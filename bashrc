@@ -61,7 +61,7 @@ case "$os" in
         vsCodePath=/usr/local/vscode/bin
         [[ -d $vsCodePath ]] && PATH="$PATH:$vsCodePath"
 
-        # VSCode
+        # Blender
         blenderPath=/usr/local/blender
         [[ -d $blenderPath ]] && PATH="$PATH:$blenderPath"
 
