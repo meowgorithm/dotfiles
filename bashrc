@@ -80,6 +80,12 @@ case "$os" in
 
     darwin )
 
+        # Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
+        # in the shell with a script.
+        if [[ $(uname -m) == "arm64" ]]; then
+            eval $(/opt/homebrew/bin/brew shellenv)
+        fi
+
         # Make sure XDG_CONFIG_HOME is a thing
         if [[ -z $XDG_CONFIG_HOME ]]; then
             export XDG_CONFIG_HOME="$HOME/.config"
