@@ -8,6 +8,10 @@ fi
 
 $basedir/bin/symlink
 
+if [[ $? != 0 ]]; then
+	exit 1
+fi
+
 # XCode Themes
 XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
 rm -rf "$XCODE_THEMES"
