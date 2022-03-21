@@ -256,6 +256,14 @@ elif [[ "$os" == "darwin" ]];  then
     [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 fi
 
+# z.lua
+if [[ "$os" == "darwin" ]]; then
+    zLuaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua"
+fi
+if [[ -r "$zLuaPath" ]]; then
+    eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
+fi
+
 if [[ $(command_exists skate) == 1 ]]; then
     export GITHUB_TOKEN=$(skate get github-token)
 fi
