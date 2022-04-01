@@ -11,7 +11,7 @@ export DOTFILES="$HOME/.dotfiles"
 os="$(which_os)"
 
 function thunderboltUp() {
-    local $id
+    local "$id"
     case "$HOSTNAME" in
     stardust)
         id="00968984-4c6a-1e00-ffff-ffffffffffff"
@@ -83,7 +83,7 @@ case "$os" in
         # Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
         # in the shell with a script.
         if [[ $(uname -m) == "arm64" ]]; then
-            eval $(/opt/homebrew/bin/brew shellenv)
+            eval "$(/opt/homebrew/bin/brew shellenv)"
         fi
 
         # Make sure XDG_CONFIG_HOME is a thing
@@ -97,7 +97,7 @@ case "$os" in
         alias ls='ls -h'
 
         git_completion="$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
-        if [ -f $git_completion ]; then
+        if [ -f "$git_completion" ]; then
             export GIT_PS1_SHOWDIRTYSTATE=true
             export GIT_PS1_SHOWUNTRACKEDFILES=true
             export GIT_PS1_SHOWSTASHSTATE=true
@@ -106,7 +106,7 @@ case "$os" in
         # Bash completion
         bash_completion="$(brew --prefix)/etc/profile.d/bash_completion.sh"
         # shellcheck disable=1090
-        [[ -r $bash_completion ]] && . $bash_completion
+        [[ -r "$bash_completion" ]] && . "$bash_completion"
 
         # Keep TAR from tarring-up resource forks
         export COPYFILE_DISABLE=true
@@ -172,7 +172,7 @@ function prompt_func() {
         git_branch=$(__git_ps1 " (%s)")
     fi
 
-    if [[ ! -z $DEMO_PROMPT ]]; then
+    if [[ -n $DEMO_PROMPT ]]; then
         PS1="$indigo>$no_color "
     else
         PS1="$cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
@@ -239,7 +239,7 @@ gmr() {
         printf 'We need two arguments\n'
         return
     fi
-    go mod edit -replace github.com/charmbracelet/$1=$2
+    go mod edit -replace "github.com/charmbracelet/$1=$2"
 }
 
 # Git

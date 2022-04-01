@@ -10,7 +10,7 @@ function usage {
     printf "Usage:\n    $0 quality source\n"
 }
 
-if [[ $# < 2 || $1 == "-h" ]]; then
+if [[ $# -lt 2 || $1 == "-h" ]]; then
     usage
     exit 1
 fi
