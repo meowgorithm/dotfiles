@@ -20,6 +20,7 @@
     ;lg = !"git lg1"
     pr = !"git fetch origin pull/$1/head:pr-$1; git co pr-$1 #"
     quickfix = rebase --interactive HEAD^^
+    sync = fetch --all --tags --prune
 [instaweb]
     httpd = webrick
 [merge]
