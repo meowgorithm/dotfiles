@@ -258,9 +258,13 @@ elif [[ "$os" == "darwin" ]];  then
 fi
 
 # z.lua
-if [[ "$os" == "darwin" ]]; then
-    zLuaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua"
-fi
+zLuaPath=""
+case "$os" in
+    void )
+        zLuaPath="/usr/local/bin/z.lua" ;;
+    darwin )
+        zLuaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua" ;;
+esac
 if [[ -r "$zLuaPath" ]]; then
     eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
 fi
