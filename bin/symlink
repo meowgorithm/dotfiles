@@ -10,8 +10,8 @@ symlinksFile="$DOTFILES/symlinks.yml"
 #     require sponge realpath
 function require() {
     for arg in "$@"; do
-        if [[ $(command_exists $arg) != 1 ]]; then
-            printf '%s is required. Please install it and try again.\n' $arg
+        if [[ "$(command_exists "$arg")" != 1 ]]; then
+            printf '%s is required. Please install it and try again.\n' "$arg"
             exit 1
         fi
     done
@@ -59,6 +59,6 @@ while read -r line; do
     read -a pairs <<< "$line"
     link "${pairs[0]}" "${pairs[1]}"
     if [[ $? == 0 ]]; then
-        printf "Symlinked: ${pairs[0]} -> ${pairs[1]}\n"
+        printf "Symlinked: %s -> %s\n" "${pairs[0]}" "${pairs[1]}"
     fi
-done <<< $(getSymlinks "$os")
+done <<< "$(getSymlinks "$os")"
