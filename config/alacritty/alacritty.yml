@@ -1,0 +1,27 @@
+window:
+    padding:
+      x: 10
+      y: 16
+    decorations: buttonless
+
+font:
+  normal:
+    family: SF Mono
+    style: Light
+  bold:
+    family: SF Mono
+    style: Bold
+  italic:
+    family: SF Mono
+    style: Bold Italic
+  bold_italic:
+    family: SF Mono
+    style: Bold Italic
+  size: 13.0
+  offset:
+    x: 1
+    y: 3
+  glyph_offset:
+    x: 0
+    y: 3
+  use_thin_strokes: true
