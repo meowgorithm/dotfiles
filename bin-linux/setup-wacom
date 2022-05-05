@@ -2,3 +2,4 @@
 
 xsetwacom --set "Wacom Intuos Pro M Pen stylus" Button 1 "1"
 xsetwacom --set "Wacom Intuos Pro M Pen stylus" Button 2 "pan"
+xsetwacom --set "Wacom Intuos Pro M Pen stylus" PanScrollThreshold 200
