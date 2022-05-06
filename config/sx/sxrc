@@ -3,4 +3,4 @@ xrdb -merge $HOME/.Xresources &
 hsetroot -solid "#333333" &
 exec dbus-launch $@ &
 picom &
-$HOME/.xmonad/xmonad-x86_64-linux
+dbus-run-session $HOME/.xmonad/xmonad-x86_64-linux
