@@ -4,3 +4,4 @@ xmonad-x86_64-linux
 xmonad.errors
 *.hi
 *.o
+config/kak/plugins/*

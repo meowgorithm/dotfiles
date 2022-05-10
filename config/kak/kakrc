@@ -1,4 +1,8 @@
-add-highlighter global/ number-lines -separator " │ " -min-digits 3
+add-highlighter global/ number-lines -hlcursor -separator " │ " -min-digits 3
+
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
+plug "insipx/kak-crosshairs"
 
 # LSP
 eval %sh{kak-lsp --kakoune -s $kak_session}
@@ -6,3 +10,13 @@ hook global WinSetOption filetype=(haskell|go|elm|typescript) %{
         lsp-enable-window
         lsp-auto-hover-enable
 }
+
+set-option global tabstop 4
+set-option global indentwidth 4
+
+cursorline
+
+face global LineNumbers rgb:595959,default
+face global LineNumberCursor rgb:999999,default
+face global CursorLine default,rgb:ff0000
+face global crosshairs_line default,rgb:262626
