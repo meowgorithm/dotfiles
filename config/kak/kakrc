@@ -1,0 +1,8 @@
+add-highlighter global/ number-lines -separator " │ " -min-digits 3
+
+# LSP
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(haskell|go|elm|typescript) %{
+        lsp-enable-window
+        lsp-auto-hover-enable
+}
