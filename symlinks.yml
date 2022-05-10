@@ -32,6 +32,8 @@ void:
     dst: .config/sx
   - src: config/rofi
     dst: .config/rofi
+  - src: config/dunst
+    dst: .config/dunst
   - src: config/picom.conf
     dst: .config/picom.conf
   - src: bin-linux
