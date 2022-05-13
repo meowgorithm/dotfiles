@@ -14,6 +14,10 @@ hook global WinSetOption filetype=(haskell|go|elm|typescript) %{
 set-option global tabstop 4
 set-option global indentwidth 4
 
+map global normal '<minus>' '[p'
+map global normal '=' '<a-a>p'
+map global normal '<plus>' '}p'
+
 cursorline
 
 face global LineNumbers rgb:595959,default
