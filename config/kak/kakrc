@@ -1,26 +1,51 @@
-add-highlighter global/ number-lines -hlcursor -separator " │ " -min-digits 3
-
+# Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "andreyorst/plug.kak" noload
-plug "insipx/kak-crosshairs"
 
-# LSP
-eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(haskell|go|elm|typescript) %{
-        lsp-enable-window
-        lsp-auto-hover-enable
+plug "andreyorst/plug.kak" noload
+
+plug "insipx/kak-crosshairs" config %{
+    cursorline
 }
+
+plug "andreyorst/fzf.kak" config %{
+    map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
+} defer "fzf-file" %{
+    # custom rg options so that we don't follow symlinks
+    set-option global fzf_file_command 'rg --hidden --files --glob !*.git'
+    evaluate-commands %sh{
+        [ -n "$(command -v bat)" ] && echo "set-option global fzf_highlight_command bat"
+    }
+}
+
+# Fuzzy find with find
+def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.git/*' } %{ edit %arg{1} }
+
+# Line numbers
+add-highlighter global/ number-lines -hlcursor -separator " │ " -min-digits 3
 
 set-option global tabstop 4
 set-option global indentwidth 4
 
-map global normal '<minus>' '[p'
-map global normal '=' '<a-a>p'
-map global normal '<plus>' '}p'
+map global user '<minus>' '[p'
+map global user '=' '<a-a>p'
+map global user '<plus>' '}p'
+map global user '_' '{p'
 
-cursorline
-
+# UI colors
 face global LineNumbers rgb:595959,default
 face global LineNumberCursor rgb:999999,default
 face global CursorLine default,rgb:ff0000
 face global crosshairs_line default,rgb:262626
+
+# LSP
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(haskell|go|elm) %{
+    lsp-enable-window
+    lsp-auto-hover-enable
+}
+
+# Format Go on save
+hook global BufWritePre .*[.]go %{
+    try %{ lsp-code-action-sync '^Organize Imports$' }
+    lsp-formatting-sync
+}
