@@ -1,6 +1,4 @@
-# Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-
 plug "andreyorst/plug.kak" noload
 
 plug "insipx/kak-crosshairs" config %{
@@ -10,7 +8,6 @@ plug "insipx/kak-crosshairs" config %{
 plug "andreyorst/fzf.kak" config %{
     map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
 } defer "fzf-file" %{
-    # custom rg options so that we don't follow symlinks
     set-option global fzf_file_command 'rg --hidden --files --glob !*.git'
     evaluate-commands %sh{
         [ -n "$(command -v bat)" ] && echo "set-option global fzf_highlight_command bat"
@@ -49,3 +46,28 @@ hook global BufWritePre .*[.]go %{
     try %{ lsp-code-action-sync '^Organize Imports$' }
     lsp-formatting-sync
 }
+
+declare-option bool showing_whitespaces
+
+define-command -docstring "show whitespaces" show-whitespaces %{
+    add-highlighter global/whitespaces show-whitespaces -tab ▸
+}
+
+define-command -docstring "hide whitespaces" hide-whitespaces %{
+    remove-highlighter global/whitespaces
+}
+
+define-command -docstring "toggle whitespaces" toggle-whitespaces %{
+    evaluate-commands %sh{
+        printf "echo -debug %s\n" "$kak_opt_showing_whitespaces"
+        if [ "$kak_opt_showing_whitespaces" = "true" ]; then
+            printf "%s\n" "hide-whitespaces"
+            printf "%s\n" "set global showing_whitespaces false"
+        else
+            printf "%s\n" "show-whitespaces"
+            printf "%s\n" "set global showing_whitespaces true"
+        fi
+    }
+}
+
+map global user -docstring "toggle whitespaces" 'w' ':toggle-whitespaces<ret>'
