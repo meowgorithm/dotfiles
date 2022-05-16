@@ -6,11 +6,28 @@ plug "insipx/kak-crosshairs" config %{
 }
 
 plug "andreyorst/fzf.kak" config %{
-    map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
+    #map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
 } defer "fzf-file" %{
     set-option global fzf_file_command 'rg --hidden --files --glob !*.git'
     evaluate-commands %sh{
         [ -n "$(command -v bat)" ] && echo "set-option global fzf_highlight_command bat"
+    }
+}
+
+plug "gustavo-hms/luar" %{
+    plug "gustavo-hms/peneira" %{
+        require-module peneira
+
+        set-option global peneira_files_command "rg --files"
+
+        define-command peneira-buffers %{
+            peneira 'buffers: ' %{ printf '%s\n' $kak_quoted_buflist } %{
+                buffer %arg{1}
+            }
+        }
+
+        map global normal <c-p> ':peneira-files<ret>' -docstring 'fuzzy find files'
+        map global user b ':peneira-buffers<ret>' -docstring 'fuzzy find buffers'
     }
 }
 
