@@ -27,7 +27,7 @@
     tool = !"~/.dotfiles/bin/gitdiff"
 [core]
     excludesfile = ~/.gitignore
-    editor = nvim
+    editor = kak
 [push]
     default = matching
 [url "git@github.com:charmbracelet"]
