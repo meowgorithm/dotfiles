@@ -87,3 +87,15 @@ define-command -docstring "toggle whitespaces" toggle-whitespaces %{
 }
 
 map global user -docstring "toggle whitespaces" 'w' ':toggle-whitespaces<ret>'
+
+# Horizontal split with tmux
+define-command horizontal-split -docstring "horizontal-split <filename>: open vertical-split" -params 0.. -file-completion %{
+    tmux-terminal-horizontal kak -c %val{session} %arg{@}
+}
+alias global hs horizontal-split
+
+# Vertical split with tmux
+define-command vertical-split -docstring "vertical-split <filename>: open vertical-split" -params 0.. -file-completion %{
+    tmux-terminal-vertical kak -c %val{session} %arg{@}
+}
+alias global vs vertical-split
