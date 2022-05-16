@@ -59,7 +59,6 @@ define-command -docstring "hide whitespaces" hide-whitespaces %{
 
 define-command -docstring "toggle whitespaces" toggle-whitespaces %{
     evaluate-commands %sh{
-        printf "echo -debug %s\n" "$kak_opt_showing_whitespaces"
         if [ "$kak_opt_showing_whitespaces" = "true" ]; then
             printf "%s\n" "hide-whitespaces"
             printf "%s\n" "set global showing_whitespaces false"
