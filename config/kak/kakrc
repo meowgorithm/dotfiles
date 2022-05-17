@@ -103,3 +103,5 @@ define-command vertical-split -docstring "vertical-split <filename>: open vertic
     tmux-terminal-vertical kak -c %val{session} %arg{@}
 }
 alias global vs vertical-split
+
+hook global BufCreate .*/bash(rc|_profile|_funcs) %{ set buffer filetype sh }
