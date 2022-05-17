@@ -269,4 +269,4 @@ if [[ -r "$zLuaPath" ]]; then
     eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
 fi
 
-command -v gpg > /dev/null 2>&1 && source <(gpg --decrypt "$DOTFILES/rc.gpg" > /dev/null 2>&1)
+command -v gpg > /dev/null 2>&1 && source <(gpg --decrypt "$DOTFILES/rc.gpg" 2> /dev/null)
