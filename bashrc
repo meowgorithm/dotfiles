@@ -269,6 +269,4 @@ if [[ -r "$zLuaPath" ]]; then
     eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
 fi
 
-if [[ $(command_exists skate) == 1 ]]; then
-    export GITHUB_TOKEN=$(skate get github-token)
-fi
+command -v gpg > /dev/null 2>&1 && source <(gpg --decrypt "$DOTFILES/rc.gpg" > /dev/null 2>&1)
