@@ -31,6 +31,10 @@ plug "gustavo-hms/luar" %{
     }
 }
 
+hook global BufOpenFile .* %{
+    modeline-parse
+}
+
 # Fuzzy find with find
 def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.git/*' } %{ edit %arg{1} }
 
