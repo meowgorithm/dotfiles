@@ -57,7 +57,7 @@ face global crosshairs_line default,rgb:262626
 
 # LSP
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(haskell|go|elm) %{
+hook global WinSetOption filetype=(haskell|go|elm|sh) %{
     lsp-enable-window
     lsp-auto-hover-enable
 }
