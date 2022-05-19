@@ -43,6 +43,7 @@ plug "andreyorst/kaktree" config %{
 }
 
 hook global BufOpenFile .* %{
+    add-highlighter buffer/numbers number-lines -hlcursor -separator " │ " -min-digits 3
     modeline-parse
 }
 
@@ -50,7 +51,6 @@ hook global BufOpenFile .* %{
 def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.git/*' } %{ edit %arg{1} }
 
 # Line numbers
-add-highlighter global/ number-lines -hlcursor -separator " │ " -min-digits 3
 
 set-option global tabstop 4
 set-option global indentwidth 4
