@@ -5,6 +5,7 @@ plug "insipx/kak-crosshairs" config %{
     cursorline
 }
 
+# Fuzzy find with fzf
 plug "andreyorst/fzf.kak" config %{
     #map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
 } defer "fzf-file" %{
@@ -14,6 +15,7 @@ plug "andreyorst/fzf.kak" config %{
     }
 }
 
+# Fuzzy find with Lua
 plug "gustavo-hms/luar" %{
     plug "gustavo-hms/peneira" %{
         require-module peneira
@@ -31,6 +33,7 @@ plug "gustavo-hms/luar" %{
     }
 }
 
+# Tree
 plug "andreyorst/kaktree" config %{
     hook global WinSetOption filetype=kaktree %{
         remove-highlighter buffer/numbers
@@ -55,10 +58,10 @@ def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.g
 set-option global tabstop 4
 set-option global indentwidth 4
 
-map global user '<minus>' '[p'
-map global user '=' '<a-a>p'
-map global user '<plus>' '}p'
-map global user '_' '{p'
+map global normal '<minus>' '[p'
+map global normal '=' '<a-a>p'
+map global normal '<plus>' '}p'
+map global normal '_' '{p'
 
 # UI colors
 face global LineNumbers rgb:595959,default
