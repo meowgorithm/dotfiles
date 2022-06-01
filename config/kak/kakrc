@@ -1,13 +1,15 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/plug.kak" noload
 
-plug "insipx/kak-crosshairs" config %{
-    cursorline
-}
+# Highlight current line
+plug "insipx/kak-crosshairs" config %{ cursorline }
+
+# Fuzzy find with find
+def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.git/*' } %{ edit %arg{1} }
 
 # Fuzzy find with fzf
 plug "andreyorst/fzf.kak" config %{
-    #map global normal <c-p> ': fzf-mode<ret>f' -docstring 'fzf find file'
+    map global user p ': fzf-mode<ret>f' -docstring 'fzf find file'
 } defer "fzf-file" %{
     set-option global fzf_file_command 'rg --hidden --files --glob !*.git'
     evaluate-commands %sh{
@@ -45,30 +47,6 @@ plug "andreyorst/kaktree" config %{
     map global user 'n' ':kaktree-toggle<ret>'
 }
 
-hook global BufOpenFile .* %{
-    add-highlighter buffer/numbers number-lines -hlcursor -separator " │ " -min-digits 3
-    modeline-parse
-}
-
-# Fuzzy find with find
-def find -params 1 -shell-script-candidates %{ find . -type f  -not -path '*/\.git/*' } %{ edit %arg{1} }
-
-# Line numbers
-
-set-option global tabstop 4
-set-option global indentwidth 4
-
-map global normal '<minus>' '[p'
-map global normal '=' '<a-a>p'
-map global normal '<plus>' '}p'
-map global normal '_' '{p'
-
-# UI colors
-face global LineNumbers rgb:595959,default
-face global LineNumberCursor rgb:999999,default
-face global CursorLine default,rgb:ff0000
-face global crosshairs_line default,rgb:262626
-
 # LSP
 eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(haskell|go|elm|sh) %{
@@ -81,6 +59,26 @@ hook global BufWritePre .*[.]go %{
     try %{ lsp-code-action-sync '^Organize Imports$' }
     lsp-formatting-sync
 }
+
+hook global BufOpenFile .* %{
+    add-highlighter buffer/numbers number-lines -hlcursor -separator " │ " -min-digits 3
+    modeline-parse
+}
+
+set-option global tabstop 4
+set-option global indentwidth 4
+
+# Paragraph jumping
+map global normal '<minus>' '[p'
+map global normal '=' '<a-a>p'
+map global normal '<plus>' '}p'
+map global normal '_' '{p'
+
+# UI colors
+face global LineNumbers rgb:595959,default
+face global LineNumberCursor rgb:999999,default
+face global CursorLine default,rgb:ff0000
+face global crosshairs_line default,rgb:262626
 
 declare-option bool showing_whitespaces
 
@@ -107,15 +105,19 @@ define-command -docstring "toggle whitespaces" toggle-whitespaces %{
 map global user -docstring "toggle whitespaces" 'w' ':toggle-whitespaces<ret>'
 
 # Horizontal split with tmux
-define-command horizontal-split -docstring "horizontal-split <filename>: open vertical-split" -params 0.. -file-completion %{
-    tmux-terminal-horizontal kak -c %val{session} %arg{@}
-}
+define-command horizontal-split \
+    -docstring "horizontal-split <filename>: open vertical-split" \
+    -params 0.. \
+    -file-completion \
+    %{ tmux-terminal-horizontal kak -c %val{session} %arg{@} }
 alias global hs horizontal-split
 
 # Vertical split with tmux
-define-command vertical-split -docstring "vertical-split <filename>: open vertical-split" -params 0.. -file-completion %{
-    tmux-terminal-vertical kak -c %val{session} %arg{@}
-}
+define-command vertical-split \
+    -docstring "vertical-split <filename>: open vertical-split" \
+    -params 0.. \
+    -file-completion \
+    %{ tmux-terminal-vertical kak -c %val{session} %arg{@} }
 alias global vs vertical-split
 
 hook global BufCreate .*/bash(rc|_profile|_funcs) %{ set buffer filetype sh }
