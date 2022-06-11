@@ -197,6 +197,7 @@ alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias ggbt='go get github.com/charmbracelet/bubbletea@latest'
 alias ggb='go get github.com/charmbracelet/bubbles@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss@latest'
+alias lw='ssh localhost -p 23231'
 
 # List outdated modules in a Go package. Required go-mod-outdated:
 #
