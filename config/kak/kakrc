@@ -60,10 +60,14 @@ hook global BufWritePre .*[.]go %{
     lsp-formatting-sync
 }
 
-hook global BufOpenFile .* %{
+# Default setings for buffers
+define-command -hidden buffer-default-setup %{
     add-highlighter buffer/numbers number-lines -hlcursor -separator " │ " -min-digits 3
     modeline-parse
 }
+
+hook global BufOpenFile .* %{ buffer-default-setup }
+hook global BufCreate .* %{ buffer-default-setup }
 
 set-option global tabstop 4
 set-option global indentwidth 4
