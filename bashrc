@@ -138,6 +138,11 @@ case "$os" in
         # Node
         export PATH="$PATH:$HOME/.config/npm/bin"
 
+        node16_amd64="/usr/local/opt/node@16/bin"
+        if [ -d "$node16_amd64" ]; then
+            export PATH="$PATH:$node16_amd64"
+        fi
+
         ;;
 
 esac
