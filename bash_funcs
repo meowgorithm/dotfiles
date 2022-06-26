@@ -53,7 +53,7 @@ find_pid() {
         # shellcheck disable=2016
         awkArg='{print$1}'
     fi
-    ps -u $USER | sed '1d' | fzf | awk "$awkArg"
+    ps -u "$USER" | sed '1d' | fzf | awk "$awkArg"
 }
 
 filterkill() {
