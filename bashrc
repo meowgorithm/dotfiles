@@ -69,6 +69,7 @@ case "$os" in
 
     debian )
 
+        # shellcheck disable=1091
         if ! shopt -oq posix; then
             if [ -f /usr/share/bash-completion/bash_completion ]; then
                 . /usr/share/bash-completion/bash_completion
@@ -186,7 +187,8 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
-export GPG_TTY=$(tty)
+gpg_TTY=$(tty)
+export GPG_TTY=$gpg_TTY
 export EDITOR=kak
 export HISTCONTROL=ignoredups:erasedups
 export PATH="$PATH:$HOME/.bin"
@@ -204,18 +206,15 @@ alias ggb='go get github.com/charmbracelet/bubbles@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 alias lw='ssh localhost -p 23231'
 
-# List outdated modules in a Go package. Required go-mod-outdated:
-#
-#   go install github.com/psampaz/go-mod-outdated
-#
-alias gmo="go list -u -m -json all | go-mod-outdated -style markdown -direct -update | glow --width $(tput cols) -"
-
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
     # This has proved to work better than the ssh kitten for some reason.
     alias ssh='TERM=xterm-256color && ssh'
 fi
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# shellcheck disable=1091
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash";
+    then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash";
+fi
 
 # Go
 export GOPATH="$HOME/.go"
@@ -256,10 +255,10 @@ export GOPRIVATE="github.com/charmbracelet"
 command -v direnv > /dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # Z
+# shellcheck disable=1091
 if [[ "$os" == "void" || "$os" == "debian" ]]; then
     [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
 elif [[ "$os" == "darwin" ]];  then
-    # shellcheck disable=1091
     [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 fi
 
@@ -275,4 +274,9 @@ if [[ -r "$zLuaPath" ]]; then
     eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
 fi
 
-command -v gpg > /dev/null 2>&1 && source <(gpg --decrypt "$DOTFILES/rc.gpg" 2> /dev/null)
+# shellcheck disable=1090
+command -v gpg > /dev/null 2>&1 && \
+    source <(gpg --decrypt "$DOTFILES/rc.gpg" 2> /dev/null)
+
+command -v exa > /dev/null 2>&1 && \
+    alias ls='exa -g'
