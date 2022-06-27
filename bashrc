@@ -144,6 +144,11 @@ case "$os" in
             export PATH="$PATH:$node16_amd64"
         fi
 
+        node16_arm64="/opt/homebrew/opt/node@16/bin"
+        if [ -d "$node16_arm64" ]; then
+            export PATH="$PATH:$node16_arm64"
+        fi
+
         ;;
 
 esac
