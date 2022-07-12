@@ -119,7 +119,6 @@ case "$os" in
 
         # Miscellaneous aliases
         alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
-        alias tree='tree -C'
         alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
         alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
 
@@ -210,6 +209,12 @@ alias ggbt='go get github.com/charmbracelet/bubbletea@latest'
 alias ggb='go get github.com/charmbracelet/bubbles@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 alias lw='ssh localhost -p 23231'
+
+if command -v exa &> /dev/null; then
+    alias tree='exa --tree'
+elif command -v tree &> /dev/null; then
+        alias tree='tree -C'
+fi
 
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
