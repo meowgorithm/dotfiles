@@ -174,13 +174,7 @@ indigo='\[\e[38;2;90;86;224m\]'
 function prompt_func() {
     nix=$(nixPrompt)
 
-    if [[ $os == "darwin" ]]; then
-        if [[ -r "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]]; then
-            git_branch=$(__git_ps1 " (%s)")
-        fi
-    else
-        git_branch=$(__git_ps1 " (%s)")
-    fi
+    git_branch=$(__git_ps1 " (%s)")
 
     if [[ -n $DEMO_PROMPT ]]; then
         PS1="$indigo>$no_color "
