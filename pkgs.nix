@@ -8,8 +8,6 @@ let
 
   base = with pkgs; [
     aws
-    bash
-    bash-completion
     brotli
     ctags
     direnv
