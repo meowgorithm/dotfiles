@@ -1,16 +1,8 @@
 common:
   - src: inputrc
     dst: .inputrc
-  - src: gitconfig
-    dst: .gitconfig
-  - src: gitignore
-    dst: .gitignore
   - src: config/floskell.json
     dst: .config/.floskell.json
-  - src: bashrc
-    dst: .bashrc
-  - src: bash_profile
-    dst: .bash_profile
   - src: tmux.conf
     dst: .tmux.conf
   - src: config/kitty
@@ -24,6 +16,14 @@ common:
   - src: grc
     dst: .grc
 void:
+  - src: bashrc
+    dst: .bashrc
+  - src: bash_profile
+    dst: .bash_profile
+  - src: gitconfig
+    dst: .gitconfig
+  - src: gitignore
+    dst: .gitignore
   - src: Xresources
     dst: .Xresources
   - src: Xmodmap

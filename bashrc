@@ -97,17 +97,9 @@ case "$os" in
         export LSCOLORS=dxfxcxdxbxegedabagacad
         alias ls='ls -h'
 
-        git_completion="$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
-        if [ -f "$git_completion" ]; then
-            export GIT_PS1_SHOWDIRTYSTATE=true
-            export GIT_PS1_SHOWUNTRACKEDFILES=true
-            export GIT_PS1_SHOWSTASHSTATE=true
-        fi
-
-        # Bash completion
-        bash_completion="$(brew --prefix)/etc/profile.d/bash_completion.sh"
-        # shellcheck disable=1090
-        [[ -r "$bash_completion" ]] && . "$bash_completion"
+        export GIT_PS1_SHOWDIRTYSTATE=true
+        export GIT_PS1_SHOWUNTRACKEDFILES=true
+        export GIT_PS1_SHOWSTASHSTATE=true
 
         # Keep TAR from tarring-up resource forks
         export COPYFILE_DISABLE=true
