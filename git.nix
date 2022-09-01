@@ -32,7 +32,6 @@ pkgs: {
       lgs = "log --graph --format=format:'%C(117)%h%C(reset) %C(226)%G?%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all";
       lg = "!git lg1";
       quickfix = "rebase --interactive HEAD^^";
-      #pr = "!git fetch \"$(gum choose $(git remote))\" pull/$1/head:pr-$1; git co pr-$1 #";
       pr = "!gh pr list | cut -f1,2 | gum choose | cut -f1 | xargs gh pr checkout";
     };
 
