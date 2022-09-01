@@ -2,7 +2,6 @@ pkgs: {
   programs.git = {
 
     enable = true;
-
     userName = "Christian Rocha";
     userEmail = "christian@rocha.is";
 

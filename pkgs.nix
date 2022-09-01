@@ -14,7 +14,6 @@ let
     exa
     ffmpeg
     gh
-    git
     gnupg
     gopass
     jq
