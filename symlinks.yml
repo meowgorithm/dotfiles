@@ -20,10 +20,8 @@ void:
     dst: .bashrc
   - src: bash_profile
     dst: .bash_profile
-  - src: gitconfig
-    dst: .gitconfig
-  - src: gitignore
-    dst: .gitignore
+  - src: config/git
+    dst: .config/git
   - src: Xresources
     dst: .Xresources
   - src: Xmodmap
