@@ -5,3 +5,4 @@ xmonad.errors
 *.hi
 *.o
 config/kak/plugins/*
+/result
