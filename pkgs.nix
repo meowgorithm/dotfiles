@@ -40,6 +40,7 @@ let
   ];
 
   charm = with pkgs; [
+    glow
     gum
     skate
   ];
