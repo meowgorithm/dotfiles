@@ -13,6 +13,7 @@ let
     direnv
     exa
     ffmpeg
+    gh
     git
     gnupg
     gopass
