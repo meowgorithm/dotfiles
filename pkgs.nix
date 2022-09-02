@@ -47,11 +47,9 @@ let
 
 in
 {
-  home.packages =
-    nix ++ base ++ go ++ charm;
+  home.packages = nix ++ base ++ go ++ charm;
 
-  programs =
-    {
-      z-lua.enable = true;
-    };
+  programs = {
+    z-lua.enable = true;
+  };
 }

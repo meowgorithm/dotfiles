@@ -1,14 +1,12 @@
 pkgs:
 let
-  isDarwin =
-    pkgs.stdenv.isDarwin;
+  isDarwin = pkgs.stdenv.isDarwin;
 
   fontFamily =
     if isDarwin then "SF Mono"
     else "JetBrains Mono";
 in
 {
-
   enable = true;
 
   settings = {

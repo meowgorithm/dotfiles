@@ -11,11 +11,9 @@
 
   outputs = { self, nixpkgs, homeManager } @ inputs:
     let
-      lib =
-        nixpkgs.lib;
+      lib = nixpkgs.lib;
 
-      mkHome =
-        system:
+      mkHome = system:
         let
           pkgs = inputs.nixpkgs.legacyPackages."${system}";
           homeDir = (if pkgs.stdenv.isDarwin then "/Users/" else "/home/") + "christian";
