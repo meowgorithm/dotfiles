@@ -9,8 +9,6 @@ common:
     dst: .config/kitty
   - src: config/kak
     dst: .config/kak
-  - src: config/alacritty
-    dst: .config/alacritty
   - src: bin
     dst: .bin
   - src: grc
@@ -20,6 +18,8 @@ void:
     dst: .bashrc
   - src: bash_profile
     dst: .bash_profile
+  - src: config/alacritty
+    dst: .config/alacritty
   - src: config/git
     dst: .config/git
   - src: Xresources

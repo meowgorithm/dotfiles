@@ -30,6 +30,7 @@
               programs = {
                 home-manager.enable = true;
                 bash = (import ./bash.nix) pkgs;
+                alacritty = (import ./alacritty.nix) pkgs;
               };
             }
 
