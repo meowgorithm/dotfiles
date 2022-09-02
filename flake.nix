@@ -9,39 +9,48 @@
     };
   };
 
-  outputs = { self, nixpkgs, homeManager } @ inputs: {
-    homeConfigurations =
-      let
-        system = "aarch64-darwin";
-        pkgs = inputs.nixpkgs.legacyPackages."${system}";
-      in
-      {
+  outputs = { self, nixpkgs, homeManager } @ inputs:
+    let
+      lib =
+        nixpkgs.lib;
 
-        aarch64Darwin = homeManager.lib.homeManagerConfiguration {
-          pkgs = pkgs;
-          modules = [
+      mkHome =
+        system:
+        let
+          pkgs = inputs.nixpkgs.legacyPackages."${system}";
+          homeDir = (if pkgs.stdenv.isDarwin then "/Users/" else "/home/") + "christian";
+        in
+        {
+          homeManagerConfigurations."${system}" = homeManager.lib.homeManagerConfiguration {
+            pkgs = pkgs;
+            modules = [
+              {
+                home = {
+                  username = "christian";
+                  homeDirectory = homeDir;
+                  stateVersion = "22.11";
+                };
+                programs = {
+                  home-manager.enable = true;
+                  bash = (import ./bash.nix) pkgs;
+                  alacritty = (import ./alacritty.nix) pkgs;
+                };
+              }
 
-            {
-              home = {
-                username = "christian";
-                homeDirectory = "/Users/christian";
-                stateVersion = "22.11";
-              };
-              programs = {
-                home-manager.enable = true;
-                bash = (import ./bash.nix) pkgs;
-                alacritty = (import ./alacritty.nix) pkgs;
-              };
-            }
+              ./pkgs.nix
+              ./git.nix
 
-            ./pkgs.nix
-            ./git.nix
+            ];
+          };
 
-          ];
+          packages."${system}".default = self.homeManagerConfigurations."${system}".activationPackage;
         };
-      };
 
-    packages.aarch64-darwin.default = self.homeConfigurations.aarch64Darwin.activationPackage;
-  };
+      systems = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+    in
 
+    lib.foldr lib.recursiveUpdate { } (map mkHome systems);
 }
