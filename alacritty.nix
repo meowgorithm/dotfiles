@@ -16,8 +16,8 @@ in
       padding = {
         x = 10;
         y = 16;
-        decorations = "buttonless";
       };
+      decorations = "buttonless";
     };
 
     font = {
