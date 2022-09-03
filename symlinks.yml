@@ -1,6 +1,4 @@
 common:
-  - src: inputrc
-    dst: .inputrc
   - src: config/floskell.json
     dst: .config/.floskell.json
   - src: tmux.conf
@@ -14,6 +12,8 @@ common:
   - src: grc
     dst: .grc
 void:
+  - src: inputrc
+    dst: .inputrc
   - src: bashrc
     dst: .bashrc
   - src: bash_profile

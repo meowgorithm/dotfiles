@@ -43,6 +43,7 @@
           }
 
           ./pkgs.nix
+          ./readline.nix
           ./git.nix
         ];
       };
