@@ -97,10 +97,6 @@ case "$os" in
         export LSCOLORS=dxfxcxdxbxegedabagacad
         alias ls='ls -h'
 
-        export GIT_PS1_SHOWDIRTYSTATE=true
-        export GIT_PS1_SHOWUNTRACKEDFILES=true
-        export GIT_PS1_SHOWSTASHSTATE=true
-
         # Keep TAR from tarring-up resource forks
         export COPYFILE_DISABLE=true
 
@@ -126,19 +122,6 @@ case "$os" in
         export LESS_TERMCAP_so=$'\E[01;44;33m'
         export LESS_TERMCAP_ue=$'\E[0m'
         export LESS_TERMCAP_us=$'\E[01;32m'
-
-        # Node
-        export PATH="$PATH:$HOME/.config/npm/bin"
-
-        node16_amd64="/usr/local/opt/node@16/bin"
-        if [ -d "$node16_amd64" ]; then
-            export PATH="$PATH:$node16_amd64"
-        fi
-
-        node16_arm64="/opt/homebrew/opt/node@16/bin"
-        if [ -d "$node16_arm64" ]; then
-            export PATH="$PATH:$node16_arm64"
-        fi
 
         ;;
 
