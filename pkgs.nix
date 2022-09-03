@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   nix = with pkgs; [
     rnix-lsp
     alejandra
@@ -9,6 +12,7 @@ let
   base = with pkgs; [
     aws
     brotli
+    cargo
     ctags
     direnv
     exa
@@ -26,6 +30,7 @@ let
     shellcheck
     tmux
     tree
+    ttyd
     vim
     wget
     yq
@@ -44,9 +49,7 @@ let
     gum
     skate
   ];
-
-in
-{
+in {
   home.packages = nix ++ base ++ go ++ charm;
 
   programs = {
