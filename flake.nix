@@ -27,7 +27,7 @@
         + "christian";
     in {
       homeManagerConfigurations."${system}" = homeManager.lib.homeManagerConfiguration {
-        pkgs = pkgs;
+        inherit pkgs;
         modules = [
           {
             home = {
