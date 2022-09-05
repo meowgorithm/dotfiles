@@ -28,6 +28,7 @@
     nodejs-16_x
     ripgrep
     shellcheck
+    shfmt
     tmux
     tree
     ttyd
