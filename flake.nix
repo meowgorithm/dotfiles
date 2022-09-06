@@ -18,33 +18,29 @@
 
     mkHome = system: let
       pkgs = inputs.nixpkgs.legacyPackages."${system}";
-      homeDir =
-        (
-          if pkgs.stdenv.isDarwin
-          then "/Users/"
-          else "/home/"
-        )
-        + "christian";
+      isDarwin = pkgs.stdenv.isDarwin;
     in {
       homeManagerConfigurations."${system}" = homeManager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          {
-            home = {
-              username = "christian";
-              homeDirectory = homeDir;
-              stateVersion = "22.11";
-            };
-            programs = {
-              home-manager.enable = true;
-              bash = (import ./bash.nix) pkgs;
-              alacritty = (import ./alacritty.nix) pkgs;
-            };
+          rec {
+            home.stateVersion = "22.11";
+            home.username = "christian";
+            home.homeDirectory =
+              if pkgs.stdenv.isDarwin
+              then "/Users/"
+              else "/home/" + home.username;
           }
-
-          ./pkgs.nix
-          ./readline.nix
-          ./git.nix
+          (
+            if isDarwin
+            then null
+            else ./modules/alacritty.nix
+          )
+          ./modules/bash
+          ./modules/git.nix
+          ./modules/pkgs.nix
+          ./modules/readline
+          ./modules/tmux
         ];
       };
 
@@ -52,8 +48,9 @@
     };
 
     systems = [
-      "aarch64-darwin"
+      "x86_64-linux"
       "x86_64-darwin"
+      "aarch64-darwin"
     ];
   in
     lib.foldr lib.recursiveUpdate {} (map mkHome systems);

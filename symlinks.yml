@@ -1,8 +1,6 @@
 common:
   - src: config/floskell.json
     dst: .config/.floskell.json
-  - src: tmux.conf
-    dst: .tmux.conf
   - src: config/kitty
     dst: .config/kitty
   - src: config/kak
@@ -12,16 +10,6 @@ common:
   - src: grc
     dst: .grc
 void:
-  - src: inputrc
-    dst: .inputrc
-  - src: bashrc
-    dst: .bashrc
-  - src: bash_profile
-    dst: .bash_profile
-  - src: config/alacritty
-    dst: .config/alacritty
-  - src: config/git
-    dst: .config/git
   - src: Xresources
     dst: .Xresources
   - src: Xmodmap

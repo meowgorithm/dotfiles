@@ -1,7 +1,12 @@
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+} @ inputs: let
   note = name: "\n\n# --- ${name} ---\n\n";
-in
-  pkgs: {
+in {
+  programs.bash = {
     enable = true;
     enableCompletion = true;
     historyControl = ["ignoredups" "erasedups"];
@@ -17,8 +22,9 @@ in
     shellAliases = {};
     initExtra =
       note "git-prompt"
-      + "source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh"
+      + "source ${inputs.pkgs.git}/share/git/contrib/completion/git-prompt.sh"
       + note ".bashrc"
       + builtins.readFile ./bashrc
       + note "end extra";
-  }
+  };
+}
