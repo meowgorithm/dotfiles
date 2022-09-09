@@ -1,6 +1,4 @@
 common:
-  - src: config/floskell.json
-    dst: .config/.floskell.json
   - src: config/kitty
     dst: .config/kitty
   - src: config/kak

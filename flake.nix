@@ -37,6 +37,7 @@
             else ./modules/alacritty.nix
           )
           ./modules/bash
+          ./modules/floskell
           ./modules/git.nix
           ./modules/pkgs.nix
           ./modules/readline
