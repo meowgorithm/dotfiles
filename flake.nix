@@ -51,7 +51,7 @@
       // (
         if default
         then {packages."${system}".default = self.homeManagerConfigurations."${name}".activationPackage;}
-        else {}
+        else {packages."${system}"."${name}" = self.homeManagerConfigurations."${name}".activationPackage;}
       );
 
     systems = let
