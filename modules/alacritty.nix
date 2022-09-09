@@ -29,34 +29,43 @@ in {
           else {}
         );
 
-      font = {
-        normal = {
-          family = fontFamily;
-          style = "Light";
-        };
-        bold = {
-          family = fontFamily;
-          style = "Bold";
-        };
-        italic = {
-          family = fontFamily;
-          style = "Bold Italic";
-        };
-        bold_italic = {
-          family = fontFamily;
-          style = "Bold Italic";
-        };
-        size = 12.0;
-        offset = {
-          x = 1;
-          y = 3;
-        };
-        glyph_offset = {
-          x = 0;
-          y = 3;
-          use_thin_strokes = true;
-        };
-      };
+      font =
+        {
+          normal = {
+            family = fontFamily;
+            style = "Light";
+          };
+          bold = {
+            family = fontFamily;
+            style = "Bold";
+          };
+          italic = {
+            family = fontFamily;
+            style = "Bold Italic";
+          };
+          bold_italic = {
+            family = fontFamily;
+            style = "Bold Italic";
+          };
+        }
+        // (
+          if isDarwin
+          then {
+            size = 12.0;
+            offset = {
+              x = 1;
+              y = 3;
+            };
+            glyph_offset = {
+              x = 0;
+              y = 3;
+              use_thin_strokes = true;
+            };
+          }
+          else {
+            size = 10.0;
+          }
+        );
 
       colors = {
         primary = {
