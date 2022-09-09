@@ -49,6 +49,7 @@
   charm = with pkgs; [
     glow
     gum
+    melt
     skate
   ];
 in {
