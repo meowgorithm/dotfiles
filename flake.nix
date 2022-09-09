@@ -20,6 +20,7 @@
       name,
       system,
       default,
+      extraModules,
     }: let
       pkgs = inputs.nixpkgs.legacyPackages."${system}";
       isDarwin = pkgs.stdenv.isDarwin;
@@ -44,11 +45,7 @@
               ./modules/readline
               ./modules/tmux
             ]
-            ++ (
-              if name != "headless"
-              then [./modules/alacritty.nix]
-              else []
-            );
+            ++ extraModules;
         };
       }
       // (
@@ -57,26 +54,46 @@
         else {}
       );
 
-    systems = [
-      {
+    systems = let
+      macOSModules = [
+        ./modules/alacritty.nix
+      ];
+    in [
+      rec {
         name = "linux";
         system = "x86_64-linux";
         default = true;
+        extraModules = [
+          {
+            home.packages = with nixpkgs.legacyPackages."${system}"; [
+              feh
+              firefox
+              gthumb
+              rofi
+              shotgun
+              xfce.thunar
+            ];
+          }
+          ./modules/alacritty.nix
+        ];
       }
       {
         name = "macOS-intel";
         system = "x86_64-darwin";
         default = true;
+        extraModules = macOSModules;
       }
       {
         name = "macOS-arm";
         system = "aarch64-darwin";
         default = true;
+        extraModules = macOSModules;
       }
       {
         name = "headless";
         system = "x86_64-linux";
         default = false;
+        extraModules = [];
       }
     ];
   in

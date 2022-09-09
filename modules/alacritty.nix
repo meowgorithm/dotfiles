@@ -4,7 +4,8 @@
   lib,
   ...
 } @ inputs: let
-  isDarwin = inputs.pkgs.stdenv.isDarwin;
+  isDarwin =
+    inputs.pkgs.stdenv.isDarwin;
 
   fontFamily =
     if isDarwin
