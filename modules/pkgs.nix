@@ -15,6 +15,7 @@
     cargo
     ctags
     direnv
+    duf # hey, @muesli
     exa
     ffmpeg
     gh
