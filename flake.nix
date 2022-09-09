@@ -22,27 +22,28 @@
     in {
       homeManagerConfigurations."${system}" = homeManager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          rec {
-            home.stateVersion = "22.11";
-            home.username = "christian";
-            home.homeDirectory =
-              if pkgs.stdenv.isDarwin
-              then "/Users/"
-              else "/home/" + home.username;
-          }
-          (
+        modules =
+          [
+            rec {
+              home.stateVersion = "22.11";
+              home.username = "christian";
+              home.homeDirectory =
+                if pkgs.stdenv.isDarwin
+                then "/Users/"
+                else "/home/" + home.username;
+            }
+            ./modules/bash
+            ./modules/floskell
+            ./modules/git.nix
+            ./modules/pkgs.nix
+            ./modules/readline
+            ./modules/tmux
+          ]
+          ++ (
             if isDarwin
-            then null
-            else ./modules/alacritty.nix
-          )
-          ./modules/bash
-          ./modules/floskell
-          ./modules/git.nix
-          ./modules/pkgs.nix
-          ./modules/readline
-          ./modules/tmux
-        ];
+            then []
+            else [./modules/alacritty.nix]
+          );
       };
 
       packages."${system}".default = self.homeManagerConfigurations."${system}".activationPackage;
