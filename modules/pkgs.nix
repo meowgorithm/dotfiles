@@ -20,6 +20,7 @@
     gh
     gnupg
     gopass
+    htop
     jq
     kak-lsp
     kakoune
