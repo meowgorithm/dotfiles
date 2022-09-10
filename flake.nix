@@ -43,6 +43,7 @@
               ./modules/git.nix
               ./modules/pkgs.nix
               ./modules/readline
+              ./modules/scripts
               ./modules/tmux
             ]
             ++ extraModules;
