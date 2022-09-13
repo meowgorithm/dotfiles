@@ -24,6 +24,8 @@ in {
     initExtra =
       note "git-prompt"
       + "source ${inputs.pkgs.git}/share/git/contrib/completion/git-prompt.sh"
+      + note "bash funcs"
+      + builtins.readFile ./bash_funcs
       + note ".bashrc"
       + builtins.readFile ./bashrc
       + note "end extra";

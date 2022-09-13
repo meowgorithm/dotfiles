@@ -3,8 +3,6 @@
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
-[ -f "$DOTFILES/bash_funcs" ] && . "$DOTFILES/bash_funcs"
-
 # If not running interactively, don't do anything else
 [[ $- != *i* ]] && return
 
