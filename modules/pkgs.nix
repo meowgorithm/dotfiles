@@ -13,6 +13,7 @@
     aws
     brotli
     cargo
+    coreutils
     ctags
     direnv
     duf # hey, @muesli
@@ -26,6 +27,7 @@
     kak-lsp
     kakoune
     libwebp
+    moreutils
     neovim
     nodejs-16_x
     ripgrep
