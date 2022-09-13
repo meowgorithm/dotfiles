@@ -12,6 +12,7 @@ in {
     historyControl = ["ignoredups" "erasedups"];
     historyIgnore = ["ls" "cd" "exit"];
     sessionVariables = {
+      EDITOR = "kak";
       PROMPT_DIRTRIM = "2";
       XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
       GIT_PS1_SHOWDIRTYSTATE = "true";
