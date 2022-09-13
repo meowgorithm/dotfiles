@@ -29,16 +29,6 @@ case "$os" in
         alias ls='ls --color=auto'
         PS1='[\u@\h \W]\$ '
 
-        # Git prompt
-        git_prompt="/usr/share/git/git-prompt.sh"
-        if [ -f $git_prompt ]; then
-            export GIT_PS1_SHOWDIRTYSTATE=true
-            export GIT_PS1_SHOWUNTRACKEDFILES=true
-            export GIT_PS1_SHOWSTASHSTATE=true
-            # shellcheck disable=1090
-            source $git_prompt
-        fi
-
         # Services
         alias sv="sudo sv"
 
@@ -127,10 +117,6 @@ case "$os" in
 
 esac
 
-# Shorten the pwd in the prompt to show only the n number of characters
-# NOTE: Bash 4+ only
-PROMPT_DIRTRIM=2
-
 function nixPrompt() {
     case $IN_NIX_SHELL in
         pure)   printf ' <nix>'  ;;
@@ -162,8 +148,6 @@ PROMPT_COMMAND=prompt_func
 
 gpg_TTY=$(tty)
 export GPG_TTY=$gpg_TTY
-export EDITOR=kak
-export HISTCONTROL=ignoredups:erasedups
 export PATH="$PATH:$HOME/.bin"
 
 if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
