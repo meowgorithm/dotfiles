@@ -109,6 +109,7 @@ case "$os" in
         alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
         alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
         alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
+        alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
 
         # Print local network adapter IPs and copy them to the clipboard
         alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
