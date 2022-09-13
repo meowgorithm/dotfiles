@@ -34,9 +34,12 @@
                 home.stateVersion = "22.11";
                 home.username = "christian";
                 home.homeDirectory =
-                  if pkgs.stdenv.isDarwin
-                  then "/Users/"
-                  else "/home/" + home.username;
+                  (
+                    if pkgs.stdenv.isDarwin
+                    then "/Users/"
+                    else "/home/"
+                  )
+                  + home.username;
               }
               ./modules/bash
               ./modules/floskell
