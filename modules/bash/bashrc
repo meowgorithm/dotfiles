@@ -48,6 +48,7 @@ case "$os" in
         alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
         alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
         alias thunderbolt-up=thunderboltUp
+        alias sv-restart="ls /etc/sv | gum filter --height=20 | xargs sudo sv restart"
 
         # Fixes for various things on demand
         alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
