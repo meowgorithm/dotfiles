@@ -7,12 +7,12 @@ fi
 
 function usage {
     printf "Convert an image to a PNG-style WebP image.\n\n"
-    printf "Usage:\n    $0 source\n"
+    printf "Usage:\n    %s source\n" "$0"
 }
 
-if [[ $# < 1 || $1 == "-h" ]]; then
+if [[ $# -lt 1 || $1 == "-h" ]]; then
     usage
     exit 1
 fi
 
-cwebp -z 9 -o "${1%.*}".webp $1
+cwebp -z 9 -o "${1%.*}".webp "$1"
