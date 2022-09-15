@@ -5,6 +5,12 @@
   ...
 } @ inputs: let
   note = name: "\n\n# --- ${name} ---\n\n";
+
+  readIntoVar = varName: path:
+    "rc=\"$(cat <<EOF\n"
+    + builtins.readFile path
+    + "EOF\n"
+    + ")\"\n\n";
 in {
   programs.bash = {
     enable = true;
@@ -28,6 +34,9 @@ in {
       + builtins.readFile ./bash_funcs
       + note ".bashrc"
       + builtins.readFile ./bashrc
+      + note "rc"
+      + readIntoVar "rc" ./rc.gpg
+      + "decryptAndSource \"$rc\""
       + note "end extra";
   };
 }
