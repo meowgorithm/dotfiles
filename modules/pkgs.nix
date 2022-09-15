@@ -10,7 +10,6 @@
   ];
 
   base = with pkgs; [
-    aws
     brotli
     cargo
     coreutils
