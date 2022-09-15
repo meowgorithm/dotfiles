@@ -1,5 +1,0 @@
-setxkbmap -option caps:escape &
-xsetroot -solid "#2e2a27" &
-picom &
-startxfce4 &
-exec i3
