@@ -44,6 +44,7 @@
               ./modules/bash
               ./modules/floskell
               ./modules/git.nix
+              ./modules/gpg.nix
               ./modules/pkgs.nix
               ./modules/readline
               ./modules/scripts
