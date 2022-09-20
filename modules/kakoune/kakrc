@@ -1,4 +1,15 @@
-source "%val{config}/plugins/plug.kak/rc/plug.kak"
+# Bootstrap plug.kak
+declare-option -docstring "plug.kak's directory" str plugkakdir "%val{config}/plugins/plug.kak"
+declare-option -docstring "plug.kak's main script" str plugkak "%opt{plugkakdir}/rc/plug.kak"
+try %{
+    source "%opt{plugkak}"
+} catch %sh{
+    if [ ! -d "$kak_opt_plugkakdir" ]; then
+        git clone https://github.com/robertmeta/plug.kak.git "$kak_opt_plugkakdir"
+        echo "source '%opt{plugkak}"
+    fi
+}
+
 plug "andreyorst/plug.kak" noload
 
 # Highlight current line

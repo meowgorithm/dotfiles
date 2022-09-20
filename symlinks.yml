@@ -1,8 +1,6 @@
 common:
   - src: config/kitty
     dst: .config/kitty
-  - src: config/kak
-    dst: .config/kak
   - src: bin
     dst: .bin
   - src: grc
