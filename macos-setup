@@ -12,13 +12,6 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-# XCode Themes
-XCODE_THEMES="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
-rm -rf "$XCODE_THEMES"
-mkdir -p "$XCODE_THEMES"
-ln -s "$THISDIR/xcode/Meowgorithm.dvtcolortheme" "$XCODE_THEMES/Meowgorithm.dvtcolortheme"
-ln -s "$HOME/xcode/MeowgorithmMorning.dvtcolortheme" "$XCODE_THEMES/MeowgorithmMorning.dvtcolortheme"
-
 gpg --decrypt ./macos/extra.gpg | bash
 
 echo
