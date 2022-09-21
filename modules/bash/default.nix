@@ -17,14 +17,27 @@ in {
     enableCompletion = true;
     historyControl = ["ignoredups" "erasedups"];
     historyIgnore = ["ls" "cd" "exit"];
-    sessionVariables = {
-      EDITOR = "kak";
-      PROMPT_DIRTRIM = "2";
-      XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
-      GIT_PS1_SHOWDIRTYSTATE = "true";
-      GIT_PS1_SHOWUNTRACKEDFILES = "true";
-      GIT_PS1_SHOWSTASHSTATE = "true";
-    };
+    sessionVariables =
+      {
+        EDITOR = "kak";
+        PROMPT_DIRTRIM = "2";
+        XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
+        GIT_PS1_SHOWDIRTYSTATE = "true";
+        GIT_PS1_SHOWUNTRACKEDFILES = "true";
+        GIT_PS1_SHOWSTASHSTATE = "true";
+      }
+      // (
+        if pkgs.stdenv.isDarwin
+        then {}
+        else {
+          #export GDK_SCALE=2
+          #export GPK_DPI_SCALE=0.5
+          QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+          QT_FONT_DPI = "192";
+          HARDWARECLOCK = "localtime";
+          BASH_ENV = "$HOME/.bashrc";
+        }
+      );
     shellOptions = ["histappend"];
     shellAliases = {};
     initExtra =
