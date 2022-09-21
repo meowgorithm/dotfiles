@@ -3,9 +3,6 @@
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
-# If not running interactively, don't do anything else
-[[ $- != *i* ]] && return
-
 os="$(which_os)"
 
 function thunderboltUp() {
@@ -215,31 +212,8 @@ gmr() {
 export GOPRIVATE="github.com/charmbracelet"
 
 # Direnv
-command -v direnv > /dev/null 2>&1 && eval "$(direnv hook bash)"
-
-# Z
-# shellcheck disable=1091
-if [[ "$os" == "void" || "$os" == "debian" ]]; then
-    [[ -r "/usr/local/bin/z.sh" ]] && source /usr/local/bin/z.sh
-elif [[ "$os" == "darwin" ]];  then
-    [[ -r $(brew --prefix)/etc/profile.d/z.sh ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
-fi
-
-# z.lua
-zLuaPath=""
-case "$os" in
-    void )
-        zLuaPath="/usr/local/bin/z.lua" ;;
-    darwin )
-        zLuaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua" ;;
-esac
-if [[ -r "$zLuaPath" ]]; then
-    eval "$(lua "$zLuaPath" --init bash enhanced once echo)"
-fi
-
-# shellcheck disable=1090
-command -v gpg > /dev/null 2>&1 && \
-    source <(gpg --decrypt "$DOTFILES/rc.gpg" 2> /dev/null)
+command -v direnv > /dev/null 2>&1 && \
+    eval "$(direnv hook bash)"
 
 command -v exa > /dev/null 2>&1 && \
     alias ls='exa -g'

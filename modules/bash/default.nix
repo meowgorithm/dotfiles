@@ -30,13 +30,17 @@ in {
     initExtra =
       note "git-prompt"
       + "source ${inputs.pkgs.git}/share/git/contrib/completion/git-prompt.sh"
-      + note "bash funcs"
-      + builtins.readFile ./bash_funcs
       + note ".bashrc"
       + builtins.readFile ./bashrc
       + note "rc"
       + readIntoVar "rc" ./rc.gpg
       + "decryptAndSource \"$rc\""
       + note "end extra";
+    bashrcExtra =
+      note "bash_funcs"
+      + builtins.readFile ./bash_funcs;
   };
+
+  # Also put our funcs here so we can source them.
+  xdg.dataFile."meowgorithm/bash_funcs".text = builtins.readFile ./bash_funcs;
 }
