@@ -46,6 +46,7 @@
               ./modules/git.nix
               ./modules/gpg.nix
               ./modules/kakoune
+              ./modules/kitty.nix
               ./modules/pkgs.nix
               ./modules/readline
               ./modules/scripts

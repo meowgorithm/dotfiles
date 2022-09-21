@@ -22,6 +22,3 @@ void:
     dst: .config/picom.conf
   - src: bin-linux
     dst: .bin-linux
-darwin:
-  - src: Library/LaunchAgents/is.rocha.env.plist
-    dst: Library/LaunchAgents/is.rocha.env.plist
