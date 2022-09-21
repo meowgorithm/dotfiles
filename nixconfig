@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+dir="$HOME/.config/nix"
+file="$dir/nix.conf"
+
+mkdir -p "$dir"
+cat << EOF > "$file"
+experimental-features = nix-command flakes
+EOF
