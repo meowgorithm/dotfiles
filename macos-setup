@@ -1,19 +1,2 @@
 #!/bin/bash
-
-basedir="$HOME/.dotfiles"
-
-if [[ -z $XDG_CONFIG_HOME ]]; then
-    XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-$basedir/bin/symlink
-
-if [[ $? != 0 ]]; then
-	exit 1
-fi
-
 gpg --decrypt ./macos/extra.gpg | bash
-
-echo
-echo Done.
-echo
