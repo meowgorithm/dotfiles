@@ -15,7 +15,7 @@
     coreutils
     ctags
     direnv
-    duf # hey, @muesli
+    duf # hey @muesli
     exa
     ffmpeg
     gh
@@ -26,6 +26,7 @@
     kak-lsp
     kakoune
     libwebp
+    luajit
     moreutils
     neovim
     nodejs-16_x
