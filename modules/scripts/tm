@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if [[ $1 == "" ]]; then
-    echo "Usage: $(basename $0) session-name"
+    echo "Usage: $(basename "$0") session-name"
     exit 1
 fi
 
-tmux has-session -t $1 2>/dev/null
+tmux has-session -t "$1" 2>/dev/null
 
 # Create session if it doesn't exist
 if [ $? != 0 ]; then
     tmux new-session -d -s "$1"
 fi
 
-tmux attach-session -t $1
+tmux attach-session -t "$1"
