@@ -82,6 +82,7 @@
             ];
           }
           ./modules/alacritty.nix
+          ./modules/picom
         ];
       }
       {
