@@ -14,8 +14,9 @@
     cargo
     coreutils
     ctags
+    curl
     direnv
-    duf # hey @muesli
+    duf
     exa
     ffmpeg
     gh

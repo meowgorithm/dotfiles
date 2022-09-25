@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p "$HOME/.fonts"
-curl https://media.rocha.is/fonts.tgz.charmed | charm decrypt | tar zvxf - -C "$HOME/.fonts"
-fc-cache -v

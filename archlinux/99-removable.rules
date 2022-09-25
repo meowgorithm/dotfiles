@@ -1,2 +1,0 @@
-# /etc/udev/rules.d/99-removable.rules
-ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
