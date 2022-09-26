@@ -10,6 +10,7 @@
   ];
 
   base = with pkgs; [
+    age
     brotli
     cargo
     coreutils
