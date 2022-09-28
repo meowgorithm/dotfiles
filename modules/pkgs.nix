@@ -40,6 +40,7 @@
     tree
     ttyd
     vim
+    viu
     wget
     yq
     z-lua
