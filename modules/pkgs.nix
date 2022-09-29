@@ -11,6 +11,7 @@
 
   base = with pkgs; [
     age
+    awscli2
     brotli
     cargo
     coreutils
