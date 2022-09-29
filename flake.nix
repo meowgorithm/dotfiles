@@ -80,9 +80,11 @@
         extraModules = [
           {
             home.packages = with nixpkgs.legacyPackages."${system}"; [
+              dunst
               feh
               firefox
               gthumb
+              jetbrains-mono
               rofi
               shotgun
               xfce.thunar
