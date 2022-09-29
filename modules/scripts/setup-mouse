@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mouse='Microsoft Microsoft Pro Intellimouse Mouse'
 

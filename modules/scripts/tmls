@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ensure() {
-    if ! command -v "$1" &> /dev/null; then
+    if ! command -v "$1" &>/dev/null; then
         printf "%s not found. Please install it (or check your PATH) and try again.\n" "$1"
         exit 1
     fi
@@ -19,7 +19,7 @@ filter() {
 ensure tmux
 ensure fzf
 
-if ! tmux ls &> /dev/null; then
+if ! tmux ls &>/dev/null; then
     printf "no sessions\n"
     exit 1
 fi

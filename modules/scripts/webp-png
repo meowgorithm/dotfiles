@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if ! command -v cwebp &> /dev/null; then
+if ! command -v cwebp &>/dev/null; then
     printf "'cwebp' not found. Please install WebP and try again.\n\n"
     exit 1
 fi
