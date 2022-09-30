@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs";
-    nixgl.url = "github:guibou/nixGL";
     homeManager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,16 +11,12 @@
 
   outputs = {
     self,
-    nixgl,
     nixpkgs,
     homeManager,
   } @ inputs: let
     lib = nixpkgs.lib;
 
-    overlays =
-      if nixpkgs.stdenv.isDarwin
-      then []
-      else [nixgl.overlay];
+    overlays = [];
 
     mkHome = {
       name,
@@ -42,7 +37,7 @@
                 home.username = "christian";
                 home.homeDirectory =
                   (
-                    if pkgs.stdenv.isDarwin
+                    if isDarwin
                     then "/Users/"
                     else "/home/"
                   )

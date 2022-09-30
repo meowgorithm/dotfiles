@@ -1,11 +1,10 @@
 # The Meowgorithm Dotfiles, Collectors’ Edition
 
-This repo contains a Nix/Home Manager configuration to support a few systems,
-but the main ones are:
+This repo contains a Nix/Home Manager configuration to support a few systems:
 
-* NixOS x86_64
-* macOS x86_64 and aarch64
-* Headless, general-purpose Linux x86_64
+- NixOS x86_64
+- macOS x86_64 and aarch64
+- Headless general-purpose Linux x86_64
 
 ```bash
 # Enable flakes on non-NixOS systems:
