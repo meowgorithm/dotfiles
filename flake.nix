@@ -47,6 +47,7 @@
               ./modules/floskell
               ./modules/git.nix
               ./modules/gpg.nix
+              ./modules/helix.nix
               ./modules/kakoune
               ./modules/kitty.nix
               ./modules/pkgs.nix
