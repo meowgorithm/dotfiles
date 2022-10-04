@@ -11,6 +11,8 @@
       keys.normal = {
         g.q = ":reflow";
         X = "extend_line_above";
+        "minus" = "goto_prev_paragraph";
+        "=" = "goto_next_paragraph";
       };
     };
 
