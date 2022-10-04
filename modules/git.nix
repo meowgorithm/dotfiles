@@ -36,7 +36,7 @@ pkgs: {
     extraConfig = {
       color.ui = true;
       core = {
-        editor = "kak";
+        editor = "hx";
       };
     };
   };
