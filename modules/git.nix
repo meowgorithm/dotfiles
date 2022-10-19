@@ -4,6 +4,8 @@ pkgs: {
     userName = "Christian Rocha";
     userEmail = "christian@rocha.is";
 
+    lfs.enable = true;
+
     ignores = [
       ".DS_Store"
       ".ghc.environment.*"
