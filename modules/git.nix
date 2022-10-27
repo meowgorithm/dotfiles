@@ -13,6 +13,7 @@ pkgs: {
       "xmonad.errors"
       "*.hi"
       "*.o"
+      "nohup.out"
     ];
 
     signing = {
