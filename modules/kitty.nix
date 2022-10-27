@@ -4,7 +4,11 @@
   lib,
   ...
 }: let
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin =
+    pkgs.stdenv.isDarwin;
+
+  colors =
+    import ./colors.nix;
 in {
   programs.kitty =
     (
@@ -63,40 +67,25 @@ in {
           selection_foreground = "#222222";
           selection_background = "#ccff00";
 
-          foreground = "#dddddd";
-          background = "#171717";
+          background = colors.primary.background;
+          foreground = colors.primary.foreground;
 
-          # black
-          color0 = "#282a2e";
-          color8 = "#4d4d4d";
-
-          # red
-          color1 = "#D74E6F";
-          color9 = "#FE5F86";
-
-          # green
-          color2 = "#31BB71";
-          color10 = "#00D787";
-
-          # yellow
-          color3 = "#D3E561";
-          color11 = "#EBFF71";
-
-          # blue
-          color4 = "#8056FF";
-          color12 = "#8F69FF";
-
-          # magenta
-          color5 = "#ED61D7";
-          color13 = "#FF7AEA";
-
-          # cyan
-          color6 = "#04D7D7";
-          color14 = "#00FEFE";
-
-          # white
-          color7 = "#bfbfbf";
-          color15 = "#e6e6e6";
+          color0 = colors.normal.black;
+          color8 = colors.bright.black;
+          color1 = colors.normal.red;
+          color9 = colors.bright.red;
+          color2 = colors.normal.green;
+          color10 = colors.bright.green;
+          color3 = colors.normal.yellow;
+          color11 = colors.bright.yellow;
+          color4 = colors.normal.blue;
+          color12 = colors.bright.blue;
+          color5 = colors.normal.magenta;
+          color13 = colors.bright.magenta;
+          color6 = colors.normal.cyan;
+          color14 = colors.bright.cyan;
+          color7 = colors.normal.white;
+          color15 = colors.bright.white;
         }
         // (
           if isDarwin

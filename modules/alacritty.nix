@@ -67,32 +67,7 @@ in {
           }
         );
 
-      colors = {
-        primary = {
-          foreground = "#dddddd";
-          background = "#171717";
-        };
-        normal = {
-          black = "#000000";
-          red = "#c73b1d";
-          green = "#00a800";
-          yellow = "#acaf15";
-          blue = "#3854fc";
-          magenta = "#d533ce";
-          cyan = "#2cbac9";
-          white = "#bfbfbf";
-        };
-        bright = {
-          black = "#4d4d4d";
-          red = "#e82100";
-          green = "#00db00";
-          yellow = "#e5e900";
-          blue = "#566BF9";
-          magenta = "#e83ae9";
-          cyan = "#00e6e7";
-          white = "#e6e6e6";
-        };
-      };
+      colors = import ./colors.nix;
 
       # Setup alt key bindings on macOS
       key_bindings =
