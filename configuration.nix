@@ -1,9 +1,10 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   imports = [
     # Include the results of the hardware scan.
@@ -14,7 +15,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "meowmachine"; # Define your hostname.
+  networking.hostName = "stardust"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -35,7 +36,7 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -59,9 +60,9 @@
     dpi = 192;
     layout = "us";
     xkbOptions = "eurosign:e, compose:menu, caps:escape";
-    xrandrHeads = [{ output = "DP-0"; } { output = "DP-2"; }];
+    xrandrHeads = [{output = "DP-0";} {output = "DP-2";}];
 
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
     wacom.enable = true;
 
     windowManager = {
@@ -99,7 +100,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       slack
       discord
