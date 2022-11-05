@@ -83,6 +83,7 @@
               jetbrains-mono
               rofi
               shotgun
+              slop
               xfce.thunar
             ];
           }
