@@ -8,7 +8,7 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -113,12 +113,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    vim
-    tmux
-    wget
     gnupg
     pinentry
     sqlite-interactive
+    tmux
+    vim
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
