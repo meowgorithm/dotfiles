@@ -124,11 +124,11 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  services.pcscd.enable = false;
+  services.pcscd.enable = true;
   programs.gnupg.agent = {
-    enable = false;
+    enable = true;
     pinentryFlavor = "curses";
-    enableSSHSupport = true;
+    enableSSHSupport = false;
   };
 
   # List services that you want to enable:
