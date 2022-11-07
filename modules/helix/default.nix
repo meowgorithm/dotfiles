@@ -10,7 +10,7 @@ helixPackage: {
     package = helixPackage;
 
     settings = {
-      theme = "base16_default";
+      theme = "charm";
       keys.normal = {
         g.q = ":reflow";
         X = "extend_line_above";
@@ -43,7 +43,7 @@ helixPackage: {
     ];
 
     themes = {
-      noctis_bordo_adjusted = import ./noctis_bordo_adjusted.nix;
+      charm = import ./base16.nix;
     };
   };
 }
