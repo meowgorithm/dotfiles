@@ -25,7 +25,15 @@
       extraModules,
     }: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
+
       isDarwin = pkgs.stdenv.isDarwin;
+
+      # Only build Helix from master on default targets (i.e. not on the
+      # headless system).
+      helixModule =
+        if default
+        then (import ./modules/helix) inputs.helix.packages.${system}.default
+        else (import ./modules/helix) pkgs.helix;
     in
       {
         homeManagerConfigurations."${name}" = homeManager.lib.homeManagerConfiguration {
@@ -43,11 +51,11 @@
                   )
                   + home.username;
               }
+              helixModule
               ./modules/bash
               ./modules/floskell
               ./modules/git.nix
               ./modules/gpg.nix
-              ((import ./modules/helix) inputs.helix.packages.${system}.default)
               ./modules/kakoune
               ./modules/kitty.nix
               ./modules/pkgs.nix
