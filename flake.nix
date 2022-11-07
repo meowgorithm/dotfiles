@@ -7,16 +7,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helix.url = "github:helix-editor/helix/master";
   };
 
   outputs = {
     self,
     nixpkgs,
     homeManager,
+    ...
   } @ inputs: let
     lib = nixpkgs.lib;
-
-    overlays = [];
 
     mkHome = {
       name,
@@ -24,7 +24,15 @@
       default,
       extraModules,
     }: let
-      pkgs = inputs.nixpkgs.legacyPackages."${system}";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          self: super: {
+            helix = inputs.helix.packages.${self.system}.default;
+          }
+        ];
+      };
+
       isDarwin = pkgs.stdenv.isDarwin;
     in
       {
