@@ -24,15 +24,7 @@
       default,
       extraModules,
     }: let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          self: super: {
-            helix = inputs.helix.packages.${self.system}.default;
-          }
-        ];
-      };
-
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       isDarwin = pkgs.stdenv.isDarwin;
     in
       {
@@ -55,7 +47,7 @@
               ./modules/floskell
               ./modules/git.nix
               ./modules/gpg.nix
-              ./modules/helix
+              ((import ./modules/helix) inputs.helix.packages.${system}.default)
               ./modules/kakoune
               ./modules/kitty.nix
               ./modules/pkgs.nix
