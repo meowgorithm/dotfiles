@@ -32,6 +32,14 @@ helixPackage: {
         auto-format = true;
         formatter = {command = "alejandra";};
       }
+      {
+        name = "cabal";
+        scope = "";
+        roots = [];
+        file-types = ["cabal"];
+        auto-format = true;
+        formatter = {command = "cabal-fmt";};
+      }
     ];
 
     themes = {
