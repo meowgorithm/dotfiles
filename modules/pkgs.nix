@@ -14,6 +14,7 @@
     awscli2
     bashInteractive
     brotli
+    haskellPackages.cabal-fmt
     cargo
     coreutils
     ctags
