@@ -10,7 +10,7 @@ helixPackage: {
     package = helixPackage;
 
     settings = {
-      theme = "noctis_bordo_adjusted";
+      theme = "base16_default";
       keys.normal = {
         g.q = ":reflow";
         X = "extend_line_above";
@@ -22,6 +22,7 @@ helixPackage: {
         true-color = true;
         cursor-shape.insert = "bar";
         lsp.display-messages = true;
+        rulers = [80];
       };
     };
 
