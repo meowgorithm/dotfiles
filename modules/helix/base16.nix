@@ -1,6 +1,5 @@
 let
   colors = import ../colors.nix;
-  transparent = "none";
   normal = colors.normal;
   bright = colors.bright;
 in {
@@ -11,15 +10,18 @@ in {
     bg = normal.black;
   };
   "ui.window" = normal.black;
-  "ui.linenr" = {fg = normal.black;};
-  "ui.linenr.selected" = {fg = normal.white;};
+  "ui.linenr" = {
+    fg = normal.black;
+  };
+  "ui.linenr.selected" = {
+    fg = normal.white;
+  };
   "ui.popup" = {
     fg = normal.white;
     bg = normal.black;
   };
   "ui.popup.info" = {
     fg = normal.white;
-    bg = transparent;
   };
   "ui.selection" = {
     fg = normal.black;
@@ -29,15 +31,12 @@ in {
   "comment" = {fg = bright.black;};
   "ui.statusline" = {
     fg = normal.white;
-    bg = transparent;
   };
   "ui.statusline.inactive" = {
     fg = normal.black;
-    bg = transparent;
   };
   "ui.help" = {
     fg = normal.white;
-    bg = transparent;
   };
   "ui.cursor" = {modifiers = ["reversed"];};
   "ui.virtual.ruler" = {bg = normal.black;};
@@ -67,7 +66,7 @@ in {
   "diff.delta" = normal.yellow;
   "diff.minus" = normal.red;
   "diagnostic" = {modifiers = ["underlined"];};
-  "ui.gutter" = {bg = transparent;};
+  "ui.gutter" = {};
   "info" = normal.blue;
   "hint" = normal.white;
   "debug" = normal.white;
