@@ -40,6 +40,20 @@ helixPackage: {
         auto-format = true;
         formatter = {command = "cabal-fmt";};
       }
+      {
+        name = "scss";
+        language-server = {
+          command = "css-languageserver";
+          args = ["--stdio"];
+        };
+      }
+      {
+        name = "css";
+        language-server = {
+          command = "css-languageserver";
+          args = ["--stdio"];
+        };
+      }
     ];
 
     themes = {
