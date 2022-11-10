@@ -4,11 +4,6 @@
   lib,
   ...
 }: let
-  nix = with pkgs; [
-    rnix-lsp
-    alejandra
-  ];
-
   base = with pkgs; [
     age
     awscli2
@@ -56,6 +51,20 @@
     goreleaser
   ];
 
+  lsp = with pkgs;
+  with pkgs.elmPackages;
+  with pkgs.nodePackages; [
+    alejandra
+    bash-language-server
+    elm-language-server
+    rnix-lsp
+    typescript
+    typescript-language-server
+    vscode-css-languageserver-bin
+    vscode-html-languageserver-bin
+    yaml-language-server
+  ];
+
   charm = with pkgs; [
     glow
     gum
@@ -63,7 +72,7 @@
     skate
   ];
 in {
-  home.packages = nix ++ base ++ go ++ charm;
+  home.packages = base ++ go ++ lsp ++ charm;
 
   programs = {
     z-lua.enable = true;
