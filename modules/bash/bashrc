@@ -217,3 +217,8 @@ command -v direnv > /dev/null 2>&1 && \
 
 command -v exa > /dev/null 2>&1 && \
     alias ls='exa -g'
+
+command -v llama > /dev/null 2>&1 && \
+    function ll {
+        cd "$(llama "$@")"
+    }
