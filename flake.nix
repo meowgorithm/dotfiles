@@ -96,6 +96,7 @@
             ];
           }
           ./modules/alacritty.nix
+          ./modules/discord.nix
           ./modules/picom
           ./modules/x11
         ];
