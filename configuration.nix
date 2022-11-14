@@ -141,6 +141,15 @@
     passwordAuthentication = false;
   };
 
+  services.avahi = {
+    enable = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
+  };
+
   # List services that you want to enable:
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
