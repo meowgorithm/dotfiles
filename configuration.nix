@@ -117,6 +117,7 @@
   environment.systemPackages = with pkgs; [
     git
     gnupg
+    lsof
     pinentry
     sqlite-interactive
     tmux
