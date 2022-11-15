@@ -8,7 +8,8 @@ which_os() {
         linux*)
             if [[ -f "/etc/issue" ]]; then
                 issue=$(cat /etc/issue)
-                if   [[ $issue =~ "Void"   ]]; then printf "void"
+                if   [[ $issue =~ "NixOS"  ]]; then printf "void"
+                elif [[ $issue =~ "Void"   ]]; then printf "nixos"
                 elif [[ $issue =~ "Arch"   ]]; then printf "arch"
                 elif [[ $issue =~ "Debian" ]]; then printf "debian"
                 else printf "linux"

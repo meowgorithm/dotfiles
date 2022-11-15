@@ -21,35 +21,14 @@ function thunderboltUp() {
 # OS/Distro specific stuff
 case "$os" in
 
-    void )
+    nixos )
 
         alias ls='ls --color=auto'
         PS1='[\u@\h \W]\$ '
 
-        # Services
-        alias sv="sudo sv"
-
-        # General aliases
-        alias hey="nohup chromium --new-window --app=https://app.hey.com > /dev/null 2>&1 &"
-        alias calendar="nohup chromium --new-window --app=https://calendar.google.com/calendar/u/2 > /dev/null 2>&1 &"
-        alias thunderbolt-up=thunderboltUp
-        alias sv-restart="ls /etc/sv | gum filter --height=20 | xargs sudo sv restart"
-
         # Fixes for various things on demand
         alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
         alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
-
-        # CUDA
-        export PATH="$PATH:/usr/local/cuda-11.2/bin"
-        export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64"
-
-        # VSCode
-        vsCodePath=/usr/local/vscode/bin
-        [[ -d $vsCodePath ]] && PATH="$PATH:$vsCodePath"
-
-        # Blender
-        blenderPath=/usr/local/blender
-        [[ -d $blenderPath ]] && PATH="$PATH:$blenderPath"
 
         ;;
 
