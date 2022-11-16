@@ -18,6 +18,7 @@
     duf
     exa
     ffmpeg
+    fzf
     gh
     gnupg
     gopass
