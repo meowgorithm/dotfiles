@@ -58,7 +58,9 @@
     alejandra
     bash-language-server
     elm-language-server
+    prettier
     rnix-lsp
+    svgo
     typescript
     typescript-language-server
     vscode-css-languageserver-bin

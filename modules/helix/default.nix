@@ -41,17 +41,38 @@ helixPackage: {
         formatter = {command = "cabal-fmt";};
       }
       {
-        name = "scss";
-        language-server = {
-          command = "css-languageserver";
-          args = ["--stdio"];
-        };
-      }
-      {
         name = "css";
         language-server = {
           command = "css-languageserver";
           args = ["--stdio"];
+        };
+        formatter = {
+          command = "prettier";
+          args = ["--parser" "css" "--tab-width" "4"];
+        };
+        auto-format = true;
+      }
+      {
+        name = "typescript";
+        indent = {
+          tab-width = 4;
+          unit = " ";
+        };
+        formatter = {
+          command = "prettier";
+          args = ["--parser" "typescript" "--tab-width" "4"];
+        };
+        auto-format = true;
+      }
+      {
+        name = "svg";
+        scope = "";
+        roots = [];
+        file-types = ["svg"];
+        auto-format = true;
+        formatter = {
+          command = "svgo";
+          args = ["--pretty" "-"];
         };
       }
     ];
