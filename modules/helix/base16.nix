@@ -11,10 +11,10 @@ in {
   };
   "ui.window" = normal.black;
   "ui.linenr" = {
-    fg = normal.black;
+    fg = "#3A3A3A";
   };
   "ui.linenr.selected" = {
-    fg = normal.white;
+    fg = "#6C6C6C";
   };
   "ui.popup" = {
     fg = normal.white;
@@ -39,7 +39,9 @@ in {
     fg = normal.white;
   };
   "ui.cursor" = {modifiers = ["reversed"];};
-  "ui.virtual.ruler" = {bg = normal.black;};
+  "ui.cursorline.primary" = {bg = "#080808";};
+  "ui.cursorline.secondary" = {bg = "#121212";};
+  "ui.virtual.ruler" = {bg = "#1D1D1D";};
   "variable" = normal.white;
   "variable.builtin" = normal.yellow;
   "constant.numeric" = normal.yellow;
