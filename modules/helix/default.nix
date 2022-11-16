@@ -20,7 +20,6 @@ helixPackage: {
       editor = {
         cursorline = true;
         true-color = true;
-        cursor-shape.insert = "bar";
         lsp.display-messages = true;
         rulers = [80];
       };
