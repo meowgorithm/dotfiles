@@ -3,13 +3,13 @@ let
   normal = colors.normal;
   bright = colors.bright;
 in {
+  "ui.window" = normal.black;
   "ui.menu" = {bg = normal.black;};
   "ui.menu.selected" = {bg = bright.black;};
   "ui.menu.scroll" = {
     fg = normal.black;
     bg = normal.black;
   };
-  "ui.window" = normal.black;
   "ui.linenr" = {
     fg = "#3A3A3A";
   };
@@ -28,7 +28,6 @@ in {
     bg = normal.blue;
   };
   "ui.selection.primary" = {modifiers = ["reversed"];};
-  "comment" = {fg = bright.black;};
   "ui.statusline" = {
     fg = normal.white;
   };
@@ -42,36 +41,40 @@ in {
   "ui.cursorline.primary" = {bg = "#080808";};
   "ui.cursorline.secondary" = {bg = "#121212";};
   "ui.virtual.ruler" = {bg = "#1D1D1D";};
-  "variable" = normal.white;
-  "variable.builtin" = normal.yellow;
-  "constant.numeric" = normal.yellow;
-  "constant" = normal.yellow;
-  "attributes" = normal.blue;
-  "type" = normal.cyan;
   "ui.cursor.match" = {
     fg = normal.cyan;
     modifiers = ["underlined"];
   };
-  "string" = normal.green;
-  "variable.other.member" = normal.blue;
+  "ui.gutter" = {};
+
+  "warning" = normal.yellow;
+  "hint" = normal.white;
+  "info" = normal.blue;
+
+  "diff.delta" = normal.yellow;
+  "diff.minus" = normal.red;
+  "diff.plus" = normal.green;
+
+  "attributes" = normal.blue;
+  "comment" = {fg = bright.black;};
+  "constant" = normal.yellow;
   "constant.character.escape" = normal.yellow;
+  "constant.numeric" = normal.yellow;
+  "constructor" = normal.blue;
+  "debug" = normal.white;
+  "diagnostic" = {modifiers = ["underlined"];};
+  "error" = normal.red;
   "function" = normal.yellow;
   "function.builtin" = normal.blue;
   "function.method" = normal.blue;
-  "constructor" = normal.blue;
-  "special" = normal.yellow;
   "keyword" = bright.magenta;
   "keyword.control.repeat" = normal.magenta;
   "label" = normal.magenta;
   "namespace" = normal.blue;
-  "diff.plus" = normal.green;
-  "diff.delta" = normal.yellow;
-  "diff.minus" = normal.red;
-  "diagnostic" = {modifiers = ["underlined"];};
-  "ui.gutter" = {};
-  "info" = normal.blue;
-  "hint" = normal.white;
-  "debug" = normal.white;
-  "warning" = normal.yellow;
-  "error" = normal.red;
+  "special" = normal.yellow;
+  "string" = normal.green;
+  "type" = normal.cyan;
+  "variable" = normal.white;
+  "variable.builtin" = normal.yellow;
+  "variable.other.member" = normal.blue;
 }
