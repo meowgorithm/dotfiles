@@ -40,16 +40,28 @@ helixPackage: {
         formatter = {command = "cabal-fmt";};
       }
       {
+        name = "html";
+        language-server = {
+          command = "html-languageserver";
+          args = ["--stdio"];
+        };
+        auto-format = false;
+        formatter = {
+          command = "prettier";
+          args = ["--parser" "html" "--tab-width" "2"];
+        };
+      }
+      {
         name = "css";
         language-server = {
           command = "css-languageserver";
           args = ["--stdio"];
         };
+        auto-format = true;
         formatter = {
           command = "prettier";
           args = ["--parser" "css" "--tab-width" "4"];
         };
-        auto-format = true;
       }
       {
         name = "typescript";
