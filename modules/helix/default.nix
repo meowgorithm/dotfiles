@@ -13,6 +13,8 @@ helixPackage: {
       theme = "charm";
       keys.normal = {
         g.q = ":reflow";
+        g.w = ":set whitespace.render all";
+        g.W = ":set whitespace.render none";
         X = "extend_line_above";
         "minus" = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
@@ -89,7 +91,7 @@ helixPackage: {
     ];
 
     themes = {
-      charm = import ./base16.nix;
+      charm = import ./charm.nix;
     };
   };
 }

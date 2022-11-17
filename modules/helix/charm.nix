@@ -41,6 +41,7 @@ in {
   "ui.cursorline.primary" = {bg = "#080808";};
   "ui.cursorline.secondary" = {bg = "#121212";};
   "ui.virtual.ruler" = {bg = "#1D1D1D";};
+  "ui.virtual.whitespace" = {fg = "#3A3A3A";};
   "ui.cursor.match" = {
     fg = normal.cyan;
     modifiers = ["underlined"];
