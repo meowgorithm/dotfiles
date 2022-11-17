@@ -27,7 +27,10 @@ in {
     fg = normal.black;
     bg = normal.blue;
   };
-  "ui.selection.primary" = {modifiers = ["reversed"];};
+  "ui.selection.primary" = {
+    fg = "#FFFDF5";
+    bg = "#5C42FF";
+  };
   "ui.statusline" = {
     fg = normal.white;
   };
