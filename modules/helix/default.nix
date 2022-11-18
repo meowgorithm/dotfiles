@@ -42,6 +42,10 @@ helixPackage: {
         formatter = {command = "cabal-fmt";};
       }
       {
+        name = "go";
+        formatter = {command = "goimports";};
+      }
+      {
         name = "html";
         language-server = {
           command = "html-languageserver";
