@@ -56,29 +56,57 @@ in {
   "info" = normal.blue;
 
   "diff.delta" = normal.yellow;
-  "diff.minus" = normal.red;
-  "diff.plus" = normal.green;
+  "diff.minus" = "#FD5B5B";
+  "diff.plus" = "#00D787";
 
-  "attributes" = normal.blue;
-  "comment" = {fg = bright.black;};
-  "constant" = normal.yellow;
-  "constant.character.escape" = normal.yellow;
-  "constant.numeric" = normal.yellow;
   "constructor" = normal.blue;
   "debug" = normal.white;
   "diagnostic" = {modifiers = ["underlined"];};
-  "error" = normal.red;
-  "function" = normal.yellow;
-  "function.builtin" = normal.blue;
-  "function.method" = normal.blue;
-  "keyword" = bright.magenta;
-  "keyword.control.repeat" = normal.magenta;
-  "label" = normal.magenta;
-  "namespace" = normal.blue;
-  "special" = normal.yellow;
-  "string" = normal.green;
-  "type" = normal.cyan;
+  "error" = {
+    fg = "#F1F1F1";
+    bg = "#F05B5B";
+  };
+  "label" = "#C69669";
+
+  "attribute" = "#FD5B5B"; # class attributes, HTML tag attributes
+  "type" = "#6E6ED8";
+  "constant" = "#FFFF87";
+  "constant.character.escape" = "#AFFFD7";
+  "constant.numeric" = "#FFFF87";
+  "constant.numeric.integer" = "#FFFF87";
+  "constant.numeric.float" = "#FFFF87";
+  "constant.builtin" = ""; # constants proviced by the language
+  "constant.builtin.boolean" = "";
+  "string" = "#C69669";
+  "string.regexp" = "#C69669";
+  "string.special" = "#FF5FD2";
+  "string.special.path" = "#C69669";
+  "string.special.url" = "#C69669";
+  "string.special.symbol" = "#C69669"; # erlang atoms, ruby symbols, clojure keywords
+  "comment.line" = "#676767";
+  "comment.block" = "#676767";
+  "comment.block.documentation" = "#676767";
   "variable" = normal.white;
-  "variable.builtin" = normal.yellow;
-  "variable.other.member" = normal.blue;
+  "variable.builtin" = "#FF5FD2"; # self, this, super, etc
+  "variable.parameter" = normal.white; # function parameters
+  "variable.other.member" = normal.blue; # struct fields, unions
+
+  "keyword" = "#00AAFF";
+  "keyword.control.conditional" = "#00AAFF";
+  "keyword.control.import" = "#00AAFF";
+  "keyword.control.return" = "#00AAFF";
+  "keyword.control.exception" = "#00AAFF";
+  "keyword.operator" = "#00AAFF"; # or, in
+  "keyword.directive" = "#FF875F"; # preprocessor directives
+  "keyword.storage" = "#FF875F";
+  "keyword.storage.type" = "#FF875F"; # class, function, var, let, etc
+  "keyword.storage.modifier" = "#FF875F"; # static, mut, const, ref, etc
+  "operator" = "#EF8080";
+  "function" = "#00D787";
+  "function.builtin" = "#FF8EC7";
+  "function.method" = "#FD5B5B";
+  "function.macro" = "#FD5B5B";
+  "function.special" = "#FD5B5B";
+  "tag" = "";
+  "namespace" = "#FF5F87";
 }
