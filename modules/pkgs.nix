@@ -67,15 +67,8 @@
     vscode-html-languageserver-bin
     yaml-language-server
   ];
-
-  charm = with pkgs; [
-    glow
-    gum
-    melt
-    skate
-  ];
 in {
-  home.packages = base ++ go ++ lsp ++ charm;
+  home.packages = base ++ go ++ lsp;
 
   programs = {
     z-lua.enable = true;
