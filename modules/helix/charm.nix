@@ -83,6 +83,7 @@ in {
   "string.special.path" = "#C69669";
   "string.special.url" = "#C69669";
   "string.special.symbol" = "#C69669"; # erlang atoms, ruby symbols, clojure keywords
+  "comment" = "#676767";
   "comment.line" = "#676767";
   "comment.block" = "#676767";
   "comment.block.documentation" = "#676767";
