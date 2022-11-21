@@ -125,6 +125,16 @@
     wget
   ];
 
+  fonts.fonts = with pkgs; [
+    jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-emoji
+    noto-fonts-extra
+    ubuntu_font_family
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

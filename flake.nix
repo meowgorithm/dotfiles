@@ -88,7 +88,6 @@
               feh
               firefox
               gthumb
-              jetbrains-mono
               rofi
               shotgun
               slop
