@@ -117,6 +117,7 @@
   environment.systemPackages = with pkgs; [
     git
     gnupg
+    lguf-brightness
     lsof
     pinentry
     sqlite-interactive
