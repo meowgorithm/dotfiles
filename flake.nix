@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix.url = "github:helix-editor/helix/master";
   };
 
   outputs = {
@@ -25,15 +24,7 @@
       extraModules,
     }: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
-
       isDarwin = pkgs.stdenv.isDarwin;
-
-      # Only build Helix from master on default targets (i.e. not on the
-      # headless system).
-      helixModule =
-        if default
-        then (import ./modules/helix) inputs.helix.packages.${system}.default
-        else (import ./modules/helix) pkgs.helix;
     in
       {
         homeManagerConfigurations."${name}" = homeManager.lib.homeManagerConfiguration {
@@ -51,11 +42,11 @@
                   )
                   + home.username;
               }
-              helixModule
               ./modules/bash
               ./modules/floskell
               ./modules/git.nix
               ./modules/gpg.nix
+              ./modules/helix
               ./modules/kakoune
               ./modules/kitty.nix
               ./modules/pkgs.nix
