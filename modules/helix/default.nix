@@ -63,7 +63,7 @@ helixPackage: {
           command = "css-languageserver";
           args = ["--stdio"];
         };
-        auto-format = true;
+        auto-format = false;
         formatter = {
           command = "prettier";
           args = ["--parser" "css" "--tab-width" "4"];
