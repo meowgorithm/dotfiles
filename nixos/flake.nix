@@ -8,7 +8,10 @@
     lib =
       nixpkgs.lib;
 
-    mkSystem = hostname: {
+    mkSystem = {
+      hostname,
+      default ? false,
+    }: {
       nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -18,7 +21,7 @@
             ...
           }: {
             imports = [
-              ./hardware-configuration.nix
+              ./hardware-config-${hostname}.nix
             ];
 
             system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
@@ -161,11 +164,21 @@
           })
         ];
       };
-
-      packages.x86_64-linux.default = self.nixosConfigurations."${hostname}".config.system.build.toplevel;
+      packages.x86_64-linux = let
+        target =
+          if default
+          then "default"
+          else hostname;
+      in {
+        "${target}" = self.nixosConfigurations."${hostname}".config.system.build.toplevel;
+      };
     };
   in
     lib.foldr lib.recursiveUpdate {} (map mkSystem [
-      "stardust"
+      {
+        hostname = "stardust";
+        default = true;
+      }
+      {hostname = "purrmachine";}
     ]);
 }
