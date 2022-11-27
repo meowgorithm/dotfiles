@@ -118,6 +118,7 @@
               tmux
               vim
               wget
+              xmonad-with-packages
             ];
 
             fonts.fonts = with pkgs; [

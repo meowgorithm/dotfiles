@@ -89,6 +89,7 @@
           ./modules/discord.nix
           ./modules/picom
           ./modules/x11
+          ./modules/xmonad
         ];
       }
       {
