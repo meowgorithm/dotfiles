@@ -1,116 +1,85 @@
 {
-  description = "The Panther Room";
-
   inputs = {
-    nixpkgs.url = "flake:nixpkgs";
-    homeManager = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs-unstable.url = "flake:nixpkgs";
+    home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
   outputs = {
     self,
     nixpkgs,
-    homeManager,
-    ...
-  } @ inputs: let
+    nixpkgs-unstable,
+    home-manager,
+  }: let
     lib = nixpkgs.lib;
+    x86_64-linux = "x86_64-linux";
+    x86_64-darwin = "x86_64-darwin";
+    aarch64-darwin = "aarch64-darwin";
 
-    mkHome = {
-      name,
-      system,
-      default,
-      extraModules,
-    }: let
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      isDarwin = pkgs.stdenv.isDarwin;
-    in
+    mkSystem = {
+      hostname,
+      system ? x86_64-linux,
+      default ? false,
+    }:
       {
-        homeManagerConfigurations."${name}" = homeManager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules =
-            [
-              rec {
-                home.stateVersion = "22.11";
-                home.username = "christian";
-                home.homeDirectory =
-                  (
-                    if isDarwin
-                    then "/Users/"
-                    else "/home/"
-                  )
-                  + home.username;
-              }
-              ./modules/bash
-              ./modules/floskell
-              ./modules/git.nix
-              ./modules/gpg.nix
-              ./modules/helix
-              ./modules/kakoune
-              ./modules/kitty.nix
-              ./modules/pkgs.nix
-              ./modules/readline
-              ./modules/scripts
-              ./modules/tmux
-            ]
-            ++ extraModules;
+        nixosConfigurations."${hostname}" = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ({
+              pkgs,
+              modulesPath,
+              ...
+            }: {
+              system.configurationRevision = lib.mkIf (self ? rev) self.rev;
+            })
+            (import ./modules/nixos hostname)
+          ];
         };
+
+        homeManagerConfigurations."christian@${hostname}" = let
+          pkgs = nixpkgs-unstable.legacyPackages."${system}";
+        in (import ./modules/home
+          {
+            inherit pkgs;
+            inherit home-manager;
+            inherit hostname;
+          });
       }
       // (
-        if default
-        then {packages."${system}".default = self.homeManagerConfigurations."${name}".activationPackage;}
-        else {packages."${system}"."${name}" = self.homeManagerConfigurations."${name}".activationPackage;}
+        let
+          target =
+            if default
+            then "default"
+            else "christian@${hostname}";
+        in {
+          packages."${system}"."${target}" = self.homeManagerConfigurations."christian@${hostname}".activationPackage;
+        }
       );
-
-    systems = let
-      macOSModules = [
-        ./modules/alacritty.nix
-      ];
-    in [
-      rec {
-        name = "linux";
-        system = "x86_64-linux";
-        default = true;
-        extraModules = [
-          {
-            home.packages = with nixpkgs.legacyPackages."${system}"; [
-              dunst
-              feh
-              firefox
-              gthumb
-              rofi
-              shotgun
-              slop
-              xfce.thunar
-            ];
-          }
-          ./modules/alacritty.nix
-          ./modules/discord.nix
-          ./modules/picom
-          ./modules/x11
-          ./modules/xmonad
-        ];
-      }
-      {
-        name = "macOS-intel";
-        system = "x86_64-darwin";
-        default = true;
-        extraModules = macOSModules;
-      }
-      {
-        name = "macOS-arm";
-        system = "aarch64-darwin";
-        default = true;
-        extraModules = macOSModules;
-      }
-      {
-        name = "headless";
-        system = "x86_64-linux";
-        default = false;
-        extraModules = [];
-      }
-    ];
   in
-    lib.foldr lib.recursiveUpdate {} (map mkHome systems);
+    lib.foldr lib.recursiveUpdate {} (map mkSystem [
+      {
+        hostname = "stardust";
+        system = x86_64-linux;
+        default = true;
+      }
+      {
+        hostname = "purrmachine";
+        system = x86_64-linux;
+      }
+      {
+        hostname = "headless";
+        system = x86_64-linux;
+      }
+      {
+        hostname = "thunderclap";
+        system = x86_64-darwin;
+      }
+      {
+        hostname = "meowmachine";
+        system = aarch64-darwin;
+      }
+    ]);
 }

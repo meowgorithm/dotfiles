@@ -17,11 +17,11 @@ systems:
 nix run
 
 # Or, for headless Linux boxes:
-nix run .#headless
+nix run .#christian@headless
 ```
 
 ## OS Management
 
 ```bash
-sudo nixos-rebuild switch --flake ./nixos
+sudo nixos-rebuild switch --flake .
 ```
