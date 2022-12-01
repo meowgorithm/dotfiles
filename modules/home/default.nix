@@ -31,7 +31,7 @@
     ++ (
       if pkgs.stdenv.isDarwin
       then [
-        ./modules/alacritty.nix
+        ./alacritty.nix
       ]
       else []
     );
