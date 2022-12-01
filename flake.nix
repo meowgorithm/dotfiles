@@ -76,10 +76,12 @@
       {
         hostname = "thunderclap";
         system = x86_64-darwin;
+        default = true;
       }
       {
         hostname = "meowmachine";
         system = aarch64-darwin;
+        default = true;
       }
     ]);
 }
