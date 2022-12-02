@@ -29,7 +29,6 @@
     libwebp
     luajit
     moreutils
-    neovim
     nodejs-16_x
     python3
     ripgrep
