@@ -96,6 +96,7 @@ hostname: {
     vim
     wget
     xmonad-with-packages
+    xtrlock-pam
   ];
 
   fonts.fonts = with pkgs; [
