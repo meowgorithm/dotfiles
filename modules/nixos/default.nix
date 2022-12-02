@@ -26,7 +26,10 @@ hostname: {
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    cudaSupport = true;
+  };
 
   environment.variables = {
     GDK_SCALE = "2";
@@ -86,6 +89,8 @@ hostname: {
   security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
+    blender
+    cachix
     git
     gnupg
     lguf-brightness
@@ -117,6 +122,8 @@ hostname: {
       discord
     ];
   };
+
+  nix.trustedUsers = ["root" "christian"];
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {

@@ -66,8 +66,12 @@
     vscode-html-languageserver-bin
     yaml-language-server
   ];
+
+  macos = with pkgs; [
+    cachix
+  ];
 in {
-  home.packages = base ++ go ++ lsp;
+  home.packages = base ++ go ++ lsp ++ macos;
 
   programs = {
     z-lua.enable = true;
