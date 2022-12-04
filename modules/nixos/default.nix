@@ -25,7 +25,11 @@ hostname: {
     useXkbConfig = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    trustedUsers = ["root" "christian"];
+  };
+
   nixpkgs.config = {
     allowUnfree = true;
     cudaSupport = true;
@@ -122,8 +126,6 @@ hostname: {
       discord
     ];
   };
-
-  nix.trustedUsers = ["root" "christian"];
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {
