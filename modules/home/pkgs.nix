@@ -68,8 +68,8 @@
     alejandra
     bash-language-server
     elm-language-server
+    nil
     prettier
-    rnix-lsp
     svgo
     typescript
     typescript-language-server
