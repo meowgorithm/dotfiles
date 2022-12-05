@@ -9,7 +9,6 @@
     awscli2
     bashInteractive
     brotli
-    haskellPackages.cabal-fmt
     cargo
     coreutils
     ctags
@@ -54,6 +53,15 @@
     gotools
   ];
 
+  haskell = with pkgs.haskellPackages; [
+    cabal-fmt
+    cabal-install
+    floskell
+    fourmolu
+    haskell-language-server
+    pkgs.haskell.compiler.ghc943
+  ];
+
   lsp = with pkgs;
   with pkgs.elmPackages;
   with pkgs.nodePackages; [
@@ -74,7 +82,7 @@
     cachix
   ];
 in {
-  home.packages = base ++ go ++ lsp ++ macos;
+  home.packages = base ++ go ++ haskell ++ lsp ++ macos;
 
   programs = {
     z-lua.enable = true;
