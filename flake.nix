@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    helix.url = "github:helix-editor/helix/master";
   };
 
   outputs = {
@@ -13,6 +14,7 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    helix,
   }: let
     lib = nixpkgs.lib;
     x86_64-linux = "x86_64-linux";
@@ -44,8 +46,10 @@
         in (import ./modules/home
           {
             inherit pkgs;
+            inherit system;
             inherit home-manager;
             inherit hostname;
+            inherit helix;
           });
       }
       // (

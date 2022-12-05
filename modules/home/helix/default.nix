@@ -1,4 +1,4 @@
-{
+helixPackage: {
   config,
   pkgs,
   lib,
@@ -7,6 +7,7 @@
 }: {
   programs.helix = {
     enable = true;
+    package = helixPackage;
 
     settings = {
       theme = "charm";

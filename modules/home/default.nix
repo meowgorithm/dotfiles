@@ -3,7 +3,13 @@
   pkgs,
   system ? "x86_64-linux",
   hostname,
+  helix,
 }: let
+  helixPackage =
+    if hostname == ""
+    then pkgs.helix
+    else helix.packages.${system}.default;
+
   extraModules =
     (
       if pkgs.stdenv.isLinux && hostname != "headless"
@@ -51,11 +57,11 @@ in
             )
             + home.username;
         }
+        (import ./helix helixPackage)
         ./bash
         ./floskell
         ./git.nix
         ./gpg.nix
-        ./helix
         ./kakoune
         ./kitty.nix
         ./pkgs.nix
