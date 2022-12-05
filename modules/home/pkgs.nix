@@ -46,9 +46,12 @@
   ];
 
   go = with pkgs; [
+    delve
     go_1_19
     golangci-lint
+    gopls
     goreleaser
+    gotools
   ];
 
   lsp = with pkgs;
