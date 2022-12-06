@@ -109,6 +109,7 @@ hostname: {
   ];
 
   fonts.fonts = with pkgs; [
+    inter
     jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans

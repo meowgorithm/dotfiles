@@ -21,7 +21,6 @@
             feh
             firefox
             gthumb
-            rofi
             shotgun
             slop
             xfce.thunar
@@ -30,6 +29,7 @@
         ./alacritty.nix
         ./discord.nix
         ./picom
+        ./rofi
         ./x11
         ./xmonad
       ]
