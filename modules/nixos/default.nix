@@ -96,6 +96,8 @@ hostname: {
   environment.systemPackages = with pkgs; [
     blender
     cachix
+    faac
+    faad2
     git
     gnupg
     lguf-brightness
