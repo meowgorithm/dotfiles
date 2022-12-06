@@ -30,8 +30,6 @@ in {
         if pkgs.stdenv.isDarwin
         then {}
         else {
-          #QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-          #QT_FONT_DPI = "192";
           HARDWARECLOCK = "localtime";
           BASH_ENV = "$HOME/.bashrc";
         }
