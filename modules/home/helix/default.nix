@@ -48,6 +48,10 @@ helixPackage: {
       }
       {
         name = "html";
+        indent = {
+          tab-width = 2;
+          unit = " ";
+        };
         language-server = {
           command = "html-languageserver";
           args = ["--stdio"];
@@ -60,6 +64,10 @@ helixPackage: {
       }
       {
         name = "css";
+        indent = {
+          tab-width = 4;
+          unit = " ";
+        };
         language-server = {
           command = "css-languageserver";
           args = ["--stdio"];
