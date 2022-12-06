@@ -27,7 +27,7 @@ hostname: {
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    trustedUsers = ["root" "christian"];
+    trusted-users = ["root" "christian"];
   };
 
   nixpkgs.config = {
