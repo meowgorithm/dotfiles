@@ -29,6 +29,7 @@ case "$os" in
         # Fixes for various things on demand
         alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
         alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
+        alias set-wallpaper='[ -f "$HOME/.wallpaper" ] && feh --bg-scale "$HOME/.wallpaper"'
 
         ;;
 
@@ -72,7 +73,6 @@ case "$os" in
 
         # Miscellaneous aliases
         alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
-        alias install_kitty='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
         alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
         alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
 
@@ -194,10 +194,12 @@ export GOPRIVATE="github.com/charmbracelet"
 command -v direnv > /dev/null 2>&1 && \
     eval "$(direnv hook bash)"
 
+# Exa
 command -v exa > /dev/null 2>&1 && \
     alias ls='exa -g'
 
+# Llama
 command -v llama > /dev/null 2>&1 && \
     function ll {
-        cd "$(llama "$@")"
+        cd "$(llama "$@")" || return
     }
