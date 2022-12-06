@@ -51,6 +51,7 @@ hostname: {
   services.hardware.bolt.enable = true;
 
   services.autorandr.enable = true;
+  services.picom.enable = true;
   services.xserver = {
     enable = true;
     dpi = 192;
