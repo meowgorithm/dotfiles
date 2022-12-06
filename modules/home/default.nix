@@ -16,6 +16,7 @@
       then [
         {
           home.packages = with pkgs; [
+            brave
             dunst
             feh
             firefox
