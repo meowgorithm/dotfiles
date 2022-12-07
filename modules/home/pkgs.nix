@@ -22,6 +22,7 @@
     gnupg
     gopass
     htop
+    imagemagick
     jq
     kak-lsp
     kakoune
