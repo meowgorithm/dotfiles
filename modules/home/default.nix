@@ -28,7 +28,7 @@
         }
         ./alacritty.nix
         ./discord.nix
-        ./picom
+        ./picom.nix
         ./rofi
         ./x11
         ./xmonad
