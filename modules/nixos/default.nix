@@ -5,6 +5,7 @@ hostname: {
 }: {
   imports = [
     ./hardware-config-${hostname}.nix
+    ./cachix.nix
   ];
 
   boot = {
