@@ -20,6 +20,7 @@
             dunst
             feh
             firefox
+            gcolor2
             gthumb
             shotgun
             slop
