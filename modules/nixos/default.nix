@@ -47,7 +47,10 @@ hostname: {
   hardware = {
     opengl.enable = true;
     video.hidpi.enable = true;
+    bluetooth.enable = true;
   };
+
+  services.blueman.enable = true;
 
   services.hardware.bolt.enable = true;
 
@@ -127,8 +130,9 @@ hostname: {
     isNormalUser = true;
     extraGroups = ["wheel" "docker"];
     packages = with pkgs; [
-      slack
       discord
+      slack
+      spotify
     ];
   };
 
