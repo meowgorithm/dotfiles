@@ -15,11 +15,7 @@ helixPackage: {
         g.q = ":reflow";
         g.w = ":set whitespace.render all";
         g.W = ":set whitespace.render none";
-        b.o = ":buffer-close-others";
-        b.c = ":buffer-close";
         X = "extend_line_above";
-        "f" = "file_picker";
-        ";" = "buffer_picker";
         "minus" = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
       };
