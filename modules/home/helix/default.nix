@@ -15,6 +15,8 @@ helixPackage: {
         g.q = ":reflow";
         g.w = ":set whitespace.render all";
         g.W = ":set whitespace.render none";
+        g.F.o = ":set auto-format false";
+        g.F.O = ":set auto-format true";
         X = "extend_line_above";
         "minus" = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
@@ -24,6 +26,7 @@ helixPackage: {
         true-color = true;
         lsp.display-messages = true;
         rulers = [80];
+        auto-format = true;
       };
     };
 
@@ -72,7 +75,6 @@ helixPackage: {
           command = "css-languageserver";
           args = ["--stdio"];
         };
-        auto-format = false;
         formatter = {
           command = "prettier";
           args = ["--parser" "css" "--tab-width" "4"];
