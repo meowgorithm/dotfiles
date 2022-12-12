@@ -136,3 +136,7 @@ define-command vertical-split \
 alias global vs vertical-split
 
 hook global BufCreate .*/bash(rc|_profile|_funcs) %{ set buffer filetype sh }
+
+hook global BufSetOption filetype=scss %{
+    set-option buffer formatcmd "prettier --stdin-filepath=%val{buffile} --tab-width 4"
+}
