@@ -17,6 +17,7 @@
     duf
     exa
     ffmpeg
+    fish
     fzf
     gh
     gnupg
