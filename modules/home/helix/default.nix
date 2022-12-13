@@ -54,6 +54,7 @@ helixPackage: {
           tab-width = 2;
           unit = " ";
         };
+        auto-format = false;
         formatter = {
           command = "prettier";
           args = ["--parser" "html" "--tab-width" "2"];
