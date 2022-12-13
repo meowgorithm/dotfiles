@@ -42,7 +42,6 @@ helixPackage: {
         scope = "";
         roots = [];
         file-types = ["cabal"];
-        auto-format = true;
         formatter = {command = "cabal-fmt";};
       }
       {
@@ -55,11 +54,6 @@ helixPackage: {
           tab-width = 2;
           unit = " ";
         };
-        language-server = {
-          command = "html-languageserver";
-          args = ["--stdio"];
-        };
-        auto-format = false;
         formatter = {
           command = "prettier";
           args = ["--parser" "html" "--tab-width" "2"];
@@ -70,10 +64,6 @@ helixPackage: {
         indent = {
           tab-width = 4;
           unit = " ";
-        };
-        language-server = {
-          command = "css-languageserver";
-          args = ["--stdio"];
         };
         formatter = {
           command = "prettier";
@@ -86,18 +76,17 @@ helixPackage: {
           tab-width = 4;
           unit = " ";
         };
+        auto-format = true;
         formatter = {
           command = "prettier";
           args = ["--parser" "typescript" "--tab-width" "4"];
         };
-        auto-format = true;
       }
       {
         name = "svg";
         scope = "";
         roots = [];
         file-types = ["svg"];
-        auto-format = true;
         formatter = {
           command = "svgo";
           args = ["--pretty" "-"];

@@ -66,7 +66,7 @@
 
   lsp = with pkgs;
   with pkgs.elmPackages;
-  with pkgs.nodePackages; [
+  with pkgs.nodePackages_latest; [
     alejandra
     bash-language-server
     elm-language-server
@@ -75,8 +75,7 @@
     svgo
     typescript
     typescript-language-server
-    vscode-css-languageserver-bin
-    vscode-html-languageserver-bin
+    vscode-langservers-extracted
     yaml-language-server
   ];
 
