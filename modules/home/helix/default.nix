@@ -67,7 +67,7 @@ helixPackage: {
         };
         formatter = {
           command = "prettier";
-          args = ["--parser" "css" "--tab-width" "4"];
+          args = ["--parser" "css" "--tab-width" "2"];
         };
       }
       {
