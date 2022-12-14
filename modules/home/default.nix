@@ -62,6 +62,7 @@ in
         (import ./helix helixPackage)
         ./bash
         ./floskell
+        ./fonts.nix
         ./git.nix
         ./gpg.nix
         ./kakoune
