@@ -86,31 +86,23 @@ in {
           color14 = colors.bright.cyan;
           color7 = colors.normal.white;
           color15 = colors.bright.white;
+
+          font_family = "JetBrains Mono";
+          italic_family = "JetBrains Mono Italic";
+          bold_font = "JetBrains Mono Bold";
+          bold_italic_font = "JetBrains Mono Bold Italic";
+
+          adjust_line_height = "105%";
         }
         // (
           if isDarwin
           then {
-            font_family = "SF Mono Medium";
-            italic_font = "SF Mono Medium Italic";
-            bold_font = "SF Mono Heavy";
-            bold_italic_font = "SF Mono Heavy Italic";
-
-            font_size = "12.0";
-            adjust_line_height = "120%";
-
+            font_size = "12.5";
             mouse_hide_wait = "3.0";
-
             kitty_mod = "cmd";
           }
           else {
-            font_family = "JetBrains Mono";
-            italic_family = "JetBrains Mono Italic";
-            bold_font = "JetBrains Mono Bold";
-            bold_italic_font = "JetBrains Mono Bold Italic";
-
             font_size = "9.0";
-            adjust_line_height = "105%";
-
             background_opacity = "0.97";
             dynamic_background_opacity = "yes";
           }
