@@ -42,6 +42,7 @@
     viu
     wget
     yq
+    yubikey-manager
     z-lua
     zopfli
   ];
