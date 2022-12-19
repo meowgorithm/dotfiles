@@ -8,24 +8,6 @@ hostname: {
     ./cachix.nix
   ];
 
-  boot = {
-    isContainer = false;
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
-
-  networking.hostName = hostname;
-  networking.firewall.enable = false;
-
-  time.timeZone = "America/New_York";
-  time.hardwareClockInLocalTime = true;
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true;
-  };
-
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     trusted-users = ["root" "christian"];
@@ -36,6 +18,41 @@ hostname: {
     cudaSupport = true;
   };
 
+  boot = {
+    isContainer = false;
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+
+  hardware = {
+    opengl.enable = true;
+    video.hidpi.enable = true;
+  };
+
+  networking = {
+    hostName = hostname;
+    firewall.enable = false;
+  };
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  hardware.pulseaudio.enable = true;
+  sound.enable = true;
+
+  services.hardware.bolt.enable = true;
+
+  time = {
+    timeZone = "America/New_York";
+    hardwareClockInLocalTime = true;
+  };
+
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    useXkbConfig = true;
+  };
+
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
@@ -43,16 +60,6 @@ hostname: {
     QT_FONT_DPI = "192";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
-
-  hardware = {
-    opengl.enable = true;
-    video.hidpi.enable = true;
-    bluetooth.enable = true;
-  };
-
-  services.blueman.enable = true;
-
-  services.hardware.bolt.enable = true;
 
   services.autorandr.enable = true;
   services.xserver = {
@@ -89,12 +96,7 @@ hostname: {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
   virtualisation.docker.enable = true;
-
-  security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
     blender
@@ -126,6 +128,7 @@ hostname: {
     ubuntu_font_family
   ];
 
+  security.sudo.wheelNeedsPassword = false;
   users.users.christian = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker"];
@@ -158,6 +161,12 @@ hostname: {
       addresses = true;
       workstation = true;
     };
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   system.stateVersion = "22.05";
