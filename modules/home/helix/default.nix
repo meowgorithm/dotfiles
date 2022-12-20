@@ -17,6 +17,8 @@ helixPackage: {
         g.W = ":set whitespace.render none";
         g.F.o = ":set auto-format false";
         g.F.O = ":set auto-format true";
+        g.R = ":reload-all";
+        g.C = ":buffer-close-others";
         X = "extend_line_above";
         "minus" = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
