@@ -21,6 +21,7 @@
     fzf
     gh
     gnupg
+    gnutar
     gopass
     htop
     imagemagick
