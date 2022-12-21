@@ -14,6 +14,7 @@
     gabriello
     larsseit
     monoflow
+    pique
     rifton
     rois
     sf-mono
