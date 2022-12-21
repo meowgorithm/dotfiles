@@ -10,6 +10,10 @@
     then pkgs.helix
     else helix.packages.${system}.default;
 
+  overlays = [
+    (import ./fonts/external.nix)
+  ];
+
   extraModules =
     (
       if pkgs.stdenv.isLinux && hostname != "headless"
@@ -45,7 +49,7 @@
     );
 in
   home-manager.lib.homeManagerConfiguration {
-    inherit pkgs;
+    pkgs = pkgs // {inherit overlays;};
     modules =
       [
         rec {
@@ -62,7 +66,7 @@ in
         (import ./helix helixPackage)
         ./bash
         ./floskell
-        ./fonts.nix
+        ./fonts
         ./git.nix
         ./gpg.nix
         ./kakoune
