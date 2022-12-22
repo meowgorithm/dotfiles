@@ -1,5 +1,53 @@
 {
   "nodes": {
+    "anchor": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671584763,
+        "narHash": "sha256-YIGRBzEJrNKHPZMLW02AVWqFQ6k6NCzT+76sFZE5xBI=",
+        "ref": "refs/heads/master",
+        "rev": "930d232fcdaa570622e57e6d619f8cafc87a42a5",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/anchor"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/anchor"
+      }
+    },
+    "arno-pro": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671590668,
+        "narHash": "sha256-NqjnpVogfLPQA9CNS45HraL+Ekhy44GKDZ7RTM8t4A4=",
+        "ref": "refs/heads/master",
+        "rev": "76e7c3acd621b36fcf62490ff33071b90a7c138f",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/arno-pro"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/arno-pro"
+      }
+    },
+    "benjamins-gothic": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671589173,
+        "narHash": "sha256-YM23PVqhIPMcVWVCHA3qf1BmPHVojyvFhcGXwnT+woc=",
+        "ref": "refs/heads/master",
+        "rev": "6b5af96f1a58061d0621830aaa828b8b98a75865",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/benjamins-gothic"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/benjamins-gothic"
+      }
+    },
     "crane": {
       "flake": false,
       "locked": {
@@ -107,6 +155,22 @@
         "type": "github"
       }
     },
+    "gabriello": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671588801,
+        "narHash": "sha256-x/yiD4vAtESUwdDuPt5HueysP/6mSX2gs9nWLlRlESs=",
+        "ref": "refs/heads/master",
+        "rev": "72e5c2bc8eeada449833ae86a69892d20ddfe3da",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/gabriello"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/gabriello"
+      }
+    },
     "helix": {
       "inputs": {
         "nci": "nci",
@@ -147,6 +211,38 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
+      }
+    },
+    "larsseit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671588600,
+        "narHash": "sha256-IR6RYwu3JIEzUQrlDoyNt+B2mwxGGnVpMIFBKIlCSQs=",
+        "ref": "refs/heads/master",
+        "rev": "26f75356e8aa42c335eb3ea63c9ea08b33552993",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/larsseit"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/larsseit"
+      }
+    },
+    "monoflow": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671590921,
+        "narHash": "sha256-xzQ0OaJZXyzm+GBRSAaiU1Not3uuSiw6aL9aXScU6oI=",
+        "ref": "refs/heads/master",
+        "rev": "9d6135427c301d49141f4035b2dd4f1c01ef09e2",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/monoflow"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/monoflow"
       }
     },
     "nci": {
@@ -222,12 +318,73 @@
         "type": "github"
       }
     },
+    "pique": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671633129,
+        "narHash": "sha256-OlgsrHbdEF74tIvW3oNxcsPgaE/fXCdH92/rQB0OFs0=",
+        "ref": "refs/heads/master",
+        "rev": "f3d94d262479804f55ab5d1ed4c904d367e52984",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/pique"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/pique"
+      }
+    },
+    "rifton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671588484,
+        "narHash": "sha256-7UbsRobmO3ABShZz8Erg/JaJsoT3fKKIOd1HI/MlQ7w=",
+        "ref": "refs/heads/master",
+        "rev": "8a1f1dcd6b065037a9496659bd93f16f46c734e4",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/rifton"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/rifton"
+      }
+    },
+    "rois": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671590393,
+        "narHash": "sha256-JYMu1oMEB0ImaG8zHpcFJjF7K8xqFl3fk1HTz+5A0PU=",
+        "ref": "refs/heads/master",
+        "rev": "ec4dff9e1f172f152b4114a7268e450203bbd631",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/rois"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/rois"
+      }
+    },
     "root": {
       "inputs": {
+        "anchor": "anchor",
+        "arno-pro": "arno-pro",
+        "benjamins-gothic": "benjamins-gothic",
+        "gabriello": "gabriello",
         "helix": "helix",
         "home-manager": "home-manager",
+        "larsseit": "larsseit",
+        "monoflow": "monoflow",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "pique": "pique",
+        "rifton": "rifton",
+        "rois": "rois",
+        "sf-mono": "sf-mono",
+        "symbolset": "symbolset",
+        "untitled-sans": "untitled-sans",
+        "upton": "upton"
       }
     },
     "rust-overlay": {
@@ -250,6 +407,70 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "sf-mono": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671585411,
+        "narHash": "sha256-NmrZ7I9d5MGQFIqjDENBZl2EEViQqgOcbs1e3FRMCik=",
+        "ref": "refs/heads/master",
+        "rev": "a339697b71c771aff4aa4e130b41628002781536",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/sf-mono"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/sf-mono"
+      }
+    },
+    "symbolset": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671589821,
+        "narHash": "sha256-CO0uid1HV0laNpCFmYBGeFFpdOK74uF8uBjxfwn2B1Y=",
+        "ref": "refs/heads/master",
+        "rev": "8ea7db33949d3f6258b3d4379f57c821b74273ad",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/symbolset"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/symbolset"
+      }
+    },
+    "untitled-sans": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671591302,
+        "narHash": "sha256-T8gcpRoLbhSRzNGQX0Q1yi5OESEvsc+nYqsunNRsXUA=",
+        "ref": "refs/heads/master",
+        "rev": "581a33677a16c100c4077d34b3e9d5b91d2f6ef1",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/untitled-sans"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/untitled-sans"
+      }
+    },
+    "upton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671588093,
+        "narHash": "sha256-JshYtNhDH+0w6D0aMLIanmsy7Rx/G0K37Uzvv3AJcPg=",
+        "ref": "refs/heads/master",
+        "rev": "f619cc4e209f2fc691f9429d923463602c00470a",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/upton"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/upton"
       }
     },
     "utils": {

@@ -7,14 +7,68 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     helix.url = "github:helix-editor/helix/master";
+
+    # Fonts
+    anchor = {
+      url = "git+ssh://git.rocha.is/anchor";
+      flake = false;
+    };
+    arno-pro = {
+      url = "git+ssh://git.rocha.is/arno-pro";
+      flake = false;
+    };
+    benjamins-gothic = {
+      url = "git+ssh://git.rocha.is/benjamins-gothic";
+      flake = false;
+    };
+    gabriello = {
+      url = "git+ssh://git.rocha.is/gabriello";
+      flake = false;
+    };
+    larsseit = {
+      url = "git+ssh://git.rocha.is/larsseit";
+      flake = false;
+    };
+    monoflow = {
+      url = "git+ssh://git.rocha.is/monoflow";
+      flake = false;
+    };
+    pique = {
+      url = "git+ssh://git.rocha.is/pique";
+      flake = false;
+    };
+    rifton = {
+      url = "git+ssh://git.rocha.is/rifton";
+      flake = false;
+    };
+    rois = {
+      url = "git+ssh://git.rocha.is/rois";
+      flake = false;
+    };
+    sf-mono = {
+      url = "git+ssh://git.rocha.is/sf-mono";
+      flake = false;
+    };
+    symbolset = {
+      url = "git+ssh://git.rocha.is/symbolset";
+      flake = false;
+    };
+    untitled-sans = {
+      url = "git+ssh://git.rocha.is/untitled-sans";
+      flake = false;
+    };
+    upton = {
+      url = "git+ssh://git.rocha.is/upton";
+      flake = false;
+    };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    helix,
+    ...
   }: let
     lib = nixpkgs.lib;
     x86_64-linux = "x86_64-linux";
@@ -49,7 +103,7 @@
             inherit system;
             inherit home-manager;
             inherit hostname;
-            inherit helix;
+            inherit inputs;
           });
       }
       // (

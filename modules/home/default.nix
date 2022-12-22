@@ -3,15 +3,49 @@
   pkgs,
   system ? "x86_64-linux",
   hostname,
-  helix,
+  inputs,
 }: let
+  lib = pkgs.lib;
+
   helixPackage =
     if hostname == ""
     then pkgs.helix
-    else helix.packages.${system}.default;
+    else inputs.helix.packages.${system}.default;
+
+  mkFont = vals: let
+    name = lib.elemAt vals 0;
+    pkg = lib.elemAt vals 1;
+  in {
+    "${name}" = pkgs.stdenv.mkDerivation {
+      inherit name;
+      src = pkg;
+      installPhase = ''
+        mkdir -p $out/share/fonts/otf
+        cp $src/* $out/share/fonts/otf
+      '';
+    };
+  };
 
   overlays = [
-    (import ./fonts/external.nix)
+    (
+      self: super:
+        lib.foldr lib.recursiveUpdate {}
+        (map mkFont (with inputs; [
+          ["anchor" anchor]
+          ["arno-pro" arno-pro]
+          ["benjamins-gothic" benjamins-gothic]
+          ["gabriello" gabriello]
+          ["larsseit" larsseit]
+          ["monoflow" monoflow]
+          ["pique" pique]
+          ["rifton" rifton]
+          ["rois" rois]
+          ["sf-mono" sf-mono]
+          ["symbolset" symbolset]
+          ["untitled-sans" untitled-sans]
+          ["upton" upton]
+        ]))
+    )
   ];
 
   extraModules =
@@ -66,7 +100,7 @@ in
         (import ./helix helixPackage)
         ./bash
         ./floskell
-        ./fonts
+        ./fonts.nix
         ./git.nix
         ./gpg.nix
         ./kakoune
