@@ -17,7 +17,9 @@
     }
     // (
       if pkgs.stdenv.isDarwin
-      then {}
+      then {
+        ".bin/make-aliases".source = ./make-aliases;
+      }
       else {
         ".bin/map-keys".source = ./map-keys;
         ".bin/setup-mouse".source = ./setup-mouse;

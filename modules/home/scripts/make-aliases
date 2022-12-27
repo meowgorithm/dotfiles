@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# This should really happen in Nix somewhere, but here we are.
+
+appFolder="$HOME/Applications/Home Manager Apps";
+
+for app in "$appFolder"/*; do
+	appPath="$(readlink "$app")"
+	appName="$(basename "$appPath")"
+	rm -f "/Applications/$appName"
+	osascript -e "$(printf 'tell app "%s"' 'Finder')" \
+		-e "$(printf 'make new alias file at POSIX file "%s" to POSIX file "%s"' "/Applications" "$appPath")" \
+	  -e "$(printf 'set name of result to "%s"' "$appName")" \
+	  -e "end tell"
+done
