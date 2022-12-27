@@ -32,6 +32,7 @@
     luajit
     moreutils
     nodejs-16_x
+    optipng
     python3
     ripgrep
     shellcheck
