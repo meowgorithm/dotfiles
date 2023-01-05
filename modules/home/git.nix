@@ -41,6 +41,7 @@ pkgs: {
       core = {
         editor = "hx";
       };
+      url."git@github.com:charmbracelet".insteadOf = "https://github.com/charmbracelet";
     };
   };
 }
