@@ -22,6 +22,12 @@ helixPackage: {
         X = "extend_line_above";
         "minus" = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
+
+        # Colemak
+        "A-H" = "move_char_left";
+        "A-N" = "move_line_down";
+        "A-E" = "move_line_up";
+        "A-I" = "move_char_right";
       };
       editor = {
         cursorline = true;

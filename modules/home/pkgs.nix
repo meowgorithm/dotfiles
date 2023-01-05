@@ -72,6 +72,7 @@
   with pkgs.nodePackages_latest; [
     alejandra
     bash-language-server
+    elm
     elm-language-server
     nil
     prettier
