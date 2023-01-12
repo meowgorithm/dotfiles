@@ -37,6 +37,7 @@
     ripgrep
     shellcheck
     shfmt
+    simple-http-server
     tmux
     tree
     ttyd
