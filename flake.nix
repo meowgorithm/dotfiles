@@ -49,6 +49,10 @@
       url = "git+ssh://git.rocha.is/sf-mono";
       flake = false;
     };
+    space-grotesk = {
+      url = "git+ssh://git.rocha.is/space-grotesk";
+      flake = false;
+    };
     symbolset = {
       url = "git+ssh://git.rocha.is/symbolset";
       flake = false;

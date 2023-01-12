@@ -423,6 +423,7 @@
         "rifton": "rifton",
         "rois": "rois",
         "sf-mono": "sf-mono",
+        "space-grotesk": "space-grotesk",
         "symbolset": "symbolset",
         "untitled-sans": "untitled-sans",
         "upton": "upton"
@@ -464,6 +465,22 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/sf-mono"
+      }
+    },
+    "space-grotesk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673546432,
+        "narHash": "sha256-TovDaVEhX9chdJOVh2XdXv9tCRZYtFce9SPM0GR8GUM=",
+        "ref": "refs/heads/master",
+        "rev": "cd8b64e3bde909459cdf472290a0e328f907e7d0",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/space-grotesk"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/space-grotesk"
       }
     },
     "symbolset": {
