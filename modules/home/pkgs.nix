@@ -59,14 +59,21 @@
     gotools
   ];
 
-  haskell = with pkgs.haskellPackages; [
-    cabal-fmt
-    cabal-install
-    floskell
-    fourmolu
-    haskell-language-server
-    pkgs.haskell.compiler.ghc943
-  ];
+  haskell = with pkgs.haskellPackages;
+    [
+      cabal-fmt
+      cabal-install
+      floskell
+      fourmolu
+      pkgs.haskell.compiler.ghc943
+    ]
+    ++ (
+      if pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64
+      then []
+      else [
+        haskell-language-server
+      ]
+    );
 
   lsp = with pkgs;
   with pkgs.elmPackages;
