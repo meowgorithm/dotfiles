@@ -64,6 +64,7 @@
             shotgun
             slop
             xfce.thunar
+            inputs.xmeowbar.packages.${system}.xmeowbar
           ];
         }
         ./alacritty.nix
