@@ -5,6 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    inter
     jetbrains-mono
 
     # External
