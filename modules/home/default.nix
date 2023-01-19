@@ -41,7 +41,6 @@
           ["rifton" rifton]
           ["rois" rois]
           ["sf-mono" sf-mono]
-          ["space-grotesk" space-grotesk]
           ["symbolset" symbolset]
           ["untitled-sans" untitled-sans]
           ["upton" upton]

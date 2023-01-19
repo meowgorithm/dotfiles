@@ -18,7 +18,6 @@
     rifton
     rois
     sf-mono
-    space-grotesk
     symbolset
     upton
     untitled-sans
