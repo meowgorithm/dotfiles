@@ -28,6 +28,9 @@
 
   overlays = [
     (
+      self: super: {kitty = inputs.nixpkgs.legacyPackages.${system}.kitty;}
+    )
+    (
       self: super:
         lib.foldr lib.recursiveUpdate {}
         (map mkFont (with inputs; [
