@@ -20,8 +20,11 @@ helixPackage: {
         g.R = ":reload-all";
         g.C = ":buffer-close-others";
         X = "extend_line_above";
-        "minus" = "goto_prev_paragraph";
+        minus = "goto_prev_paragraph";
         "=" = "goto_next_paragraph";
+        D = ["select_mode" "goto_line_end" "delete_selection" "normal_mode"];
+        space.w = ":write";
+        space.q = ":quit";
 
         # Colemak
         "A-H" = "move_char_left";
