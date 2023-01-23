@@ -66,7 +66,6 @@ hostname: {
     enable = true;
     dpi = 192;
     layout = "us";
-    xkbVariant = "colemak";
     xkbOptions = "eurosign:e, compose:menu, caps:escape";
     xrandrHeads = [{output = "DP-0";} {output = "DP-2";}];
     videoDrivers = ["nvidia"];
