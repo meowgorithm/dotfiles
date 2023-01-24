@@ -6,7 +6,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    xmeowbar.url = "github:meowgorithm/xmeowbar";
     helix.url = "github:helix-editor/helix/master";
 
     # Fonts

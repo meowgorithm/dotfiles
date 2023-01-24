@@ -9,4 +9,9 @@
     enableContribAndExtras = true;
     config = ./xmonad.hs;
   };
+
+  programs.xmobar = {
+    enable = true;
+    extraConfig = builtins.readFile ./xmobar.hs;
+  };
 }
