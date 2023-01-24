@@ -65,6 +65,7 @@
             gthumb
             shotgun
             slop
+            tdesktop
             xfce.thunar
           ];
         }
