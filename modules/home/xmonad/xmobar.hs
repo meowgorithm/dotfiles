@@ -1,5 +1,5 @@
 Config
-    { font     = "xft:Noto Sans:size=12:Medium"
+    { font     = "JetBrains Mono Medium 9"
     , bgColor  = "#262626"
     , alpha    = 216
     , fgColor  = "#777777"
