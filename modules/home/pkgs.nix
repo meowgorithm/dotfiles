@@ -33,6 +33,7 @@
     moreutils
     nodejs-16_x
     optipng
+    passage
     python3
     ripgrep
     shellcheck

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+STORE=$1
+
+if [ -z "$STORE" ]; then
+	echo "Usage: $0 <store> [command|arguments]"
+	exit 1
+fi
+
+CMD="${@:2}"
+PREFIX="${PASSAGE_DIR:-$HOME/.passage/$STORE}"
+PASSAGE_DIR=$PREFIX passage "${CMD:-show}" "$name"

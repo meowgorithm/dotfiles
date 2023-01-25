@@ -6,6 +6,7 @@
 }: {
   home.file =
     {
+      ".bin/guard".source = ./guard;
       ".bin/install-docker".source = ./install-docker;
       ".bin/make-vid".source = ./make-vid;
       ".bin/sessions".source = ./sessions;
