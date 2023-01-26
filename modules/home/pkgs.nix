@@ -19,6 +19,7 @@
     ffmpeg
     fish
     fzf
+    getopt
     gh
     gnupg
     gnutar
