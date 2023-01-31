@@ -103,7 +103,10 @@
           pkgs = nixpkgs-unstable.legacyPackages."${system}";
         in (import ./modules/home
           {
-            inherit pkgs;
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
             inherit system;
             inherit home-manager;
             inherit hostname;
