@@ -66,6 +66,7 @@
             shotgun
             slop
             tdesktop
+            vlc
             xfce.thunar
           ];
         }
