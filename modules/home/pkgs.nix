@@ -46,6 +46,7 @@
     ttyd
     vim
     viu
+    vscode
     wget
     yq
     yubikey-manager
