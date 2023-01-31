@@ -32,6 +32,7 @@
     libwebp
     luajit
     moreutils
+    nim
     nodejs-16_x
     optipng
     passage
@@ -85,6 +86,7 @@
     elm
     elm-language-server
     nil
+    nimlsp
     prettier
     svgo
     typescript
