@@ -32,6 +32,7 @@
     libwebp
     luajit
     moreutils
+    ngrok
     nim
     nodejs-16_x
     optipng
