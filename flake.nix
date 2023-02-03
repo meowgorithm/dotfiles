@@ -99,9 +99,8 @@
           ];
         };
 
-        homeManagerConfigurations."christian@${hostname}" = let
-          pkgs = nixpkgs-unstable.legacyPackages."${system}";
-        in (import ./modules/home
+        homeManagerConfigurations."christian@${hostname}" =
+          import ./modules/home
           {
             pkgs = import nixpkgs-unstable {
               inherit system;
@@ -111,7 +110,7 @@
             inherit home-manager;
             inherit hostname;
             inherit inputs;
-          });
+          };
       }
       // (
         let
