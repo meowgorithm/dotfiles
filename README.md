@@ -22,6 +22,14 @@ nix run .#christian@headless
 
 ## OS Management
 
+Update the system locally:
+
 ```bash
-sudo nixos-rebuild switch --flake .
+nixos-rebuild switch --flake .
+````
+
+Or just do it over the network:
+
+```bash
+nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
 ```
