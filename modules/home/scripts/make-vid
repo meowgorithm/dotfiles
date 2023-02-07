@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$HOME/.local/share/meowgorithm/bash_funcs"
+
 if [[ $(command_exists ffmpeg) == 0 ]]; then
     printf "Can't find ffmpeg. Please install it (or check your path).\n"
     exit 1
@@ -32,7 +34,7 @@ function makeGIF {
     fi
 
     ffmpeg \
-        -framerate $framerate \
+        -framerate "$framerate" \
         -i $pngSeq \
         -vf "fps=$framerate,scale=$width:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=${maxColors}[p];[s1][p]paletteuse" \
         "$basename".gif
