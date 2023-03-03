@@ -22,6 +22,7 @@
     getopt
     gh
     gnupg
+    gnused
     gnutar
     gopass
     htop
