@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p $"HOME/src"
-cd "$HOME/src"
-
-cargo install -j 32 shotgun

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd "$HOME/src/void-packages"
-
-./xbps-src pkg discord
-sudo xbps-install --repository hostdir/binpkgs/nonfree discord

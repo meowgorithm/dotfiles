@@ -1,7 +1,0 @@
-#!/bin/bash
-
-git clone https://github.com/rupa/z.git
-sudo mv ./z/z.sh /usr/local/bin/
-sudo mkdir -p /usr/local/man/man1
-sudo mv ./z/z.1 /usr/local/man/man1/
-rm -rf z

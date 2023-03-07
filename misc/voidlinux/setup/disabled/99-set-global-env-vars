@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo sh -c 'printf "OS=linux\nDIST=void\n" >> /etc/environment'

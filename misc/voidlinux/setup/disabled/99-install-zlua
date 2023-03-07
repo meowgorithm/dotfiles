@@ -1,5 +1,0 @@
-#!/bin/bash
-
-git clone git@github.com:skywind3000/z.lua.git
-sudo mv z.lua/z.lua /usr/local/bin
-rm -rf z.lua
