@@ -58,7 +58,7 @@
 
   go = with pkgs; [
     delve
-    go_1_19
+    go_1_20
     golangci-lint
     gopls
     goreleaser
