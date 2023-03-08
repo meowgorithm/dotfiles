@@ -28,7 +28,12 @@
 
   overlays = [
     (
-      self: super: {kitty = inputs.nixpkgs.legacyPackages.${system}.kitty;}
+      self: super: let
+        stablePkgs = inputs.nixpkgs.legacyPackages.${system}.kitty;
+      in {
+        kitty = stablePkgs.kitty;
+        gnupg = stablePkgs.gnupg;
+      }
     )
     (
       self: super:
