@@ -49,7 +49,7 @@ main =
 
 myPP :: XMonad.Hooks.DynamicLog.PP
 myPP =
-    xmobarPP { ppCurrent = xmobarColor "#8888ff" ""
+    xmobarPP { ppCurrent = xmobarColor "#5858EE" ""
              , ppHidden  = xmobarColor "#484848" ""
              , ppTitle   = xmobarColor "#808080" ""
              , ppOrder   = \(ws:l:t:_) -> [ ws, l, t ]
@@ -67,7 +67,7 @@ myConfig =
         , modMask = mod4Mask
         , workspaces = myWorkspaces
         , normalBorderColor = "#262626"
-        , focusedBorderColor = "#44447f"
+        , focusedBorderColor = "#5B5BC6"
         , borderWidth = 3
         , layoutHook = spacing myLayoutHook
         , manageHook = myManageHook
@@ -88,7 +88,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList
     -- Floating Kitty (super + ctrl + enter)
     [ ((mod4Mask .|. controlMask, xK_Return), spawn "kitty --single-instance --class=floating")
 
-    -- Rofi (super + space)
+    -- Rofi (super + shift + space)
     , ((mod4Mask .|. shiftMask, xK_space), spawn "rofi -show run")
 
     -- Screenshots (super + shift + s)
@@ -152,7 +152,6 @@ myManageHook =
         , className =? "Gcolor2" --> doSideFloat C
         , className =? "floating" --> doRectFloat (RationalRect (2/6) (2/6) (2/6) (2/6))
         ]
-
 
 
 myLayoutHook :: ModifiedLayout SmartBorder (Choose Tall MultiCol) a

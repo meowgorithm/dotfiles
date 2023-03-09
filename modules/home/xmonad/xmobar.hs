@@ -7,13 +7,13 @@ Config
     , commands = [ Run Date "星期%u %Y年%m月%d日 %H:%M" "date" 600
                  , Run Wireless "wlp76s0" [ "-x", "", "-t", "<essid>" ] 100
                  , Run StdinReader
-                 , Run Network "enp78s0" [ "-S", "True", "-t", "Eth: <fc=#4eb4fa>↓<rx></fc> <fc=#4eb4fa>↑<tx></fc>" ] 10
-                 , Run DiskU [ ("/", "Disk: <used>/<size>"), ("/boot", "(Boot: <used>/<size>)") ] [] 60
-                 , Run Cpu [ "-t", "CPU: <fc=#4eb4fa><bar> <total>%</fc>" ] 10
+                 , Run Network "enp78s0" [ "-S", "True", "-t", "Eth: <fc=#5858d5>↓<rx></fc> <fc=#5858d5>↑<tx></fc>" ] 10
+                 , Run DiskU [ ("/", "/: <fc=#5858d5><used>/<size></fc>"), ("/boot", "/boot: <fc=#5858d5><used>/<size></fc>") ] [] 60
+                 , Run Cpu [ "-t", "CPU: <fc=#5858d5><bar> <total>%</fc>" ] 10
                  , Run Uptime ["-t", "Up: <days>d <hours>h <minutes>m"] 36000
-                 , Run Memory [ "-t", "Mem: <fc=#4eb4fa><usedbar> <usedratio>%</fc>" ] 10
+                 , Run Memory [ "-t", "Mem: <fc=#5858d5><usedbar> <usedratio>%</fc>" ] 10
                  ]
     , sepChar  = "%"
     , alignSep = "}{"
-    , template = " %StdinReader% } <fc=#505050>%date%</fc> { %enp78s0%   %disku%   %cpu%   %memory%   %uptime% "
+    , template = " %StdinReader% } <fc=#777777>%date%</fc> { %enp78s0%   %disku%   %cpu%   %memory%   %uptime% "
 }
