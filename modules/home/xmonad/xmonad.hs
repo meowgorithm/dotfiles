@@ -88,8 +88,8 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList
     -- Floating Kitty (super + ctrl + enter)
     [ ((mod4Mask .|. controlMask, xK_Return), spawn "kitty --single-instance --class=floating")
 
-    -- Rofi (super + p)
-    , ((mod4Mask, xK_p), spawn "rofi -show run")
+    -- Rofi (super + space)
+    , ((mod4Mask .|. shiftMask, xK_space), spawn "rofi -show run")
 
     -- Screenshots (super + shift + s)
     , ( (mod4Mask .|. shiftMask, xK_s)
