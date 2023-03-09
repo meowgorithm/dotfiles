@@ -69,6 +69,7 @@
             feh
             firefox
             gcolor2
+            google-chrome
             gthumb
             shotgun
             slop
