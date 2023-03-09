@@ -1,7 +1,7 @@
 Config
     { font     = "JetBrains Mono Medium 9"
     , bgColor  = "#262626"
-    , alpha    = 0
+    , alpha    = 255
     , fgColor  = "#777777"
     , position = TopSize C 100 42
     , commands = [ Run Date "星期%u %Y年%m月%d日 %H:%M" "date" 600
