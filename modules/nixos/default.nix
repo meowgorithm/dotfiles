@@ -40,6 +40,8 @@ hostname: {
   hardware.pulseaudio.enable = true;
   sound.enable = true;
 
+  hardware.keyboard.zsa.enable = true;
+
   services.hardware.bolt.enable = true;
 
   time = {
