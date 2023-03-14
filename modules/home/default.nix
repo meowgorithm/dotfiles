@@ -75,7 +75,9 @@
             slop
             tdesktop
             vlc
+            xclip
             xfce.thunar
+            xsel
           ];
         }
         ./alacritty.nix
