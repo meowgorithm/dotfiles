@@ -49,11 +49,16 @@ helixPackage: {
         language-server = {command = "nil";};
       }
       {
+        name = "haskell";
+        auto-format = true;
+      }
+      {
         name = "cabal";
         scope = "";
         roots = [];
         file-types = ["cabal"];
         formatter = {command = "cabal-fmt";};
+        auto-format = true;
       }
       {
         name = "go";
