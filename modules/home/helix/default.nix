@@ -25,12 +25,6 @@ helixPackage: {
         D = ["select_mode" "goto_line_end" "delete_selection" "normal_mode"];
         space.w = ":write";
         space.q = ":quit";
-
-        # Colemak
-        "A-H" = "move_char_left";
-        "A-N" = "move_line_down";
-        "A-E" = "move_line_up";
-        "A-I" = "move_char_right";
       };
       editor = {
         cursorline = true;
