@@ -33,9 +33,22 @@ in {
   };
   "ui.statusline" = {
     fg = normal.white;
+    bg = "#202020";
   };
   "ui.statusline.inactive" = {
-    fg = normal.black;
+    fg = "#363636";
+    bg = "#1B1B1B";
+  };
+  "ui.statusline.normal" = {
+    modifiers = ["bold"];
+  };
+  "ui.statusline.insert" = {
+    bg = "#088a61";
+    modifiers = ["bold"];
+  };
+  "ui.statusline.select" = {
+    bg = "#641fed";
+    modifiers = ["bold"];
   };
   "ui.help" = {
     fg = normal.white;

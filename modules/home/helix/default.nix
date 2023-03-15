@@ -38,6 +38,7 @@ helixPackage: {
         lsp.display-messages = true;
         rulers = [80];
         auto-format = true;
+        color-modes = true;
       };
     };
 
