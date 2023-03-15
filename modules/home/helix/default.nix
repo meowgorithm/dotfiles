@@ -33,6 +33,14 @@ helixPackage: {
         rulers = [80];
         auto-format = true;
         color-modes = true;
+        statusline = {
+          mode.normal = "NORMAL";
+          mode.insert = "INSERT";
+          mode.select = "SELECT";
+          left = ["mode" "spinner" "file-name"];
+          center = [];
+          right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type"];
+        };
       };
     };
 

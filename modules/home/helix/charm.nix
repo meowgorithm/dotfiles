@@ -40,14 +40,17 @@ in {
     bg = "#1B1B1B";
   };
   "ui.statusline.normal" = {
+    bg = "#333333";
     modifiers = ["bold"];
   };
   "ui.statusline.insert" = {
-    bg = "#088a61";
+    bg = "#00C3AC";
+    fg = "#FFFDF5";
     modifiers = ["bold"];
   };
   "ui.statusline.select" = {
-    bg = "#641fed";
+    bg = "#FF86D6";
+    fg = "#FFFDF5";
     modifiers = ["bold"];
   };
   "ui.help" = {
