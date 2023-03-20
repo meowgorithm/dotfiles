@@ -143,6 +143,7 @@ alias gglg='go get github.com/charmbracelet/lipgloss@latest'
 alias lw='ssh localhost -p 23231'
 alias nb='nix build -L'
 alias nr='nix run -L'
+alias sshi='ssh -o IdentitiesOnly=yes'
 
 alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
 alias install-gum="go install -v github.com/charmbracelet/gum@latest"
