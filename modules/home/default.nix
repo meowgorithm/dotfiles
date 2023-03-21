@@ -121,7 +121,7 @@ in
         ./kakoune
         ./kitty.nix
         ./pkgs.nix
-        ./readline
+        ./readline.nix
         ./scripts
         ./tmux
       ]
