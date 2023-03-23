@@ -24,7 +24,6 @@
     gnupg
     gnused
     gnutar
-    gopass
     htop
     imagemagick
     jq
