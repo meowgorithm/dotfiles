@@ -91,6 +91,9 @@
       {
         nixosConfigurations."${hostname}" = lib.nixosSystem {
           inherit system;
+          extraSpecialArgs = {
+            inherit hostname;
+          };
           modules = [
             ({
               pkgs,
@@ -99,7 +102,7 @@
             }: {
               system.configurationRevision = lib.mkIf (self ? rev) self.rev;
             })
-            (import ./modules/nixos hostname)
+            ./modules/nixos
           ];
         };
 
@@ -110,10 +113,7 @@
               inherit system;
               config.allowUnfree = true;
             };
-            inherit system;
-            inherit home-manager;
-            inherit hostname;
-            inherit inputs;
+            inherit system home-manager hostname inputs;
           };
       }
       // (

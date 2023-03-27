@@ -1,6 +1,7 @@
-hostname: {
+{
   pkgs,
   modulesPath,
+  hostname,
   ...
 }: {
   imports = [
