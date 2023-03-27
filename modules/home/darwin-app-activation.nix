@@ -2,10 +2,12 @@
 # the summary:
 #
 # https://github.com/caarlos0/dotfiles.nix/blob/d4ae1288df5da9057941907da0e2571c790b480c/modules/darwin-app-activation.nix
-inputs: system: {
+{
   config,
   lib,
   pkgs,
+  inputs,
+  system,
   ...
 }: let
   mkalias = inputs.mkAlias.outputs.apps.${system}.default.program;

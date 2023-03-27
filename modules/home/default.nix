@@ -7,7 +7,7 @@
 }: let
   lib = pkgs.lib;
 
-  helixPackage =
+  helixMasterPkg =
     if hostname == ""
     then pkgs.helix
     else inputs.helix.packages.${system}.default;
@@ -99,6 +99,9 @@
 in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
+    extraSpecialArgs = {
+      inherit inputs system helixMasterPkg;
+    };
     modules =
       [
         rec {
@@ -112,13 +115,13 @@ in
             )
             + home.username;
         }
-        (import ./helix helixPackage)
-        (import ./darwin-app-activation.nix inputs system)
         ./bash
+        ./darwin-app-activation.nix
         ./floskell
         ./fonts.nix
         ./git.nix
         ./gpg.nix
+        ./helix
         ./kakoune
         ./kitty.nix
         ./pkgs.nix
