@@ -57,45 +57,38 @@
   ];
 
   extraModules =
-    (
-      if pkgs.stdenv.isLinux && hostname != "headless"
-      then [
-        {
-          home.packages = with pkgs; [
-            _1password
-            _1password-gui
-            brave
-            dunst
-            feh
-            firefox
-            gcolor2
-            google-chrome
-            gthumb
-            shotgun
-            slop
-            tdesktop
-            vlc
-            xclip
-            xfce.thunar
-            xsel
-          ];
-        }
-        ./alacritty.nix
-        ./discord.nix
-        ./picom.nix
-        ./rofi
-        ./x11
-        ./xmonad
-      ]
-      else []
-    )
-    ++ (
-      if pkgs.stdenv.isDarwin
-      then [
-        ./alacritty.nix
-      ]
-      else []
-    );
+    lib.optionals (pkgs.stdenv.isLinux && hostname != "headless") [
+      {
+        home.packages = with pkgs; [
+          _1password
+          _1password-gui
+          brave
+          dunst
+          feh
+          firefox
+          gcolor2
+          google-chrome
+          gthumb
+          shotgun
+          slop
+          tdesktop
+          vlc
+          xclip
+          xfce.thunar
+          xsel
+        ];
+      }
+      ./alacritty.nix
+      ./discord.nix
+      ./picom.nix
+      ./rofi
+      ./x11
+      ./xmonad
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin
+    [
+      ./alacritty.nix
+    ];
 in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};

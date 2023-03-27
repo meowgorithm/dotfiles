@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -72,13 +71,10 @@
       fourmolu
       pkgs.haskell.compiler.ghc943
     ]
-    ++ (
-      if pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64
-      then []
-      else [
-        haskell-language-server
-      ]
-    );
+    ++ lib.optionals ((pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) != true)
+    [
+      haskell-language-server
+    ];
 
   lsp = with pkgs;
   with pkgs.elmPackages;
@@ -97,11 +93,11 @@
     yaml-language-server
   ];
 
-  macos = with pkgs; [
+  maybeMacOS = lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
     cachix
-  ];
+  ]);
 in {
-  home.packages = base ++ go ++ haskell ++ lsp ++ macos;
+  home.packages = base ++ go ++ haskell ++ lsp ++ maybeMacOS;
 
   programs = {
     z-lua.enable = true;
