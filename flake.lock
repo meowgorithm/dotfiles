@@ -242,6 +242,26 @@
         "type": "github"
       }
     },
+    "mkAlias": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1678667396,
+        "narHash": "sha256-00gStGvYNlFi9d9e2KJr9qXlcJotry7YfZyv2NCAThE=",
+        "owner": "cdmistman",
+        "repo": "mkAlias",
+        "rev": "ab1afe594a3da8be30814b735cc5ad53d7c326f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cdmistman",
+        "repo": "mkAlias",
+        "type": "github"
+      }
+    },
     "monoflow": {
       "flake": false,
       "locked": {
@@ -447,6 +467,7 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
+        "mkAlias": "mkAlias",
         "monoflow": "monoflow",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",

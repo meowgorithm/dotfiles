@@ -113,6 +113,7 @@ in
             + home.username;
         }
         (import ./helix helixPackage)
+        (import ./darwin-app-activation.nix inputs system)
         ./bash
         ./floskell
         ./fonts.nix

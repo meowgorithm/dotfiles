@@ -16,15 +16,9 @@
       ".bin/webp-jpeg".source = ./webp-jpeg;
       ".bin/webp-png".source = ./webp-png;
     }
-    // (
-      if pkgs.stdenv.isDarwin
-      then {
-        ".bin/make-aliases".source = ./make-aliases;
-      }
-      else {
-        ".bin/map-keys".source = ./map-keys;
-        ".bin/setup-mouse".source = ./setup-mouse;
-        ".bin/setup-wacom".source = ./setup-wacom;
-      }
-    );
+    // lib.mkIf pkgs.stdenv.isLinux {
+      ".bin/map-keys".source = ./map-keys;
+      ".bin/setup-mouse".source = ./setup-mouse;
+      ".bin/setup-wacom".source = ./setup-wacom;
+    };
 }

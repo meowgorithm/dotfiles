@@ -7,6 +7,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     helix.url = "github:helix-editor/helix/master";
+    mkAlias = {
+      url = "github:cdmistman/mkAlias";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # Fonts
     anchor = {
