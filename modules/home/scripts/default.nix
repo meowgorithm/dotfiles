@@ -16,9 +16,13 @@
       ".bin/webp-jpeg".source = ./webp-jpeg;
       ".bin/webp-png".source = ./webp-png;
     }
-    // lib.mkIf pkgs.stdenv.isLinux {
-      ".bin/map-keys".source = ./map-keys;
-      ".bin/setup-mouse".source = ./setup-mouse;
-      ".bin/setup-wacom".source = ./setup-wacom;
-    };
+    // (
+      if pkgs.stdenv.isLinux
+      then {
+        ".bin/map-keys".source = ./map-keys;
+        ".bin/setup-mouse".source = ./setup-mouse;
+        ".bin/setup-wacom".source = ./setup-wacom;
+      }
+      else {}
+    );
 }
