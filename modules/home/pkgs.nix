@@ -36,6 +36,7 @@
     nodejs-16_x
     optipng
     passage
+    pastel
     python3
     ripgrep
     shellcheck
