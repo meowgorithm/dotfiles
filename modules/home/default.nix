@@ -31,7 +31,7 @@
       self: super: let
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
-        kitty = stablePkgs.kitty;
+        # Use the same version of gnupg as the system.
         gnupg = stablePkgs.gnupg;
       }
     )
