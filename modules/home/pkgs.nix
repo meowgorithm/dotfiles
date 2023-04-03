@@ -32,10 +32,8 @@
     luajit
     moreutils
     ngrok
-    nim
     nodejs-16_x
     optipng
-    passage
     pastel
     python3
     ripgrep
