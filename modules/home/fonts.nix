@@ -1,12 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     inter
     jetbrains-mono
+    ibm-plex
 
     # External
     anchor
