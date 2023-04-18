@@ -91,9 +91,6 @@
       {
         nixosConfigurations."${hostname}" = lib.nixosSystem {
           inherit system;
-          extraSpecialArgs = {
-            inherit hostname;
-          };
           modules = [
             ({
               pkgs,
@@ -102,7 +99,7 @@
             }: {
               system.configurationRevision = lib.mkIf (self ? rev) self.rev;
             })
-            ./modules/nixos
+            (import ./modules/nixos hostname)
           ];
         };
 
