@@ -22,6 +22,7 @@ hostname: {
     isContainer = false;
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    loader.timeout = 30;
   };
 
   hardware = {
