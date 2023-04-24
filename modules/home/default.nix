@@ -26,13 +26,28 @@
     };
   };
 
+  mkDmg = name: appName: src:
+    pkgs.stdenv.mkDerivation {
+      inherit name src;
+      buildInputs = with pkgs; [undmg];
+      sourceRoot = "${appName}.app";
+      phases = ["unpackPhase" "installPhase"];
+      unpackPhase = ''
+        undmg "${src}";
+      '';
+      installPhase = ''
+        mkdir -p "$out/Applications/${appName}.app"
+        cp -pR * "$out/Applications/${appName}.app"
+      '';
+    };
+
   overlays = [
     (
       self: super: let
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
-        # Use the same version of gnupg as the system.
-        gnupg = stablePkgs.gnupg;
+        gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
+        element = pkgs.lib.mkIf pkgs.stdenv.isDarwin (mkDmg "element" "Element" inputs.element);
       }
     )
     (

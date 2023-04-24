@@ -14,6 +14,7 @@
     curl
     direnv
     duf
+    element
     exa
     ffmpeg
     fish

@@ -170,6 +170,18 @@
         "type": "github"
       }
     },
+    "element": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-hZGm1aAaIEVnbbG1taqmLFgoIbvZgBVAdQC0BJiY54Q=",
+        "type": "file",
+        "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -527,6 +539,7 @@
         "anchor": "anchor",
         "arno-pro": "arno-pro",
         "benjamins-gothic": "benjamins-gothic",
+        "element": "element",
         "gabriello": "gabriello",
         "helix": "helix",
         "home-manager": "home-manager",

@@ -11,6 +11,10 @@
       url = "github:cdmistman/mkAlias";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    element = {
+      url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
+      flake = false;
+    };
 
     # Fonts
     anchor = {
