@@ -48,6 +48,11 @@
       in {
         gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
         element = pkgs.lib.mkIf pkgs.stdenv.isDarwin (mkDmg "element" "Element" inputs.element);
+        blender = pkgs.lib.mkIf pkgs.stdenv.isDarwin (mkDmg "blender" "Blender" (
+          if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
+          then inputs.blenderMacOSAarch64
+          else inputs.blenderMacOSx86_64
+        ));
       }
     )
     (

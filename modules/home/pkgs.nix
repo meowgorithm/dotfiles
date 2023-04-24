@@ -94,6 +94,7 @@
 
   maybeMacOS = lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
     cachix
+    blender
   ]);
 in {
   home.packages = base ++ go ++ haskell ++ lsp ++ maybeMacOS;

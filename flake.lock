@@ -48,6 +48,30 @@
         "url": "ssh://git.rocha.is/benjamins-gothic"
       }
     },
+    "blenderMacOSAarch64": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-I9hQvX40oZa55eyVmZ8Sbqm1OoyMxn7qcmi79GUz3hk=",
+        "type": "file",
+        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-arm64.dmg/"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-arm64.dmg/"
+      }
+    },
+    "blenderMacOSx86_64": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-MFcZ5Xt8387VxeyUDTniJKEMWne2rECQe8WemgALqI0=",
+        "type": "file",
+        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-x64.dmg/"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-x64.dmg/"
+      }
+    },
     "crane": {
       "flake": false,
       "locked": {
@@ -539,6 +563,8 @@
         "anchor": "anchor",
         "arno-pro": "arno-pro",
         "benjamins-gothic": "benjamins-gothic",
+        "blenderMacOSAarch64": "blenderMacOSAarch64",
+        "blenderMacOSx86_64": "blenderMacOSx86_64",
         "element": "element",
         "gabriello": "gabriello",
         "helix": "helix",
