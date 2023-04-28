@@ -51,25 +51,25 @@
     "blenderMacOSAarch64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-I9hQvX40oZa55eyVmZ8Sbqm1OoyMxn7qcmi79GUz3hk=",
+        "narHash": "sha256-G4t5vApjm9Alxma9PFqBim6+ujKKF5Lk40dqHsfwLl0=",
         "type": "file",
-        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-arm64.dmg/"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-arm64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-arm64.dmg/"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-arm64.dmg"
       }
     },
     "blenderMacOSx86_64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-MFcZ5Xt8387VxeyUDTniJKEMWne2rECQe8WemgALqI0=",
+        "narHash": "sha256-aOiWa4/mbhXxA/cKC7yEV3WH6bOwO8fK8d6X8vDW/Us=",
         "type": "file",
-        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-x64.dmg/"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-x64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://www.blender.org/download/release/Blender3.5/blender-3.5.0-macos-x64.dmg/"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-x64.dmg"
       }
     },
     "crane": {
@@ -197,7 +197,7 @@
     "element": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hZGm1aAaIEVnbbG1taqmLFgoIbvZgBVAdQC0BJiY54Q=",
+        "narHash": "sha256-cPkDyLGlSEVy31UmXi5K6Ypk7Bq9jZ14R5DNe+S43gA=",
         "type": "file",
         "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
       },
@@ -261,11 +261,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1681763764,
-        "narHash": "sha256-6/tnp9NSjvr9r0GHQcf+0I9yPONe215lLsovcYBmrdQ=",
+        "lastModified": 1682673694,
+        "narHash": "sha256-aG54oOdn124SBcpO22PFJmfi+JhonKEbiB2sSs5QlHQ=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "8839eb0af47b99511956d81a6dbb32e948d2076c",
+        "rev": "9c6c63a2be30252a6207f4aebb5e0f76f746b4c8",
         "type": "github"
       },
       "original": {
@@ -282,11 +282,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681765172,
-        "narHash": "sha256-BbI9rihPWc6hvrbu9B6EtOetRSHMp0IiwlCVFIKcmMk=",
+        "lastModified": 1682663009,
+        "narHash": "sha256-i5ZDuY5kUBDwbWFUludL2cm6PBb6oj245qTFXSpOkdo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "58b8685e47ce54b298c40aff7877ea9b875de0e6",
+        "rev": "43ba4489bd3f9f69519f5f7ebdb76d0455eccbbe",
         "type": "github"
       },
       "original": {
@@ -427,11 +427,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1681753173,
-        "narHash": "sha256-MrGmzZWLUqh2VstoikKLFFIELXm/lsf/G9U9zR96VD4=",
+        "lastModified": 1682566018,
+        "narHash": "sha256-HPzPRFiy2o/7k7mtnwfM1E6NVZHiFbPdmYCMoIpkHO4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0a4206a51b386e5cda731e8ac78d76ad924c7125",
+        "rev": "8e3b64db39f2aaa14b35ee5376bd6a2e707cadc2",
         "type": "github"
       },
       "original": {
@@ -456,11 +456,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1681696129,
-        "narHash": "sha256-Ba2y1lmsWmmAOAoTD5G9UnTS/UqV0ZFyzysgdfu7qag=",
+        "lastModified": 1682538316,
+        "narHash": "sha256-YuHgVsR7S9zxJWHo7lo2ugd+uDC4ESWg1hA4bEZQv3Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "de66115c552acc4e0c0f92c5a5efb32e37dfa216",
+        "rev": "15b75800dce80225b44f067c9012b09de37dfad2",
         "type": "github"
       },
       "original": {
