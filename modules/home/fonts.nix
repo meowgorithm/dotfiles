@@ -9,8 +9,10 @@
     arno-pro
     benjamins-gothic
     gabriello
+    gelion
     larsseit
     monoflow
+    neufile-grotesk
     pique
     rifton
     rois

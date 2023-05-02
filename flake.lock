@@ -253,6 +253,22 @@
         "url": "ssh://git.rocha.is/gabriello"
       }
     },
+    "gelion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682989966,
+        "narHash": "sha256-RC3emmP6XfPxbQkYiTEzRoPMnP5U5F5+lbAKs89GYuA=",
+        "ref": "refs/heads/master",
+        "rev": "1cf0f0d6004a4435629c5fb489f9690fd5691724",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/gelion"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/gelion"
+      }
+    },
     "helix": {
       "inputs": {
         "nci": "nci",
@@ -389,6 +405,22 @@
         "owner": "yusdacra",
         "repo": "nix-cargo-integration",
         "type": "github"
+      }
+    },
+    "neufile-grotesk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682989846,
+        "narHash": "sha256-hdfTz6NxbNsgFLqoEhVoUmyCmxrwUTV5WGxuigwUM5c=",
+        "ref": "refs/heads/master",
+        "rev": "fcee79e248c2227b9a87159060f73477c86c1a88",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/neufile-grotesk"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/neufile-grotesk"
       }
     },
     "nixpkgs": {
@@ -567,11 +599,13 @@
         "blenderMacOSx86_64": "blenderMacOSx86_64",
         "element": "element",
         "gabriello": "gabriello",
+        "gelion": "gelion",
         "helix": "helix",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
         "mkAlias": "mkAlias",
         "monoflow": "monoflow",
+        "neufile-grotesk": "neufile-grotesk",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pique": "pique",

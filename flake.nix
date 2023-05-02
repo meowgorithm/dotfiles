@@ -41,12 +41,20 @@
       url = "git+ssh://git.rocha.is/gabriello";
       flake = false;
     };
+    gelion = {
+      url = "git+ssh://git.rocha.is/gelion";
+      flake = false;
+    };
     larsseit = {
       url = "git+ssh://git.rocha.is/larsseit";
       flake = false;
     };
     monoflow = {
       url = "git+ssh://git.rocha.is/monoflow";
+      flake = false;
+    };
+    neufile-grotesk = {
+      url = "git+ssh://git.rocha.is/neufile-grotesk";
       flake = false;
     };
     pique = {
