@@ -41,8 +41,10 @@
     };
   };
 
+  mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
+
   mkDmg = name: appName: src:
-    pkgs.stdenv.mkDerivation {
+    mkIfDarwin (pkgs.stdenv.mkDerivation {
       inherit name src;
       buildInputs = with pkgs; [undmg];
       sourceRoot = "${appName}.app";
@@ -54,7 +56,7 @@
         mkdir -p "$out/Applications/${appName}.app"
         cp -pR * "$out/Applications/${appName}.app"
       '';
-    };
+    });
 
   overlays = [
     (
@@ -62,12 +64,13 @@
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
         gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
-        element = pkgs.lib.mkIf pkgs.stdenv.isDarwin (mkDmg "element" "Element" inputs.element);
-        blender = pkgs.lib.mkIf pkgs.stdenv.isDarwin (mkDmg "blender" "Blender" (
+        vim = stablePkgs.vim;
+        element = mkDmg "element" "Element" inputs.element;
+        blender = mkDmg "blender" "Blender" (
           if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64
           else inputs.blenderMacOSx86_64
-        ));
+        );
       }
     )
     (
