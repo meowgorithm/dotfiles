@@ -12,13 +12,28 @@
     then pkgs.helix
     else inputs.helix.packages.${system}.default;
 
-  mkFont = vals: let
-    name = lib.elemAt vals 0;
-    pkg = lib.elemAt vals 1;
-  in {
+  fonts = [
+    "anchor"
+    "arno-pro"
+    "benjamins-gothic"
+    "gabriello"
+    "gelion"
+    "larsseit"
+    "monoflow"
+    "neufile-grotesk"
+    "pique"
+    "rifton"
+    "rois"
+    "sf-mono"
+    "symbolset"
+    "untitled-sans"
+    "upton"
+  ];
+
+  mkFont = name: {
     "${name}" = pkgs.stdenv.mkDerivation {
       inherit name;
-      src = pkg;
+      src = inputs."${name}";
       installPhase = ''
         mkdir -p $out/share/fonts/otf
         cp $src/* $out/share/fonts/otf
@@ -58,23 +73,7 @@
     (
       self: super:
         lib.foldr lib.recursiveUpdate {}
-        (map mkFont (with inputs; [
-          ["anchor" anchor]
-          ["arno-pro" arno-pro]
-          ["benjamins-gothic" benjamins-gothic]
-          ["gabriello" gabriello]
-          ["gelion" gelion]
-          ["larsseit" larsseit]
-          ["monoflow" monoflow]
-          ["neufile-grotesk" neufile-grotesk]
-          ["pique" pique]
-          ["rifton" rifton]
-          ["rois" rois]
-          ["sf-mono" sf-mono]
-          ["symbolset" symbolset]
-          ["untitled-sans" untitled-sans]
-          ["upton" upton]
-        ]))
+        (map mkFont fonts)
     )
   ];
 
@@ -115,7 +114,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system helixMasterPkg;
+      inherit inputs system fonts helixMasterPkg;
     };
     modules =
       [
