@@ -87,21 +87,26 @@ in {
           color7 = colors.normal.white;
           color15 = colors.bright.white;
 
-          font_family = "JetBrains Mono";
-          italic_family = "JetBrains Mono Italic";
-          bold_font = "JetBrains Mono Bold";
-          bold_italic_font = "JetBrains Mono Bold Italic";
-
           adjust_line_height = "105%";
         }
         // (
           if isDarwin
           then {
+            font_family = "JetBrains Mono Light";
+            italic_family = "JetBrains Mono Light Italic";
+            bold_font = "JetBrains Mono Medium";
+            bold_italic_font = "JetBrains Mono Medium Italic";
+
             font_size = "12.5";
             mouse_hide_wait = "3.0";
             kitty_mod = "cmd";
           }
           else {
+            font_family = "JetBrains Mono";
+            italic_family = "JetBrains Mono Italic";
+            bold_font = "JetBrains Mono Bold";
+            bold_italic_font = "JetBrains Mono Bold Italic";
+
             font_size = "9.0";
             background_opacity = "0.97";
             dynamic_background_opacity = "yes";
