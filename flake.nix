@@ -15,6 +15,10 @@
       url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
       flake = false;
     };
+    telegramMacOS = {
+      url = "https://telegram.org/dl/macos";
+      flake = false;
+    };
     blenderMacOSAarch64 = {
       url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-arm64.dmg";
       flake = false;

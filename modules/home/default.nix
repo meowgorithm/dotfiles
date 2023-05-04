@@ -66,6 +66,7 @@
         gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
         vim = stablePkgs.vim;
         element = mkDmg "element" "Element" inputs.element;
+        telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
         blender = mkDmg "blender" "Blender" (
           if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64

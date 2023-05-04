@@ -614,6 +614,7 @@
         "sf-mono": "sf-mono",
         "space-grotesk": "space-grotesk",
         "symbolset": "symbolset",
+        "telegramMacOS": "telegramMacOS",
         "untitled-sans": "untitled-sans",
         "upton": "upton"
       }
@@ -686,6 +687,18 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/symbolset"
+      }
+    },
+    "telegramMacOS": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-eB4ptMeO/7usuxrK1PFcRGt1T0yBZx/kQISJT6FQOGU=",
+        "type": "file",
+        "url": "https://telegram.org/dl/macos"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://telegram.org/dl/macos"
       }
     },
     "untitled-sans": {
