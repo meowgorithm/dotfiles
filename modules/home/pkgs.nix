@@ -85,6 +85,7 @@
     elm-language-server
     nil
     prettier
+    sumneko-lua-language-server
     svgo
     typescript
     typescript-language-server
