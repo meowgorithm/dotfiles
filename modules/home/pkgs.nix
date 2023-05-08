@@ -83,8 +83,10 @@
     bash-language-server
     elm
     elm-language-server
+    golangci-lint-langserver
     nil
     prettier
+    stylua
     sumneko-lua-language-server
     svgo
     typescript

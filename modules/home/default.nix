@@ -146,6 +146,7 @@ in
         ./readline.nix
         ./scripts
         ./tmux
+        ./vim
       ]
       ++ extraModules;
   }

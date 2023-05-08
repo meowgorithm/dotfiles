@@ -62,6 +62,10 @@
         formatter = {command = "goimports";};
       }
       {
+        name = "lua";
+        auto-format = true;
+      }
+      {
         name = "html";
         indent = {
           tab-width = 2;
