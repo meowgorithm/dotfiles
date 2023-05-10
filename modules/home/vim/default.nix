@@ -26,6 +26,11 @@
       vim-gnupg
       vim-vsnip
     ];
-    extraLuaConfig = builtins.readFile ./init.lua;
+    extraLuaConfig = ''
+      vim.cmd([[
+        ${(import ./colorscheme.nix) pkgs.lib}
+      ]])
+      ${builtins.readFile ./init.lua}
+    '';
   };
 }
