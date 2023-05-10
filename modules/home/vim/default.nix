@@ -28,7 +28,7 @@
     ];
     extraLuaConfig = ''
       vim.cmd([[
-        ${(import ./colorscheme.nix) pkgs.lib}
+      ${(import ./colorscheme.nix) pkgs.lib}
       ]])
       ${builtins.readFile ./init.lua}
     '';
