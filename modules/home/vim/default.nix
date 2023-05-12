@@ -17,6 +17,7 @@
       nerdcommenter
       nerdtree
       null-ls-nvim
+      nvim-code-action-menu
       nvim-cmp
       nvim-lspconfig
       nvim-treesitter
