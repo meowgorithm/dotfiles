@@ -285,6 +285,18 @@
         "url": "ssh://git.rocha.is/gelion"
       }
     },
+    "hammerspoon": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Q14NBizKz7LysEFUTjUHCUnVd6+qEYPSgWwrOGeT9Q0=",
+        "type": "tarball",
+        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip"
+      }
+    },
     "helix": {
       "inputs": {
         "nci": "nci",
@@ -629,6 +641,7 @@
         "element": "element",
         "gabriello": "gabriello",
         "gelion": "gelion",
+        "hammerspoon": "hammerspoon",
         "helix": "helix",
         "home-manager": "home-manager",
         "larsseit": "larsseit",

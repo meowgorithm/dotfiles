@@ -98,6 +98,7 @@
     blender
     cachix
     dozer
+    hammerspoon
     nightfall
     telegram
   ]);

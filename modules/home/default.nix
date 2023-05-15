@@ -73,6 +73,14 @@
         );
         dozer = mkDmg "dozer" "Dozer" inputs.dozer;
         element = mkDmg "element" "Element" inputs.element;
+        hammerspoon = self.pkgs.stdenv.mkDerivation {
+          name = "hammerspoon";
+          src = inputs.hammerspoon;
+          installPhase = ''
+            mkdir -p "$out/Applications/Hammerspoon.app";
+            cp -r "$src/Contents" "$out/Applications/Hammerspoon.app";
+          '';
+        };
         nightfall = mkDmg "nightfall" "Nightfall" inputs.nightfall;
         telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
       }
@@ -116,6 +124,7 @@
     ++ lib.optionals pkgs.stdenv.isDarwin
     [
       ./alacritty.nix
+      ./hammerspoon
     ];
 in
   home-manager.lib.homeManagerConfiguration {

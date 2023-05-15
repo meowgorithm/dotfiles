@@ -29,6 +29,10 @@
       url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
       flake = false;
     };
+    hammerspoon = {
+      url = "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip";
+      flake = false;
+    };
     nightfall = {
       url = "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg";
       flake = false;
