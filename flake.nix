@@ -20,11 +20,11 @@
       flake = false;
     };
     blenderMacOSAarch64 = {
-      url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-arm64.dmg";
+      url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-arm64.dmg";
       flake = false;
     };
     blenderMacOSx86_64 = {
-      url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.0-macos-x64.dmg";
+      url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-x64.dmg";
       flake = false;
     };
 
