@@ -7,17 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     helix.url = "github:helix-editor/helix/master";
+
+    # macOS stuff
     mkAlias = {
       url = "github:cdmistman/mkAlias";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    element = {
-      url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
-      flake = false;
-    };
-    telegramMacOS = {
-      url = "https://telegram.org/dl/macos";
-      flake = false;
     };
     blenderMacOSAarch64 = {
       url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-arm64.dmg";
@@ -25,6 +19,22 @@
     };
     blenderMacOSx86_64 = {
       url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-x64.dmg";
+      flake = false;
+    };
+    dozer = {
+      url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
+      flake = false;
+    };
+    element = {
+      url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
+      flake = false;
+    };
+    nightfall = {
+      url = "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg";
+      flake = false;
+    };
+    telegramMacOS = {
+      url = "https://telegram.org/dl/macos";
       flake = false;
     };
 

@@ -64,14 +64,17 @@
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
         gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
-        vim = stablePkgs.vim;
-        element = mkDmg "element" "Element" inputs.element;
-        telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
+
+        # macOS
         blender = mkDmg "blender" "Blender" (
           if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64
           else inputs.blenderMacOSx86_64
         );
+        dozer = mkDmg "dozer" "Dozer" inputs.dozer;
+        element = mkDmg "element" "Element" inputs.element;
+        nightfall = mkDmg "nightfall" "Nightfall" inputs.nightfall;
+        telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
       }
     )
     (

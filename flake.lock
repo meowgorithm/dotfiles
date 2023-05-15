@@ -89,6 +89,18 @@
         "type": "github"
       }
     },
+    "dozer": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-xmh5HiITXyPmH3RMSx6xy0vvis8wFrtowvbblcGCfPw=",
+        "type": "file",
+        "url": "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg"
+      }
+    },
     "dream2nix": {
       "inputs": {
         "all-cabal-json": [
@@ -427,6 +439,18 @@
         "url": "ssh://git.rocha.is/neufile-grotesk"
       }
     },
+    "nightfall": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-L5h8hja9D9J1NYSfgv/lZsKSn1+0uHqXombVR5yDN1Q=",
+        "type": "file",
+        "url": "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1683408522,
@@ -601,6 +625,7 @@
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",
+        "dozer": "dozer",
         "element": "element",
         "gabriello": "gabriello",
         "gelion": "gelion",
@@ -610,6 +635,7 @@
         "mkAlias": "mkAlias",
         "monoflow": "monoflow",
         "neufile-grotesk": "neufile-grotesk",
+        "nightfall": "nightfall",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pique": "pique",

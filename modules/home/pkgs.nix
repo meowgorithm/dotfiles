@@ -44,7 +44,6 @@
     tmux
     tree
     ttyd
-    vim
     viu
     vscode
     wget
@@ -96,8 +95,10 @@
   ];
 
   maybeMacOS = lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
-    cachix
     blender
+    cachix
+    dozer
+    nightfall
     telegram
   ]);
 in {
