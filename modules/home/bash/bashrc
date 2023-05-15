@@ -52,8 +52,9 @@ case "$os" in
 
         # Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
         # in the shell with a script.
-        if [[ $(uname -m) == "arm64" ]]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
+        bash_bin_arm="/opt/homebrew/bin/brew"
+        if [[ $(uname -m) == "arm64" && -f $bash_bin_arm ]]; then
+            eval "$("$bash_bin_arm" shellenv)"
         fi
 
         # Make sure XDG_CONFIG_HOME is a thing
