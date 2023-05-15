@@ -42,6 +42,7 @@ hostname: {
   sound.enable = true;
 
   hardware.keyboard.zsa.enable = true;
+  hardware.opentabletdriver.enable = true;
 
   services.hardware.bolt.enable = true;
 
