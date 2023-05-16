@@ -7,6 +7,7 @@
   home.file =
     {
       ".bin/install-docker".source = ./install-docker;
+      ".bin/generate-commit-message".source = ./generate-commit-message;
       ".bin/make-vid".source = ./make-vid;
       ".bin/sessions".source = ./sessions;
       ".bin/sessions.gpg".source = ./sessions.gpg;

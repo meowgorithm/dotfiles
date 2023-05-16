@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+diff="$(git diff)"
+
+if [[ $diff == "" ]]; then
+  printf 'No diff.\n'
+  exit 1
+fi
+
+msg="$(
+  printf '%s' "$diff" | \
+  mods "write a commit message for this diff" | \
+  sed -z '$ s/\n$//' | \
+  gum write \
+    --header "  Look ok? Ctrl+D to commit, or Ctrl+C to cancel" \
+    --prompt.foreground "240"
+)"
+
+if [[ $msg == "" ]]; then
+  exit 1
+fi
+
+git commit -am "$msg"
