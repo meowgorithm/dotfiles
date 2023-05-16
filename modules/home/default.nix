@@ -59,13 +59,17 @@
     });
 
   overlays = [
+    # Use the same version as the system
     (
       self: super: let
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
-        gnupg = stablePkgs.gnupg; # use the same version of gnupg as the system
-
-        # macOS
+        gnupg = stablePkgs.gnupg;
+      }
+    )
+    # macOS stuff
+    (
+      self: super: {
         blender = mkDmg "blender" "Blender" (
           if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64
@@ -85,6 +89,7 @@
         telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
       }
     )
+    # Custom fonts
     (
       self: super:
         lib.foldr lib.recursiveUpdate {}
