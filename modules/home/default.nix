@@ -90,6 +90,13 @@
         lib.foldr lib.recursiveUpdate {}
         (map mkFont fonts)
     )
+    # Vim plugins
+    (self: super: {
+      lush-nvim = self.vimUtils.buildVimPluginFrom2Nix {
+        name = "lush-nvim";
+        src = inputs.lush-nvim;
+      };
+    })
   ];
 
   extraModules =

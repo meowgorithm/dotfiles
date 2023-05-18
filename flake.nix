@@ -6,6 +6,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    lush-nvim = {
+      url = "github:rktjmp/lush.nvim/fb148c0082488ba048f681792c4044e3229fd1a6";
+      flake = false;
+    };
 
     # macOS stuff
     mkAlias = {

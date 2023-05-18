@@ -14,7 +14,7 @@
       cmp-path
       cmp-vsnip
       ctrlp-vim
-      lush-nvim
+      pkgs.lush-nvim # override
       nerdcommenter
       nerdtree
       null-ls-nvim
