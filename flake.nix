@@ -7,6 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    vimColorTemplate = {
+      url = "github:lifepillar/vim-colortemplate/v2.2.0";
+      flake = false;
+    };
+
     # macOS stuff
     mkAlias = {
       url = "github:cdmistman/mkAlias";

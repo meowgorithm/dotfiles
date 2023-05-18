@@ -23,6 +23,7 @@
       nvim-treesitter
       trouble-nvim
       vim-airline
+      pkgs.vim-colortemplate
       vim-gitgutter
       vim-gnupg
       vim-vsnip
