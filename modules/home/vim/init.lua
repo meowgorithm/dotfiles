@@ -180,9 +180,6 @@ do
 			{ name = "nvim_lsp" },
 			{ name = "vsnip" },
 		}, { name = "buffer" }),
-		experimental = {
-			ghost_text = true,
-		},
 	})
 
 	cmp.setup.cmdline({ "/", "?" }, {
