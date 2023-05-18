@@ -346,8 +346,7 @@
         "symbolset": "symbolset",
         "telegramMacOS": "telegramMacOS",
         "untitled-sans": "untitled-sans",
-        "upton": "upton",
-        "vimColorTemplate": "vimColorTemplate"
+        "upton": "upton"
       }
     },
     "sf-mono": {
@@ -440,23 +439,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/upton"
-      }
-    },
-    "vimColorTemplate": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1647784764,
-        "narHash": "sha256-DAdMvhRkvb+KA9/mYygvVBBfGEYNURspvRtvu9/WxoI=",
-        "owner": "lifepillar",
-        "repo": "vim-colortemplate",
-        "rev": "f5c304d10def6a4f9b1a49c821e4fbefa7c18556",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lifepillar",
-        "ref": "v2.2.0",
-        "repo": "vim-colortemplate",
-        "type": "github"
       }
     }
   },

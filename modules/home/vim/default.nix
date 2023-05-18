@@ -14,6 +14,7 @@
       cmp-path
       cmp-vsnip
       ctrlp-vim
+      lush-nvim
       nerdcommenter
       nerdtree
       null-ls-nvim
@@ -23,7 +24,6 @@
       nvim-treesitter
       trouble-nvim
       vim-airline
-      pkgs.vim-colortemplate
       vim-gitgutter
       vim-gnupg
       vim-vsnip

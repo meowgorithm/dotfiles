@@ -90,13 +90,6 @@
         lib.foldr lib.recursiveUpdate {}
         (map mkFont fonts)
     )
-    # Vim plugins
-    (self: super: {
-      vim-colortemplate = self.vimUtils.buildVimPluginFrom2Nix {
-        name = "vim-colortemplate";
-        src = inputs.vimColorTemplate;
-      };
-    })
   ];
 
   extraModules =
