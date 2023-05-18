@@ -6,7 +6,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    helix.url = "github:helix-editor/helix/master";
 
     # macOS stuff
     mkAlias = {

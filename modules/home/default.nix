@@ -7,11 +7,6 @@
 }: let
   lib = pkgs.lib;
 
-  helixMasterPkg =
-    if hostname == ""
-    then pkgs.helix
-    else inputs.helix.packages.${system}.default;
-
   fonts = [
     "anchor"
     "arno-pro"
@@ -135,7 +130,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts helixMasterPkg;
+      inherit inputs system fonts;
     };
     modules =
       [
