@@ -94,8 +94,8 @@ in {
           then {
             font_family = "JetBrains Mono Light";
             italic_family = "JetBrains Mono Light Italic";
-            bold_font = "JetBrains Mono Medium";
-            bold_italic_font = "JetBrains Mono Medium Italic";
+            bold_font = "JetBrains Mono Bold";
+            bold_italic_font = "JetBrains Mono Medium Bold";
 
             font_size = "12.5";
             mouse_hide_wait = "3.0";
