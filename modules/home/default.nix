@@ -66,7 +66,7 @@
     (
       self: super: {
         blender = mkDmg "blender" "Blender" (
-          if pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
+          if self.pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64
           else inputs.blenderMacOSx86_64
         );
@@ -87,8 +87,8 @@
     # Custom fonts
     (
       self: super:
-        lib.foldr lib.recursiveUpdate {}
-        (map mkFont fonts)
+        with lib;
+          foldr recursiveUpdate {} (map mkFont fonts)
     )
     # Vim plugins
     (self: super: {
@@ -121,7 +121,6 @@
           xsel
         ];
       }
-      ./alacritty.nix
       ./discord.nix
       ./picom.nix
       ./rofi
@@ -130,7 +129,6 @@
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin
     [
-      ./alacritty.nix
       ./hammerspoon
     ];
 in
