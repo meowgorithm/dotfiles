@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# By @qapquiz (on GitHub)
+# https://gist.github.com/qapquiz/c7c80a4f267c1d04247c398d466285a6
+
+function ask_gpt() {
+  PROMPT=$(gum input --width 80 --placeholder "prompt")
+
+  if [[ -z "$PROMPT" ]]; then
+    exit 0
+  fi
+
+  gum style --foreground 212 "> $PROMPT"
+
+  RESULT=$(gum spin -s line --title "Asking ChatGPT..." --show-output -- curl -sS https://api.openai.com/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_API_KEY" \
+    -d '{
+      "model": "gpt-3.5-turbo",
+      "messages": [{"role": "user", "content": "'"$PROMPT"'"}]
+    }' | jq ".choices[0].message.content"
+  )
+
+  printf "$RESULT" | glow
+}
+
+while true; do
+  ask_gpt
+done
