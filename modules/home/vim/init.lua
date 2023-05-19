@@ -115,6 +115,13 @@ hi(0, "GitGutterAdd", { fg = "#009900" })
 hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
+-- TreeSitter
+require("nvim-treesitter.configs").setup({
+	highlight = { enable = true },
+	indent = { enable = true },
+	additional_vim_regex_highlighting = false,
+})
+
 -- LSP
 do
 	local lsp = require("lspconfig")

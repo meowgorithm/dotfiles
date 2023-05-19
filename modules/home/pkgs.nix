@@ -43,6 +43,7 @@
     simple-http-server
     tmux
     tree
+    tree-sitter
     ttyd
     viu
     vscode

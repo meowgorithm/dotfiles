@@ -21,7 +21,16 @@
       nvim-code-action-menu
       nvim-cmp
       nvim-lspconfig
-      nvim-treesitter
+      (nvim-treesitter.withPlugins (
+        plugins:
+          with plugins; [
+            bash
+            go
+            gomod
+            gowork
+            haskell
+          ]
+      ))
       trouble-nvim
       vim-airline
       vim-gitgutter
