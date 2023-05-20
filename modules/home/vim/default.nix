@@ -14,7 +14,6 @@
       cmp-path
       cmp-vsnip
       pkgs.lush-nvim # override
-      nerdcommenter
       null-ls-nvim
       nvim-code-action-menu
       nvim-cmp
@@ -33,6 +32,7 @@
       telescope-nvim
       trouble-nvim
       vim-airline
+      vim-commentary
       vim-gitgutter
       vim-gnupg
       vim-vsnip

@@ -32,6 +32,7 @@ local options = {
 	listchars = "tab:▸ ,trail:·,eol:¶",
 	splitbelow = true,
 	splitright = true,
+	scrolloff = 8,
 	-- Search
 	hlsearch = false,
 	ignorecase = true,
@@ -83,10 +84,10 @@ autocmd("BufRead,BufNewFile", {
 	group = "markdownSpell",
 })
 
--- NERDCommenter
-g.NERDCreateDefaultMappings = 1
+-- Commentary
+keymap.set("n", "<c-c>", "<cmd>Commentary")
 
--- NERDTree
+-- Tree
 keymap.set("n", "<leader>n", "<cmd>NvimTreeToggle<cr>")
 require("nvim-tree").setup({
 	disable_netrw = true,
