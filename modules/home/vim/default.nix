@@ -13,14 +13,13 @@
       cmp-nvim-lsp
       cmp-path
       cmp-vsnip
-      ctrlp-vim
       pkgs.lush-nvim # override
       nerdcommenter
-      nerdtree
       null-ls-nvim
       nvim-code-action-menu
       nvim-cmp
       nvim-lspconfig
+      nvim-tree-lua
       (nvim-treesitter.withPlugins (
         plugins:
           with plugins; [
@@ -31,6 +30,7 @@
             haskell
           ]
       ))
+      telescope-nvim
       trouble-nvim
       vim-airline
       vim-gitgutter

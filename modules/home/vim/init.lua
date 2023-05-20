@@ -83,16 +83,54 @@ autocmd("BufRead,BufNewFile", {
 	group = "markdownSpell",
 })
 
--- CtrlP
-if vim.fn.executable("rg") then
-	opt.grepprg = "rg --color=never"
-	g.ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-	g.ctrlp_use_caching = 0
-end
-g.ctrlp_max_height = 25
-g.ctrlp_jump_to_buffer = 0 -- enable this to jump to open windows if the file is open there. see ctrlp help.
-g.ctrlp_working_path_mode = "ra" -- try and find the repo root and search from there
-keymap.set("n", ";", ":CtrlPBuffer<cr>")
+-- NERDCommenter
+g.NERDCreateDefaultMappings = 1
+
+-- NERDTree
+keymap.set("n", "<leader>n", "<cmd>NvimTreeToggle<cr>")
+require("nvim-tree").setup({
+	disable_netrw = true,
+	renderer = {
+		icons = {
+			symlink_arrow = " >> ",
+			show = {
+				git = true,
+				folder = true,
+				file = false,
+				folder_arrow = false,
+			},
+			glyphs = {
+				folder = {
+					arrow_open = "",
+					arrow_closed = "",
+					default = "▶",
+					open = "▼",
+					empty = "▼",
+					empty_open = "▼",
+					symlink = "*",
+					symlink_open = "!",
+				},
+				git = {
+					unstaged = "!",
+					staged = "✓",
+					unmerged = "U",
+					renamed = "➜",
+					untracked = "*",
+					deleted = "✗",
+					ignored = "◌",
+				},
+			},
+		},
+		indent_markers = {
+			enable = true,
+			icons = {
+				corner = "╰ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
+	},
+})
 
 -- Trouble
 require("trouble").setup({
@@ -108,6 +146,11 @@ require("trouble").setup({
 	},
 	use_diagnostic_signs = false,
 })
+
+-- Telescope
+keymap.set("n", "<leader>f", "<cmd>Telescope find_files<cr>")
+keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
+keymap.set("n", ";", "<cmd>Telescope find_buffers<cr>")
 
 -- GitGutter
 g.gitgutter_sign_modified = "•"
@@ -178,7 +221,7 @@ do
 		mapping = cmp.mapping.preset.insert({
 			["<c-b>"] = cmp.mapping.scroll_docs(-4),
 			["<c-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-Space>"] = cmp.mapping.complete(),
+			["<c-space>"] = cmp.mapping.complete(),
 			["<tab>"] = cmp.mapping.complete(),
 			["<c-e>"] = cmp.mapping.abort(),
 			["<cr>"] = cmp.mapping.confirm({ select = true }),
