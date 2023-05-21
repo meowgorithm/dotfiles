@@ -85,7 +85,7 @@ autocmd("BufRead,BufNewFile", {
 })
 
 -- Commentary
-keymap.set("n", "<c-c>", "<cmd>Commentary")
+keymap.set("n", "<c-c>", "<cmd>Commentary<cr>")
 
 -- Tree
 keymap.set("n", "<leader>n", "<cmd>NvimTreeToggle<cr>")
