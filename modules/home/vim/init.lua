@@ -55,12 +55,11 @@ end
 keymap.set("v", ">", ">gv")
 keymap.set("v", "<", "<gv")
 
-keymap.set("n", "S", ":split<CR>")
-keymap.set("n", "VS", ":vsplit<CR>")
-keymap.set("n", "<leader>i", ":set invlist<CR>")
-keymap.set("n", "<leader>s", ":set hlsearch! hlsearch?<CR>")
-keymap.set("n", "<leader>w", ":set wrap! wrap?<CR>")
-keymap.set("n", "E", ":TroubleToggle<CR>")
+keymap.set("n", "S", "<cmd>split<cr>")
+keymap.set("n", "VS", ":vsplit<cr>")
+keymap.set("n", "<leader>i", "<cmd>set invlist<cr>")
+keymap.set("n", "<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
+keymap.set("n", "<leader>w", "<cmd>set wrap! wrap?<cr>")
 
 autocmd("FileType", { pattern = "lua", command = "set noexpandtab" })
 
@@ -147,11 +146,12 @@ require("trouble").setup({
 	},
 	use_diagnostic_signs = false,
 })
+keymap.set("n", "E", "<cmd>TroubleToggle<cr>")
 
 -- Telescope
 keymap.set("n", "<leader>f", "<cmd>Telescope find_files<cr>")
 keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
-keymap.set("n", ";", "<cmd>Telescope find_buffers<cr>")
+keymap.set("n", ";", "<cmd>Telescope buffers<cr>")
 
 -- GitGutter
 g.gitgutter_sign_modified = "•"
