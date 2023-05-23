@@ -6,11 +6,6 @@
 } @ inputs: let
   isDarwin =
     inputs.pkgs.stdenv.isDarwin;
-
-  fontFamily =
-    if isDarwin
-    then "SF Mono"
-    else "JetBrains Mono";
 in {
   programs.alacritty = {
     enable = true;
@@ -29,7 +24,9 @@ in {
           else {}
         );
 
-      font =
+      font = let
+        fontFamily = "JetBrains Mono";
+      in
         {
           normal = {
             family = fontFamily;

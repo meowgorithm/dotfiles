@@ -150,6 +150,7 @@ in
             )
             + home.username;
         }
+        ./alacritty.nix
         ./bash
         ./darwin-app-activation.nix
         ./floskell
