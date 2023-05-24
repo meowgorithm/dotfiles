@@ -33,7 +33,7 @@
     luajit
     moreutils
     ngrok
-    nodejs-16_x
+    nodejs
     optipng
     pastel
     python3
