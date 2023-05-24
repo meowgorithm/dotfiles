@@ -50,8 +50,8 @@ in {
           then {
             size = 12.0;
             offset = {
-              x = 1;
-              y = 3;
+              x = 0;
+              y = 2;
             };
             glyph_offset = {
               x = 0;
