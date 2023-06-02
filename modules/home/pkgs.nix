@@ -36,7 +36,9 @@
     nodejs
     optipng
     pastel
+    postgresql
     python3
+    redis
     ripgrep
     shellcheck
     shfmt
