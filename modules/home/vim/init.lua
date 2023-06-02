@@ -311,6 +311,7 @@ do
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.shfmt,
 			null_ls.builtins.formatting.goimports,
+			null_ls.builtins.formatting.prettier,
 		},
 		capabilities = capabilities,
 		on_attach = on_attach,
