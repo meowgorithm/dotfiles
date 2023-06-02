@@ -1,4 +1,18 @@
+hs.loadSpoon("SpoonInstall")
+
 local hotkey = require("hs.hotkey")
+
+-- Alerts
+hs.alert.defaultStyle.fillColor = { hex = "#151618" }
+hs.alert.defaultStyle.padding = 30
+hs.alert.defaultStyle.radius = 8
+hs.alert.defaultStyle.strokeColor = { hex = "#4F5053" }
+hs.alert.defaultStyle.strokeWidth = 0
+hs.alert.defaultStyle.textStyle = {
+	font = { name = "SF Mono Regular", size = 14, color = { hex = "#F2F2F2" } },
+	paragraphStyle = { lineHeightMultiple = 1.4 },
+}
+hs.alert.show("Hammerspoon Loaded", 2)
 
 -- Disable animations
 hs.window.animationDuration = 0
