@@ -13,6 +13,7 @@ hs.alert.defaultStyle.textStyle = {
 	paragraphStyle = { lineHeightMultiple = 1.4 },
 }
 hs.alert.show("Hammerspoon Loaded", 2)
+hs.window.animationDuration = 0
 
 -- Disable animations
 hs.window.animationDuration = 0
@@ -77,4 +78,70 @@ do
 
 		win:setFrame(f)
 	end)
+end
+
+-- Menu
+-- Ported from @maaslalani's fennel version
+-- https://github.com/maaslalani/_/blob/4b7844ef73846b0353fadb02650d79cbd34d47ca/fnl/hammerspoon.fnl
+do
+	local modalWidth = 20
+	local mainModal = hs.hotkey.modal.new({ "ctrl" }, "space")
+
+	local function launch(application)
+		return function()
+			return hs.application.launchOrFocus(application)
+		end
+	end
+
+	local function openUrl(url)
+		return function()
+			return hs.urlevent.openURL(url)
+		end
+	end
+
+	local menu = {
+		t = { name = "Terminal", action = launch("Kitty") },
+		b = { name = "Browser", action = launch("Arc") },
+	}
+
+	local function setupMenu(modal, menu)
+		modal.exited = function()
+			hs.alert.closeAll()
+		end
+		modal:bind({}, "escape", function()
+			modal:exit()
+		end)
+
+		local readout = {}
+		for k, v in pairs(menu) do
+			if type(v) == "table" then
+				local gap = string.rep(" ", (modalWidth - #v.name))
+				readout[#readout + 1] = (k .. gap .. v.name)
+
+				local action
+
+				if v.action ~= nil then
+					action = v.action
+				else
+					local subMenu = hs.hotkey.modal.new()
+					setupMenu(subMenu, v)
+					action = function()
+						subMenu:enter()
+					end
+				end
+
+				modal:bind({}, k, function()
+					modal:exit()
+					action()
+				end)
+			end
+		end
+
+		modal.entered = function()
+			hs.alert.closeAll()
+			hs.alert(table.concat(readout, "\n"), true)
+		end
+	end
+
+	setupMenu(mainModal, menu)
 end
