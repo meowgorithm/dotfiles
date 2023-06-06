@@ -343,7 +343,6 @@
         "rois": "rois",
         "sf-mono": "sf-mono",
         "space-grotesk": "space-grotesk",
-        "spoonInstall": "spoonInstall",
         "symbolset": "symbolset",
         "telegramMacOS": "telegramMacOS",
         "untitled-sans": "untitled-sans",
@@ -380,18 +379,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/space-grotesk"
-      }
-    },
-    "spoonInstall": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-niWapATrelLtZW2e4VQAtlmbdNLpHBi7doiJvIngTbQ=",
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/Hammerspoon/Spoons/1438f747d4a49932a1d2c4911eb05c30b785fb49/Source/SpoonInstall.spoon/init.lua"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/Hammerspoon/Spoons/1438f747d4a49932a1d2c4911eb05c30b785fb49/Source/SpoonInstall.spoon/init.lua"
       }
     },
     "symbolset": {

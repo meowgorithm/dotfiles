@@ -1,5 +1,3 @@
-hs.loadSpoon("SpoonInstall")
-
 local hotkey = require("hs.hotkey")
 
 -- Alerts
