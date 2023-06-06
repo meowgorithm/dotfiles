@@ -33,7 +33,7 @@
           mode.select = "SELECT";
           left = ["mode" "spinner" "file-name"];
           center = [];
-          right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type"];
+          right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type" "version-control"];
         };
       };
     };
