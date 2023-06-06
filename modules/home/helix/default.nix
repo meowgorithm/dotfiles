@@ -23,6 +23,7 @@
         cursorline = true;
         true-color = true;
         lsp.display-messages = true;
+        lsp.display-inlay-hints = true;
         rulers = [80];
         auto-format = true;
         color-modes = true;

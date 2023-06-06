@@ -59,6 +59,9 @@ in {
   "ui.cursor" = {modifiers = ["reversed"];};
   "ui.cursorline.primary" = {bg = "#080808";};
   "ui.cursorline.secondary" = {bg = "#121212";};
+  "ui.virtual.inlay-hint" = {
+    fg = "#585858";
+  };
   "ui.virtual.ruler" = {bg = "#1D1D1D";};
   "ui.virtual.whitespace" = {fg = "#3A3A3A";};
   "ui.cursor.match" = {
@@ -99,7 +102,7 @@ in {
   "string.special.path" = "#C69669";
   "string.special.url" = "#C69669";
   "string.special.symbol" = "#C69669"; # erlang atoms, ruby symbols, clojure keywords
-  "comment" = "#676767";
+  "comment" = "#05785F";
   "comment.line" = "#676767";
   "comment.block" = "#676767";
   "comment.block.documentation" = "#676767";
