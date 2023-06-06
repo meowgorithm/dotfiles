@@ -90,13 +90,6 @@
         with lib;
           foldr recursiveUpdate {} (map mkFont fonts)
     )
-    # Vim plugins
-    (self: super: {
-      lush-nvim = self.vimUtils.buildVimPluginFrom2Nix {
-        name = "lush-nvim";
-        src = inputs.lush-nvim;
-      };
-    })
   ];
 
   extraModules =
@@ -160,11 +153,11 @@ in
         ./helix
         ./kakoune
         ./kitty.nix
+        ./neovim
         ./pkgs.nix
         ./readline.nix
         ./scripts
         ./tmux
-        ./vim
       ]
       ++ extraModules;
   }

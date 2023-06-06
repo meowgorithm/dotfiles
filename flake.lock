@@ -176,23 +176,6 @@
         "url": "ssh://git.rocha.is/larsseit"
       }
     },
-    "lush-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1682919156,
-        "narHash": "sha256-hLShxquZls64uvJbt9hGImUMGF0vdXQ8p0JENbWFcFA=",
-        "owner": "rktjmp",
-        "repo": "lush.nvim",
-        "rev": "fb148c0082488ba048f681792c4044e3229fd1a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rktjmp",
-        "repo": "lush.nvim",
-        "rev": "fb148c0082488ba048f681792c4044e3229fd1a6",
-        "type": "github"
-      }
-    },
     "mkAlias": {
       "inputs": {
         "nixpkgs": [
@@ -349,7 +332,6 @@
         "hammerspoon": "hammerspoon",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
-        "lush-nvim": "lush-nvim",
         "mkAlias": "mkAlias",
         "monoflow": "monoflow",
         "neufile-grotesk": "neufile-grotesk",

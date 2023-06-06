@@ -13,7 +13,6 @@
       cmp-nvim-lsp
       cmp-path
       cmp-vsnip
-      pkgs.lush-nvim # override
       null-ls-nvim
       nvim-code-action-menu
       nvim-cmp
