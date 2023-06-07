@@ -1,0 +1,189 @@
+vim9script
+
+&directory = $HOME .. '/.config/vim/swap'
+&backupdir = $HOME .. '/.config/vim/backup'
+&viewdir = $HOME .. '/.config/vim/view'
+
+g:mapleader = ' '
+
+set nobackup
+set nowritebackup
+set noswapfile
+set shell=bash     # keep Vim from freaking out under weird shells (like Fish)
+set autoread       # re-read files when they're changed externally
+set termguicolors
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set history=1000
+set tabpagemax=50
+set expandtab
+set autoindent
+set smarttab
+set smartindent
+set shiftround
+set timeoutlen=250 # time to wait for a command (after leader, for example)
+set hidden         # change buffer without saving
+set showmatch      # show matching brackets
+set matchtime=2    # how many tenths of a second to blink
+set modeline
+set modelines=5
+set ruler
+set nowrap
+set number
+set laststatus=2
+set report=0
+set listchars=tab:\▸\ ,trail:·,eol:¶
+set colorcolumn=80
+set sessionoptions-=options
+set scrolloff=5
+set sidescrolloff=5
+set signcolumn=yes
+set mouse=a
+set ttymouse=sgr # extended mouse mode
+set balloonexpr=1
+set formatoptions+=rocrj1 # text formatting options, mostly around comments. See :help fo-table.
+
+# Search.
+set nohlsearch # don't highlight search results by default
+set ignorecase
+set smartcase
+set gdefault   # assume the /g flag on :s substitutions to replace all matches in a line
+set wrapscan   # searches wrap around the end of the file
+set incsearch  # search as you type
+
+# Persistent undo.
+if has('persistent_undo')
+  var undoTmp = $HOME .. '/.vim/undo'
+  set undofile
+  call mkdir(undoTmp, 'p')
+  &undodir = undoTmp
+endif
+
+nnoremap gs ^
+nnoremap gl $
+nnoremap gn <cmd>bnext<cr>
+nnoremap gp <cmd>bprev<cr>
+nnoremap BO <cmd>BufOnly<cr>
+nnoremap <c-c> <cmd>Commentary<cr>
+nnoremap <leader>f <cmd>Files<cr>
+nnoremap ; <cmd>Buffers<cr>
+
+# Visual Mode Blockwise Indent. This keeps the current visual block selection
+# active after changing indent with '<' or '>'. Usually the visual block
+# selection is lost after you shift it, which is incredibly annoying.
+#
+# http://vim.wikia.com/wiki/Short_mappings_for_common_tasks
+vmap > >gv
+vmap < <gv
+
+# How about if just one < or > indents in normal mode?
+nmap > >>
+nmap < <<
+
+# Toggles.
+map <leader>i :set invlist<cr>:exe ":echo 'toggling invisibles'"<cr>
+map <leader>s :set hlsearch! hlsearch?<cr>
+map <leader>w :set wrap! wrap?<cr>
+map <leader>p :set paste! nopaste?<cr>
+
+# Strip trailing whitespace on save.
+autocmd BufWritePre * :%s/\s\+$//e
+
+# Markdown spell checking.
+augroup markdownSpell
+  autocmd!
+  autocmd FileType markdown setlocal spell
+  autocmd BufRead,BufNewFile *.md setlocal spell
+augroup END
+
+# Remove empty buffers.
+def g:CleanEmptyBuffers()
+  var buffers = filter(range(0, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0')
+  if !empty(buffers)
+    exe 'bw '.join(buffers, ' ')
+  endif
+enddef
+nmap BC :call g:CleanEmptyBuffers()<cr>
+
+# Ale.
+g:ale_enabled = false
+g:ale_fix_on_save = true
+g:ale_fixers = {
+  nix: ['alejandra'],
+  go: ['goimports'],
+}
+
+# Fern.
+nnoremap <leader>n :Fern . -drawer -toggle<cr>
+g:fern#renderer#default#leaf_symbol = "│ "
+g:fern#renderer#default#collapsed_symbol = "+ "
+g:fern#renderer#default#expanded_symbol = "- "
+
+# vim-lsp.
+g:lsp_use_native_lsp = true
+g:lsp_preview_float = true
+g:lsp_diagnostics_virtual_text_enabled = true
+g:lsp_diagnostics_virtual_text_insert_mode_enabled = true
+g:lsp_diagnostics_virtual_text_prefix = "● "
+g:lsp_diagnostics_virtual_text_align = "after"
+g:lsp_diagnostics_virtual_text_wrap = "truncate"
+g:lsp_diagnostics_virtual_text_padding_left = 2
+g:lsp_diagnostics_float_cursor = true
+g:lsp_inlay_hints_enabled = true
+g:lsp_show_workspace_edits = true
+
+def On_lsp_buffer_enabled()
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gx <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    # nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    # nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    g:lsp_format_sync_timeout = 1000
+    # autocmd! BufWritePre *.nix,*.hs,*.go call execute('LspDocumentFormatSync')
+enddef
+
+augroup lsp_install
+    au!
+    # Call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call On_lsp_buffer_enabled()
+augroup END
+
+# Setup Nil LSP for nix.
+if executable('nil')
+  autocmd User lsp_setup call lsp#register_server({
+    \ name: 'nil',
+    \ cmd: (server_info) => ['nil'],
+    \ whitelist: ['nix']
+    \ })
+endif
+
+# Configure asyncomplete-buffer.
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    name: 'buffer',
+    allowlist: ['*'],
+    blocklist: ['go'],
+    completor: function('asyncomplete#sources#buffer#completor'),
+    config: {
+       max_buffer_size: 5000000,
+    },
+}))
+
+# Configure asyncomplete-file.
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ name: 'file',
+    \ allowlist: ['*'],
+    \ priority: 10,
+    \ completor: function('asyncomplete#sources#file#completor'),
+    \ }))

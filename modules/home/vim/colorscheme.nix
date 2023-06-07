@@ -31,7 +31,7 @@ lib: let
 
   bold = "bold";
   underline = "underline";
-  none = "none";
+  none = "";
 in
   concatStrings (mapAttrsToList rule {
     ColorColumn.bg = "#202020";

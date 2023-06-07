@@ -93,6 +93,7 @@
     svgo
     typescript
     typescript-language-server
+    vim-language-server
     vscode-langservers-extracted
     yaml-language-server
   ];

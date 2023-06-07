@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   programs.neovim = {
     enable = true;
-    viAlias = true;
-    vimAlias = true;
+    viAlias = false;
+    vimAlias = false;
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;

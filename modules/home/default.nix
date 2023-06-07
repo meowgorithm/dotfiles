@@ -153,11 +153,11 @@ in
         ./helix
         ./kakoune
         ./kitty.nix
-        ./neovim
         ./pkgs.nix
         ./readline.nix
         ./scripts
         ./tmux
+        ./vim
       ]
       ++ extraModules;
   }
