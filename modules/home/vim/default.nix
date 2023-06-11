@@ -49,6 +49,7 @@ in {
       cmp-nvim-lsp
       cmp-path
       cmp-vsnip
+      copilot-vim
       null-ls-nvim
       nvim-code-action-menu
       nvim-cmp
