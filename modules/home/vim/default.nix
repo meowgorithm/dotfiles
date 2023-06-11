@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
 in {
   programs.vim = {
@@ -51,6 +55,7 @@ in {
       cmp-vsnip
       copilot-vim
       null-ls-nvim
+      nvim-colorizer-lua
       nvim-code-action-menu
       nvim-cmp
       nvim-lspconfig
@@ -72,6 +77,12 @@ in {
       vim-gitgutter
       vim-gnupg
       vim-vsnip
+      (
+        pkgs.vimUtils.buildVimPluginFrom2Nix {
+          name = "color-picker-nvim";
+          src = inputs.color-picker-nvim;
+        }
+      )
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

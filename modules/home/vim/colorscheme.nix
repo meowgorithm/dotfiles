@@ -31,7 +31,7 @@ lib: let
 
   bold = "bold";
   underline = "underline";
-  none = "";
+  none = "NONE";
 in
   concatStrings (mapAttrsToList rule {
     ColorColumn.bg = "#202020";
@@ -47,7 +47,7 @@ in
     SignColumn.bg = none;
     VertSplit = {
       fg = "#262626";
-      bg = "#585858";
+      bg = none;
     };
 
     Normal = {};

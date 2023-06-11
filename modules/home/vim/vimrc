@@ -9,8 +9,8 @@ g:mapleader = ' '
 set nobackup
 set nowritebackup
 set noswapfile
-set shell=bash     # keep Vim from freaking out under weird shells (like Fish)
-set autoread       # re-read files when they're changed externally
+set shell=bash            # keep Vim from freaking out under weird shells (like Fish)
+set autoread              # re-read files when they're changed externally
 set termguicolors
 set tabstop=4
 set shiftwidth=4
@@ -22,10 +22,10 @@ set autoindent
 set smarttab
 set smartindent
 set shiftround
-set timeoutlen=250 # time to wait for a command (after leader, for example)
-set hidden         # change buffer without saving
-set showmatch      # show matching brackets
-set matchtime=2    # how many tenths of a second to blink
+set timeoutlen=250        # time to wait for a command (after leader, for example)
+set hidden                # change buffer without saving
+set showmatch             # show matching brackets
+set matchtime=2           # how many tenths of a second to blink
 set modeline
 set modelines=5
 set ruler
@@ -40,9 +40,10 @@ set scrolloff=5
 set sidescrolloff=5
 set signcolumn=yes
 set mouse=a
-set ttymouse=sgr # extended mouse mode
+set ttymouse=sgr          # extended mouse mode
 set balloonexpr=1
 set formatoptions+=rocrj1 # text formatting options, mostly around comments. See :help fo-table.
+set fillchars+=vert:\▏
 
 # Search.
 set nohlsearch # don't highlight search results by default
@@ -105,6 +106,10 @@ def g:CleanEmptyBuffers()
   endif
 enddef
 nmap BC :call g:CleanEmptyBuffers()<cr>
+
+# vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 # Ale.
 g:ale_enabled = false

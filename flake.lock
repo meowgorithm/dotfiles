@@ -72,6 +72,22 @@
         "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-x64.dmg"
       }
     },
+    "color-picker-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684706781,
+        "narHash": "sha256-a1hpKKvBG8ey/+gbfFEK8CPawEK9EdcQbnIfi7X0C9I=",
+        "owner": "ziontee113",
+        "repo": "color-picker.nvim",
+        "rev": "06cb5f853535dea529a523e9a0e8884cdf9eba4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ziontee113",
+        "repo": "color-picker.nvim",
+        "type": "github"
+      }
+    },
     "dozer": {
       "flake": false,
       "locked": {
@@ -325,6 +341,7 @@
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",
+        "color-picker-nvim": "color-picker-nvim",
         "dozer": "dozer",
         "element": "element",
         "gabriello": "gabriello",

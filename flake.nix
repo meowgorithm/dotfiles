@@ -7,6 +7,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Vim/NeoVim plugins
+    color-picker-nvim = {
+      url = "github:ziontee113/color-picker.nvim";
+      flake = false;
+    };
+
     # macOS stuff
     mkAlias = {
       url = "github:cdmistman/mkAlias";

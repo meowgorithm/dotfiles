@@ -1,10 +1,19 @@
 local g = vim.g
 local opt = vim.opt
-local keymap = vim.keymap
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local clear_autocmds = vim.api.nvim_clear_autocmds
 local hi = vim.api.nvim_set_hl
+
+local nmap = function(lhs, rhs, opts)
+	vim.keymap.set("n", lhs, rhs, opts)
+end
+local vmap = function(lhs, rhs, opts)
+	vim.keymap.set("v", lhs, rhs, opts)
+end
+local imap = function(lhs, rhs, opts)
+	vim.keymap.set("i", lhs, rhs, opts)
+end
 
 g.mapleader = " "
 
@@ -47,19 +56,32 @@ for k, v in pairs(options) do
 	opt[k] = v
 end
 
+nmap("gs", "^")
+nmap("gl", "$")
+nmap("S", "<cmd>split<cr>")
+nmap("VS", "<cmd>vsplit<cr>")
+nmap("gn", "<cmd>bnext<cr>")
+nmap("gp", "<cmd>bprev<cr>")
+nmap("<leader>f", "<cmd>Telescope find_files<cr>")
+nmap("<leader>g", "<cmd>Telescope live_grep<cr>")
+nmap(";", "<cmd>Telescope buffers<cr>")
+
 -- Visual Mode Blockwise Indent. This keeps the current visual block selection
 -- active after changing indent with '<' or '>'. Usually the visual block
 -- selection is lost after you shift it, which is incredibly annoying.
 --
 -- http://vim.wikia.com/wiki/Short_mappings_for_common_tasks
-keymap.set("v", ">", ">gv")
-keymap.set("v", "<", "<gv")
+vmap(">", ">gv")
+vmap("<", "<gv")
 
-keymap.set("n", "S", "<cmd>split<cr>")
-keymap.set("n", "VS", ":vsplit<cr>")
-keymap.set("n", "<leader>i", "<cmd>set invlist<cr>")
-keymap.set("n", "<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
-keymap.set("n", "<leader>w", "<cmd>set wrap! wrap?<cr>")
+-- How about if just one < or > indents in normal mode?
+nmap(">", ">>")
+nmap("<", "<<")
+
+-- Toggles
+nmap("<leader>i", "<cmd>set invlist<cr>")
+nmap("<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
+nmap("<leader>w", "<cmd>set wrap! wrap?<cr>")
 
 autocmd("FileType", { pattern = "lua", command = "set noexpandtab" })
 
@@ -84,10 +106,10 @@ autocmd("BufRead,BufNewFile", {
 })
 
 -- Commentary
-keymap.set("n", "<c-c>", "<cmd>Commentary<cr>")
+nmap("<c-c>", "<cmd>Commentary<cr>")
 
 -- Tree
-keymap.set("n", "<leader>n", "<cmd>NvimTreeToggle<cr>")
+nmap("<leader>n", "<cmd>NvimTreeToggle<cr>")
 require("nvim-tree").setup({
 	disable_netrw = true,
 	renderer = {
@@ -146,18 +168,57 @@ require("trouble").setup({
 	},
 	use_diagnostic_signs = false,
 })
-keymap.set("n", "E", "<cmd>TroubleToggle<cr>")
-
--- Telescope
-keymap.set("n", "<leader>f", "<cmd>Telescope find_files<cr>")
-keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
-keymap.set("n", ";", "<cmd>Telescope buffers<cr>")
+nmap("E", "<cmd>TroubleToggle<cr>")
 
 -- GitGutter
 g.gitgutter_sign_modified = "•"
 hi(0, "GitGutterAdd", { fg = "#009900" })
 hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
+
+-- Color Picker
+do
+	local opts = { noremap = true, silent = true }
+	nmap("ic", "<cmd>PickColor<cr>", opts)
+	imap("<C-c>", "<cmd>PickColorInsert<cr>", opts)
+
+	-- nmap("n", "your_keymap", "<cmd>ConvertHEXandRGB<cr>", opts)
+	nmap("cv", "<cmd>ConvertHEXandHSL<cr>", opts)
+
+	require("color-picker").setup({
+		["icons"] = { "#", "|" },
+		["border"] = "rounded",
+		["keymap"] = {
+			["U"] = "<Plug>ColorPickerSlider5Decrease",
+			["O"] = "<Plug>ColorPickerSlider5Increase",
+		},
+		["background_highlight_group"] = "Normal",
+		["border_highlight_group"] = "FloatBorder",
+		["text_highlight_group"] = "Normal",
+	})
+end
+
+-- Colorizer
+-- Note: at the moment, Nix uses fork https://github.com/nvchad/nvim-colorizer.lua/
+do
+	-- :ShowColors
+	vim.api.nvim_create_user_command("ShowColors", function(opts)
+		require("colorizer").attach_to_buffer(0, {
+			mode = opts.fargs[1],
+			css = true,
+		})
+	end, {
+		nargs = "?",
+		complete = function(_, _, _)
+			return { "virtualtext", "background" }
+		end,
+	})
+
+	-- :HideColors
+	vim.api.nvim_create_user_command("HideColors", function(_)
+		require("colorizer").detach_from_buffer(0)
+	end, { nargs = 0 })
+end
 
 -- TreeSitter
 require("nvim-treesitter.configs").setup({
