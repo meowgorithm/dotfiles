@@ -19,7 +19,7 @@ in {
     historyIgnore = ["ls" "cd" "exit"];
     sessionVariables =
       {
-        EDITOR = "hx";
+        EDITOR = "nvim";
         PROMPT_DIRTRIM = "2";
         XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
         XDG_DATA_HOME = "$HOME/.local/share";
@@ -51,6 +51,6 @@ in {
       + builtins.readFile ./bash_funcs;
   };
 
-  # Also put our funcs here so we can source them.
+  # Also put our funcs here so we can source them in scripts.
   xdg.dataFile."meowgorithm/bash_funcs".text = builtins.readFile ./bash_funcs;
 }
