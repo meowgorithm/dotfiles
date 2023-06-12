@@ -333,6 +333,44 @@ do
 	lsp.gopls.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
+		settings = {
+			gopls = {
+				gofumpt = true,
+				codelenses = {
+					gc_details = false,
+					generate = true,
+					regenerate_cgo = true,
+					run_govulncheck = true,
+					test = true,
+					tidy = true,
+					upgrade_dependency = true,
+					vendor = true,
+				},
+				hints = {
+					assignVariableTypes = true,
+					compositeLiteralFields = true,
+					compositeLiteralTypes = true,
+					constantValues = true,
+					functionTypeParameters = true,
+					parameterNames = true,
+					rangeVariableTypes = true,
+				},
+				analyses = {
+					nilness = true,
+					shadow = true,
+					shift = true,
+					unusedparams = true,
+					unusedwrite = true,
+					useany = true,
+					unusedvariable = true,
+				},
+				usePlaceholders = true,
+				completeUnimported = true,
+				staticcheck = true,
+				directoryFilters = { "-.git", "-node_modules" },
+				semanticTokens = true,
+			},
+		},
 	})
 
 	lsp.lua_ls.setup({
@@ -341,6 +379,12 @@ do
 		settings = {
 			Lua = {
 				diagnostics = { globals = { "vim", "hs" } },
+			},
+			completion = {
+				callSnippet = "Replace",
+			},
+			hint = {
+				enable = true,
 			},
 		},
 	})
