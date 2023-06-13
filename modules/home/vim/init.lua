@@ -179,8 +179,8 @@ hi(0, "GitGutterDelete", { fg = "#ff2222" })
 -- Color Picker
 do
 	local opts = { noremap = true, silent = true }
-	nmap("ic", "<cmd>PickColor<cr>", opts)
-	imap("<C-c>", "<cmd>PickColorInsert<cr>", opts)
+	nmap("pc", "<cmd>PickColor<cr>", opts)
+	-- imap("pci", "<cmd>PickColorInsert<cr>", opts)
 
 	-- nmap("n", "your_keymap", "<cmd>ConvertHEXandRGB<cr>", opts)
 	nmap("cv", "<cmd>ConvertHEXandHSL<cr>", opts)
