@@ -18,6 +18,10 @@
       url = "github:cdmistman/mkAlias";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    arc = {
+      url = "https://releases.arc.net/release/Arc-latest.dmg";
+      flake = false;
+    };
     blenderMacOSAarch64 = {
       url = "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-arm64.dmg";
       flake = false;

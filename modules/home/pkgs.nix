@@ -99,6 +99,7 @@
   ];
 
   maybeMacOS = lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
+    arc
     blender
     cachix
     dozer

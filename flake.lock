@@ -16,6 +16,18 @@
         "url": "ssh://git.rocha.is/anchor"
       }
     },
+    "arc": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-JyF4Q4cRa92If5pU4T7+bR+h8c44HtBfbhPLn/k+BYQ=",
+        "type": "file",
+        "url": "https://releases.arc.net/release/Arc-latest.dmg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://releases.arc.net/release/Arc-latest.dmg"
+      }
+    },
     "arno-pro": {
       "flake": false,
       "locked": {
@@ -337,6 +349,7 @@
     "root": {
       "inputs": {
         "anchor": "anchor",
+        "arc": "arc",
         "arno-pro": "arno-pro",
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
