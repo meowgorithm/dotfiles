@@ -42,6 +42,7 @@ local options = {
 	splitbelow = true,
 	splitright = true,
 	scrolloff = 8,
+	foldmethod = "marker",
 	-- Search
 	hlsearch = false,
 	ignorecase = true,

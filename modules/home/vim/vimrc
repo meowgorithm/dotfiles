@@ -38,6 +38,7 @@ set colorcolumn=80
 set sessionoptions-=options
 set scrolloff=5
 set sidescrolloff=5
+set foldmethod=marker
 set signcolumn=yes
 set mouse=a
 set ttymouse=sgr          # extended mouse mode
