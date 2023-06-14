@@ -31,6 +31,7 @@ local options = {
 	softtabstop = 4,
 	termguicolors = true,
 	showmatch = true,
+	autoread = true,
 	colorcolumn = "80",
 	mouse = "a",
 	spell = false,

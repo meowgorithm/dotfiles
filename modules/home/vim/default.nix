@@ -17,12 +17,13 @@ in {
       copilot-vim
       fern-vim
       fzf-vim
-      neoformat
       vim-airline
       vim-commentary
+      vim-css-color
       vim-easy-align
       vim-gitgutter
       vim-gnupg
+      vim-go
       vim-lsp
       vim-lsp-settings
       vim-sensible
@@ -31,13 +32,13 @@ in {
       if !has('vim9script')
         finish
       endif
-
       source $HOME/.vim/vimrc
-      colorscheme x
+      colorscheme pantera-negra
     '';
   };
   home.file.".vim/vimrc".source = ./vimrc;
-  home.file.".vim/colors/x.vim".text = colorscheme;
+  home.file.".vim/colors/pantera-negra.vim".source = ./pantera-negra.vim;
+  home.file.".vim/colors/x.vim".text = colorscheme false;
 
   programs.neovim = {
     enable = true;
@@ -86,9 +87,10 @@ in {
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}
-      vim.cmd 'colorscheme x'
+      vim.cmd 'colorscheme pantera-negra'
     '';
   };
 
-  xdg.configFile."nvim/colors/x.vim".text = colorscheme;
+  xdg.configFile."nvim/colors/pantera-negra.vim".source = ./pantera-negra.vim;
+  xdg.configFile."nvim/colors/x.vim".text = colorscheme true;
 }

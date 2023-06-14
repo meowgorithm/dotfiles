@@ -19,7 +19,7 @@
     "arc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-JyF4Q4cRa92If5pU4T7+bR+h8c44HtBfbhPLn/k+BYQ=",
+        "narHash": "sha256-cG1OoK3fSSjwNjjYIGEbY5QobO2D9TOtcTXY1R0pLlQ=",
         "type": "file",
         "url": "https://releases.arc.net/release/Arc-latest.dmg"
       },
@@ -115,7 +115,7 @@
     "element": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-/1WEi20pbkOUkzuMxHuCEfZQQa9/5PoUWoulPRweuwg=",
+        "narHash": "sha256-Z5kkNGvb9O56Jws5+LFErtsTeMXS2iddxilD6ccALt8=",
         "type": "file",
         "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
       },

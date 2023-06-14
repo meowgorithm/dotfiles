@@ -108,6 +108,24 @@ def g:CleanEmptyBuffers()
 enddef
 nmap BC :call g:CleanEmptyBuffers()<cr>
 
+# Get syntax highlight stack under cursor.
+def SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), " -> ")
+enddef
+command SynStack SynStack()
+
+def InspectSynHL()
+    var synNames = []
+    for id in synstack(v:beval_lnum, v:beval_col)
+        call add(synNames, synIDattr(id, 'name'))
+    endfor
+    echo join(synNames, " -> ")
+enddef
+command InspectSynHL InspectSynHL()
+
 # vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -126,6 +144,29 @@ g:fern#renderer#default#leaf_symbol = "│ "
 g:fern#renderer#default#collapsed_symbol = "+ "
 g:fern#renderer#default#expanded_symbol = "- "
 
+# vim-go.
+g:go_gopls_enabled = false
+g:go_code_completion_enabled = false
+g:fmt_autosave = false
+g:go_imports_autosave = false
+g:go_highlight_build_constraints = true
+g:go_highlight_chan_whitespace_error = true
+g:go_highlight_extra_types = true
+g:go_highlight_fields = true
+g:go_highlight_format_strings = true
+g:go_highlight_function_calls = true
+g:go_highlight_function_parameters = true
+g:go_highlight_functions = true
+g:go_highlight_generate_tags = true
+g:go_highlight_methods = true
+g:go_highlight_operators = true
+g:go_highlight_space_tab_error = true
+g:go_highlight_string_spellcheck = true
+g:go_highlight_structs = true
+g:go_highlight_types = true
+g:go_highlight_variable_assignments = true
+g:go_highlight_variable_declarations = true
+
 # vim-lsp.
 g:lsp_use_native_lsp = true
 g:lsp_preview_float = true
@@ -136,7 +177,7 @@ g:lsp_diagnostics_virtual_text_align = "after"
 g:lsp_diagnostics_virtual_text_wrap = "truncate"
 g:lsp_diagnostics_virtual_text_padding_left = 2
 g:lsp_diagnostics_float_cursor = true
-g:lsp_inlay_hints_enabled = true
+g:lsp_inlay_hints_enabled = false
 g:lsp_show_workspace_edits = true
 
 def On_lsp_buffer_enabled()
@@ -183,8 +224,7 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     completor: function('asyncomplete#sources#buffer#completor'),
     config: {
        max_buffer_size: 5000000,
-    },
-}))
+    } }))
 
 # Configure asyncomplete-file.
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
