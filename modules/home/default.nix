@@ -60,6 +60,7 @@
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
         gnupg = stablePkgs.gnupg;
+        redis = stablePkgs.redis;
       }
     )
     # macOS stuff
