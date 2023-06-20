@@ -136,6 +136,7 @@ g:ale_fix_on_save = true
 g:ale_fixers = {
   nix: ['alejandra'],
   go: ['goimports'],
+  css: ['prettier'],
 }
 
 # Fern.
