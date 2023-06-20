@@ -27,7 +27,6 @@ hostname: {
 
   hardware = {
     opengl.enable = true;
-    video.hidpi.enable = true;
   };
 
   networking = {
@@ -118,7 +117,6 @@ hostname: {
     wget
     xmonad-with-packages
     xorg.xmodmap
-    xtrlock-pam
   ];
 
   fonts.fonts = with pkgs; [
@@ -154,8 +152,8 @@ hostname: {
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false;
+    settings.PermitRootLogin = "no";
+    settings.PasswordAuthentication = false;
   };
 
   services.avahi = {
@@ -173,5 +171,5 @@ hostname: {
     dedicatedServer.openFirewall = true;
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }
