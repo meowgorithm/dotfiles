@@ -65,10 +65,16 @@ in {
         plugins:
           with plugins; [
             bash
+            css
+            elm
             go
             gomod
             gowork
             haskell
+            html
+            javascript
+            lua
+            typescript
           ]
       ))
       telescope-nvim
