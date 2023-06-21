@@ -64,9 +64,11 @@ nmap("S", "<cmd>split<cr>")
 nmap("VS", "<cmd>vsplit<cr>")
 nmap("gn", "<cmd>bnext<cr>")
 nmap("gp", "<cmd>bprev<cr>")
+nmap("BO", "<cmd>BufOnly<cr>")
 nmap("<leader>f", "<cmd>Telescope find_files<cr>")
 nmap("<leader>g", "<cmd>Telescope live_grep<cr>")
 nmap(";", "<cmd>Telescope buffers<cr>")
+nmap("<leader>n", "<cmd>noa write<cr>")
 
 -- Visual Mode Blockwise Indent. This keeps the current visual block selection
 -- active after changing indent with '<' or '>'. Usually the visual block
@@ -111,7 +113,7 @@ autocmd("BufRead,BufNewFile", {
 nmap("<c-c>", "<cmd>Commentary<cr>")
 
 -- Tree
-nmap("<leader>n", "<cmd>NvimTreeToggle<cr>")
+nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
 require("nvim-tree").setup({
 	disable_netrw = true,
 	renderer = {
@@ -228,6 +230,9 @@ require("nvim-treesitter.configs").setup({
 	indent = { enable = true },
 	additional_vim_regex_highlighting = false,
 })
+
+-- Vsnip
+imap("<c-l>", "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-l>'", { expr = true })
 
 -- LSP
 do

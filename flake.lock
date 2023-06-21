@@ -19,7 +19,7 @@
     "arc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-cG1OoK3fSSjwNjjYIGEbY5QobO2D9TOtcTXY1R0pLlQ=",
+        "narHash": "sha256-jpPyrvUNRsDYJ65ORgPKx+oPdOoL1sx8BQwN+xkPJOk=",
         "type": "file",
         "url": "https://releases.arc.net/release/Arc-latest.dmg"
       },
