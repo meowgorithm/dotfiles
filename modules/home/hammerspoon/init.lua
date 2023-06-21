@@ -83,7 +83,7 @@ end
 -- https://github.com/maaslalani/_/blob/4b7844ef73846b0353fadb02650d79cbd34d47ca/fnl/hammerspoon.fnl
 do
 	local modalWidth = 20
-	local mainModal = hs.hotkey.modal.new({ "ctrl" }, "space")
+	local mainModal = hs.hotkey.modal.new({ "alt" }, "space")
 
 	local function launch(application)
 		return function()
