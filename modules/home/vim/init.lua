@@ -258,7 +258,7 @@ do
 		map("K", "vim.lsp.buf.hover()")
 		map("<leader>lr", "vim.lsp.buf.rename()")
 		map("<leader>a", "vim.lsp.buf.code_action()")
-		map("<leader>gl", "vim.diagnostic.open_float()")
+		map("<leader>ll", "vim.diagnostic.open_float()")
 		vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 		if client.supports_method("textDocument/formatting") then
 			clear_autocmds({ group = formatGroup, buffer = bufnr })
