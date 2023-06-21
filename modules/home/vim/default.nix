@@ -73,7 +73,9 @@ in {
             haskell
             html
             javascript
+            json
             lua
+            scss
             typescript
           ]
       ))

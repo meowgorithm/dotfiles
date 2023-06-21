@@ -39,7 +39,7 @@ pkgs: {
     extraConfig = {
       color.ui = true;
       core = {
-        editor = "hx";
+        editor = "nvim";
       };
       url."git@github.com:charmbracelet".insteadOf = "https://github.com/charmbracelet";
     };
