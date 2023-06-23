@@ -44,6 +44,7 @@ local options = {
 	splitright = true,
 	scrolloff = 8,
 	foldmethod = "marker",
+	equalalways = true,
 	-- Search
 	hlsearch = false,
 	ignorecase = true,
@@ -95,6 +96,9 @@ autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
 -- Highlight current line in current window only
 autocmd("WinEnter,BufEnter", { pattern = "*", command = "setlocal cursorline" })
 autocmd("WinLeave", { pattern = "*", command = "setlocal nocursorline" })
+
+-- Keep splits equal size
+autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
 -- Markdown spell checking
 augroup("markdownSpell", { clear = true })

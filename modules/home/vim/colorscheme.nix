@@ -170,4 +170,4 @@ lib: isNvim: let
     + (concatStringsSep "\n" (mapAttrsToList mkRule rules))
     + "\n\n";
 in
-  concatStrings (map mkRules [ui defaults go])
+  concatStrings (map mkRules [ui defaults go css])
