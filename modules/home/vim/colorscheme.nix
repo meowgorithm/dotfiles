@@ -54,21 +54,32 @@ lib: isNvim: let
     PMenuThumb.bg = "#00af87";
     SignColumn = {};
     VertSplit.fg = "#333333";
+    # Tabs
+    "TabLine" = {
+      fg = "#999999";
+      bg = "#2A2A2A";
+    };
+    "TabLineFill" = {
+      fg = "NONE";
+      bg = "#1A1A1A";
+    };
+    "TabLineSel" = {
+      fg = "#ffffff";
+      bg = "#108dcb";
+    };
+    "Title".fg = "#dcf764";
   };
 
   defaults = {
-    Comment = {};
-
-    Constant = {};
-    String = {};
-    Character = {};
-    Number = {};
-    Boolean = {};
-    Float = {};
-
-    Identifier = {}; # variable names
-    Function = {};
-
+    Comment = comment;
+    Constant = constant;
+    String = string;
+    Character = specialChar;
+    Number = constant;
+    Boolean = constant;
+    Float = constant;
+    Identifier = {};
+    Function = function;
     Statement = declaration;
     Conditional = keyword; # if, then, else, switch, etc.
     Repeat = keyword; # for, do, while, etc.
@@ -76,24 +87,21 @@ lib: isNvim: let
     Operator = operator;
     Keyword = keyword; # any other keyword
     Exception = keyword; # try, catch, throw
-
     PreProc = builtin;
-    Include = {};
-    Define = {};
-    Macro = {};
-    PreConduit = {}; # preprocessor keywords: #if, #else, etc;
-
+    Include = builtin;
+    Define = builtin;
+    Macro = builtin;
+    PreConduit = builtin; # preprocessor keywords: #if, #else, etc;
     Type = type;
-    StorageClass = {};
-    Structure = {};
-    Typedef = {};
-
+    StorageClass = type;
+    Structure = keyword;
+    Typedef = type;
     Special = specialChar;
     SpecialChar = specialChar;
-    Tag = {};
+    Tag = function;
     Delimiter = punctuation;
     SpecialComment = specialChar;
-    Debug = {};
+    Debug = builtin;
 
     #Underlined = {};
     #Ignore = {};
@@ -162,6 +170,28 @@ lib: isNvim: let
       goFunctionCall = function;
       goConst = keyword;
     };
+
+  css =
+    if isNvim
+    then {
+      "@media.scss".fg = "#dc59de";
+      "@include.scss".fg = "#dc59de";
+      "@type.scss".fg = "#dc59de";
+      "@keyword.scss".fg = "#dc59de";
+      "@operator.scss".fg = "#ec6965";
+      "@comment.scss".fg = "#676767";
+      "@type.qualifier.scss".fg = "#dc59de";
+      "@string.scss".fg = "#12deab";
+      "@number.scss".fg = "#12deab";
+      "@property.scss".fg = "#0ce4d5";
+      "@namespace.scss".fg = "#ff0000";
+      "@type.definition.scss".fg = "#dc59de";
+      "@punctuation.delimiter.scss".fg = "#c2c99c";
+      "@punctuation.bracket.scss".fg = "#c2c99c";
+      "@function.scss".fg = "#e354ce";
+      "@variable.scss".fg = "#7a52ff";
+    }
+    else {};
 
   mkRules = rules:
     "\" Reset.\n"

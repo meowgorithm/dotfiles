@@ -69,6 +69,7 @@ nmap("BO", "<cmd>BufOnly<cr>")
 nmap("<leader>f", "<cmd>Telescope find_files<cr>")
 nmap("<leader>g", "<cmd>Telescope live_grep<cr>")
 nmap(";", "<cmd>Telescope buffers<cr>")
+nmap("<leader>w", "<cmd>write<cr>")
 nmap("<leader>n", "<cmd>noa write<cr>")
 
 -- Visual Mode Blockwise Indent. This keeps the current visual block selection
@@ -86,7 +87,7 @@ nmap("<", "<<")
 -- Toggles
 nmap("<leader>i", "<cmd>set invlist<cr>")
 nmap("<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
-nmap("<leader>w", "<cmd>set wrap! wrap?<cr>")
+nmap("<leader>r", "<cmd>set wrap! wrap?<cr>")
 
 autocmd("FileType", { pattern = "lua", command = "set noexpandtab" })
 
@@ -157,6 +158,17 @@ require("nvim-tree").setup({
 				corner = "╰ ",
 				edge = "│ ",
 				none = "  ",
+			},
+		},
+	},
+})
+
+-- Telescope
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = {
+				["<c-d>"] = require("telescope.actions").delete_buffer,
 			},
 		},
 	},

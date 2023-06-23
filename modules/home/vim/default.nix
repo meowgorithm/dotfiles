@@ -37,8 +37,7 @@ in {
     '';
   };
   home.file.".vim/vimrc".source = ./vimrc;
-  home.file.".vim/colors/pantera-negra.vim".source = ./pantera-negra.vim;
-  home.file.".vim/colors/x.vim".text = colorscheme false;
+  home.file.".vim/colors/pantera-negra.vim".text = colorscheme false;
 
   programs.neovim = {
     enable = true;
@@ -64,6 +63,7 @@ in {
       (nvim-treesitter.withPlugins (
         plugins:
           with plugins; [
+            nix
             bash
             css
             elm
@@ -86,6 +86,7 @@ in {
       vim-gitgutter
       vim-gnupg
       vim-vsnip
+      xterm-color-table-vim
       (
         pkgs.vimUtils.buildVimPluginFrom2Nix {
           name = "color-picker-nvim";
@@ -99,6 +100,5 @@ in {
     '';
   };
 
-  xdg.configFile."nvim/colors/pantera-negra.vim".source = ./pantera-negra.vim;
-  xdg.configFile."nvim/colors/x.vim".text = colorscheme true;
+  xdg.configFile."nvim/colors/pantera-negra.vim".text = colorscheme true;
 }
