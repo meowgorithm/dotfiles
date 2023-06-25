@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    #nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     # Vim/NeoVim plugins
     color-picker-nvim = {

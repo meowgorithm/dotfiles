@@ -66,6 +66,10 @@
         vscode-langservers-extracted = stablePkgs.nodePackages_latest.vscode-langservers-extracted;
       }
     )
+
+    # NeoVim nightly
+    #inputs.nvim-nightly.overlay
+
     # macOS stuff
     (
       self: super: {
@@ -89,6 +93,7 @@
         telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
       }
     )
+
     # Custom fonts
     (
       self: super:

@@ -274,6 +274,10 @@ do
 				noremap = true,
 				silent = true,
 			})
+			-- Enable inlay hints (if available)
+			if client.server_capabilities.inlayHintProvider then
+				vim.lsp.buf.inlay_hint(bufnr, true)
+			end
 		end
 		map("gd", "vim.lsp.buf.definition()")
 		map("K", "vim.lsp.buf.hover()")
