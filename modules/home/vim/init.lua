@@ -116,6 +116,9 @@ autocmd("BufRead,BufNewFile", {
 
 -- Commentary
 nmap("<c-c>", "<cmd>Commentary<cr>")
+vim.cmd([[
+autocmd FileType nix setlocal commentstring=#\ %s
+]])
 
 -- Tree
 nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
