@@ -229,6 +229,8 @@ do
 		require("colorizer").attach_to_buffer(0, {
 			mode = opts.fargs[1],
 			css = true,
+			names = false,
+			sass = { enable = true, parsers = { "css" } },
 		})
 	end, {
 		nargs = "?",
