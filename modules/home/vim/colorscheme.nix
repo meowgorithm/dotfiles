@@ -12,19 +12,34 @@ lib: isNvim: let
     guiStr = concatStringsSep "," gui;
   in "hi ${name} guifg=${fg} guibg=${bg} gui=${guiStr} cterm=${guiStr}";
 
-  builtin.fg = "#ef8d34";
-  comment.fg = "#676767";
-  constant.fg = "#00ccbb";
-  declaration.fg = "#1dc967";
-  function.fg = "#0baef4";
-  keyword.fg = "#dc59de";
-  operator.fg = "#ec6965";
-  punctuation.fg = "#c2c99c";
-  specialChar.fg = "#8352FF";
-  string.fg = "#c69669";
-  type.fg = "#835f5e";
-  functionName.fg = "#ffffff";
-  include.fg = "#f64c8d";
+  white = "#ffffff";
+  grey = "#676767";
+  brown = "#835f5e";
+  crimson = "#ec6965";
+  orange = "#ef8d34";
+  tan = "#c69669";
+  khaki = "#c2c99c";
+  grass = "#1dc967";
+  forest = "#00af87";
+  aqua = "#00ccbb";
+  blue = "#0baef4";
+  ultraviolet = "#8352FF";
+  fuchsia = "#dc59de";
+  hotPink = "#f64c8d";
+
+  builtin.fg = orange;
+  comment.fg = grey;
+  constant.fg = aqua;
+  declaration.fg = grass;
+  function.fg = blue;
+  functionName.fg = white;
+  include.fg = hotPink;
+  keyword.fg = fuchsia;
+  operator.fg = crimson;
+  punctuation.fg = khaki;
+  specialChar.fg = ultraviolet;
+  string.fg = tan;
+  type.fg = brown;
 
   ui = {
     ColorColumn.bg = "#202020";
@@ -105,9 +120,38 @@ lib: isNvim: let
 
     #Underlined = {};
     #Ignore = {};
-    #Error = {};
+    # Error = {};
     #Todo = {};
   };
+
+  nix =
+    if isNvim
+    then {
+      "@boolean.nix" = constant;
+      "@comment.nix" = comment;
+      "@conditional.nix" = keyword; # if/then/else
+      "@constant.nix" = constant;
+      "@constant.builtin.nix" = builtin;
+      "@exception.nix" = {}; # exceptions
+      "@field.nix" = function;
+      "@float.nix" = constant;
+      "@function.call.nix" = function;
+      "@include.nix" = include; # import
+      "@keyword.nix" = keyword; # basic keywords
+      "@keyword.operator.nix" = operator; # fieldaccess default (a.b or c)
+      "@number.nix" = constant;
+      "@operator.nix" = operator;
+      "@parameter.nix" = type; # function arguments
+      "@punctuation.bracket.nix" = punctuation;
+      "@punctuation.delimiter.nix" = punctuation;
+      "@punctuation.nix" = punctuation;
+      "@punctuation.special.nix" = operator; # string interpolation + the ... in { ... }
+      "@string.escape.nix" = specialChar; # escape sequences
+      "@string.nix".fg = forest;
+      "@string.special.nix" = {}; # paths and URLs
+      "@variable.nix".fg = brown; # basic identifiers
+    }
+    else {};
 
   go =
     if isNvim
@@ -116,34 +160,26 @@ lib: isNvim: let
       "@constant.go" = constant;
       "@boolean.go" = constant;
       "@number.go" = constant;
-
       "@label.go" = {};
-
       "@keyword.go" = keyword;
       "@conditional.go" = keyword;
       "@keyword.return.go" = keyword;
       "@keyword.coroutine.go" = keyword;
       "@keyword.function.go" = declaration;
-
       "@type.go" = type;
       "@type.builtin.go" = builtin;
       "@parameter.go" = constant;
       "@field.go" = specialChar;
-
       "@method.go" = functionName;
       "@include.go" = include;
-
       "@function.builtin.go" = builtin;
       "@function.call.go" = function;
       "@method.call.go" = function;
-
       "@punctuation.bracket.go" = punctuation;
       "@punctuation.delimiter.go" = punctuation;
       "@operator.go" = operator;
-
       "@string.go" = string;
       "@string.escape.go" = specialChar;
-
       "@comment.go" = comment;
     }
     else {
@@ -200,4 +236,4 @@ lib: isNvim: let
     + (concatStringsSep "\n" (mapAttrsToList mkRule rules))
     + "\n\n";
 in
-  concatStrings (map mkRules [ui defaults go css])
+  concatStrings (map mkRules [ui defaults nix go css])
