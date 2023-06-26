@@ -447,6 +447,7 @@ do
 			null_ls.builtins.formatting.alejandra,
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.shfmt,
+			null_ls.builtins.formatting.cabal_fmt,
 			null_ls.builtins.formatting.goimports,
 			null_ls.builtins.formatting.prettier,
 		},
