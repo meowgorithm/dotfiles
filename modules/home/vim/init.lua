@@ -118,6 +118,7 @@ autocmd("BufRead,BufNewFile", {
 nmap("<c-c>", "<cmd>Commentary<cr>")
 vim.cmd([[
 autocmd FileType nix setlocal commentstring=#\ %s
+autocmd FileType cabal setlocal commentstring=--\ %s
 ]])
 
 -- Tree
@@ -445,11 +446,12 @@ do
 	null_ls.setup({
 		sources = {
 			null_ls.builtins.formatting.alejandra,
-			null_ls.builtins.formatting.stylua,
-			null_ls.builtins.formatting.shfmt,
 			null_ls.builtins.formatting.cabal_fmt,
+			null_ls.builtins.formatting.fourmolu,
 			null_ls.builtins.formatting.goimports,
 			null_ls.builtins.formatting.prettier,
+			null_ls.builtins.formatting.shfmt,
+			null_ls.builtins.formatting.stylua,
 		},
 		capabilities = capabilities,
 		on_attach = on_attach,
