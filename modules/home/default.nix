@@ -158,6 +158,7 @@ in
         ./darwin-app-activation.nix
         ./floskell
         ./fonts.nix
+        ./fourmolu
         ./git.nix
         ./gpg.nix
         ./helix

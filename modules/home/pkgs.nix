@@ -70,7 +70,7 @@
       cabal-fmt
       cabal-install
       floskell
-      fourmolu
+      fourmolu_0_13_0_0
       pkgs.haskell.compiler.ghc943
     ]
     ++ lib.optionals ((pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) != true)
