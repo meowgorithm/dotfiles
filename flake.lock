@@ -63,25 +63,25 @@
     "blenderMacOSAarch64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-kCBi08+o0hv00akLJAsOI3qjyBGlF8IUZGBbH6HOQwI=",
+        "narHash": "sha256-RpGinNo7i27ykdMiKZ0MJybqZrnALThmXtaEtx4aMsc=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-arm64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-arm64.dmg"
       }
     },
     "blenderMacOSx86_64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-N27fq9Sk/nnaMqXUmFp4T5kKtFAidhTY9uX6nvSdx9E=",
+        "narHash": "sha256-FjbBeDmwQGRIaM2TqDWyV/rMr/f335jHYfpjnnb7AV8=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-x64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender3.5/blender-3.5.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-x64.dmg"
       }
     },
     "color-picker-nvim": {
