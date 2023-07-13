@@ -48,6 +48,34 @@ do
 		win:setFrame(f)
 	end)
 
+	-- Top
+	hotkey.bind(modifiers, "up", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x
+		f.y = max.y
+		f.w = max.w
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
+	-- Bottom
+	hotkey.bind(modifiers, "down", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x
+		f.y = max.y + (max.h / 2)
+		f.w = max.w
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
 	-- Center
 	hotkey.bind(modifiers, "C", function()
 		local win = hs.window.focusedWindow()
