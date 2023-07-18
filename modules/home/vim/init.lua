@@ -54,6 +54,8 @@ local options = {
 	-- Persistent undo
 	undofile = true,
 	undodir = vim.fn.stdpath("data") .. "/undo",
+	-- Text foramtting options. See :help fo-table.
+	formatoptions = "tcroq1]jp",
 }
 
 for k, v in pairs(options) do
@@ -81,7 +83,7 @@ nmap("<leader>n", "<cmd>noa write<cr>")
 vmap(">", ">gv")
 vmap("<", "<gv")
 
--- How about if just one < or > indents in normal mode?
+-- And how about if just one < or > indents in normal mode as well?
 nmap(">", ">>")
 nmap("<", "<<")
 
