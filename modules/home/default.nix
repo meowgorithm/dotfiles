@@ -165,6 +165,7 @@ in
         ./kakoune
         ./kitty.nix
         ./pkgs.nix
+        ./prettier
         ./readline.nix
         ./scripts
         ./tmux
