@@ -6,6 +6,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    charm = {
+      url = "github:charmbracelet/nur";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     #nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     # Vim/NeoVim plugins

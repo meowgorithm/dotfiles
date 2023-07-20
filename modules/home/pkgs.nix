@@ -56,6 +56,12 @@
     zopfli
   ];
 
+  charmNur = with pkgs; [
+    pop
+    soft-serve
+    wishlist
+  ];
+
   go = with pkgs; [
     delve
     go_1_20
@@ -107,7 +113,7 @@
     telegram
   ]);
 in {
-  home.packages = base ++ go ++ haskell ++ lsp ++ maybeMacOS;
+  home.packages = base ++ go ++ haskell ++ lsp ++ maybeMacOS ++ charmNur;
 
   programs = {
     z-lua.enable = true;

@@ -67,6 +67,16 @@
       }
     )
 
+    # Charm
+    (
+      self: super:
+        with inputs.charm.legacyPackages.${system}; {
+          pop = pop;
+          soft-serve = soft-serve;
+          wishlist = wishlist;
+        }
+    )
+
     # NeoVim nightly
     #inputs.nvim-nightly.overlay
 

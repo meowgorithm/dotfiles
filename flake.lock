@@ -84,6 +84,26 @@
         "url": "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-x64.dmg"
       }
     },
+    "charm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689875665,
+        "narHash": "sha256-Sm7efmr9DHMy9oHSSjMt1CT436lTvLX+G6rVEVIwsxg=",
+        "owner": "charmbracelet",
+        "repo": "nur",
+        "rev": "e11593f4789f3ca04d464e82120f0bd2c30c232e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "charmbracelet",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "color-picker-nvim": {
       "flake": false,
       "locked": {
@@ -354,6 +374,7 @@
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",
+        "charm": "charm",
         "color-picker-nvim": "color-picker-nvim",
         "dozer": "dozer",
         "element": "element",
