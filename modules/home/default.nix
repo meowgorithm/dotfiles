@@ -54,16 +54,17 @@
     });
 
   overlays = [
-    # Use the same version as the system
     (
       self: super: let
         stablePkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
+        # Use the same version as the system
         gnupg = stablePkgs.gnupg;
         redis = stablePkgs.redis;
 
-        # Unstable currently broken on macOS x86_64
+        # Unstable currently broken on macOS (x86_64 and/or aarch64)
         vscode-langservers-extracted = stablePkgs.nodePackages_latest.vscode-langservers-extracted;
+        lua-language-server = stablePkgs.lua-language-server;
       }
     )
 

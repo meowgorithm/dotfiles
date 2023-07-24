@@ -92,10 +92,10 @@
     elm
     elm-language-server
     golangci-lint-langserver
+    lua-language-server
     nil
     prettier
     stylua
-    sumneko-lua-language-server
     svgo
     typescript
     typescript-language-server
