@@ -11,7 +11,6 @@ hs.alert.defaultStyle.textStyle = {
 	paragraphStyle = { lineHeightMultiple = 1.4 },
 }
 hs.alert.show("Hammerspoon Loaded", 2)
-hs.window.animationDuration = 0
 
 -- Disable animations
 hs.window.animationDuration = 0
@@ -126,8 +125,24 @@ do
 	end
 
 	local menu = {
-		t = { name = "Terminal", action = launch("Kitty") },
-		b = { name = "Browser", action = launch("Arc") },
+		t = {
+			name = "Terminals",
+			a = { name = "Alacritty", action = launch("Alacritty") },
+			k = { name = "Kitty", action = launch("Kitty") },
+		},
+		a = {
+			name = "Browsers",
+			a = { name = "Arc", action = launch("Arc") },
+			s = { name = "Safari", action = launch("Safari") },
+		},
+		o = {
+			name = "Others",
+			b = { name = "Blender", action = launch("Blender") },
+			d = { name = "Dozer", action = launch("Dozer") },
+			e = { name = "Element", action = launch("Element") },
+			t = { name = "Telegram", action = launch("Telegram") },
+			n = { name = "Nightfall", action = launch("Nightfall") },
+		},
 	}
 
 	local function setupMenu(modal, menu)
