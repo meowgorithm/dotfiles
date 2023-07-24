@@ -19,7 +19,7 @@
     "arc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-1GKcIf9Bd0q5w3gs9DMNstwrwZf9rvlw322hNQj5lrU=",
+        "narHash": "sha256-nQ/Kq7cw17yjdqaJEMol9GunukB3SmOHhX6Iksx0O9k=",
         "type": "file",
         "url": "https://releases.arc.net/release/Arc-latest.dmg"
       },
@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1689875665,
-        "narHash": "sha256-Sm7efmr9DHMy9oHSSjMt1CT436lTvLX+G6rVEVIwsxg=",
+        "lastModified": 1689978776,
+        "narHash": "sha256-iZh+taI5yBlRJhr/vxzV1Rn9G98cjePBb9+T+V48U6I=",
         "owner": "charmbracelet",
         "repo": "nur",
-        "rev": "e11593f4789f3ca04d464e82120f0bd2c30c232e",
+        "rev": "2bea67bf7550f085412a3b4ff4f441682353b114",
         "type": "github"
       },
       "original": {
@@ -195,11 +195,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688999869,
-        "narHash": "sha256-gLD2UI6+Nb9JV5Wh4FnLHAZwLMiY11RHYBKmBZCxLXc=",
+        "lastModified": 1690195124,
+        "narHash": "sha256-RdAMFEnhoOZSjrFd/zULzDJ59obHTYXOv4d5ie76tXw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a6d1d954b81caf4c9291b8ac35452fef842f289b",
+        "rev": "a30f5b5b35e2d974fb5e1a3721eaec723ef48c89",
         "type": "github"
       },
       "original": {
@@ -290,11 +290,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1688939073,
-        "narHash": "sha256-jYhYjeK5s6k8QS3i+ovq9VZqBJaWbxm7awTKNhHL9d0=",
+        "lastModified": 1690148897,
+        "narHash": "sha256-l/j/AX1d2K79EWslwgWR2+htkzCbtjKZsS5NbWXnhz4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8df7a67abaf8aefc8a2839e0b48f92fdcf69a38b",
+        "rev": "ac1acba43b2f9db073943ff5ed883ce7e8a40a2c",
         "type": "github"
       },
       "original": {
@@ -306,11 +306,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1688956120,
-        "narHash": "sha256-7geHGr2aLpQvwGgaZlTLPHMVFxvFzAuB35mZYsKgLpQ=",
+        "lastModified": 1690083312,
+        "narHash": "sha256-I3egwgNXavad1eIjWu1kYyi0u73di/sMmlnQIuzQASk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2169d3b0bce0daa64d05abbdf9da552a7b8c22a7",
+        "rev": "af8cd5ded7735ca1df1a1174864daab75feeb64a",
         "type": "github"
       },
       "original": {
@@ -451,7 +451,7 @@
     "telegramMacOS": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Qcjd5tbJHEzmiS0aBv33DruEsCLGkktIa1zJoKW1PsE=",
+        "narHash": "sha256-Ap9D1RZzJARY1qbuXLEGL+vv/Ga+epLCTR6db15Ag1Q=",
         "type": "file",
         "url": "https://telegram.org/dl/macos"
       },
