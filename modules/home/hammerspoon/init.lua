@@ -116,13 +116,18 @@ do
 	end
 
 	local excludes = {
+		".",
+		"..",
 		"Boot Camp Assistant.app",
 		"Cinema 4D Team Render Client.app",
 		"Cinema 4D Team Render Server.app",
 		"Cineware.app",
 		"Commandline.app", -- a C4D thing
+		"Freeform.app",
+		"Grapher.app",
 		"Migration Assistant.app",
 		"Red Giant FxPlug",
+		"c4dpy.app",
 		"redshift",
 	}
 
@@ -149,9 +154,7 @@ do
 		for file in hs.fs.dir(dir) do
 			path = dir .. "/" .. file
 
-			if file == "." or file == ".." then
-				goto continue
-			elseif exclude(file) then
+			if exclude(file) then
 				goto continue
 			elseif getExtension(file) == ".app" then
 				table.insert(choices, {
