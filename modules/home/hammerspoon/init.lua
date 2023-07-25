@@ -105,84 +105,125 @@ do
 	end)
 end
 
--- Menu
--- Ported from @maaslalani's fennel version
--- https://github.com/maaslalani/_/blob/4b7844ef73846b0353fadb02650d79cbd34d47ca/fnl/hammerspoon.fnl
+-- App/URL/Folder Chooser
 do
-	local modalWidth = 20
-	local mainModal = hs.hotkey.modal.new({ "alt" }, "space")
-
-	local function launch(application)
-		return function()
-			return hs.application.launchOrFocus(application)
-		end
+	local function filenameWithoutExtension(str)
+		return str:match("(.+)%..+")
 	end
 
-	local function openUrl(url)
-		return function()
-			return hs.urlevent.openURL(url)
-		end
+	local function getExtension(str)
+		return str:match("^.+(%..+)$")
 	end
 
-	local menu = {
-		t = {
-			name = "Terminals",
-			a = { name = "Alacritty", action = launch("Alacritty") },
-			k = { name = "Kitty", action = launch("Kitty") },
-		},
-		a = {
-			name = "Browsers",
-			a = { name = "Arc", action = launch("Arc") },
-			s = { name = "Safari", action = launch("Safari") },
-		},
-		o = {
-			name = "Others",
-			b = { name = "Blender", action = launch("Blender") },
-			d = { name = "Dozer", action = launch("Dozer") },
-			e = { name = "Element", action = launch("Element") },
-			t = { name = "Telegram", action = launch("Telegram") },
-			n = { name = "Nightfall", action = launch("Nightfall") },
-		},
+	local excludes = {
+		"Boot Camp Assistant.app",
+		"Cinema 4D Team Render Client.app",
+		"Cinema 4D Team Render Server.app",
+		"Cineware.app",
+		"Commandline.app", -- a C4D thing
+		"Migration Assistant.app",
+		"Red Giant FxPlug",
+		"redshift",
 	}
 
-	local function setupMenu(modal, menu)
-		modal.exited = function()
-			hs.alert.closeAll()
-		end
-		modal:bind({}, "escape", function()
-			modal:exit()
-		end)
-
-		local readout = {}
-		for k, v in pairs(menu) do
-			if type(v) == "table" then
-				local gap = string.rep(" ", (modalWidth - #v.name))
-				readout[#readout + 1] = (k .. gap .. v.name)
-
-				local action
-
-				if v.action ~= nil then
-					action = v.action
-				else
-					local subMenu = hs.hotkey.modal.new()
-					setupMenu(subMenu, v)
-					action = function()
-						subMenu:enter()
-					end
-				end
-
-				modal:bind({}, k, function()
-					modal:exit()
-					action()
-				end)
+	local function exclude(file)
+		for _, v in ipairs(excludes) do
+			if v == file then
+				return true
 			end
 		end
+		return false
+	end
 
-		modal.entered = function()
-			hs.alert.closeAll()
-			hs.alert(table.concat(readout, "\n"), true)
+	local function shallowTableMerge(a, b)
+		for _, v in pairs(b) do
+			table.insert(a, v)
 		end
 	end
 
-	setupMenu(mainModal, menu)
+	local maxDepth <const> = 1
+
+	local function findApps(dir, depth)
+		local choices = {}
+		local attrs, path
+		for file in hs.fs.dir(dir) do
+			path = dir .. "/" .. file
+
+			if file == "." or file == ".." then
+				goto continue
+			elseif exclude(file) then
+				goto continue
+			elseif getExtension(file) == ".app" then
+				table.insert(choices, {
+					text = filenameWithoutExtension(file),
+					image = hs.image.iconForFile(path),
+					type = "app",
+				})
+				goto continue
+			end
+
+			attrs = hs.fs.attributes(path)
+
+			if attrs["mode"] == "directory" and depth < maxDepth then
+				local subChoices = findApps(path, depth + 1)
+				shallowTableMerge(choices, subChoices)
+			end
+
+			::continue::
+		end
+		return choices
+	end
+
+	local choices = {}
+	shallowTableMerge(choices, findApps("/Applications", 0))
+	shallowTableMerge(choices, findApps("/System/Applications", 0))
+	shallowTableMerge(choices, findApps("/Users/christian/Applications", 0))
+
+	local function insertURL(t, text, subText)
+		table.insert(t, {
+			text = text,
+			subText = subText,
+			image = hs.image.imageFromAppBundle("com.apple.Safari"),
+			type = "url",
+		})
+	end
+
+	local function insertFolder(t, text, subText)
+		table.insert(t, {
+			text = text,
+			subText = subText,
+			image = hs.image.imageFromAppBundle("com.apple.Finder"),
+			type = "folder",
+		})
+	end
+
+	insertURL(choices, "Localhost:8000", "http://localhost:8000/")
+	insertURL(choices, "Charm", "https://charm.sh")
+	insertURL(choices, "Stars", "https://charm.sh/stars/")
+	insertFolder(choices, "Graphics", "/Users/christian/Dropbox/Projects/Charmbracelet/Charm\\ Creative/Work")
+
+	table.sort(choices, function(a, b)
+		return a.text < b.text
+	end)
+
+	local chooser = hs.chooser.new(function(choice)
+		if not choice then
+			return
+		end
+		if choice.type == "app" then
+			hs.application.launchOrFocus(choice.text)
+		elseif choice.type == "url" then
+			hs.urlevent.openURL(choice.subText)
+		elseif choice.type == "folder" then
+			hs.execute("open " .. choice.subText)
+		end
+	end)
+
+	chooser:choices(choices)
+	chooser:searchSubText(false)
+	chooser:rows(10)
+	chooser:bgDark(true)
+	hs.hotkey.bind({ "cmd" }, "space", function()
+		chooser:show()
+	end)
 end
