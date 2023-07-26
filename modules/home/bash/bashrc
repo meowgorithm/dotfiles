@@ -141,7 +141,7 @@ alias nr='nix run -L'
 alias sshi='ssh -o IdentitiesOnly=yes'
 alias charm-install='gh repo list charmbracelet | cut -f1 | gum filter --no-limit | xargs -I {} go install -v "github.com/{}@latest"'
 alias code-review='git --no-pager diff | mods -f "code review this patch" | glow'
-alias update-inputs="nix flake info --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit | xargs nix flake lock --update-input"
+alias update-inputs="nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit | xargs nix flake lock --update-input"
 
 alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
 alias install-gum="go install -v github.com/charmbracelet/gum@latest"
