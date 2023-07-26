@@ -5,45 +5,11 @@
 }: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
 in {
-  programs.vim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
-      BufOnly-vim
-      ale
-      asyncomplete-buffer-vim
-      asyncomplete-file-vim
-      asyncomplete-lsp-vim
-      asyncomplete-vim
-      copilot-vim
-      fern-vim
-      fzf-vim
-      vim-airline
-      vim-commentary
-      vim-css-color
-      vim-easy-align
-      vim-gitgutter
-      vim-gnupg
-      vim-go
-      vim-lsp
-      vim-lsp-settings
-      vim-sensible
-    ];
-    extraConfig = ''
-      if !has('vim9script')
-        finish
-      endif
-      source $HOME/.vim/vimrc
-      colorscheme pantera-negra
-    '';
-  };
-  home.file.".vim/vimrc".source = ./vimrc;
-  home.file.".vim/colors/pantera-negra.vim".text = colorscheme false;
-
   programs.neovim = {
     enable = true;
     #package = pkgs.neovim-nightly;
-    viAlias = false;
-    vimAlias = false;
+    viAlias = true;
+    vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
