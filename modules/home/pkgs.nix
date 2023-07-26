@@ -57,6 +57,7 @@
   ];
 
   charmNur = with pkgs; [
+    gum
     pop
     soft-serve
     wishlist

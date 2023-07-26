@@ -70,12 +70,18 @@
 
     # Charm
     (
-      self: super:
-        with inputs.charm.legacyPackages.${system}; {
-          pop = pop;
-          soft-serve = soft-serve;
-          wishlist = wishlist;
-        }
+      self: super: let
+        charmPkgs = [
+          "gum"
+          "pop"
+          "soft-serve"
+          "wishlist"
+        ];
+        useCharmPkg = name: {
+          "${name}" = inputs.charm.legacyPackages.${system}."${name}";
+        };
+      in
+        lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
     )
 
     # NeoVim nightly

@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1689978776,
-        "narHash": "sha256-iZh+taI5yBlRJhr/vxzV1Rn9G98cjePBb9+T+V48U6I=",
+        "lastModified": 1690381271,
+        "narHash": "sha256-oeTaOVHtjxbQJAGI68rizzy0jnjd6IlTflg/gEZvJ/Q=",
         "owner": "charmbracelet",
         "repo": "nur",
-        "rev": "2bea67bf7550f085412a3b4ff4f441682353b114",
+        "rev": "ae8b11b0b774dc4f36d3a2fcf2e6d7b04de695fc",
         "type": "github"
       },
       "original": {
@@ -451,7 +451,7 @@
     "telegramMacOS": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-51AZkpGhcj2H2nic+DdFiqsDat4fb4nNYZXomDWmv2w=",
+        "narHash": "sha256-8Scb8iRbJSqxJdLk8UsII5XtaVNzz3qI39A5wQA1Of8=",
         "type": "file",
         "url": "https://telegram.org/dl/macos"
       },
