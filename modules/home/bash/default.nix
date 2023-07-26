@@ -26,6 +26,7 @@ in {
         GIT_PS1_SHOWDIRTYSTATE = "true";
         GIT_PS1_SHOWUNTRACKEDFILES = "true";
         GIT_PS1_SHOWSTASHSTATE = "true";
+        POP_DEFAULT_FROM = "christian@rocha.is";
       }
       // (
         if pkgs.stdenv.isDarwin
