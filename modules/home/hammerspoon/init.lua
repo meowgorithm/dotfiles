@@ -122,6 +122,7 @@ do
 	local excludes = {
 		".",
 		"..",
+		"After Effects Render Engine 2023.app",
 		"Boot Camp Assistant.app",
 		"Cinema 4D Team Render Client.app",
 		"Cinema 4D Team Render Server.app",
