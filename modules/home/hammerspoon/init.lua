@@ -107,6 +107,10 @@ end
 
 -- App/URL/Folder Chooser
 do
+	-- load a file into a variable
+	local handle = assert(io.popen("~/.nix-profile/bin/gpg --quiet --decrypt --no-tty ~/.hammerspoon/rc.lua.gpg 2>&1"))
+	local config = load(handle:read("*all"))()
+
 	local function filenameWithoutExtension(str)
 		return str:match("(.+)%..+")
 	end
@@ -130,6 +134,9 @@ do
 		"c4dpy.app",
 		"redshift",
 	}
+	for _, v in ipairs(config.excludes) do
+		table.insert(excludes, v)
+	end
 
 	local function exclude(file)
 		for _, v in ipairs(excludes) do
@@ -200,10 +207,21 @@ do
 		})
 	end
 
-	insertURL(choices, "Localhost:8000", "http://localhost:8000/")
 	insertURL(choices, "Charm", "https://charm.sh")
 	insertURL(choices, "Stars", "https://charm.sh/stars/")
-	insertFolder(choices, "Graphics", "/Users/christian/Dropbox/Projects/Charmbracelet/Charm\\ Creative/Work")
+
+	for _, v in ipairs(config.choices) do
+		if v.type then
+			if v.type == "url" then
+				insertURL(choices, v.text, v.subText)
+			elseif v.type == "folder" then
+				insertFolder(choices, v.text, v.subText)
+			end
+			goto continue
+		end
+		print("Skipping choice: " .. v.text .. " (unknown or missing type)")
+		::continue::
+	end
 
 	table.sort(choices, function(a, b)
 		return a.text < b.text

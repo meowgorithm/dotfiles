@@ -199,15 +199,7 @@ export GOCHARM='github.com/charmbracelet'
 export GOMEOW='github.com/charmbracelet'
 
 # Direnv
-command -v direnv >/dev/null 2>&1 &&
-	eval "$(direnv hook bash)"
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # Exa
-command -v exa >/dev/null 2>&1 &&
-	alias ls='exa -g'
-
-# Llama
-command -v llama >/dev/null 2>&1 &&
-	function ll {
-		cd "$(llama "$@")" || return
-	}
+command -v exa >/dev/null 2>&1 && alias ls='exa -g'
