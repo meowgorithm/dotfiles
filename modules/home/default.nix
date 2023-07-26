@@ -75,6 +75,7 @@
           "gum"
           "pop"
           "soft-serve"
+          "vhs"
           "wishlist"
         ];
         useCharmPkg = name: {

@@ -60,6 +60,7 @@
     gum
     pop
     soft-serve
+    vhs
     wishlist
   ];
 
