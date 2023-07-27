@@ -1,11 +1,11 @@
 # The Meowgorithm Dotfiles, Collectors’ Edition
 
-This repo contains a NixOS and Home Manager configurations to support a few
+This repo contains NixOS and Home Manager configurations to support a few
 systems:
 
-- NixOS x86_64
-- macOS x86_64 and aarch64
-- Headless, general-purpose Linux x86_64
+- NixOS `x86_64` with Xmonad
+- macOS `x86_64` and `aarch64`
+- Headless, general-purpose Linux `x86_64` (including WSL)
 
 ## User Management
 
@@ -16,7 +16,7 @@ systems:
 # Let it rip:
 nix run
 
-# Or, for headless Linux boxes:
+# Or, for headless VMs and WSL:
 nix run .#christian@headless
 ```
 
@@ -26,7 +26,7 @@ Update the system locally:
 
 ```bash
 nixos-rebuild switch --flake .
-````
+```
 
 Or just do it over the network:
 
