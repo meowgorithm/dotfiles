@@ -451,7 +451,7 @@
     "telegramMacOS": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-8Scb8iRbJSqxJdLk8UsII5XtaVNzz3qI39A5wQA1Of8=",
+        "narHash": "sha256-cCSTjtFPWXeTx0M4+WU4uu5FNDTDWjWCUi9ZPMCSG7U=",
         "type": "file",
         "url": "https://telegram.org/dl/macos"
       },
