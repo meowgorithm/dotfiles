@@ -107,9 +107,13 @@ end
 
 -- App/URL/Folder Chooser
 do
-	-- load a file into a variable
-	local handle = assert(io.popen("~/.nix-profile/bin/gpg --quiet --decrypt --no-tty ~/.hammerspoon/rc.lua.gpg 2>&1"))
-	local config = load(handle:read("*all"))()
+	local function gpgDecrypt(path)
+		local handle = assert(io.popen("~/.nix-profile/bin/gpg --quiet --decrypt --no-tty " .. path .. " 2>&1"))
+		return handle:read("*all")
+	end
+
+	local src = gpgDecrypt("~/.hammerspoon/rc.lua.gpg")
+	local config = load(src)()
 
 	local function filenameWithoutExtension(str)
 		return str:match("(.+)%..+")
