@@ -19,7 +19,7 @@
     "arc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-93ltXtiICrzFkRaBe0o3EacUGH1lc0SSTGVs4eIDadE=",
+        "narHash": "sha256-q++ExrRJzusS9MddohdoWs9gwXZ9jC3CGiSmegj8GSc=",
         "type": "file",
         "url": "https://releases.arc.net/release/Arc-latest.dmg"
       },
@@ -451,7 +451,7 @@
     "telegramMacOS": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-cCSTjtFPWXeTx0M4+WU4uu5FNDTDWjWCUi9ZPMCSG7U=",
+        "narHash": "sha256-eo3+dTST7CM4a4s071bGzRHucAW2zOvGYchgazaold8=",
         "type": "file",
         "url": "https://telegram.org/dl/macos"
       },
