@@ -91,7 +91,6 @@
     # macOS stuff
     (
       self: super: {
-        arc = mkDmg "arc" "Arc" inputs.arc;
         blender = mkDmg "blender" "Blender" (
           if self.pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
           then inputs.blenderMacOSAarch64
@@ -108,7 +107,6 @@
           '';
         };
         nightfall = mkDmg "nightfall" "Nightfall" inputs.nightfall;
-        telegram = mkDmg "telegram" "Telegram" inputs.telegramMacOS;
       }
     )
 

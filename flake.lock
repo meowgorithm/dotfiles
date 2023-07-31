@@ -16,18 +16,6 @@
         "url": "ssh://git.rocha.is/anchor"
       }
     },
-    "arc": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-q++ExrRJzusS9MddohdoWs9gwXZ9jC3CGiSmegj8GSc=",
-        "type": "file",
-        "url": "https://releases.arc.net/release/Arc-latest.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://releases.arc.net/release/Arc-latest.dmg"
-      }
-    },
     "arno-pro": {
       "flake": false,
       "locked": {
@@ -369,7 +357,6 @@
     "root": {
       "inputs": {
         "anchor": "anchor",
-        "arc": "arc",
         "arno-pro": "arno-pro",
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
@@ -395,7 +382,6 @@
         "sf-mono": "sf-mono",
         "space-grotesk": "space-grotesk",
         "symbolset": "symbolset",
-        "telegramMacOS": "telegramMacOS",
         "untitled-sans": "untitled-sans",
         "upton": "upton"
       }
@@ -446,18 +432,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/symbolset"
-      }
-    },
-    "telegramMacOS": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-eo3+dTST7CM4a4s071bGzRHucAW2zOvGYchgazaold8=",
-        "type": "file",
-        "url": "https://telegram.org/dl/macos"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://telegram.org/dl/macos"
       }
     },
     "untitled-sans": {

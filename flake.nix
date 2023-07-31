@@ -10,7 +10,6 @@
       url = "github:charmbracelet/nur";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    #nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     # Vim/NeoVim plugins
     color-picker-nvim = {
@@ -22,10 +21,6 @@
     mkAlias = {
       url = "github:cdmistman/mkAlias";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    arc = {
-      url = "https://releases.arc.net/release/Arc-latest.dmg";
-      flake = false;
     };
     blenderMacOSAarch64 = {
       url = "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-macos-arm64.dmg";
@@ -49,10 +44,6 @@
     };
     nightfall = {
       url = "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg";
-      flake = false;
-    };
-    telegramMacOS = {
-      url = "https://telegram.org/dl/macos";
       flake = false;
     };
 
