@@ -7,6 +7,7 @@
     age
     awscli2
     bashInteractive
+    bc
     brotli
     cargo
     coreutils
