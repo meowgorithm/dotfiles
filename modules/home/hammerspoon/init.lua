@@ -215,6 +215,12 @@ do
 	insertURL(choices, "Charm", "https://charm.sh")
 	insertURL(choices, "Stars", "https://charm.sh/stars/")
 
+	table.insert(choices, {
+		text = "Reload Hammerspoon",
+		image = hs.image.imageFromAppBundle("com.apple.ScriptEditor2"),
+		type = "reload",
+	})
+
 	for _, v in ipairs(config.choices) do
 		if v.type then
 			if v.type == "url" then
@@ -242,6 +248,8 @@ do
 			hs.urlevent.openURL(choice.subText)
 		elseif choice.type == "folder" then
 			hs.execute("open " .. choice.subText)
+		elseif choice.type == "reload" then
+			hs.reload()
 		end
 	end)
 
