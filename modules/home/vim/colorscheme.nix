@@ -120,114 +120,81 @@ lib: isNvim: let
 
     #Underlined = {};
     #Ignore = {};
-    # Error = {};
+    #Error = {};
     #Todo = {};
   };
 
-  nix =
-    if isNvim
-    then {
-      "@boolean.nix" = constant;
-      "@comment.nix" = comment;
-      "@conditional.nix" = keyword; # if/then/else
-      "@constant.nix" = constant;
-      "@constant.builtin.nix" = builtin;
-      "@exception.nix" = {}; # exceptions
-      "@field.nix" = function;
-      "@float.nix" = constant;
-      "@function.call.nix" = function;
-      "@include.nix" = include; # import
-      "@keyword.nix" = keyword; # basic keywords
-      "@keyword.operator.nix" = operator; # fieldaccess default (a.b or c)
-      "@number.nix" = constant;
-      "@operator.nix" = operator;
-      "@parameter.nix" = type; # function arguments
-      "@punctuation.bracket.nix" = punctuation;
-      "@punctuation.delimiter.nix" = punctuation;
-      "@punctuation.nix" = punctuation;
-      "@punctuation.special.nix" = operator; # string interpolation + the ... in { ... }
-      "@string.escape.nix" = specialChar; # escape sequences
-      "@string.nix".fg = forest;
-      "@string.special.nix" = {}; # paths and URLs
-      "@variable.nix".fg = brown; # basic identifiers
-    }
-    else {};
+  nix = {
+    "@boolean.nix" = constant;
+    "@comment.nix" = comment;
+    "@conditional.nix" = keyword; # if/then/else
+    "@constant.nix" = constant;
+    "@constant.builtin.nix" = builtin;
+    "@exception.nix" = {}; # exceptions
+    "@field.nix" = function;
+    "@float.nix" = constant;
+    "@function.call.nix" = function;
+    "@include.nix" = include; # import
+    "@keyword.nix" = keyword; # basic keywords
+    "@keyword.operator.nix" = operator; # fieldaccess default (a.b or c)
+    "@number.nix" = constant;
+    "@operator.nix" = operator;
+    "@parameter.nix" = type; # function arguments
+    "@punctuation.bracket.nix" = punctuation;
+    "@punctuation.delimiter.nix" = punctuation;
+    "@punctuation.nix" = punctuation;
+    "@punctuation.special.nix" = operator; # string interpolation + the ... in { ... }
+    "@string.escape.nix" = specialChar; # escape sequences
+    "@string.nix".fg = forest;
+    "@string.special.nix" = {}; # paths and URLs
+    "@variable.nix".fg = brown; # basic identifiers
+  };
 
-  go =
-    if isNvim
-    then {
-      # Treesitter
-      "@constant.go" = constant;
-      "@boolean.go" = constant;
-      "@number.go" = constant;
-      "@label.go" = {};
-      "@keyword.go" = keyword;
-      "@conditional.go" = keyword;
-      "@keyword.return.go" = keyword;
-      "@keyword.coroutine.go" = keyword;
-      "@keyword.function.go" = declaration;
-      "@type.go" = type;
-      "@type.builtin.go" = builtin;
-      "@parameter.go" = constant;
-      "@field.go" = specialChar;
-      "@method.go" = functionName;
-      "@include.go" = include;
-      "@function.builtin.go" = builtin;
-      "@function.call.go" = function;
-      "@method.call.go" = function;
-      "@punctuation.bracket.go" = punctuation;
-      "@punctuation.delimiter.go" = punctuation;
-      "@operator.go" = operator;
-      "@string.go" = string;
-      "@string.escape.go" = specialChar;
-      "@comment.go" = comment;
-    }
-    else {
-      # vim-go
-      goPackage = include;
-      goImport = include;
-      goParen = punctuation;
-      goBlock = {};
-      goType = type;
-      goParamType = type;
-      goDeclType = type;
-      goStatement = keyword;
-      goLabel = keyword;
-      goDeclaration = declaration;
-      goFunction = functionName;
-      goTypeName = functionName;
-      goBuiltins = builtin;
-      goReceiver = punctuation;
-      goReceiverVar = constant;
-      goPointerOperator = operator;
-      goOperator = operator;
-      goParamName = constant;
-      goSimpleParams = punctuation;
-      goFunctionCall = function;
-      goConst = keyword;
-    };
+  go = {
+    "@constant.go" = constant;
+    "@boolean.go" = constant;
+    "@number.go" = constant;
+    "@label.go" = {};
+    "@keyword.go" = keyword;
+    "@conditional.go" = keyword;
+    "@keyword.return.go" = keyword;
+    "@keyword.coroutine.go" = keyword;
+    "@keyword.function.go" = declaration;
+    "@type.go" = type;
+    "@type.builtin.go" = builtin;
+    "@parameter.go" = constant;
+    "@field.go" = specialChar;
+    "@method.go" = functionName;
+    "@include.go" = include;
+    "@function.builtin.go" = builtin;
+    "@function.call.go" = function;
+    "@method.call.go" = function;
+    "@punctuation.bracket.go" = punctuation;
+    "@punctuation.delimiter.go" = punctuation;
+    "@operator.go" = operator;
+    "@string.go" = string;
+    "@string.escape.go" = specialChar;
+    "@comment.go" = comment;
+  };
 
-  css =
-    if isNvim
-    then {
-      "@media.scss".fg = "#dc59de";
-      "@include.scss".fg = "#dc59de";
-      "@type.scss".fg = "#dc59de";
-      "@keyword.scss".fg = "#dc59de";
-      "@operator.scss".fg = "#ec6965";
-      "@comment.scss".fg = "#676767";
-      "@type.qualifier.scss".fg = "#dc59de";
-      "@string.scss".fg = "#12deab";
-      "@number.scss".fg = "#12deab";
-      "@property.scss".fg = "#0ce4d5";
-      "@namespace.scss".fg = "#ff0000";
-      "@type.definition.scss".fg = "#dc59de";
-      "@punctuation.delimiter.scss".fg = "#c2c99c";
-      "@punctuation.bracket.scss".fg = "#c2c99c";
-      "@function.scss".fg = "#e354ce";
-      "@variable.scss".fg = "#7a52ff";
-    }
-    else {};
+  css = {
+    "@media.scss".fg = "#dc59de";
+    "@include.scss".fg = "#dc59de";
+    "@type.scss".fg = "#dc59de";
+    "@keyword.scss".fg = "#dc59de";
+    "@operator.scss".fg = "#ec6965";
+    "@comment.scss".fg = "#676767";
+    "@type.qualifier.scss".fg = "#dc59de";
+    "@string.scss".fg = "#12deab";
+    "@number.scss".fg = "#12deab";
+    "@property.scss".fg = "#0ce4d5";
+    "@namespace.scss".fg = "#ff0000";
+    "@type.definition.scss".fg = "#dc59de";
+    "@punctuation.delimiter.scss".fg = "#c2c99c";
+    "@punctuation.bracket.scss".fg = "#c2c99c";
+    "@function.scss".fg = "#e354ce";
+    "@variable.scss".fg = "#7a52ff";
+  };
 
   mkRules = rules:
     "\" Reset.\n"
