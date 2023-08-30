@@ -23,11 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     blenderMacOSAarch64 = {
-      url = "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.1-macos-arm64.dmg";
+      url = "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.2-macos-arm64.dmg";
       flake = false;
     };
     blenderMacOSx86_64 = {
-      url = "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.1-macos-x64.dmg";
+      url = "https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.2-macos-x64.dmg";
       flake = false;
     };
     dozer = {
