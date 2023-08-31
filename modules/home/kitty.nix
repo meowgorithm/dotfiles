@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   isDarwin =
     pkgs.stdenv.isDarwin;
 
@@ -38,7 +33,7 @@ in {
           window_border_width = "1.0";
           window_margin_width = "0.0";
           single_window_margin_width = "0.0";
-          window_padding_width = "8.0";
+          window_padding_width = "10.0 14.0";
 
           active_border_color = "#686868";
           inactive_border_color = "#4A4A4A";
@@ -56,11 +51,10 @@ in {
 
           allow_remote_control = true;
 
-          macos_titlebar_color = "background";
           macos_option_as_alt = "left";
           macos_quit_when_last_window_closed = "yes";
           macos_traditional_fullscreen = "yes";
-          macos_show_window_title_in = "none";
+          hide_window_decorations = "titlebar-only";
 
           # Colors {{{
 
