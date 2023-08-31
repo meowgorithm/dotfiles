@@ -185,6 +185,7 @@ in
         ./readline.nix
         ./scripts
         ./tmux
+        ./wezterm
         ./vim
       ]
       ++ extraModules;
