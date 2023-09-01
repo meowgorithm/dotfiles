@@ -57,8 +57,6 @@ in {
           macos_titlebar_color = "background";
           macos_show_window_title_in = "none";
 
-          # Colors {{{
-
           selection_foreground = "#222222";
           selection_background = "#ccff00";
 
