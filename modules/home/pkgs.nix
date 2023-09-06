@@ -74,6 +74,11 @@
     gotools
   ];
 
+  rust = with pkgs; [
+    rust-analyzer
+    rustc
+  ];
+
   haskell = with pkgs.haskellPackages;
     [
       cabal-fmt
@@ -117,7 +122,7 @@
     nightfall
   ]);
 in {
-  home.packages = base ++ go ++ haskell ++ lsp ++ maybeMacOS ++ charmNur;
+  home.packages = base ++ go ++ haskell ++ rust ++ lsp ++ maybeMacOS ++ charmNur;
 
   programs = {
     z-lua.enable = true;
