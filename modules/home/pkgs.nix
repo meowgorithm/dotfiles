@@ -16,7 +16,6 @@
     direnv
     duf
     element
-    exa
     ffmpeg
     fish
     fzf
@@ -31,6 +30,7 @@
     kak-lsp
     kakoune
     libwebp
+    lsd
     luajit
     moreutils
     ngrok

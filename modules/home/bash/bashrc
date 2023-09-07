@@ -146,8 +146,8 @@ alias update-inputs="nix flake metadata --json | jq -r '.locks.nodes.root.inputs
 alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
 alias install-gum="go install -v github.com/charmbracelet/gum@latest"
 
-if command -v exa &>/dev/null; then
-	alias tree='exa --tree'
+if command -v lsd &>/dev/null; then
+	alias tree='lsd --tree'
 elif command -v tree &>/dev/null; then
 	alias tree='tree -C'
 fi
@@ -201,5 +201,5 @@ export GOMEOW='github.com/charmbracelet'
 # Direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
-# Exa
-command -v exa >/dev/null 2>&1 && alias ls='exa -g'
+# LSD
+command -v lsd >/dev/null 2>&1 && alias ls='lsd'
