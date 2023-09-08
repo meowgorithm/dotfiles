@@ -119,6 +119,7 @@
     blender
     cachix
     dozer
+    monitorcontrol
     nightfall
   ]);
 in {

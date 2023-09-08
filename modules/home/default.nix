@@ -107,6 +107,7 @@
           '';
         };
         nightfall = mkDmg "nightfall" "Nightfall" inputs.nightfall;
+        monitorcontrol = mkDmg "monitorcontrol" "MonitorControl" inputs.monitorcontrol;
       }
     )
 

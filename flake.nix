@@ -42,6 +42,10 @@
       url = "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip";
       flake = false;
     };
+    monitorcontrol = {
+      url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg";
+      flake = false;
+    };
     nightfall = {
       url = "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg";
       flake = false;

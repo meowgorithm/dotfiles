@@ -232,6 +232,18 @@
         "type": "github"
       }
     },
+    "monitorcontrol": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-rLMzKMBzU1W+ikHA18JkFY3J6BbutL07RWB+1dFK988=",
+        "type": "file",
+        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg"
+      }
+    },
     "monoflow": {
       "flake": false,
       "locked": {
@@ -371,6 +383,7 @@
         "home-manager": "home-manager",
         "larsseit": "larsseit",
         "mkAlias": "mkAlias",
+        "monitorcontrol": "monitorcontrol",
         "monoflow": "monoflow",
         "neufile-grotesk": "neufile-grotesk",
         "nightfall": "nightfall",
