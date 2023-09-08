@@ -18,10 +18,11 @@ hs.window.animationDuration = 0
 
 -- Window management
 do
-	local modifiers = { "alt", "ctrl", "cmd" }
+	local halfModifiers = { "alt", "ctrl", "cmd" }
+	local quarterModifiers = { "shift", "alt", "ctrl" }
 
 	-- Left
-	hotkey.bind(modifiers, "left", function()
+	hotkey.bind(halfModifiers, "left", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local screen = win:screen()
@@ -35,7 +36,7 @@ do
 	end)
 
 	-- Right
-	hotkey.bind(modifiers, "right", function()
+	hotkey.bind(halfModifiers, "right", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local screen = win:screen()
@@ -49,7 +50,7 @@ do
 	end)
 
 	-- Top
-	hotkey.bind(modifiers, "up", function()
+	hotkey.bind(halfModifiers, "up", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local screen = win:screen()
@@ -63,7 +64,7 @@ do
 	end)
 
 	-- Bottom
-	hotkey.bind(modifiers, "down", function()
+	hotkey.bind(halfModifiers, "down", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local screen = win:screen()
@@ -76,8 +77,64 @@ do
 		win:setFrame(f)
 	end)
 
+	-- Top Left
+	hotkey.bind(quarterModifiers, "left", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x
+		f.y = max.y
+		f.w = max.w / 2
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
+	-- Bottom Left
+	hotkey.bind(quarterModifiers, "down", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x
+		f.y = max.y + (max.h / 2)
+		f.w = max.w / 2
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
+	-- Top Right
+	hotkey.bind(quarterModifiers, "up", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x + (max.w / 2)
+		f.y = max.y
+		f.w = max.w / 2
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
+	-- Bottom Right
+	hotkey.bind(quarterModifiers, "right", function()
+		local win = hs.window.focusedWindow()
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+
+		f.x = max.x + (max.w / 2)
+		f.y = max.y + (max.h / 2)
+		f.w = max.w / 2
+		f.h = max.h / 2
+		win:setFrame(f)
+	end)
+
 	-- Center
-	hotkey.bind(modifiers, "C", function()
+	hotkey.bind(halfModifiers, "C", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local max = win:screen():frame()
@@ -92,7 +149,7 @@ do
 	end)
 
 	-- Maximize
-	hotkey.bind(modifiers, "M", function()
+	hotkey.bind(halfModifiers, "M", function()
 		local win = hs.window.focusedWindow()
 		local f = win:frame()
 		local max = win:screen():frame()
