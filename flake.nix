@@ -17,6 +17,12 @@
       flake = false;
     };
 
+    # Lua fzy implementation
+    fzyLua = {
+      url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";
+      flake = false;
+    };
+
     # macOS stuff
     mkAlias = {
       url = "github:cdmistman/mkAlias";

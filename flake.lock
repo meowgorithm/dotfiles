@@ -132,6 +132,18 @@
         "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
       }
     },
+    "fzyLua": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-HQDjDNNumHvbdskPPL1iUPyZzULf5iINZKhsDNnhPtk=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua"
+      }
+    },
     "gabriello": {
       "flake": false,
       "locked": {
@@ -377,6 +389,7 @@
         "color-picker-nvim": "color-picker-nvim",
         "dozer": "dozer",
         "element": "element",
+        "fzyLua": "fzyLua",
         "gabriello": "gabriello",
         "gelion": "gelion",
         "hammerspoon": "hammerspoon",

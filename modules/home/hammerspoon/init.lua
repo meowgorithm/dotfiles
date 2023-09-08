@@ -1,4 +1,5 @@
 local hotkey = require("hs.hotkey")
+local fzy = require("fzy")
 
 -- Alerts
 hs.alert.defaultStyle.fillColor = { hex = "#151618" }
@@ -267,16 +268,21 @@ do
 		-- Filter manually. Normally if chooser:queryChangedCallback is
 		-- undefined Hammerspoon will filter automatically.
 		--
-		-- If we wanted to improve fuzzy matching we could use a fuzzy matching
-		-- algorithm like https://github.com/swarn/fzy-lua.
+		-- We're using a fuzzy search algorithm here
+		-- (https://github.com/swarn/fzy-lua) however we could also just match
+		-- with string.find if we didn't want to rely on an external library.
 		local newChoices = {}
 		for _, v in ipairs(choices) do
-			if string.find(v.text:lower(), str:lower()) then
+			if fzy.has_match(str, v.text) then
+				v.score = fzy.score(str, v.text)
 				table.insert(newChoices, v)
 			end
 		end
 
 		if #newChoices > 0 then
+			table.sort(newChoices, function(a, b)
+				return a.score > b.score
+			end)
 			chooser:choices(newChoices)
 			return
 		end
