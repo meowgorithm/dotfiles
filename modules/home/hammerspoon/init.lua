@@ -7,7 +7,7 @@ hs.alert.defaultStyle.radius = 8
 hs.alert.defaultStyle.strokeColor = { hex = "#4F5053" }
 hs.alert.defaultStyle.strokeWidth = 0
 hs.alert.defaultStyle.textStyle = {
-	font = { name = "SF Mono Regular", size = 14, color = { hex = "#F2F2F2" } },
+	font = { name = "JetBrains Mono", size = 14, color = { hex = "#F2F2F2" } },
 	paragraphStyle = { lineHeightMultiple = 1.4 },
 }
 hs.alert.show("Hammerspoon Loaded", 2)
@@ -107,13 +107,20 @@ end
 
 -- App/URL/Folder Chooser
 do
+	local bin = "~/.nix-profile/bin/"
+
 	local function gpgDecrypt(path)
-		local handle = assert(io.popen("~/.nix-profile/bin/gpg --quiet --decrypt --no-tty " .. path .. " 2>&1"))
+		local handle = assert(io.popen(bin .. "gpg --quiet --decrypt --no-tty " .. path .. " 2>&1"))
 		return handle:read("*all")
 	end
 
 	local src = gpgDecrypt("~/.hammerspoon/rc.lua.gpg")
 	local config = load(src)()
+
+	-- Trim whitespace from beginning and end of string.
+	local trim = function(str)
+		return string.gsub(str, "^%s*(.-)%s*$", "%1")
+	end
 
 	local function filenameWithoutExtension(str)
 		return str:match("(.+)%..+")
@@ -250,6 +257,38 @@ do
 			hs.execute("open " .. choice.subText)
 		elseif choice.type == "reload" then
 			hs.reload()
+		else
+			hs.pasteboard.setContents(choice.text)
+			hs.alert.show("Copied " .. choice.text)
+		end
+	end)
+
+	chooser:queryChangedCallback(function(str)
+		-- Filter manually. Normally if chooser:queryChangedCallback is
+		-- undefined Hammerspoon will filter automatically.
+		--
+		-- If we wanted to improve fuzzy matching we could use a fuzzy matching
+		-- algorithm like https://github.com/swarn/fzy-lua.
+		local newChoices = {}
+		for _, v in ipairs(choices) do
+			if string.find(v.text:lower(), str:lower()) then
+				table.insert(newChoices, v)
+			end
+		end
+
+		if #newChoices > 0 then
+			chooser:choices(newChoices)
+			return
+		end
+
+		-- If no matches pass to bc as an arithmetic expression.
+		local res, ok, _, _ = hs.execute("echo " .. str .. " | bc -l")
+		if ok then
+			chooser:choices({
+				text = trim(res),
+				image = hs.image.imageFromAppBundle("com.apple.Calculator"),
+				type = "copy",
+			})
 		end
 	end)
 
