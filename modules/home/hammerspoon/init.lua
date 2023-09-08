@@ -284,11 +284,12 @@ do
 		-- If no matches pass to bc as an arithmetic expression.
 		local res, ok, _, _ = hs.execute("echo " .. str .. " | bc -l")
 		if ok then
-			chooser:choices({
+			table.insert(newChoices, {
 				text = trim(res),
 				image = hs.image.imageFromAppBundle("com.apple.Calculator"),
 				type = "copy",
 			})
+			chooser:choices(newChoices)
 		end
 	end)
 
