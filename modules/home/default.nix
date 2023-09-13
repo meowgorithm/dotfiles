@@ -86,9 +86,6 @@
         lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
     )
 
-    # NeoVim nightly
-    #inputs.nvim-nightly.overlay
-
     # macOS stuff
     (
       self: super: {
@@ -178,6 +175,7 @@ in
         ./fonts.nix
         ./fourmolu
         ./git.nix
+        ./go.nix
         ./gpg.nix
         ./helix
         ./kakoune

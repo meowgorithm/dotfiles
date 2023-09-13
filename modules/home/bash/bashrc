@@ -162,11 +162,6 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 	source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
 fi
 
-# Go
-export GOPATH="$HOME/.go"
-export GOBIN="$GOPATH/bin"
-export PATH="$PATH:$GOBIN"
-
 # Go mod replace helper for Charm stuff
 gmr() {
 	if [[ $# != 2 ]]; then

@@ -65,15 +65,6 @@
     wishlist
   ];
 
-  go = with pkgs; [
-    delve
-    go_1_20
-    golangci-lint
-    gopls
-    goreleaser
-    gotools
-  ];
-
   rust = with pkgs; [
     rust-analyzer
     rustc
@@ -123,7 +114,7 @@
     nightfall
   ]);
 in {
-  home.packages = base ++ go ++ haskell ++ rust ++ lsp ++ maybeMacOS ++ charmNur;
+  home.packages = base ++ haskell ++ rust ++ lsp ++ maybeMacOS ++ charmNur;
 
   programs = {
     z-lua.enable = true;
