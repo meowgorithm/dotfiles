@@ -123,6 +123,7 @@ PROMPT_COMMAND=prompt_func
 gpg_TTY=$(tty)
 export GPG_TTY=$gpg_TTY
 export PATH="$PATH:$HOME/.bin"
+export PATH="$GOPATH/bin:$PATH"
 
 if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
 	export PATH="$PATH:$HOME/.bin-linux"
