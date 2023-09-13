@@ -171,6 +171,7 @@ in
         ./alacritty.nix
         ./bash
         ./darwin-app-activation.nix
+        ./emacs
         ./floskell
         ./fonts.nix
         ./fourmolu
