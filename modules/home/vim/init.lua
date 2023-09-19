@@ -46,7 +46,7 @@ local options = {
 	sidescrolloff = 5,
 	foldmethod = "marker",
 	equalalways = true,
-	conceallevel = 2,
+	conceallevel = 0,
 	-- Search
 	hlsearch = false,
 	ignorecase = true,
