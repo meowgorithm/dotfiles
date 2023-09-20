@@ -97,6 +97,7 @@
     lua-language-server
     nil
     prettier
+    semgrep
     stylua
     svgo
     typescript
