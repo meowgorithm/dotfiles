@@ -72,7 +72,7 @@
     ]
     ++ lib.optionals (pkgs.stdenv.isDarwin != true)
     [
-      fourmolu_0_13_1_0
+      # fourmolu_0_13_1_0
     ]
     ++ lib.optionals ((pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) != true)
     [
