@@ -13,6 +13,7 @@
     coreutils
     ctags
     curl
+    clang
     direnv
     duf
     element
@@ -57,14 +58,6 @@
     zopfli
   ];
 
-  charmNur = with pkgs; [
-    gum
-    pop
-    soft-serve
-    vhs
-    wishlist
-  ];
-
   rust = with pkgs; [
     rust-analyzer
     rustc
@@ -107,6 +100,23 @@
     yaml-language-server
   ];
 
+  x11Dev = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+    libGL
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXinerama
+    xorg.libXrandr
+    xorg.libXxf86vm
+  ]);
+
+  charmNur = with pkgs; [
+    gum
+    pop
+    soft-serve
+    vhs
+    wishlist
+  ];
+
   maybeMacOS = lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
     blender
     cachix
@@ -115,7 +125,7 @@
     nightfall
   ]);
 in {
-  home.packages = base ++ haskell ++ rust ++ lsp ++ maybeMacOS ++ charmNur;
+  home.packages = base ++ haskell ++ rust ++ lsp ++ maybeMacOS ++ x11Dev ++ charmNur;
 
   programs = {
     z-lua.enable = true;
