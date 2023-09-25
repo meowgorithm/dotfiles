@@ -14,6 +14,7 @@ pkgs: {
       "*.hi"
       "*.o"
       "nohup.out"
+      "\#*"
     ];
 
     signing = {
