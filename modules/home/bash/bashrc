@@ -108,13 +108,13 @@ indigo='\[\e[38;2;90;86;224m\]'
 
 function prompt_func() {
 	nix=$(nixPrompt)
-
+	dimensions="$(tput cols)×$(tput lines)"
 	git_branch=$(__git_ps1 " (%s)")
 
 	if [[ -n $DEMO_PROMPT ]]; then
 		PS1="$indigo>$no_color "
 	else
-		PS1="$cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
+		PS1="$indigo$dimensions $cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
 	fi
 }
 
