@@ -145,6 +145,14 @@
         nixosConfigurations."${hostname}" = lib.nixosSystem {
           inherit system;
           modules = [
+            {
+              nixpkgs.overlays = [
+                (self: super: {
+                  # Enable CUDA/Optix in Blender
+                  blender = super.blender.override {cudaSupport = true;};
+                })
+              ];
+            }
             ({
               pkgs,
               modulesPath,

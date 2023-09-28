@@ -15,7 +15,7 @@ hostname: {
 
   nixpkgs.config = {
     allowUnfree = true;
-    cudaSupport = true;
+    # cudaSupport = true;
   };
 
   boot = {
@@ -104,6 +104,7 @@ hostname: {
   environment.systemPackages = with pkgs; [
     blender
     cachix
+    # cudatoolkit
     faac
     faad2
     git
