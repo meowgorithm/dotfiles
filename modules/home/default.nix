@@ -175,6 +175,7 @@ in
         ./floskell
         ./fonts.nix
         ./fourmolu
+        ./ghostty.nix
         ./git.nix
         ./go.nix
         ./gpg.nix
