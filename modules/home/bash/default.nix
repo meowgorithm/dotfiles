@@ -34,6 +34,7 @@ in {
         else {
           HARDWARECLOCK = "localtime";
           BASH_ENV = "$HOME/.bashrc";
+          HOMEBREW_NO_ANALYTICS = "1";
         }
       );
     shellOptions = ["histappend"];
