@@ -175,8 +175,17 @@ do
 	local src = gpgDecrypt("~/.hammerspoon/rc.lua.gpg")
 	local config = load(src)()
 
-	-- Trim whitespace from beginning and end of string.
-	local trim = function(str)
+	-- Returns whether or not the system has dark mode enabled.
+	local function darkModeIsActive()
+		local handle = assert(io.popen("defaults read -g AppleInterfaceStyle"))
+		local res = handle:read("*all")
+		if string.find(res, "Dark") then
+			return true
+		end
+		return false
+	end
+
+	local function trim(str)
 		return string.gsub(str, "^%s*(.-)%s*$", "%1")
 	end
 
@@ -359,7 +368,7 @@ do
 	chooser:choices(choices)
 	chooser:searchSubText(false)
 	chooser:rows(10)
-	chooser:bgDark(true)
+	chooser:bgDark(darkModeIsActive())
 	hs.hotkey.bind({ "cmd" }, "space", function()
 		chooser:show()
 	end)
