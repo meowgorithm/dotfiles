@@ -189,6 +189,7 @@ in
         ./tmux
         ./wezterm
         ./vim
+        ./zellij.nix
       ]
       ++ extraModules;
   }
