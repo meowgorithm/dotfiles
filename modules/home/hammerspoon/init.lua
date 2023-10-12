@@ -185,6 +185,17 @@ do
 		return false
 	end
 
+	-- Set dark mode on the system and chooser.
+	local function setDarkMode(v, chooser)
+		local fmt <const> = "Application('System Events').appearancePreferences.darkMode.set(%s)"
+		hs.osascript.javascript(string.format(fmt, v))
+	end
+
+	-- Toggle dark mode.
+	local function toggleDarkMode()
+		setDarkMode(not darkModeIsActive())
+	end
+
 	local function trim(str)
 		return string.gsub(str, "^%s*(.-)%s*$", "%1")
 	end
@@ -295,6 +306,12 @@ do
 		type = "reload",
 	})
 
+	table.insert(choices, {
+		text = "Toggle Dark Mode",
+		image = hs.image.imageFromAppBundle("com.apple.systempreferences"),
+		type = "toggle-dark-mode",
+	})
+
 	for _, v in ipairs(config.choices) do
 		if v.type then
 			if v.type == "url" then
@@ -324,6 +341,8 @@ do
 			hs.execute("open " .. choice.subText)
 		elseif choice.type == "reload" then
 			hs.reload()
+		elseif choice.type == "toggle-dark-mode" then
+			toggleDarkMode()
 		else
 			hs.pasteboard.setContents(choice.text)
 			hs.alert.show("Copied " .. choice.text)
