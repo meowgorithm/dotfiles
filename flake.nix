@@ -187,7 +187,7 @@
   in
     lib.foldr lib.recursiveUpdate {} (map mkSystem [
       {
-        hostname = "stardust";
+        hostname = "whitenoise";
         system = x86_64-linux;
         default = true;
       }
