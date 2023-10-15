@@ -1,6 +1,6 @@
 {...}: {
   programs.zellij = {
     enable = true;
-    enableBashIntegration = true;
+    enableBashIntegration = false; # don't auto-start zellij
   };
 }
