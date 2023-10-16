@@ -65,7 +65,6 @@
         # Unstable currently broken on macOS (x86_64 and/or aarch64)
         vscode-langservers-extracted = stablePkgs.nodePackages_latest.vscode-langservers-extracted;
         lua-language-server = stablePkgs.lua-language-server;
-        wezterm = stablePkgs.wezterm;
       }
     )
 
