@@ -93,26 +93,26 @@ nmap("<leader>i", "<cmd>set invlist<cr>")
 nmap("<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
 nmap("<leader>r", "<cmd>set wrap! wrap?<cr>")
 
-autocmd("FileType", { pattern = "lua", command = "set noexpandtab" })
+autocmd({ "FileType" }, { pattern = "lua", command = "set noexpandtab" })
 
 -- Trim trailing whitespace on save
 autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
 
 -- Highlight current line in current window only
-autocmd("WinEnter,BufEnter", { pattern = "*", command = "setlocal cursorline" })
-autocmd("WinLeave", { pattern = "*", command = "setlocal nocursorline" })
+autocmd({ "WinEnter", "BufEnter" }, { pattern = "*", command = "setlocal cursorline" })
+autocmd({ "WinLeave" }, { pattern = "*", command = "setlocal nocursorline" })
 
 -- Keep splits equal size
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
 -- Markdown spell checking
 augroup("markdownSpell", { clear = true })
-autocmd("FileType", {
+autocmd({ "FileType" }, {
 	pattern = "markdown",
 	command = "setlocal spell",
 	group = "markdownSpell",
 })
-autocmd("BufRead,BufNewFile", {
+autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.md",
 	command = "setlocal spell",
 	group = "markdownSpell",
