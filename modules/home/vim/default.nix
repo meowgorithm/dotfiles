@@ -55,7 +55,7 @@ in {
       vim-vsnip
       xterm-color-table-vim
       (
-        pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pkgs.vimUtils.buildVimPlugin {
           name = "color-picker-nvim";
           src = inputs.color-picker-nvim;
         }
