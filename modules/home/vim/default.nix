@@ -21,6 +21,7 @@ in {
       cmp-path
       cmp-vsnip
       copilot-vim
+      goyo-vim
       null-ls-nvim
       nvim-colorizer-lua
       nvim-code-action-menu
