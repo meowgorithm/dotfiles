@@ -123,7 +123,7 @@
     "element": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-7bSyd0VYscjEIk0utLzNXeG49HB3ZHPUvazHa2pHSsQ=",
+        "narHash": "sha256-JUiaaJvxf4jxleHePGYsm4mqIPeshGRkhQwdGCyNbDw=",
         "type": "file",
         "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
       },
