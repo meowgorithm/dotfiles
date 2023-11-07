@@ -15,6 +15,7 @@
     curl
     clang
     direnv
+    doctl
     duf
     element
     ffmpeg
