@@ -387,6 +387,7 @@ do
 	chooser:choices(choices)
 	chooser:searchSubText(false)
 	chooser:rows(10)
+	chooser:width(25)
 	chooser:bgDark(darkModeIsActive())
 	hs.hotkey.bind({ "cmd" }, "space", function()
 		chooser:show()
