@@ -192,7 +192,7 @@
         default = true;
       }
       {
-        hostname = "purrmachine";
+        hostname = "athena";
         system = x86_64-linux;
       }
       {

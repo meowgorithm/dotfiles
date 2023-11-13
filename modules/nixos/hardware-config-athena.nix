@@ -14,19 +14,13 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6849873b-79af-4963-b324-38abe442433b";
+    { device = "/dev/disk/by-uuid/45b5dfb8-7255-4c1d-868e-75b10518449e";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/721F-2E19";
+    { device = "/dev/disk/by-uuid/4D0E-A6BE";
       fsType = "vfat";
-    };
-
-  fileSystems."/var/lib/docker/btrfs" =
-    { device = "/var/lib/docker/btrfs";
-      fsType = "none";
-      options = [ "bind" ];
     };
 
   swapDevices = [ ];
@@ -36,10 +30,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp77s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp78s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp76s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp79s0.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
