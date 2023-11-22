@@ -61,6 +61,7 @@
         # Use the same version as the system
         gnupg = stablePkgs.gnupg;
         redis = stablePkgs.redis;
+        awscli2 = stablePkgs.awscli2;
 
         # Unstable currently broken on macOS (x86_64 and/or aarch64)
         wezterm = stablePkgs.wezterm;
