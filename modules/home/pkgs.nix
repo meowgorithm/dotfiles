@@ -112,6 +112,8 @@
 
   charmNur = with pkgs; [
     gum
+    melt
+    mods
     pop
     soft-serve
     vhs

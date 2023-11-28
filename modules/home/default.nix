@@ -76,6 +76,8 @@
       self: super: let
         charmPkgs = [
           "gum"
+          "melt"
+          "mods"
           "pop"
           "soft-serve"
           "vhs"
