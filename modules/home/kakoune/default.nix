@@ -1,10 +1,15 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
+{pkgs, ...}: let
+  enable = false;
+in {
   programs.kakoune = {
-    enable = true;
+    enable = enable;
     extraConfig = builtins.readFile ./kakrc;
   };
+
+  home.packages = with pkgs;
+    if enable
+    then [
+      kak-lsp
+    ]
+    else [];
 }

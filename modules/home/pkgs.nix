@@ -29,8 +29,6 @@
     htop
     imagemagick
     jq
-    kak-lsp
-    kakoune
     libwebp
     lsd
     luajit

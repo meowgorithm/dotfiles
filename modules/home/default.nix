@@ -67,7 +67,6 @@
         vscode-langservers-extracted = stablePkgs.nodePackages_latest.vscode-langservers-extracted;
         lua-language-server = stablePkgs.lua-language-server;
         awscli2 = stablePkgs.awscli2;
-        kakoune-unwrapped = stablePkgs.kakoune-unwrapped;
       }
     )
 
