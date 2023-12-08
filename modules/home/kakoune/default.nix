@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  enable = false;
+  enable = !pkgs.stdenv.isDarwin;
 in {
   programs.kakoune = {
     enable = enable;
