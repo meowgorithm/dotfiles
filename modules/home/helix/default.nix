@@ -43,7 +43,7 @@
         name = "nix";
         auto-format = true;
         formatter = {command = "alejandra";};
-        language-server = {command = "nil";};
+        language-servers = ["nil"];
       }
       {
         name = "haskell";
