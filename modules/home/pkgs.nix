@@ -67,7 +67,7 @@
       cabal-fmt
       cabal-install
       floskell
-      pkgs.haskell.compiler.ghc943
+      pkgs.haskell.compiler.ghc948
     ]
     ++ lib.optionals (pkgs.stdenv.isDarwin != true)
     [
