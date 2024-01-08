@@ -54,20 +54,15 @@
     });
 
   overlays = [
+    # Use stable packages to match what NixOS is using
     (
       self: super: let
-        stablePkgs = inputs.nixpkgs.legacyPackages.${system};
-      in {
-        # Use the same version as the system
-        gnupg = stablePkgs.gnupg;
-        redis = stablePkgs.redis;
-
-        # Unstable currently broken on macOS (x86_64 and/or aarch64)
-        vscode-langservers-extracted = stablePkgs.nodePackages_latest.vscode-langservers-extracted;
-        lua-language-server = stablePkgs.lua-language-server;
-        awscli2 = stablePkgs.awscli2;
-        ffmpeg = stablePkgs.ffmpeg;
-      }
+        stablePkgs = ["gnupg" "redis"];
+        useStablePkg = name: {
+          ${name} = inputs.nixpkgs.legacyPackages.${system}.${name};
+        };
+      in
+        lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
     )
 
     # Packages from Charm NUR
@@ -82,15 +77,14 @@
           "vhs"
           "wishlist"
         ];
-        charmPkg = name: {
+        useCharmPkg = name: {
           "${name}" = inputs.charm.legacyPackages.${system}."${name}";
         };
       in
-        with lib;
-          foldr recursiveUpdate {} (map charmPkg charmPkgs)
+        lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
     )
 
-    # macOS stuff
+    # macOS applications
     (
       self: super: {
         blender = mkDmg "blender" "Blender" (
