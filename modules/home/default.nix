@@ -70,7 +70,7 @@
       }
     )
 
-    # Charm
+    # Packages from Charm NUR
     (
       self: super: let
         charmPkgs = [
@@ -82,11 +82,12 @@
           "vhs"
           "wishlist"
         ];
-        useCharmPkg = name: {
+        charmPkg = name: {
           "${name}" = inputs.charm.legacyPackages.${system}."${name}";
         };
       in
-        lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
+        with lib;
+          foldr recursiveUpdate {} (map charmPkg charmPkgs)
     )
 
     # macOS stuff
@@ -113,11 +114,7 @@
     )
 
     # Custom fonts
-    (
-      self: super:
-        with lib;
-          foldr recursiveUpdate {} (map mkFont fonts)
-    )
+    (self: super: with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
 
   extraModules =
