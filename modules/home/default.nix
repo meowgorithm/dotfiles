@@ -25,20 +25,9 @@
     "upton"
   ];
 
-  mkFont = name: {
-    "${name}" = pkgs.stdenv.mkDerivation {
-      inherit name;
-      src = inputs."${name}";
-      installPhase = ''
-        mkdir -p $out/share/fonts/otf
-        cp $src/* $out/share/fonts/otf
-      '';
-    };
-  };
-
-  mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
-
-  mkDmg = name: appName: src:
+  mkDmg = name: appName: src: let
+    mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
+  in
     mkIfDarwin (pkgs.stdenv.mkDerivation {
       inherit name src;
       buildInputs = with pkgs; [undmg];
@@ -108,7 +97,19 @@
     )
 
     # Custom fonts
-    (self: super: with lib; foldr recursiveUpdate {} (map mkFont fonts))
+    (self: super: let
+      mkFont = name: {
+        "${name}" = pkgs.stdenv.mkDerivation {
+          inherit name;
+          src = inputs."${name}";
+          installPhase = ''
+            mkdir -p $out/share/fonts/otf
+            cp $src/* $out/share/fonts/otf
+          '';
+        };
+      };
+    in
+      with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
 
   extraModules =
