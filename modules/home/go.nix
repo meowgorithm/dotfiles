@@ -2,7 +2,7 @@
   programs.go = {
     enable = true;
     package = pkgs.go;
-    goPath = "$HOME/.go";
+    goPath = ".go";
     goPrivate = [
       "github.com/charmbracelet"
       "github.com/meowgorithm"
