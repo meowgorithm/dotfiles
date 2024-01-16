@@ -199,3 +199,7 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # LSD
 command -v lsd >/dev/null 2>&1 && alias ls='lsd --git --icon never'
+
+if [[ "$os" == "darwin" ]]; then
+	export PATH="/usr/bin:$PATH"
+fi
