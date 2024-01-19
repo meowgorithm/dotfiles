@@ -7,6 +7,24 @@
 }: let
   lib = pkgs.lib;
 
+  fonts = [
+    "anchor"
+    "arno-pro"
+    "benjamins-gothic"
+    "gabriello"
+    "gelion"
+    "larsseit"
+    "monoflow"
+    "neufile-grotesk"
+    "pique"
+    "rifton"
+    "rois"
+    "sf-mono"
+    "symbolset"
+    "untitled-sans"
+    "upton"
+  ];
+
   mkDmg = name: appName: src: let
     mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
   in
@@ -77,6 +95,21 @@
         monitorcontrol = mkDmg "monitorcontrol" "MonitorControl" inputs.monitorcontrol;
       }
     )
+
+    # Custom fonts
+    (self: super: let
+      mkFont = name: {
+        "${name}" = pkgs.stdenv.mkDerivation {
+          inherit name;
+          src = inputs."${name}";
+          installPhase = ''
+            mkdir -p $out/share/fonts/otf
+            cp $src/* $out/share/fonts/otf
+          '';
+        };
+      };
+    in
+      with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
 
   extraModules =
@@ -115,7 +148,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system;
+      inherit inputs system fonts;
     };
     modules =
       [

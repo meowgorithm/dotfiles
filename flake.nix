@@ -90,8 +90,8 @@
           modules = [
             {
               nixpkgs.overlays = [
-                # Enable CUDA/Optix in Blender
                 (self: super: {
+                  # Enable CUDA/Optix in Blender
                   blender = super.blender.override {cudaSupport = true;};
                 })
               ];
@@ -100,7 +100,9 @@
               pkgs,
               modulesPath,
               ...
-            }: {system.configurationRevision = lib.mkIf (self ? rev) self.rev;})
+            }: {
+              system.configurationRevision = lib.mkIf (self ? rev) self.rev;
+            })
             (import ./modules/nixos hostname)
           ];
         };
