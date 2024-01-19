@@ -32,6 +32,7 @@ hostname: {
   networking = {
     hostName = hostname;
     firewall.enable = false;
+    networkmanager.enable = true;
   };
 
   hardware.bluetooth.enable = true;
