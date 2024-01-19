@@ -63,21 +63,12 @@
     rustc
   ];
 
-  haskell = with pkgs.haskellPackages;
-    [
-      cabal-fmt
-      cabal-install
-      floskell
-      pkgs.haskell.compiler.ghc948
-    ]
-    ++ lib.optionals (pkgs.stdenv.isDarwin != true)
-    [
-      # fourmolu_0_13_1_0
-    ]
-    ++ lib.optionals ((pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) != true)
-    [
-      haskell-language-server
-    ];
+  haskell = with pkgs.haskellPackages; [
+    cabal-fmt
+    cabal-install
+    pkgs.haskell.compiler.ghc948
+    haskell-language-server
+  ];
 
   lsp = with pkgs;
   with pkgs.elmPackages;
