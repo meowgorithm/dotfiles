@@ -37,6 +37,8 @@
     "wishlist"
   ];
 
+  # Build a macOS application from a DMG. Will do nothing if the OS is not
+  # macOS.
   mkDmg = name: appName: src: let
     mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
   in
@@ -66,7 +68,7 @@
         lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
     )
 
-    # Packages from Charm NUR
+    # Add packages from Charm NUR
     (
       self: super: let
         useCharmPkg = name: {
