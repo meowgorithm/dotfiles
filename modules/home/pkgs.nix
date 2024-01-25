@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  charmPkgs,
   ...
 }: {
   home.packages = with pkgs;
@@ -107,7 +108,9 @@
       dozer
       monitorcontrol
       nightfall
-    ]));
+    ]))
+    # Charm NUR
+    ++ (map (x: pkgs.${x}) charmPkgs);
 
   programs = {
     z-lua.enable = true;

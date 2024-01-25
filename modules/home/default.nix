@@ -7,6 +7,7 @@
 }: let
   lib = pkgs.lib;
 
+  # 3rd party fonts
   fonts = [
     "anchor"
     "arno-pro"
@@ -23,6 +24,17 @@
     "symbolset"
     "untitled-sans"
     "upton"
+  ];
+
+  # Packges from the Charm Nix User Respository
+  charmPkgs = [
+    "gum"
+    "melt"
+    "mods"
+    "pop"
+    "soft-serve"
+    "vhs"
+    "wishlist"
   ];
 
   mkDmg = name: appName: src: let
@@ -57,17 +69,8 @@
     # Packages from Charm NUR
     (
       self: super: let
-        charmPkgs = [
-          "gum"
-          "melt"
-          "mods"
-          "pop"
-          "soft-serve"
-          "vhs"
-          "wishlist"
-        ];
         useCharmPkg = name: {
-          "${name}" = inputs.charm.legacyPackages.${system}."${name}";
+          ${name} = inputs.charm.legacyPackages.${system}.${name};
         };
       in
         lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
@@ -148,7 +151,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts;
+      inherit inputs system fonts charmPkgs;
     };
     modules =
       [
