@@ -127,7 +127,7 @@ myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
 myKeys conf@XConfig{XMonad.modMask = modMask} =
     Map.fromList
         -- Floating Kitty (super + ctrl + enter)
-        [ ((mod4Mask .|. controlMask, xK_Return), spawn "kitty --single-instance --class=floating")
+        [ ((mod4Mask .|. controlMask, xK_Return), spawn "ghostty")
         , -- Rofi (super + shift + space)
           ((mod4Mask .|. shiftMask, xK_space), spawn "rofi -show run")
         , -- Screenshots (super + shift + s)

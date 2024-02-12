@@ -6,12 +6,8 @@ in {
       window-decoration = false
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
-      font-size = 13
       font-family = JetBrains Mono
-      adjust-cell-width = -4%
       mouse-hide-while-typing = true
-      window-padding-x = 12
-      window-padding-y = 10
       copy-on-select = true
       confirm-close-surface = false
 
@@ -38,9 +34,16 @@ in {
     + (
       if pkgs.stdenv.isDarwin
       then ''
+        font-size = 13
+        adjust-cell-width = -4%
+        window-padding-x = 12
+        window-padding-y = 10
         keybind = super+f=toggle_fullscreen
       ''
       else ''
+        font-size = 5
+        window-padding-x = 6
+        window-padding-y = 5
       ''
     );
 }

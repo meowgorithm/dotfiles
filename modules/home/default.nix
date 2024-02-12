@@ -37,11 +37,12 @@
     "wishlist"
   ];
 
+  mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
+  mkIfLinux = pkgs.lib.mkIf pkgs.stdenv.isLinux;
+
   # Build a macOS application from a DMG. Will do nothing if the OS is not
   # macOS.
-  mkDmg = name: appName: src: let
-    mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
-  in
+  mkDmg = name: appName: src:
     mkIfDarwin (pkgs.stdenv.mkDerivation {
       inherit name src;
       buildInputs = with pkgs; [undmg];
@@ -128,6 +129,7 @@
           feh
           firefox
           gcolor2
+          inputs.ghostty.packages.${system}.default
           google-chrome
           gthumb
           shotgun
