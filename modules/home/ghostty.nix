@@ -3,9 +3,11 @@
 in {
   xdg.configFile."ghostty/config".text =
     ''
-      window-decoration = false
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
+      macos-non-native-fullscreen = false
+      macos-titlebar-tabs = true
+
       font-family = JetBrains Mono
       mouse-hide-while-typing = true
       copy-on-select = true
@@ -39,11 +41,13 @@ in {
         window-padding-x = 12
         window-padding-y = 10
         keybind = super+f=toggle_fullscreen
+        window-colorspace = display-p3
       ''
       else ''
         font-size = 5
         window-padding-x = 6
         window-padding-y = 5
+        window-decoration = false
       ''
     );
 }
