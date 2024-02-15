@@ -120,18 +120,6 @@
         "url": "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg"
       }
     },
-    "element": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-El5/hxpt4pWyCNDC+mCIsR0n4BEhJtlEPKoLqLHxKSI=",
-        "type": "file",
-        "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://packages.riot.im/desktop/install/macos/Element.dmg"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -573,7 +561,6 @@
         "charm": "charm",
         "color-picker-nvim": "color-picker-nvim",
         "dozer": "dozer",
-        "element": "element",
         "fzyLua": "fzyLua",
         "gabriello": "gabriello",
         "gelion": "gelion",

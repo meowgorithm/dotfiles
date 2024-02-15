@@ -88,7 +88,6 @@
           else inputs.blenderMacOSx86_64
         );
         dozer = mkDmg "dozer" "Dozer" inputs.dozer;
-        element = mkDmg "element" "Element" inputs.element;
         hammerspoon = self.pkgs.stdenv.mkDerivation {
           name = "hammerspoon";
           src = inputs.hammerspoon;

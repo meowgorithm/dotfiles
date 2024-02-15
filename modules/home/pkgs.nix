@@ -19,7 +19,6 @@
       direnv
       doctl
       duf
-      element
       ffmpeg
       fish
       fzf
@@ -100,6 +99,10 @@
       xorg.libXinerama
       xorg.libXrandr
       xorg.libXxf86vm
+    ]))
+    # Linux
+    ++ (lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+      element
     ]))
     # macOS
     ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs; [

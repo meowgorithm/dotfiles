@@ -24,8 +24,6 @@
   inputs.blenderMacOSx86_64.flake = false;
   inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
   inputs.dozer.flake = false;
-  inputs.element.url = "https://packages.riot.im/desktop/install/macos/Element.dmg";
-  inputs.element.flake = false;
   inputs.hammerspoon.url = "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip";
   inputs.hammerspoon.flake = false;
   inputs.monitorcontrol.url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg";
