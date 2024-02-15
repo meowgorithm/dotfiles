@@ -5,7 +5,6 @@ in {
     ''
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
-      macos-non-native-fullscreen = false
       macos-titlebar-tabs = true
 
       font-family = JetBrains Mono
@@ -44,10 +43,10 @@ in {
         window-colorspace = display-p3
       ''
       else ''
+        window-decoration = false
         font-size = 5
         window-padding-x = 6
         window-padding-y = 5
-        window-decoration = false
       ''
     );
 }
