@@ -103,7 +103,7 @@ toggleStrutsKey XConfig{XMonad.modMask = modMask} =
 
 myConfig =
     def
-        { terminal = "wezterm"
+        { terminal = "ghostty"
         , modMask = mod4Mask
         , workspaces = myWorkspaces
         , normalBorderColor = "#262626"
