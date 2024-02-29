@@ -79,6 +79,13 @@
         lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
     )
 
+    # Helix bleeding edge
+    (
+      self: super: {
+        helix = inputs.helix.packages.${self.system}.default;
+      }
+    )
+
     # macOS applications
     (
       self: super: {
