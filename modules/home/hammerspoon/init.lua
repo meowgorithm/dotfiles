@@ -168,7 +168,7 @@ do
 	local bin = "~/.nix-profile/bin/"
 
 	local function gpgDecrypt(path)
-		local handle = assert(io.popen(bin .. "gpg --quiet --decrypt --no-tty " .. path .. " 2>&1"))
+		local handle = assert(io.popen(bin .. "gpg --quiet --decrypt --no-tty " .. path .. " 2> /dev/null"))
 		return handle:read("*all")
 	end
 
