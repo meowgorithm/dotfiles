@@ -37,12 +37,11 @@
     "wishlist"
   ];
 
-  mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
-  mkIfLinux = pkgs.lib.mkIf pkgs.stdenv.isLinux;
-
   # Build a macOS application from a DMG. Will do nothing if the OS is not
   # macOS.
-  mkDmg = name: appName: src:
+  mkDmg = name: appName: src: let
+    mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
+  in
     mkIfDarwin (pkgs.stdenv.mkDerivation {
       inherit name src;
       buildInputs = with pkgs; [undmg];
@@ -63,7 +62,7 @@
       self: super: let
         stablePkgs = ["gnupg" "redis"];
         useStablePkg = name: {
-          ${name} = inputs.nixpkgs.legacyPackages.${system}.${name};
+          ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
         };
       in
         lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
@@ -73,7 +72,7 @@
     (
       self: super: let
         useCharmPkg = name: {
-          ${name} = inputs.charm.legacyPackages.${system}.${name};
+          ${name} = inputs.charm.legacyPackages.${self.system}.${name};
         };
       in
         lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
