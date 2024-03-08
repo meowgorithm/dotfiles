@@ -9,6 +9,7 @@
       age
       awscli2
       bashInteractive
+      bat
       bc
       brotli
       cargo
@@ -21,6 +22,7 @@
       duf
       ffmpeg
       fish
+      faketty
       fzf
       getopt
       gh
