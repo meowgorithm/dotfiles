@@ -44,7 +44,7 @@
       python3
       redis
       ripgrep
-      librsvg # for the rsvg-convert binary
+      # librsvg # for the rsvg-convert binary
       shellcheck
       shfmt
       simple-http-server
