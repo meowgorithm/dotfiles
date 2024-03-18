@@ -42,7 +42,7 @@ pkgs: {
       core = {
         editor = "nvim";
       };
-      url."git@github.com:charmbracelet".insteadOf = "https://github.com/charmbracelet";
+      url."git@github.com:".insteadOf = "https://github.com/";
     };
   };
 }
