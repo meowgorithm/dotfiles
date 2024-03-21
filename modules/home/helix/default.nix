@@ -1,4 +1,10 @@
 {...}: {
+  xdg.configFile."helix/ignore".text = ''
+    *.gif
+    *.mp4
+    *.webm
+  '';
+
   programs.helix = {
     enable = true;
 
