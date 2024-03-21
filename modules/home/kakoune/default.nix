@@ -1,15 +1,10 @@
-{pkgs, ...}: let
-  enable = !pkgs.stdenv.isDarwin;
-in {
+{pkgs, ...}: {
   programs.kakoune = {
-    enable = enable;
+    enable = true;
     extraConfig = builtins.readFile ./kakrc;
   };
 
-  home.packages = with pkgs;
-    if enable
-    then [
-      kak-lsp
-    ]
-    else [];
+  home.packages = with pkgs; [
+    kak-lsp
+  ];
 }
