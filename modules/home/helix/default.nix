@@ -1,9 +1,13 @@
-{...}: {
+{pkgs, ...}: {
   xdg.configFile."helix/ignore".text = ''
     *.gif
     *.mp4
     *.webm
   '';
+
+  home.packages = with pkgs; [
+    helix-gpt
+  ];
 
   programs.helix = {
     enable = true;
@@ -44,16 +48,23 @@
       };
     };
 
+    languages.language-server = {
+      copilot = {
+        command = "helix-gpt";
+      };
+    };
+
     languages.language = [
       {
         name = "nix";
         auto-format = true;
         formatter = {command = "alejandra";};
-        language-servers = ["nil"];
+        language-servers = ["nil" "copilot"];
       }
       {
         name = "haskell";
         auto-format = true;
+        language-servers = ["hls" "copilot"];
       }
       {
         name = "cabal";
@@ -66,6 +77,7 @@
       {
         name = "go";
         formatter = {command = "goimports";};
+        language-servers = ["gopls" "copilot"];
       }
       {
         name = "lua";
@@ -93,6 +105,7 @@
           command = "prettier";
           args = ["--parser" "css" "--tab-width" "2"];
         };
+        language-servers = ["css-languageserver" "copilot"];
       }
       {
         name = "typescript";
@@ -105,6 +118,7 @@
           command = "prettier";
           args = ["--parser" "typescript" "--tab-width" "4"];
         };
+        language-servers = ["typescript-language-server" "copilot"];
       }
       {
         name = "svg";
