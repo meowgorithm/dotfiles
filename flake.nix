@@ -46,11 +46,17 @@
   inputs.larsseit.url = "git+ssh://git.rocha.is/larsseit";
   inputs.larsseit.flake = false;
   inputs.monoflow.url = "git+ssh://git.rocha.is/monoflow";
+  inputs.mononoki.url = "git+ssh://git.rocha.is/mononoki";
+  inputs.mononoki.flake = false;
+  inputs.mori.url = "git+ssh://git.rocha.is/mori";
+  inputs.mori.flake = false;
   inputs.monoflow.flake = false;
   inputs.neufile-grotesk.url = "git+ssh://git.rocha.is/neufile-grotesk";
   inputs.neufile-grotesk.flake = false;
   inputs.pique.url = "git+ssh://git.rocha.is/pique";
   inputs.pique.flake = false;
+  inputs.pangaia.url = "git+ssh://git.rocha.is/pangaia";
+  inputs.pangaia.flake = false;
   inputs.rifton.url = "git+ssh://git.rocha.is/rifton";
   inputs.rifton.flake = false;
   inputs.rois.url = "git+ssh://git.rocha.is/rois";

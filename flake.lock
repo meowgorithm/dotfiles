@@ -458,6 +458,38 @@
         "url": "ssh://git.rocha.is/monoflow"
       }
     },
+    "mononoki": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711415714,
+        "narHash": "sha256-i0UhcPKAedWsUZSbTNWqYN+uhobJSGWOHB9qkLXShkQ=",
+        "ref": "refs/heads/main",
+        "rev": "a17ffe9e42540f647af5c522426edd5ade97588e",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/mononoki"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/mononoki"
+      }
+    },
+    "mori": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711415381,
+        "narHash": "sha256-z5oCYIDe+gubj1q1DYogwur17FHD0GprNCJakWljKDo=",
+        "ref": "refs/heads/main",
+        "rev": "d05ef0a3167cb8c5f1577e637a24224de615312a",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/mori"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/mori"
+      }
+    },
     "neufile-grotesk": {
       "flake": false,
       "locked": {
@@ -580,6 +612,22 @@
         "type": "github"
       }
     },
+    "pangaia": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711415602,
+        "narHash": "sha256-MIPq6glJ8zGI6FXHP2QMbc9Id/epso5wS+Qn2R8Vt98=",
+        "ref": "refs/heads/main",
+        "rev": "d85381db37d289447670bae0cefc0011b9b7301d",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/pangaia"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/pangaia"
+      }
+    },
     "pique": {
       "flake": false,
       "locked": {
@@ -649,10 +697,13 @@
         "mkAlias": "mkAlias",
         "monitorcontrol": "monitorcontrol",
         "monoflow": "monoflow",
+        "mononoki": "mononoki",
+        "mori": "mori",
         "neufile-grotesk": "neufile-grotesk",
         "nightfall": "nightfall",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
+        "pangaia": "pangaia",
         "pique": "pique",
         "rifton": "rifton",
         "rois": "rois",
