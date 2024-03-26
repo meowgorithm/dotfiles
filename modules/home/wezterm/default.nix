@@ -2,7 +2,7 @@
   colors = import ../colors.nix;
 in {
   programs.wezterm = {
-    enable = true;
+    enable = !pkgs.stdenv.isDarwin;
     enableBashIntegration = true;
     colorSchemes = {
       "Pantera Negra" = {
