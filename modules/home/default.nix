@@ -32,6 +32,7 @@
   # Packges from the Charm Nix User Respository
   charmPkgs = [
     "gum"
+    "freeze"
     "melt"
     "mods"
     "pop"
