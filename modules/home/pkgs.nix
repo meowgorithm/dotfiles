@@ -20,6 +20,7 @@
       direnv
       doctl
       duf
+      elvish
       ffmpeg
       fish
       faketty
