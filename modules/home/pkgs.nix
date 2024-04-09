@@ -78,7 +78,7 @@
       with pkgs.nodePackages_latest; [
         alejandra
         bash-language-server
-        elm
+        # elm
         elm-language-server
         golangci-lint-langserver
         lua-language-server
