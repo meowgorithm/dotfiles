@@ -28,12 +28,13 @@
         D = ["select_mode" "goto_line_end" "delete_selection" "normal_mode"];
         space.w = ":write";
         space.q = ":quit";
+        space.H = ":toggle lsp.display-inlay-hints";
       };
       editor = {
         cursorline = true;
         true-color = true;
         lsp.display-messages = true;
-        lsp.display-inlay-hints = true;
+        lsp.display-inlay-hints = false;
         rulers = [80];
         auto-format = true;
         color-modes = true;
