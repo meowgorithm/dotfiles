@@ -45,6 +45,8 @@
   inputs.gelion.flake = false;
   inputs.larsseit.url = "git+ssh://git.rocha.is/larsseit";
   inputs.larsseit.flake = false;
+  inputs.maru.url = "git+ssh://git.rocha.is/maru";
+  inputs.maru.flake = false;
   inputs.monoflow.url = "git+ssh://git.rocha.is/monoflow";
   inputs.mononoki.url = "git+ssh://git.rocha.is/mononoki";
   inputs.mononoki.flake = false;

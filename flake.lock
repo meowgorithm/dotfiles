@@ -409,6 +409,22 @@
         "url": "ssh://git.rocha.is/larsseit"
       }
     },
+    "maru": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715176702,
+        "narHash": "sha256-UVBv6D4o1EtiuI5XLFtMhhZnz6/S1u3yL4pCz/osgrc=",
+        "ref": "refs/heads/main",
+        "rev": "fcd4a0b7a9ed9fe672f6fb232f6d045dced5d43e",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/maru"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/maru"
+      }
+    },
     "mkAlias": {
       "inputs": {
         "nixpkgs": [
@@ -677,6 +693,7 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
+        "maru": "maru",
         "mkAlias": "mkAlias",
         "monitorcontrol": "monitorcontrol",
         "monoflow": "monoflow",
