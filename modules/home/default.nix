@@ -65,7 +65,7 @@
     # Use stable packages to match what NixOS is using
     (
       self: super: let
-        stablePkgs = ["gnupg" "redis"];
+        stablePkgs = ["gnupg" "redis" "lua-language-server"];
         useStablePkg = name: {
           ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
         };
@@ -81,13 +81,6 @@
         };
       in
         lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
-    )
-
-    # Helix bleeding edge
-    (
-      self: super: {
-        helix = inputs.helix.packages.${self.system}.default;
-      }
     )
 
     # macOS applications
