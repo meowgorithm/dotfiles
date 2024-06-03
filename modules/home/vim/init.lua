@@ -264,6 +264,7 @@ imap("<c-l>", "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-l>'", {
 do
 	local lsp = require("lspconfig")
 	local cmp = require("cmp")
+	local lspMethods = require("vim.lsp.protocol").Methods
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -284,18 +285,19 @@ do
 				noremap = true,
 				silent = true,
 			})
-			-- Enable inlay hints (if available)
-			if client.server_capabilities.inlayHintProvider then
-				vim.lsp.buf.inlay_hint(bufnr, true)
-			end
 		end
 		map("gd", "vim.lsp.buf.definition()")
-		map("K", "vim.lsp.buf.hover()")
 		map("<leader>lr", "vim.lsp.buf.rename()")
 		map("<leader>a", "vim.lsp.buf.code_action()")
 		map("<leader>ll", "vim.diagnostic.open_float()")
+
+		if client.supports_method(lspMethods.textDocument_codelens) then
+			map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
+		end
+
 		vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
-		if client.supports_method("textDocument/formatting") then
+
+		if client.supports_method(lspMethods.textDocument_formatting) then
 			clear_autocmds({ group = formatGroup, buffer = bufnr })
 			autocmd("BufWritePre", {
 				group = formatGroup,
