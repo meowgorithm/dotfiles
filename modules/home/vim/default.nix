@@ -50,7 +50,6 @@ in {
       telescope-nvim
       trouble-nvim
       vim-airline
-      vim-commentary
       vim-gitgutter
       vim-gnupg
       vim-vsnip

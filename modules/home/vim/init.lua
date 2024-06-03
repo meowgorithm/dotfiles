@@ -75,6 +75,7 @@ nmap("<leader>g", "<cmd>Telescope live_grep<cr>")
 nmap(";", "<cmd>Telescope buffers<cr>")
 nmap("<leader>w", "<cmd>write<cr>")
 nmap("<leader>n", "<cmd>noa write<cr>")
+nmap("<c-c>", "gcc")
 
 -- Visual Mode Blockwise Indent. This keeps the current visual block selection
 -- active after changing indent with '<' or '>'. Usually the visual block
@@ -117,13 +118,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	command = "setlocal spell",
 	group = "markdownSpell",
 })
-
--- Commentary
-nmap("<c-c>", "<cmd>Commentary<cr>")
-vim.cmd([[
-autocmd FileType nix setlocal commentstring=#\ %s
-autocmd FileType cabal setlocal commentstring=--\ %s
-]])
 
 -- Tree
 nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
