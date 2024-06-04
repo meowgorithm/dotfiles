@@ -41,6 +41,7 @@ in {
         font-family-bold-italic = JetBrains Mono Bold Italic
         font-size = 13
         font-thicken = true
+        adjust-cursor-thickness = 175%
         adjust-cell-width = -4%
         window-padding-x = 12
         window-padding-y = 10
