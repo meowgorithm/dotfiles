@@ -190,6 +190,7 @@ in
         ./pkgs.nix
         ./prettier
         ./readline.nix
+        ./ssh.nix
         ./scripts
         ./tmux
         ./wezterm
