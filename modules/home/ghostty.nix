@@ -3,6 +3,8 @@
 in {
   xdg.configFile."ghostty/config".text =
     ''
+      term = xterm-256color
+
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
       macos-titlebar-tabs = true
