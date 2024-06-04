@@ -7,10 +7,10 @@ in {
       macos-option-as-alt = left
       macos-titlebar-tabs = true
 
-      font-family = JetBrains Mono
       mouse-hide-while-typing = true
       copy-on-select = true
       confirm-close-surface = false
+      link-url = true
 
       background = ${colors.primary.background}
       foreground = ${colors.primary.foreground}
@@ -35,7 +35,12 @@ in {
     + (
       if pkgs.stdenv.isDarwin
       then ''
+        font-family = JetBrains Mono Light
+        font-family-bold = JetBrains Mono Bold
+        font-family-italic = JetBrains Mono Italic
+        font-family-bold-italic = JetBrains Mono Bold Italic
         font-size = 13
+        font-thicken = true
         adjust-cell-width = -4%
         window-padding-x = 12
         window-padding-y = 10
@@ -44,6 +49,7 @@ in {
       ''
       else ''
         window-decoration = false
+        font-family = JetBrains Mono
         font-size = 5
         window-padding-x = 6
         window-padding-y = 5
