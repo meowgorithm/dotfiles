@@ -39,6 +39,7 @@
       moreutils
       ngrok
       nodejs
+      nushell
       optipng
       pastel
       postgresql
