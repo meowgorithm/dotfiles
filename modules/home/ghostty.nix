@@ -7,7 +7,6 @@ in {
 
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
-      macos-titlebar-tabs = true
 
       mouse-hide-while-typing = true
       copy-on-select = true
