@@ -24,6 +24,7 @@
     "pique"
     "rifton"
     "rois"
+    "saans"
     "sf-mono"
     "symbolset"
     "untitled-sans"

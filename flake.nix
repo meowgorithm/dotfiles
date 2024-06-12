@@ -64,8 +64,8 @@
   inputs.rois.flake = false;
   inputs.sf-mono.url = "git+ssh://git.rocha.is/sf-mono";
   inputs.sf-mono.flake = false;
-  inputs.space-grotesk.url = "git+ssh://git.rocha.is/space-grotesk";
-  inputs.space-grotesk.flake = false;
+  inputs.saans.url = "git+ssh://git.rocha.is/saans";
+  inputs.saans.flake = false;
   inputs.symbolset.url = "git+ssh://git.rocha.is/symbolset";
   inputs.symbolset.flake = false;
   inputs.untitled-sans.url = "git+ssh://git.rocha.is/untitled-sans";
