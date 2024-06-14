@@ -51,22 +51,6 @@ gitdiff() {
     fi
 }
 
-find_pid() {
-    local awkArg
-    if [[ $(which_os) == "darwin" ]]; then
-        # shellcheck disable=2016
-        awkArg='{print$2}'
-    else
-        # shellcheck disable=2016
-        awkArg='{print$1}'
-    fi
-    ps -u "$USER" | sed '1d' | fzf | awk "$awkArg"
-}
-
-filterkill() {
-    kill "$(find_pid)"
-}
-
 remove_headerbar() {
     case "$OSTYPE" in
         linux*) xprop -format _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS 2 ;;
