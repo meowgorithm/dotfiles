@@ -129,6 +129,16 @@ if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
 	export PATH="$PATH:$HOME/.bin-linux"
 fi
 
+function updateinputs() {
+	local inputs
+	inputs="$(nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit)"
+	printf "Updating the following inputs:\n%s\n" "$input"
+	IFS=$'\n'
+	for input in $inputs; do
+		nix flake update "$input"
+	done
+}
+
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
 alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
@@ -142,7 +152,6 @@ alias nr='nix run -L'
 alias sshi='ssh -o IdentitiesOnly=yes'
 alias charm-install='gh repo list charmbracelet | cut -f1 | gum filter --no-limit | xargs -I {} go install -v "github.com/{}@latest"'
 alias code-review='git --no-pager diff | mods -f "code review this patch" | glow'
-alias update-inputs="nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit | xargs nix flake lock --update-input"
 alias filterkill='ps | awk "NR>1" | gum choose --header="  Kill Process?" | xargs kill'
 
 alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
