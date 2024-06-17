@@ -66,35 +66,37 @@ hostname: {
   };
 
   services.autorandr.enable = true;
+  services.libinput.enable = true;
+  services.displayManager.defaultSession = "none+xmonad";
   services.xserver = {
     enable = true;
     dpi = 192;
-    layout = "us";
-    xkbOptions = "eurosign:e, compose:menu, caps:escape";
+    xkb = {
+      layout = "us";
+      options = "eurosign:e, compose:menu, caps:escape";
+    };
     xrandrHeads = [{output = "DP-0";} {output = "DP-2";}];
     videoDrivers = ["nvidia"];
 
     wacom.enable = true;
-    libinput.enable = true;
 
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
     };
+  };
 
-    displayManager = {
-      defaultSession = "none+xmonad";
-      lightdm = {
-        greeters.enso = {
-          enable = true;
-          blur = true;
-        };
+  services.xserver.displayManager = {
+    lightdm = {
+      greeters.enso = {
+        enable = true;
+        blur = true;
       };
-
-      sessionCommands = ''
-        xrander --output DP-0 --mode2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0
-      '';
     };
+
+    sessionCommands = ''
+      xrander --output DP-0 --mode2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0
+    '';
   };
 
   # Enable CUPS to print documents.
@@ -146,7 +148,6 @@ hostname: {
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
     enableSSHSupport = false;
   };
 
