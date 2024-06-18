@@ -431,11 +431,11 @@
     "mori": {
       "flake": false,
       "locked": {
-        "lastModified": 1718472182,
-        "narHash": "sha256-Y9GQfqaMEFbVBXZvF7P80nm44LuUxxq1xrT9DH5wad0=",
+        "lastModified": 1718719509,
+        "narHash": "sha256-qE5Ema/UDCl7xBmwdYCyuyuwqpmf04C3i/r6j1u1Wq0=",
         "ref": "refs/heads/main",
-        "rev": "a74208b0f4a7b19c6c9c3fc9cfe4d79da11bf111",
-        "revCount": 2,
+        "rev": "1c02b324107d1e59852623a5915373a130b61f23",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git.rocha.is/mori"
       },
