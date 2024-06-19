@@ -8,22 +8,21 @@
     [
       age
       awscli2
-      bashInteractive
       bat
       bc
       brotli
       cargo
+      clang
       coreutils
       ctags
       curl
-      clang
       direnv
       doctl
       duf
       elvish
+      faketty
       ffmpeg
       fish
-      faketty
       fzf
       getopt
       gh
@@ -33,6 +32,7 @@
       htop
       imagemagick
       jq
+      librsvg # for the rsvg-convert binary
       libwebp
       lsd
       luajit
@@ -46,7 +46,6 @@
       python3
       redis
       ripgrep
-      # librsvg # for the rsvg-convert binary
       shellcheck
       shfmt
       simple-http-server
@@ -62,11 +61,6 @@
       z-lua
       zopfli
     ]
-    # Rust
-    ++ (with pkgs; [
-      rust-analyzer
-      rustc
-    ])
     # Haskell
     ++ (with pkgs.haskellPackages; [
       cabal-fmt
@@ -74,14 +68,21 @@
       pkgs.haskell.compiler.ghc948
       haskell-language-server
     ])
-    # LSP
+    # Elm
+    ++ (with pkgs.elmPackages; [
+      elm
+      elm-language-server
+    ])
+    # Rust
+    ++ (with pkgs; [
+      rust-analyzer
+      rustc
+    ])
+    # Various LSP
     ++ (with pkgs;
-      with pkgs.elmPackages;
       with pkgs.nodePackages_latest; [
         alejandra
         bash-language-server
-        # elm
-        elm-language-server
         golangci-lint-langserver
         lua-language-server
         nil
