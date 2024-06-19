@@ -22,11 +22,13 @@ in {
       cmp-vsnip
       copilot-vim
       goyo-vim
+      noice-nvim
       null-ls-nvim
       nvim-colorizer-lua
       nvim-code-action-menu
       nvim-cmp
       nvim-lspconfig
+      nvim-notify
       nvim-tree-lua
       (nvim-treesitter.withPlugins (
         plugins:

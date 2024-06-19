@@ -192,6 +192,18 @@ require("trouble").setup({
 })
 nmap("E", "<cmd>TroubleToggle<cr>")
 
+-- Noice
+
+require("noice").setup({
+	background_colour = "#000000",
+	lsp = {
+		override = {
+			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			["vim.lsp.util.stylize_markdown"] = true,
+		},
+	},
+})
+
 -- GitGutter
 g.gitgutter_sign_modified = "•"
 hi(0, "GitGutterAdd", { fg = "#009900" })
