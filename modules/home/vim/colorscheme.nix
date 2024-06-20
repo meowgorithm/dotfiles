@@ -68,7 +68,8 @@ lib: isNvim: let
     PMenuSBar.bg = "#005f5f";
     PMenuThumb.bg = "#00af87";
     SignColumn = {};
-    VertSplit.fg = "#333333";
+    WinSeparator.fg = "#333333";
+
     # Tabs
     "TabLine" = {
       fg = "#999999";
