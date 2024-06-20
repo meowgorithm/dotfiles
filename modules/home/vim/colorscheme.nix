@@ -117,7 +117,6 @@ lib: isNvim: let
     Delimiter = punctuation;
     SpecialComment = specialChar;
     Debug = builtin;
-    NotifyBackground = {bg = "#000000";};
 
     #Underlined = {};
     #Ignore = {};
