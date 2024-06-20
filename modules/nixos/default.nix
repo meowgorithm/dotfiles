@@ -65,39 +65,7 @@ hostname: {
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
-  services.autorandr.enable = true;
-  services.libinput.enable = true;
-  services.displayManager.defaultSession = "none+xmonad";
-  services.xserver = {
-    enable = true;
-    dpi = 192;
-    xkb = {
-      layout = "us";
-      options = "eurosign:e, compose:menu, caps:escape";
-    };
-    xrandrHeads = [{output = "DP-0";} {output = "DP-2";}];
-    videoDrivers = ["nvidia"];
-
-    wacom.enable = true;
-
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-    };
-  };
-
-  services.xserver.displayManager = {
-    lightdm = {
-      greeters.enso = {
-        enable = true;
-        blur = true;
-      };
-    };
-
-    sessionCommands = ''
-      xrander --output DP-0 --mode2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0
-    '';
-  };
+  programs.hyprland.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -119,8 +87,6 @@ hostname: {
     tmux
     vim
     wget
-    xmonad-with-packages
-    xorg.xmodmap
   ];
 
   fonts.packages = with pkgs; [

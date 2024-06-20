@@ -140,16 +140,13 @@
           slop
           tdesktop
           vlc
-          xclip
           xfce.thunar
-          xsel
         ];
       }
       ./discord.nix
+      ./hyprland
       ./picom.nix
       ./rofi
-      ./x11
-      ./xmonad
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin
     [
