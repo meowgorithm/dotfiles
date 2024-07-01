@@ -3,7 +3,7 @@
 This repo contains NixOS and Home Manager configurations to support a few
 systems:
 
-- NixOS `x86_64` with Xmonad
+- NixOS `x86_64` with Hyprland
 - macOS `x86_64` and `aarch64`
 - Headless, general-purpose Linux `x86_64` (including WSL)
 
