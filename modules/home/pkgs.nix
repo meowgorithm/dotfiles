@@ -65,7 +65,7 @@
     ++ (with pkgs.haskellPackages; [
       cabal-fmt
       cabal-install
-      pkgs.haskell.compiler.ghc948
+      pkgs.haskell.compiler.ghc982
       haskell-language-server
     ])
     # Elm
