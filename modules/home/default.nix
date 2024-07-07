@@ -15,6 +15,7 @@
     "gabriello"
     "gelion"
     "larsseit"
+    "liza"
     "maru"
     "monoflow"
     "mononoki"

@@ -348,6 +348,22 @@
         "url": "ssh://git.rocha.is/larsseit"
       }
     },
+    "liza": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720313538,
+        "narHash": "sha256-055N+JQSUBA0SCCVnDJOcDESc6LqiOWtP6O11Tm4+8s=",
+        "ref": "refs/heads/main",
+        "rev": "5edccd837e0c6596df039069badc5aefe27c4670",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git.rocha.is/liza"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git.rocha.is/liza"
+      }
+    },
     "maru": {
       "flake": false,
       "locked": {
@@ -615,6 +631,7 @@
         "hammerspoon": "hammerspoon",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
+        "liza": "liza",
         "maru": "maru",
         "mkAlias": "mkAlias",
         "monitorcontrol": "monitorcontrol",
