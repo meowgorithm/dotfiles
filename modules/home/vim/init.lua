@@ -177,20 +177,9 @@ require("telescope").setup({
 })
 
 -- Trouble
-require("trouble").setup({
-	icons = false,
-	fold_open = "▼",
-	fold_closed = "▶",
-	indent_lines = false,
-	signs = {
-		error = "error",
-		warning = "warn",
-		hint = "hint",
-		information = "info",
-	},
-	use_diagnostic_signs = false,
-})
-nmap("E", "<cmd>TroubleToggle<cr>")
+require("trouble").setup()
+nmap("E", "<cmd>Trouble diagnostics toggle<cr>")
+nmap("<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
 
 -- GitGutter
 g.gitgutter_sign_modified = "•"
