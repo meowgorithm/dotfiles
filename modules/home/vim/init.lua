@@ -76,6 +76,7 @@ nmap(";", "<cmd>Telescope buffers<cr>")
 nmap("<leader>w", "<cmd>write<cr>")
 nmap("<leader>n", "<cmd>noa write<cr>")
 nmap("<c-c>", "gcc")
+nmap("<leader>y", '"+y')
 
 -- Visual Mode Blockwise Indent. This keeps the current visual block selection
 -- active after changing indent with '<' or '>'. Usually the visual block
