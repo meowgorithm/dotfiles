@@ -280,14 +280,14 @@
     "hammerspoon": {
       "flake": false,
       "locked": {
-        "lastModified": 1678829088,
-        "narHash": "sha256-Q14NBizKz7LysEFUTjUHCUnVd6+qEYPSgWwrOGeT9Q0=",
+        "lastModified": 1722928944,
+        "narHash": "sha256-vqjYCzEXCYBx/gJ32ZNAioruVDy9ghftPAOFMDtYcc0=",
         "type": "tarball",
-        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip"
+        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/1.0.0/Hammerspoon-1.0.0.zip"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.100/Hammerspoon-0.9.100.zip"
+        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/1.0.0/Hammerspoon-1.0.0.zip"
       }
     },
     "home-manager": {
