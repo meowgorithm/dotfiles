@@ -5,6 +5,11 @@ export DOTFILES="$HOME/.dotfiles"
 
 os="$(which_os)"
 
+isGhostty=0
+if command -v ghostty &>/dev/null; then
+	isGhostty=1
+fi
+
 function thunderboltUp() {
 	local "$id"
 	case "$HOSTNAME" in
@@ -158,7 +163,11 @@ alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
 alias install-gum="go install -v github.com/charmbracelet/gum@latest"
 
 if command -v lsd &>/dev/null; then
-	alias tree='lsd --tree'
+	tree='lsd --tree'
+	if [[ $isGhostty -eq 0 ]]; then
+		tree="$tree --icon never"
+	fi
+	alias tree="$tree"
 elif command -v tree &>/dev/null; then
 	alias tree='tree -C'
 fi
@@ -208,7 +217,13 @@ export GOMEOW='github.com/charmbracelet'
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # LSD
-command -v lsd >/dev/null 2>&1 && alias ls='lsd --git --icon never'
+if command -v lsd &>/dev/null; then
+	ls='lsd --git'
+	if [[ $isGhostty -eq 0 ]]; then
+		ls="$ls --icon never"
+	fi
+	alias ls="$ls"
+fi
 
 if [[ "$os" == "darwin" ]]; then
 	export PATH="/usr/bin:$PATH"
