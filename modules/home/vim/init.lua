@@ -391,7 +391,6 @@ do
 				completeUnimported = true,
 				staticcheck = true,
 				directoryFilters = { "-.git", "-node_modules" },
-				semanticTokens = true,
 			},
 		},
 	})
