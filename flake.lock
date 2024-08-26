@@ -51,25 +51,25 @@
     "blenderMacOSAarch64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-OPjzNjbxh2TkQ98kUt7BwrxmRD2L+qWiTmCwqg4ZpFc=",
+        "narHash": "sha256-jrKJgeR4R0tMYYcpd8xolYFAnpaczkYQpJwUv0MKAD4=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.1/blender-4.1.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-arm64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.1/blender-4.1.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-arm64.dmg"
       }
     },
     "blenderMacOSx86_64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-qAc3n72DYwawnyb6jVI7uiCacd2K/Nx63wAAMXmvGS8=",
+        "narHash": "sha256-SQO2ekDzgdlLdxq8p4n06DA2J2llO1A/lYEHwJfx1kI=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.1/blender-4.1.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-x64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.1/blender-4.1.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-x64.dmg"
       }
     },
     "charm": {
