@@ -34,11 +34,13 @@
 
   # Packges from the Charm Nix User Respository
   charmPkgs = [
-    "gum"
     "freeze"
+    "glow"
+    "gum"
     "melt"
     "mods"
     "pop"
+    "skate"
     "soft-serve"
     "vhs"
     "wishlist"
