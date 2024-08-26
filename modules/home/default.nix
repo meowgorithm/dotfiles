@@ -46,6 +46,11 @@
     "wishlist"
   ];
 
+  # Packages from Carlos' Nix User Repository
+  carlosPkgs = [
+    "mdtree"
+  ];
+
   # Build a macOS application from a DMG. Will do nothing if the OS is not
   # macOS.
   mkDmg = name: appName: src: let
@@ -77,14 +82,23 @@
         lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
     )
 
-    # Add packages from Charm NUR
+    # Add packages from NURs
     (
       self: super: let
-        useCharmPkg = name: {
-          ${name} = inputs.charm.legacyPackages.${self.system}.${name};
+        useNurPkg = nurName: pkgName: {
+          ${pkgName} = inputs.${nurName}.packages.${self.system}.${pkgName};
         };
       in
-        lib.foldr lib.recursiveUpdate {} (map useCharmPkg charmPkgs)
+        lib.foldr lib.recursiveUpdate {} (
+          (map (useNurPkg "charm") charmPkgs)
+          ++ (map (useNurPkg "carlos") carlosPkgs)
+        )
+    )
+
+    (
+      self: super: {
+        mdtree = inputs.carlos.packages.${self.system}.mdtree;
+      }
     )
 
     # macOS applications
@@ -159,7 +173,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts charmPkgs;
+      inherit inputs system fonts charmPkgs carlosPkgs;
     };
     modules =
       [

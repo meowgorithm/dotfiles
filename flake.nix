@@ -5,6 +5,8 @@
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
   inputs.charm.url = "github:charmbracelet/nur";
   inputs.charm.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.carlos.url = "github:caarlos0/nur";
+  inputs.carlos.inputs.nixpkgs.follows = "nixpkgs-unstable";
   inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
 
   # Vim/NeoVim plugins

@@ -72,6 +72,26 @@
         "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-x64.dmg"
       }
     },
+    "carlos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724458728,
+        "narHash": "sha256-eNbN0yFr2fzb1o+pHggbbwqFCVIL149Ffabmwsy46ww=",
+        "owner": "caarlos0",
+        "repo": "nur",
+        "rev": "9e4f6821d12bb13beef314fa3c18c45afc771996",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caarlos0",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "charm": {
       "inputs": {
         "nixpkgs": [
@@ -611,6 +631,7 @@
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",
+        "carlos": "carlos",
         "charm": "charm",
         "color-picker-nvim": "color-picker-nvim",
         "dozer": "dozer",

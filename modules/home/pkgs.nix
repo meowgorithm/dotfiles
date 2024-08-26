@@ -2,6 +2,7 @@
   pkgs,
   lib,
   charmPkgs,
+  carlosPkgs,
   ...
 }: {
   home.packages = with pkgs;
@@ -118,7 +119,9 @@
       nightfall
     ]))
     # Charm NUR
-    ++ (map (x: pkgs.${x}) charmPkgs);
+    ++ (map (x: pkgs.${x}) charmPkgs)
+    # Carlos' NUR
+    ++ (map (x: pkgs.${x}) carlosPkgs);
 
   programs = {
     z-lua.enable = true;
