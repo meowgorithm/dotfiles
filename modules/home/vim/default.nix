@@ -4,6 +4,12 @@
   ...
 }: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
+
+  buildVimPlugin = name:
+    pkgs.vimUtils.buildVimPlugin {
+      name = name;
+      src = inputs."${name}";
+    };
 in {
   programs.neovim = {
     enable = true;
@@ -53,12 +59,13 @@ in {
       vim-gnupg
       vim-vsnip
       xterm-color-table-vim
-      (
-        pkgs.vimUtils.buildVimPlugin {
-          name = "color-picker-nvim";
-          src = inputs.color-picker-nvim;
-        }
-      )
+      (buildVimPlugin "color-picker-nvim")
+
+      # Avante and its dependencies
+      (buildVimPlugin "avante-nvim")
+      nui-nvim
+      plenary-nvim
+      dressing-nvim
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

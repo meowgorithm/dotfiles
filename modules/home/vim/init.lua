@@ -210,6 +210,9 @@ do
 	})
 end
 
+-- Avante
+require("avante").setup()
+
 -- Colorizer
 -- Note: at the moment, Nix uses fork https://github.com/nvchad/nvim-colorizer.lua/
 do

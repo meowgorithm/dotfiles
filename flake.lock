@@ -32,6 +32,22 @@
         "url": "ssh://git.rocha.is/arno-pro"
       }
     },
+    "avante-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725040148,
+        "narHash": "sha256-8vLJvgAGeuCjj0UdtNP9ve51dVuDoG8beL5C4LnWhI8=",
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "rev": "5ff5dcf72bde744488ee4ae5ff9567053d34f908",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "type": "github"
+      }
+    },
     "benjamins-gothic": {
       "flake": false,
       "locked": {
@@ -628,6 +644,7 @@
       "inputs": {
         "anchor": "anchor",
         "arno-pro": "arno-pro",
+        "avante-nvim": "avante-nvim",
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",

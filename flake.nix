@@ -12,6 +12,8 @@
   # Vim/NeoVim plugins
   inputs.color-picker-nvim.url = "github:ziontee113/color-picker.nvim";
   inputs.color-picker-nvim.flake = false;
+  inputs.avante-nvim.url = "github:yetone/avante.nvim";
+  inputs.avante-nvim.flake = false;
 
   # Lua fzy implementation
   inputs.fzyLua.url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";
