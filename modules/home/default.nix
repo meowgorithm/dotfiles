@@ -190,6 +190,7 @@ in
         }
         ./alacritty.nix
         ./bash
+        ./carapace.nix
         ./darwin-app-activation.nix
         ./emacs
         ./floskell
