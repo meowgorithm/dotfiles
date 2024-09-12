@@ -35,7 +35,6 @@
       jq
       librsvg # for the rsvg-convert binary
       libwebp
-      lsd
       luajit
       moreutils
       ngrok
