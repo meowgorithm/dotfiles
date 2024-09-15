@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+repo=$(
+	gh repo list charmbracelet --json name |
+		jq .[].name |
+		tr -d '"' |
+		gum filter --height=10 \
+			--header "Clone which Charm™ repo?"
+)
+
+git clone "git@github.com:charmbracelet/$repo" "$HOME/src/$repo"
