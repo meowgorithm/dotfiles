@@ -52,7 +52,6 @@ in {
             typescript
           ]
       ))
-      packer-nvim # for supermaven
       telescope-nvim
       trouble-nvim
       vim-airline

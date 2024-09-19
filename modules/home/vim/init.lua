@@ -210,16 +210,6 @@ do
 	})
 end
 
--- Supermaven
-require("packer").startup(function(use)
-	use({
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({})
-		end,
-	})
-end)
-
 -- Avante
 require("avante").setup()
 
