@@ -59,7 +59,6 @@ in {
       vim-gnupg
       vim-vsnip
       xterm-color-table-vim
-      (buildVimPlugin "color-picker-nvim")
 
       # Avante and its dependencies
       (buildVimPlugin "avante-nvim")

@@ -10,8 +10,6 @@
   inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
 
   # Vim/NeoVim plugins
-  inputs.color-picker-nvim.url = "github:ziontee113/color-picker.nvim";
-  inputs.color-picker-nvim.flake = false;
   inputs.avante-nvim.url = "github:yetone/avante.nvim";
   inputs.avante-nvim.flake = false;
 

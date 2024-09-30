@@ -188,28 +188,6 @@ hi(0, "GitGutterAdd", { fg = "#009900" })
 hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
--- Color Picker
-do
-	local opts = { noremap = true, silent = true }
-	nmap("<c-p>", "<cmd>PickColor<cr>", opts)
-	-- imap("pci", "<cmd>PickColorInsert<cr>", opts)
-
-	-- nmap("n", "your_keymap", "<cmd>ConvertHEXandRGB<cr>", opts)
-	nmap("cv", "<cmd>ConvertHEXandHSL<cr>", opts)
-
-	require("color-picker").setup({
-		["icons"] = { "#", "|" },
-		["border"] = "rounded",
-		["keymap"] = {
-			["U"] = "<Plug>ColorPickerSlider5Decrease",
-			["O"] = "<Plug>ColorPickerSlider5Increase",
-		},
-		["background_highlight_group"] = "Normal",
-		["border_highlight_group"] = "FloatBorder",
-		["text_highlight_group"] = "Normal",
-	})
-end
-
 -- Avante
 require("avante").setup()
 
