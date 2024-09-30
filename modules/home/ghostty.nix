@@ -8,7 +8,7 @@ in {
       macos-non-native-fullscreen = true
       macos-option-as-alt = left
 
-      mouse-hide-while-typing = true
+      mouse-hide-while-typing = false
       copy-on-select = true
       confirm-close-surface = false
       link-url = true
