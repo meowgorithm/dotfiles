@@ -65,6 +65,7 @@ in {
       nui-nvim
       plenary-nvim
       dressing-nvim
+      img-clip-nvim # keeps avante from complaining
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

@@ -189,7 +189,23 @@ hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
 -- Avante
-require("avante").setup()
+require("img-clip").setup({
+	default = {
+		embed_image_as_base64 = false,
+		prompt_for_file_name = false,
+		drag_and_drop = { insert_mode = true },
+		use_absolute_path = true, -- required on Windows
+	},
+})
+require("avante").setup({
+	windows = {
+		width = 30,
+		sidebar_header = {
+			align = "left",
+			rounded = false,
+		},
+	},
+})
 
 -- Colorizer
 -- Note: at the moment, Nix uses fork https://github.com/nvchad/nvim-colorizer.lua/
