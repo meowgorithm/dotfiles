@@ -197,6 +197,7 @@ require("img-clip").setup({
 		use_absolute_path = true, -- required on Windows
 	},
 })
+require("avante_lib").load()
 require("avante").setup({
 	windows = {
 		width = 30,
