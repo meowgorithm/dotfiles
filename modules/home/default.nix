@@ -74,7 +74,14 @@
     # Use stable packages to match what NixOS is using
     (
       self: super: let
-        stablePkgs = ["gnupg" "redis" "lua-language-server"];
+        stablePkgs = [
+          # Match what NixOS is using
+          "gnupg"
+          "redis"
+          "lua-language-server"
+          # These are broken in unstable for one reason or another.
+          "vim-language-server"
+        ];
         useStablePkg = name: {
           ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
         };
