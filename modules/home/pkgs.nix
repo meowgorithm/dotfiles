@@ -3,8 +3,12 @@
   lib,
   charmPkgs,
   carlosPkgs,
+  isHeadless,
   ...
-}: {
+}: let 
+  isLinux = pkgs.stdenv.isLinux;
+  isDarwin = pkgs.stdenv.isDarwin;
+in{
   home.packages = with pkgs;
     [
       age
@@ -54,7 +58,6 @@
       tree-sitter
       ttyd
       viu
-      vscode
       wget
       yq
       yubikey-manager
@@ -96,8 +99,13 @@
         vscode-langservers-extracted
         yaml-language-server
       ])
+      # Desktops only
+      ++ (lib.optionals (! isHeadless) (with pkgs; [
+      	vscode	
+	])
+      )
     # X11 dev
-    ++ (lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+    ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
       libGL
       xorg.libXcursor
       xorg.libXi
@@ -105,12 +113,12 @@
       xorg.libXrandr
       xorg.libXxf86vm
     ]))
-    # Linux
-    ++ (lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+    # Linux Desktop
+    ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
       element
     ]))
     # macOS
-    ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
+    ++ (lib.optionals isDarwin (with pkgs; [
       blender
       cachix
       dozer

@@ -7,6 +7,8 @@
 }: let
   lib = pkgs.lib;
 
+  isHeadless = hostname == "headless";
+
   # 3rd party fonts
   fonts = [
     "anchor"
@@ -81,6 +83,9 @@
           "lua-language-server"
           # These are broken in unstable for one reason or another.
           "vim-language-server"
+	  # These need to be built on unstable in some cases, and
+	  # building them takes forever.
+	  "ffmpeg"
         ];
         useStablePkg = name: {
           ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
@@ -147,16 +152,16 @@
   ];
 
   extraModules =
-    lib.optionals (pkgs.stdenv.isLinux && hostname != "headless") [
+    lib.optionals (pkgs.stdenv.isLinux && ! isHeadless) [
       {
         home.packages = with pkgs; [
           _1password
           _1password-gui
           brave
           dunst
+	  eyedropper
           feh
           firefox
-          gcolor2
           inputs.ghostty.packages.${system}.default
           google-chrome
           gthumb
@@ -180,7 +185,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts charmPkgs carlosPkgs;
+      inherit inputs system fonts charmPkgs carlosPkgs isHeadless;
     };
     modules =
       [
@@ -203,13 +208,11 @@ in
         ./floskell
         ./fonts.nix
         ./fourmolu
-        ./ghostty.nix
         ./git.nix
         ./go.nix
         ./gpg.nix
         ./helix
         ./kakoune
-        ./kitty.nix
         ./pkgs.nix
         ./prettier
         ./readline.nix
@@ -219,6 +222,9 @@ in
         ./wezterm
         ./vim
         ./zellij.nix
-      ]
+      ] ++ (lib.optionals (! isHeadless) [
+        ./ghostty.nix
+        ./kitty.nix
+      ])
       ++ extraModules;
   }
