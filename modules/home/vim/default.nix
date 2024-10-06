@@ -66,6 +66,7 @@ in {
       plenary-nvim
       dressing-nvim
       img-clip-nvim # keeps avante from complaining
+      (buildVimPlugin "render-markdown-nvim")
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

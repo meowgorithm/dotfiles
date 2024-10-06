@@ -35,11 +35,11 @@
     "avante-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1727696311,
-        "narHash": "sha256-tAigYqS3ZAtZJp7RaarbXrDxrjiYu2wjNHq6GP/BMfk=",
+        "lastModified": 1728121755,
+        "narHash": "sha256-AzWO/2K4SO4dNUFhCquQrx5siUw2UsDSK8UIacPDOnk=",
         "owner": "yetone",
         "repo": "avante.nvim",
-        "rev": "0705234991d03170a72582085dc508600a03a779",
+        "rev": "c3848d086c415c0492fc042b367036763f76fa4c",
         "type": "github"
       },
       "original": {
@@ -505,6 +505,22 @@
         "url": "ssh://git.rocha.is/pique"
       }
     },
+    "render-markdown-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728046164,
+        "narHash": "sha256-n/sMiz6ztfzAwidL7CaRaUW5m07i9i6cemthE1L4Pes=",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "rev": "fe1002fddc61207e4ef4325d4bc0ca33697bbc7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "type": "github"
+      }
+    },
     "rifton": {
       "flake": false,
       "locked": {
@@ -568,6 +584,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "pangaia": "pangaia",
         "pique": "pique",
+        "render-markdown-nvim": "render-markdown-nvim",
         "rifton": "rifton",
         "rois": "rois",
         "saans": "saans",

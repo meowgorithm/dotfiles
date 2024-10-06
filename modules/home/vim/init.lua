@@ -197,8 +197,18 @@ require("img-clip").setup({
 		use_absolute_path = true, -- required on Windows
 	},
 })
+require("render-markdown").setup({
+	opts = {
+		file_types = { "markdown", "Avante" },
+	},
+	ft = { "markdown", "Avante" },
+})
 require("avante_lib").load()
 require("avante").setup({
+	behaviour = {
+		auto_suggestions = false,
+	},
+	hints = { enabled = true },
 	windows = {
 		width = 30,
 		sidebar_header = {
