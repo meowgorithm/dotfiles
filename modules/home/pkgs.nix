@@ -1,5 +1,5 @@
 {
-  pkgs,
+ pkgs,
   lib,
   charmPkgs,
   carlosPkgs,
@@ -41,6 +41,7 @@ in {
       libwebp
       luajit
       moreutils
+      mosh
       ngrok
       nodejs
       nushell
@@ -99,12 +100,11 @@ in {
         vscode-langservers-extracted
         yaml-language-server
       ])
-    # Desktops only
-    ++ (
-      lib.optionals (! isHeadless) (with pkgs; [
-        vscode
-      ])
-    )
+      # Desktops only
+      ++ (lib.optionals (! isHeadless) (with pkgs; [
+      	vscode
+	])
+      )
     # X11 dev
     ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
       libGL
