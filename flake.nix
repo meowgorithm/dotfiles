@@ -9,12 +9,6 @@
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs-unstable";
   inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
 
-  # Vim/NeoVim plugins
-  inputs.avante-nvim.url = "github:yetone/avante.nvim";
-  inputs.avante-nvim.flake = false;
-  inputs.render-markdown-nvim.url = "github:MeanderingProgrammer/render-markdown.nvim";
-  inputs.render-markdown-nvim.flake = false;
-
   # Lua fzy implementation
   inputs.fzyLua.url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";
   inputs.fzyLua.flake = false;

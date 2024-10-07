@@ -61,12 +61,12 @@ in {
       xterm-color-table-vim
 
       # Avante and its dependencies
-      (buildVimPlugin "avante-nvim")
-      nui-nvim
-      plenary-nvim
+      avante-nvim
       dressing-nvim
       img-clip-nvim # keeps avante from complaining
-      (buildVimPlugin "render-markdown-nvim")
+      nui-nvim
+      plenary-nvim
+      render-markdown-nvim
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

@@ -32,22 +32,6 @@
         "url": "ssh://git.rocha.is/arno-pro"
       }
     },
-    "avante-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1728121755,
-        "narHash": "sha256-AzWO/2K4SO4dNUFhCquQrx5siUw2UsDSK8UIacPDOnk=",
-        "owner": "yetone",
-        "repo": "avante.nvim",
-        "rev": "c3848d086c415c0492fc042b367036763f76fa4c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yetone",
-        "repo": "avante.nvim",
-        "type": "github"
-      }
-    },
     "benjamins-gothic": {
       "flake": false,
       "locked": {
@@ -505,22 +489,6 @@
         "url": "ssh://git.rocha.is/pique"
       }
     },
-    "render-markdown-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1728046164,
-        "narHash": "sha256-n/sMiz6ztfzAwidL7CaRaUW5m07i9i6cemthE1L4Pes=",
-        "owner": "MeanderingProgrammer",
-        "repo": "render-markdown.nvim",
-        "rev": "fe1002fddc61207e4ef4325d4bc0ca33697bbc7a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MeanderingProgrammer",
-        "repo": "render-markdown.nvim",
-        "type": "github"
-      }
-    },
     "rifton": {
       "flake": false,
       "locked": {
@@ -557,7 +525,6 @@
       "inputs": {
         "anchor": "anchor",
         "arno-pro": "arno-pro",
-        "avante-nvim": "avante-nvim",
         "benjamins-gothic": "benjamins-gothic",
         "blenderMacOSAarch64": "blenderMacOSAarch64",
         "blenderMacOSx86_64": "blenderMacOSx86_64",
@@ -584,7 +551,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "pangaia": "pangaia",
         "pique": "pique",
-        "render-markdown-nvim": "render-markdown-nvim",
         "rifton": "rifton",
         "rois": "rois",
         "saans": "saans",
