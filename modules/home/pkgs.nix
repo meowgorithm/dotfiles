@@ -5,10 +5,10 @@
   carlosPkgs,
   isHeadless,
   ...
-}: let 
+}: let
   isLinux = pkgs.stdenv.isLinux;
   isDarwin = pkgs.stdenv.isDarwin;
-in{
+in {
   home.packages = with pkgs;
     [
       age
@@ -99,11 +99,12 @@ in{
         vscode-langservers-extracted
         yaml-language-server
       ])
-      # Desktops only
-      ++ (lib.optionals (! isHeadless) (with pkgs; [
-      	vscode	
-	])
-      )
+    # Desktops only
+    ++ (
+      lib.optionals (! isHeadless) (with pkgs; [
+        vscode
+      ])
+    )
     # X11 dev
     ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
       libGL
@@ -123,7 +124,6 @@ in{
       cachix
       dozer
       monitorcontrol
-      nightfall
     ]))
     # Charm NUR
     ++ (map (x: pkgs.${x}) charmPkgs)

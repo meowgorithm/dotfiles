@@ -83,9 +83,9 @@
           "lua-language-server"
           # These are broken in unstable for one reason or another.
           "vim-language-server"
-	  # These need to be built on unstable in some cases, and
-	  # building them takes forever.
-	  "ffmpeg"
+          # These need to be built on unstable in some cases, and
+          # building them takes forever.
+          "ffmpeg"
         ];
         useStablePkg = name: {
           ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
@@ -130,7 +130,6 @@
             cp -r "$src/Contents" "$out/Applications/Hammerspoon.app";
           '';
         };
-        nightfall = mkDmg "nightfall" "Nightfall" inputs.nightfall;
         monitorcontrol = mkDmg "monitorcontrol" "MonitorControl" inputs.monitorcontrol;
       }
     )
@@ -159,7 +158,7 @@
           _1password-gui
           brave
           dunst
-	  eyedropper
+          eyedropper
           feh
           firefox
           inputs.ghostty.packages.${system}.default
@@ -222,7 +221,8 @@ in
         ./wezterm
         ./vim
         ./zellij.nix
-      ] ++ (lib.optionals (! isHeadless) [
+      ]
+      ++ (lib.optionals (! isHeadless) [
         ./ghostty.nix
         ./kitty.nix
       ])

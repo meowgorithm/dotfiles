@@ -51,25 +51,25 @@
     "blenderMacOSAarch64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-jrKJgeR4R0tMYYcpd8xolYFAnpaczkYQpJwUv0MKAD4=",
+        "narHash": "sha256-Crc5jhBx4vAuBPGK7b9tl2vj+G2K9rtt2+RJb2sopdA=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.2-macos-arm64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-arm64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.2-macos-arm64.dmg"
       }
     },
     "blenderMacOSx86_64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-SQO2ekDzgdlLdxq8p4n06DA2J2llO1A/lYEHwJfx1kI=",
+        "narHash": "sha256-qwzS3u+Z66oXRPb3Iq8tBEAhtBQ62tLAVhRkAwiFdfc=",
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.2-macos-x64.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.1-macos-x64.dmg"
+        "url": "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.2-macos-x64.dmg"
       }
     },
     "carlos": {
@@ -310,13 +310,13 @@
     "monitorcontrol": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-rLMzKMBzU1W+ikHA18JkFY3J6BbutL07RWB+1dFK988=",
+        "narHash": "sha256-I5Opt4Ql+2TyomtgWcM5eX+oY1MVhdFxg/e14yTjxYQ=",
         "type": "file",
-        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg"
+        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.1.0/MonitorControl.4.1.0.dmg"
+        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg"
       }
     },
     "monoflow": {
@@ -381,18 +381,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/neufile-grotesk"
-      }
-    },
-    "nightfall": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-L5h8hja9D9J1NYSfgv/lZsKSn1+0uHqXombVR5yDN1Q=",
-        "type": "file",
-        "url": "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/r-thomson/Nightfall/releases/download/v3.0.0/Nightfall.dmg"
       }
     },
     "nixpkgs": {
@@ -546,7 +534,6 @@
         "mononoki": "mononoki",
         "mori": "mori",
         "neufile-grotesk": "neufile-grotesk",
-        "nightfall": "nightfall",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "pangaia": "pangaia",
