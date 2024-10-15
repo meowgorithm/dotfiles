@@ -66,6 +66,8 @@ hostname: {
   };
 
   programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
