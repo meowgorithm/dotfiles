@@ -1,5 +1,5 @@
 {
- pkgs,
+  pkgs,
   lib,
   charmPkgs,
   carlosPkgs,
@@ -31,6 +31,7 @@ in {
       fzf
       getopt
       gh
+      gnumake
       gnupg
       gnused
       gnutar
@@ -100,11 +101,12 @@ in {
         vscode-langservers-extracted
         yaml-language-server
       ])
-      # Desktops only
-      ++ (lib.optionals (! isHeadless) (with pkgs; [
-      	vscode
-	])
-      )
+    # Desktops only
+    ++ (
+      lib.optionals (! isHeadless) (with pkgs; [
+        vscode
+      ])
+    )
     # X11 dev
     ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
       libGL
