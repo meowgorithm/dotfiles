@@ -65,8 +65,6 @@ end
 
 nmap("gs", "^")
 nmap("gl", "$")
-nmap("S", "<cmd>split<cr>")
-nmap("VS", "<cmd>vsplit<cr>")
 nmap("gn", "<cmd>bnext<cr>")
 nmap("gp", "<cmd>bprev<cr>")
 nmap("BO", "<cmd>BufOnly<cr>")
