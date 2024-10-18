@@ -1,15 +1,5 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{pkgs, ...}: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
-
-  buildVimPlugin = name:
-    pkgs.vimUtils.buildVimPlugin {
-      name = name;
-      src = inputs."${name}";
-    };
 in {
   programs.neovim = {
     enable = true;
@@ -28,11 +18,20 @@ in {
       copilot-vim
       goyo-vim
       null-ls-nvim
-      nvim-colorizer-lua
-      nvim-code-action-menu
       nvim-cmp
+      nvim-code-action-menu
+      nvim-colorizer-lua
       nvim-lspconfig
       nvim-tree-lua
+      telescope-nvim
+      trouble-nvim
+      vim-airline
+      vim-fugitive
+      vim-gitgutter
+      vim-gnupg
+      vim-vsnip
+      xterm-color-table-vim
+
       (nvim-treesitter.withPlugins (
         plugins:
           with plugins; [
@@ -52,13 +51,6 @@ in {
             typescript
           ]
       ))
-      telescope-nvim
-      trouble-nvim
-      vim-airline
-      vim-gitgutter
-      vim-gnupg
-      vim-vsnip
-      xterm-color-table-vim
 
       # Avante and its dependencies
       avante-nvim
