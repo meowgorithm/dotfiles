@@ -196,9 +196,7 @@ require("img-clip").setup({
 	},
 })
 require("render-markdown").setup({
-	opts = {
-		file_types = { "markdown", "Avante" },
-	},
+	opts = { file_types = { "Avante" } },
 	ft = { "markdown", "Avante" },
 })
 require("avante_lib").load()
