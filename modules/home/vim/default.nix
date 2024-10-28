@@ -29,6 +29,8 @@ in {
       vim-fugitive
       vim-gitgutter
       vim-gnupg
+      vim-surround
+      vim-unimpaired
       vim-vsnip
       xterm-color-table-vim
 
