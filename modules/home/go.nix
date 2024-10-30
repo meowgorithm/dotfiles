@@ -10,6 +10,7 @@
   };
 
   home.packages = with pkgs; [
+    gofumpt
     delve
     golangci-lint
     gopls
