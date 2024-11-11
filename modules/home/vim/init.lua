@@ -187,23 +187,9 @@ hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
 -- Avante
-require("img-clip").setup({
-	default = {
-		embed_image_as_base64 = false,
-		prompt_for_file_name = false,
-		drag_and_drop = { insert_mode = true },
-		use_absolute_path = true, -- required on Windows
-	},
-})
-require("render-markdown").setup({
-	opts = { file_types = { "Avante" } },
-	ft = { "markdown", "Avante" },
-})
 require("avante_lib").load()
 require("avante").setup({
-	behaviour = {
-		auto_suggestions = false,
-	},
+	behaviour = { auto_suggestions = false },
 	hints = { enabled = true },
 	windows = {
 		width = 30,

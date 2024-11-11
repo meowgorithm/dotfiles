@@ -9,19 +9,19 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      BufOnly-vim
+      # LSP
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
       cmp-vsnip
-      copilot-vim
-      goyo-vim
       null-ls-nvim
       nvim-cmp
       nvim-code-action-menu
-      nvim-colorizer-lua
       nvim-lspconfig
+
+      BufOnly-vim
+      copilot-vim
       nvim-tree-lua
       telescope-nvim
       trouble-nvim
@@ -32,7 +32,6 @@ in {
       vim-surround
       vim-unimpaired
       vim-vsnip
-      xterm-color-table-vim
 
       (nvim-treesitter.withPlugins (
         plugins:
@@ -57,10 +56,8 @@ in {
       # Avante and its dependencies
       avante-nvim
       dressing-nvim
-      img-clip-nvim # keeps avante from complaining
       nui-nvim
       plenary-nvim
-      render-markdown-nvim
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}
