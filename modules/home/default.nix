@@ -113,6 +113,13 @@
       }
     )
 
+    # Rio
+    (
+      self: super: {
+        rio = inputs.rio.packages.${system}.rio;
+      }
+    )
+
     # macOS applications
     (
       self: super: {
@@ -225,6 +232,7 @@ in
       ++ (lib.optionals (! isHeadless) [
         ./ghostty.nix
         ./kitty.nix
+        ./rio.nix
       ])
       ++ extraModules;
   }
