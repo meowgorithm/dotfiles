@@ -107,12 +107,6 @@
         )
     )
 
-    (
-      self: super: {
-        mdtree = inputs.carlos.packages.${self.system}.mdtree;
-      }
-    )
-
     # Rio
     (
       self: super: {
