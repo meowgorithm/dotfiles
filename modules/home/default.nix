@@ -81,8 +81,6 @@
           "gnupg"
           "redis"
           "lua-language-server"
-          # These are broken in unstable for one reason or another.
-          "vim-language-server"
           # These need to be built on unstable in some cases, and
           # building them takes forever.
           "ffmpeg"
