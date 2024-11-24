@@ -55,7 +55,6 @@ in {
       shellcheck
       shfmt
       simple-http-server
-      tmux
       tree
       tree-sitter
       ttyd
