@@ -26,7 +26,7 @@
     width = 600
     height = 640
     mode = "Windowed"
-    opacity = 0.98
+    opacity = 0.94
     blur = true
     decorations = "Buttonless"
 
