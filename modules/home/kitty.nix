@@ -60,8 +60,8 @@ in {
           selection_foreground = "#222222";
           selection_background = "#ccff00";
 
-          background = colors.primary.background;
-          foreground = colors.primary.foreground;
+          background = colors.background;
+          foreground = colors.foreground;
 
           color0 = colors.normal.black;
           color8 = colors.bright.black;

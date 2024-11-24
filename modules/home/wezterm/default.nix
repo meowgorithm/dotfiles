@@ -6,8 +6,8 @@ in {
     enableBashIntegration = true;
     colorSchemes = {
       "Pantera Negra" = {
-        foreground = colors.primary.foreground;
-        background = colors.primary.background;
+        foreground = colors.foreground;
+        background = colors.background;
         ansi = [
           colors.normal.black
           colors.normal.red

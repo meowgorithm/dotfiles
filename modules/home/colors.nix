@@ -1,8 +1,6 @@
 {
-  primary = {
-    background = "#171717";
-    foreground = "#C5C8C6";
-  };
+  background = "#171717";
+  foreground = "#C5C8C6";
 
   normal = {
     black = "#282a2e";

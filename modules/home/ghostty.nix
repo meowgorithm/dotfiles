@@ -13,8 +13,8 @@ in {
       confirm-close-surface = false
       link-url = true
 
-      background = ${colors.primary.background}
-      foreground = ${colors.primary.foreground}
+      background = ${colors.background}
+      foreground = ${colors.foreground}
 
       palette = 0=${colors.normal.black}
       palette = 1=${colors.normal.red}
