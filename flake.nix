@@ -18,9 +18,9 @@
   # macOS stuff
   inputs.mkAlias.url = "github:cdmistman/mkAlias";
   inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs-unstable";
-  inputs.blenderMacOSAarch64.url = "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.3-macos-arm64.dmg";
+  inputs.blenderMacOSAarch64.url = "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.0-macos-arm64.dmg";
   inputs.blenderMacOSAarch64.flake = false;
-  inputs.blenderMacOSx86_64.url = "https://mirror.clarkson.edu/blender/release/Blender4.2/blender-4.2.3-macos-x64.dmg";
+  inputs.blenderMacOSx86_64.url = "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.0-macos-x64.dmg";
   inputs.blenderMacOSx86_64.flake = false;
   inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
   inputs.dozer.flake = false;
