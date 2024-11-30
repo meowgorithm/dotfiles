@@ -2,12 +2,10 @@
   home-manager,
   pkgs,
   system ? "x86_64-linux",
-  hostname,
   inputs,
+  headless,
 }: let
   lib = pkgs.lib;
-
-  isHeadless = hostname == "headless";
 
   # 3rd party fonts
   fonts = [
@@ -150,7 +148,7 @@
   ];
 
   extraModules =
-    lib.optionals (pkgs.stdenv.isLinux && ! isHeadless) [
+    lib.optionals (pkgs.stdenv.isLinux && ! headless) [
       {
         home.packages = with pkgs; [
           _1password
@@ -183,7 +181,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts charmPkgs carlosPkgs isHeadless;
+      inherit inputs system fonts charmPkgs carlosPkgs headless;
     };
     modules =
       [
@@ -221,7 +219,7 @@ in
         ./vim
         ./zellij.nix
       ]
-      ++ (lib.optionals (! isHeadless) [
+      ++ (lib.optionals (! headless) [
         ./ghostty.nix
         ./kitty.nix
         ./rio.nix

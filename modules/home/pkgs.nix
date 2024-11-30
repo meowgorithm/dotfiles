@@ -3,7 +3,7 @@
   lib,
   charmPkgs,
   carlosPkgs,
-  isHeadless,
+  headless,
   ...
 }: let
   isLinux = pkgs.stdenv.isLinux;
@@ -102,12 +102,12 @@ in {
       ])
     # Desktops only
     ++ (
-      lib.optionals (! isHeadless) (with pkgs; [
+      lib.optionals (! headless) (with pkgs; [
         vscode
       ])
     )
     # X11 dev
-    ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
+    ++ (lib.optionals (isLinux && ! headless) (with pkgs; [
       libGL
       xorg.libXcursor
       xorg.libXi
@@ -116,7 +116,7 @@ in {
       xorg.libXxf86vm
     ]))
     # Linux Desktop
-    ++ (lib.optionals (isLinux && ! isHeadless) (with pkgs; [
+    ++ (lib.optionals (isLinux && ! headless) (with pkgs; [
       element
     ]))
     # macOS

@@ -90,6 +90,7 @@
       hostname,
       system ? x86_64-linux,
       default ? false,
+      headless ? false,
     }:
       {
         nixosConfigurations."${hostname}" = lib.nixosSystem {
@@ -121,7 +122,7 @@
               inherit system;
               config.allowUnfree = true;
             };
-            inherit system home-manager hostname inputs;
+            inherit system home-manager inputs headless;
           };
       }
       // (
@@ -137,27 +138,38 @@
   in
     lib.foldr lib.recursiveUpdate {} (map mkSystem [
       {
+        # NixOS Desktop
         hostname = "whitenoise";
         system = x86_64-linux;
         default = true;
       }
       {
+        # NixOS Desktop
         hostname = "athena";
         system = x86_64-linux;
       }
       {
-        hostname = "headless";
-        system = x86_64-linux;
-      }
-      {
+        # iMac Pro
         hostname = "thunderclap";
         system = x86_64-darwin;
         default = true;
       }
       {
-        hostname = "meowmachine";
+        # Meowmachine
+        hostname = "la-tigra";
         system = aarch64-darwin;
         default = true;
+      }
+      {
+        # MacBook Air
+        hostname = "la-tigra";
+        system = aarch64-darwin;
+      }
+      {
+        # NixOS VPS
+        hostname = "jackie";
+        system = x86_64-linux;
+        headless = true;
       }
     ]);
 }
