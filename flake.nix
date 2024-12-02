@@ -155,8 +155,8 @@
         default = true;
       }
       {
-        # Meowmachine
-        hostname = "la-tigra";
+        # MacBook Pro
+        hostname = "meowmachine";
         system = aarch64-darwin;
         default = true;
       }

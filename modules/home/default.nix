@@ -78,7 +78,9 @@
           # Match what NixOS is using
           "gnupg"
           "redis"
+          # Broken on unstable (at least, the last time we checked)
           "lua-language-server"
+          "vim-language-server"
           # These need to be built on unstable in some cases, and
           # building them takes forever.
           "ffmpeg"
