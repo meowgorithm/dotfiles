@@ -198,7 +198,6 @@ in
             )
             + home.username;
         }
-        ./alacritty.nix
         ./bash
         ./carapace.nix
         ./darwin-app-activation.nix
@@ -222,6 +221,7 @@ in
         ./zellij.nix
       ]
       ++ (lib.optionals (! headless) [
+        ./alacritty.nix
         ./ghostty.nix
         ./kitty.nix
         ./rio.nix
