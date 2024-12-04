@@ -82,6 +82,8 @@ in {
       rust-analyzer
       rustc
     ])
+    # V
+    ++ (with pkgs; [vlang])
     # Various LSP
     ++ (with pkgs;
       with pkgs.nodePackages_latest; [
