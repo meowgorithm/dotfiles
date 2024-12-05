@@ -612,6 +612,7 @@
         "rois": "rois",
         "saans": "saans",
         "sf-mono": "sf-mono",
+        "smear": "smear",
         "symbolset": "symbolset",
         "untitled-sans": "untitled-sans",
         "upton": "upton"
@@ -665,6 +666,22 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/sf-mono"
+      }
+    },
+    "smear": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733394880,
+        "narHash": "sha256-Xq1TrpdOx1UF2NlcprCuqSydcL1l9DcAlYvKYC4eNCQ=",
+        "owner": "sphamba",
+        "repo": "smear-cursor.nvim",
+        "rev": "ee62ace831461704cf3733414820328451e1ead3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sphamba",
+        "repo": "smear-cursor.nvim",
+        "type": "github"
       }
     },
     "symbolset": {

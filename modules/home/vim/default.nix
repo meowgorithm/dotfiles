@@ -1,5 +1,15 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
+
+  buildVimPlugin = name:
+    pkgs.vimUtils.buildVimPlugin {
+      name = name;
+      src = inputs."${name}";
+    };
 in {
   programs.neovim = {
     enable = true;
@@ -59,6 +69,9 @@ in {
       dressing-nvim
       nui-nvim
       plenary-nvim
+
+      # Plugins not in nixpkgs
+      (buildVimPlugin "smear")
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}
