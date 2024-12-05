@@ -20,6 +20,7 @@ in {
       nvim-code-action-menu
       nvim-lspconfig
 
+      nvim-colorizer-lua
       BufOnly-vim
       copilot-vim
       nvim-tree-lua

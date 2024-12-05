@@ -118,6 +118,9 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	group = "markdownSpell",
 })
 
+-- Colorizer
+require("colorizer").setup()
+
 -- Tree
 nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
 require("nvim-tree").setup({
