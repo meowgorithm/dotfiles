@@ -122,7 +122,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 require("colorizer").setup()
 
 -- Smear
-require("smear_cursor").enabled = true
+require("smear_cursor").enabled = false
 
 -- Tree
 nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
