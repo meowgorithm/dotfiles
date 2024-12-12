@@ -14,7 +14,7 @@
   in ''
     hide-cursor-when-typing = true
     padding-x = 16
-    padding-y = [4, 8]
+    padding-y = [0, 8]
     option-as-alt = 'left'
     confirm-before-quit = false
 
@@ -26,7 +26,7 @@
     width = 600
     height = 640
     mode = "Windowed"
-    opacity = 0.92
+    opacity = 0.98
     blur = true
     decorations = "Buttonless"
 
