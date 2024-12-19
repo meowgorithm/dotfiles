@@ -1,7 +1,13 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    rio
-  ];
+{pkgs, ...}: let
+  macOSIntel = pkgs.stdenv.hostPlatform.system == "x86_64-darwin";
+in {
+  home.packages = with pkgs; (
+    if !macOSIntel
+    then [
+      rio
+    ]
+    else []
+  );
 
   xdg.configFile."rio/config.toml".text = let
     colors =
