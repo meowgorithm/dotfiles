@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+getRepos() {
+	gh repo list charmbracelet --visibility="$1" --json name
+}
+
+getAllRepos() {
+	printf '%s %s' "$(getRepos "public")" "$(getRepos "private")" | jq -s 'add'
+}
+
 repo=$(
-	gh repo list charmbracelet --json name |
+	getAllRepos |
 		jq .[].name |
 		tr -d '"' |
 		gum filter --height=10 \
