@@ -119,7 +119,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 -- Colorizer
-require("colorizer").setup()
+require("colorizer").setup({ names = false })
 
 -- Smear
 require("smear_cursor").enabled = false
