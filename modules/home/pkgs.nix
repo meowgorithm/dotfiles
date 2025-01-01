@@ -13,7 +13,6 @@ in {
     [
       age
       awscli2
-      bat
       bc
       brotli
       cargo
@@ -106,15 +105,6 @@ in {
         vscode
       ])
     )
-    # X11 dev
-    ++ (lib.optionals (isLinux && ! headless) (with pkgs; [
-      libGL
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
-      xorg.libXxf86vm
-    ]))
     # Linux Desktop
     ++ (lib.optionals (isLinux && ! headless) (with pkgs; [
       element
