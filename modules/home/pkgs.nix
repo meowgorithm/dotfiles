@@ -47,7 +47,6 @@ in {
       nodejs
       nushell
       optipng
-      pastel
       postgresql
       python3
       redis
@@ -61,7 +60,6 @@ in {
       viu
       wget
       yq
-      yubikey-manager
       z-lua
       zopfli
     ]
