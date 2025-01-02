@@ -30,6 +30,7 @@ in {
       fzf
       getopt
       gh
+      ghostty
       gnumake
       gnupg
       gnused
