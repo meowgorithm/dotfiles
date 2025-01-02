@@ -7,6 +7,7 @@
   inputs.charm.inputs.nixpkgs.follows = "nixpkgs-unstable";
   inputs.carlos.url = "github:caarlos0/nur";
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
   inputs.rio.url = "github:raphamorim/rio";
   inputs.rio.inputs.nixpkgs.follows = "nixpkgs";
 
