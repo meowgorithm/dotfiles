@@ -201,34 +201,10 @@ require("avante").setup({
 		width = 30,
 		sidebar_header = {
 			align = "left",
-			rounded = false,
+			rounded = true,
 		},
 	},
 })
-
--- Colorizer
--- Note: at the moment, Nix uses fork https://github.com/nvchad/nvim-colorizer.lua/
-do
-	-- :ShowColors
-	vim.api.nvim_create_user_command("ShowColors", function(opts)
-		require("colorizer").attach_to_buffer(0, {
-			mode = opts.fargs[1],
-			css = true,
-			names = false,
-			sass = { enable = true, parsers = { "css" } },
-		})
-	end, {
-		nargs = "?",
-		complete = function(_, _, _)
-			return { "virtualtext", "background" }
-		end,
-	})
-
-	-- :HideColors
-	vim.api.nvim_create_user_command("HideColors", function(_)
-		require("colorizer").detach_from_buffer(0)
-	end, { nargs = 0 })
-end
 
 -- TreeSitter
 require("nvim-treesitter.configs").setup({
