@@ -28,6 +28,8 @@ in {
           initial_window_width = 680;
           initial_window_height = 720;
 
+          cursor_trail = 1;
+
           enabled_layouts = "tall:bias=70, tall:bias=30, horizontal, stack";
 
           window_border_width = "1.0";
