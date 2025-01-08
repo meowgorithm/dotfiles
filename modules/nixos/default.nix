@@ -25,9 +25,7 @@ hostname: {
     loader.timeout = 30;
   };
 
-  hardware = {
-    opengl.enable = true;
-  };
+  hardware.graphics.enable = true;
 
   networking = {
     hostName = hostname;
@@ -38,8 +36,8 @@ hostname: {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  hardware.pulseaudio.enable = true;
-  sound.enable = true;
+  # hardware.pulseaudio.enable = true;
+  # sound.enable = true;
 
   hardware.keyboard.zsa.enable = true;
   hardware.opentabletdriver.enable = true;
