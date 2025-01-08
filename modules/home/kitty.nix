@@ -28,7 +28,10 @@ in {
           initial_window_width = 680;
           initial_window_height = 720;
 
-          cursor_trail = 1;
+          cursor_trail =
+            if pkgs.stdenv.isLinux
+            then 1
+            else 0;
 
           enabled_layouts = "tall:bias=70, tall:bias=30, horizontal, stack";
 
