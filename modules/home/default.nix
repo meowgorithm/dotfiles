@@ -153,7 +153,7 @@
     lib.optionals (pkgs.stdenv.isLinux && ! headless) [
       {
         home.packages = with pkgs; [
-          _1password
+          _1password-cli
           _1password-gui
           brave
           dunst
