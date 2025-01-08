@@ -17,6 +17,11 @@ in {
       if pkgs.stdenv.isDarwin
       then "/Users/christian"
       else "/home/christian";
+
+    fontSize =
+      if pkgs.stdenv.isDarwin
+      then "13"
+      else "7";
   in ''
     hide-cursor-when-typing = true
     padding-x = 16
@@ -39,7 +44,7 @@ in {
     line-height = 1.2
 
     [fonts]
-    size = 13
+    size = ${fontSize}
 
     [fonts.regular]
     family = "JetBrains Mono"

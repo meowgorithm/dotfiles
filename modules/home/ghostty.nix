@@ -52,7 +52,7 @@ in {
       else ''
         window-decoration = false
         font-family = JetBrains Mono
-        font-size = 5
+        font-size = 7
         window-padding-x = 6
         window-padding-y = 5
       ''

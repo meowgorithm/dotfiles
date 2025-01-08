@@ -102,7 +102,7 @@ in {
             bold_font = "JetBrains Mono Bold";
             bold_italic_font = "JetBrains Mono Bold Italic";
 
-            font_size = "9.0";
+            font_size = "7.0";
             background_opacity = "0.97";
             dynamic_background_opacity = "yes";
           }
