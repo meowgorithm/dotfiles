@@ -12,6 +12,7 @@ repo=$(
 	getAllRepos |
 		jq .[].name |
 		tr -d '"' |
+		sort |
 		gum filter --height=10 \
 			--header "Clone which Charm™ repo?"
 )
