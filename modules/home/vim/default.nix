@@ -20,19 +20,14 @@ in {
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       # LSP
-      cmp-buffer
-      cmp-cmdline
-      cmp-nvim-lsp
-      cmp-path
-      cmp-vsnip
+      blink-cmp
       null-ls-nvim
-      nvim-cmp
       nvim-code-action-menu
       nvim-lspconfig
 
-      nvim-colorizer-lua
       BufOnly-vim
       copilot-vim
+      nvim-colorizer-lua
       nvim-tree-lua
       telescope-nvim
       trouble-nvim

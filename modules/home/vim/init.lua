@@ -215,13 +215,44 @@ require("nvim-treesitter.configs").setup({
 -- Vsnip
 imap("<c-l>", "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-l>'", { expr = true })
 
+-- Blink
+require("blink.cmp").setup({
+	keymap = {
+		preset = "enter",
+		cmdline = { preset = "enter" },
+	},
+	completion = {
+		list = {
+			selection = {
+				preselect = true,
+				auto_insert = true,
+			},
+		},
+		menu = {
+			border = "rounded",
+			auto_show = function(ctx)
+				-- don't show completion menu automatically when searching
+				return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
+			end,
+		},
+		documentation = { auto_show = true },
+	},
+})
+
 -- LSP
 do
 	local lsp = require("lspconfig")
-	local cmp = require("cmp")
 	local lspMethods = require("vim.lsp.protocol").Methods
+	require("lspconfig.ui.windows").default_options.border = "rounded"
 
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local capabilities = require("blink.cmp").get_lsp_capabilities({
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = true, -- needs fswatch on linux
+				relativePatternSupport = true,
+			},
+		},
+	}, true)
 
 	local format = function(bufnr)
 		vim.lsp.buf.format({
@@ -263,46 +294,6 @@ do
 			})
 		end
 	end
-
-	cmp.setup({
-		snippet = {
-			expand = function(args)
-				vim.fn["vsnip#anonymous"](args.body)
-			end,
-		},
-		window = {
-			completion = cmp.config.window.bordered(),
-			documentation = cmp.config.window.bordered(),
-		},
-		mapping = cmp.mapping.preset.insert({
-			["<c-b>"] = cmp.mapping.scroll_docs(-4),
-			["<c-f>"] = cmp.mapping.scroll_docs(4),
-			["<c-space>"] = cmp.mapping.complete(),
-			--["<tab>"] = cmp.mapping.complete(),
-			["<c-e>"] = cmp.mapping.abort(),
-			["<cr>"] = cmp.mapping.confirm({ select = true }),
-		}),
-		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			{ name = "vsnip" },
-		}, { name = "buffer" }),
-	})
-
-	cmp.setup.cmdline({ "/", "?" }, {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
-			{ name = "buffer" },
-		},
-	})
-
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "path" },
-		}, {
-			{ name = "cmdline" },
-		}),
-	})
 
 	lsp.bashls.setup({
 		capabilities = capabilities,
