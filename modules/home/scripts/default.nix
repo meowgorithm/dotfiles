@@ -2,7 +2,6 @@
   home.file =
     {
       ".bin/ask".source = ./ask;
-      ".bin/charm-clone".source = ./charm-clone;
       ".bin/cmdai".source = ./cmdai;
       ".bin/generate-commit-message".source = ./generate-commit-message;
       ".bin/install-docker".source = ./install-docker;
