@@ -229,13 +229,36 @@ require("blink.cmp").setup({
 			},
 		},
 		menu = {
-			border = "rounded",
+			border = "none", -- "rounded" is the other one we like
+
+			-- Don't show completion menu automatically when searching
 			auto_show = function(ctx)
-				-- don't show completion menu automatically when searching
 				return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
 			end,
+
+			-- Don't show completion automatically in cmdline mode
+			-- auto_show = function(ctx) return ctx.mode ~= "cmdline" end,
 		},
-		documentation = { auto_show = true },
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 250,
+			treesitter_highlighting = true,
+		},
+	},
+	sources = {
+		providers = {
+			lsp = {
+				min_keyword_length = 2,
+				score_offset = 0,
+			},
+			path = {
+				min_keyword_length = 0,
+			},
+			buffer = {
+				min_keyword_length = 5,
+				max_items = 5,
+			},
+		},
 	},
 })
 
