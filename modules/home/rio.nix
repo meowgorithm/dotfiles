@@ -1,12 +1,8 @@
-{pkgs, ...}: let
-  macOSIntel = pkgs.stdenv.hostPlatform.system == "x86_64-darwin";
-in {
+{pkgs, ...}: {
   home.packages = with pkgs; (
-    if !macOSIntel
-    then [
-      rio
-    ]
-    else []
+    if pkgs.stdenv.isDarwin
+    then []
+    else [rio]
   );
 
   xdg.configFile."rio/config.toml".text = let
