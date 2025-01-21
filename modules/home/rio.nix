@@ -33,9 +33,13 @@
     width = 600
     height = 640
     mode = "Windowed"
-    opacity = 0.98
-    blur = true
+    opacity = 1.0
+    blur = false
     decorations = "Buttonless"
+
+    [cursor]
+    blinking = true
+    blinking-interval = 1000
 
     line-height = 1.2
 
