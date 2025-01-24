@@ -70,6 +70,9 @@ nmap("gp", "<cmd>bprev<cr>")
 nmap("BO", "<cmd>BufOnly<cr>")
 nmap("<leader>f", "<cmd>Telescope find_files<cr>")
 nmap("<leader>g", "<cmd>Telescope live_grep<cr>")
+nmap("<leader>sd", "<cmd>Telescope lsp_document_symbols<cr>")
+nmap("<leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
+nmap("<leader>r", "<cmd>Telescope registers<cr>")
 nmap(";", "<cmd>Telescope buffers<cr>")
 nmap("<leader>w", "<cmd>write<cr>")
 nmap("<leader>n", "<cmd>noa write<cr>")
@@ -90,8 +93,8 @@ nmap("<", "<<")
 
 -- Toggles
 nmap("<leader>i", "<cmd>set invlist<cr>")
-nmap("<leader>s", "<cmd>set hlsearch! hlsearch?<cr>")
-nmap("<leader>r", "<cmd>set wrap! wrap?<cr>")
+nmap("<leader>S", "<cmd>set hlsearch! hlsearch?<cr>")
+nmap("<leader>W", "<cmd>set wrap! wrap?<cr>")
 
 autocmd({ "FileType" }, { pattern = "lua", command = "set noexpandtab" })
 
@@ -174,9 +177,7 @@ require("nvim-tree").setup({
 require("telescope").setup({
 	defaults = {
 		mappings = {
-			i = {
-				["<c-d>"] = require("telescope.actions").delete_buffer,
-			},
+			i = { ["<c-d>"] = require("telescope.actions").delete_buffer },
 		},
 	},
 })
