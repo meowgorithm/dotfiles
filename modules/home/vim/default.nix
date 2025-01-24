@@ -21,9 +21,8 @@ in {
     plugins = with pkgs.vimPlugins; [
       # LSP
       blink-cmp
-      null-ls-nvim
-      nvim-code-action-menu
       nvim-lspconfig
+      conform-nvim
 
       BufOnly-vim
       copilot-vim

@@ -262,6 +262,42 @@ require("blink.cmp").setup({
 	},
 })
 
+-- Conform
+do
+	require("conform").setup({
+		formatters_by_ft = {
+			cabal = { "cabal_fmt" },
+			css = { "prettier" },
+			haskell = { "fourmolu" },
+			html = { "prettier" },
+			javascript = { "prettier" },
+			json = { "jq" },
+			lua = { "stylua" },
+			markdown = { "prettier" },
+			nix = { "alejandra" },
+			sh = { "shfmt" },
+			yaml = { "prettier" },
+			-- ["_"] = { "trim_whitespace", "trim_newlines" },
+		},
+		format_on_save = function()
+			if not vim.g.autoformat or vim.b.autoformat == false then
+				return
+			end
+			return { lsp_fallback = true }
+		end,
+	})
+
+	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+	-- Urgh
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		pattern = "*",
+		callback = function(args)
+			require("conform").format({ bufnr = args.buf })
+		end,
+	})
+end
+
 -- LSP
 do
 	local lsp = require("lspconfig")
@@ -279,9 +315,6 @@ do
 
 	local format = function(bufnr)
 		vim.lsp.buf.format({
-			filter = function(client)
-				return client.name == "null-ls" -- promote null-ls
-			end,
 			bufnr = bufnr,
 		})
 	end
@@ -304,7 +337,7 @@ do
 			map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
 		end
 
-		vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
+		vim.cmd("command! Format execute 'lua vim.lsp.buf.format()'")
 
 		if client.supports_method(lspMethods.textDocument_formatting) then
 			clear_autocmds({ group = formatGroup, buffer = bufnr })
@@ -412,21 +445,6 @@ do
 	})
 
 	lsp.yamlls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-
-	local null_ls = require("null-ls")
-	null_ls.setup({
-		sources = {
-			null_ls.builtins.formatting.alejandra,
-			null_ls.builtins.formatting.cabal_fmt,
-			null_ls.builtins.formatting.fourmolu,
-			null_ls.builtins.formatting.goimports,
-			null_ls.builtins.formatting.prettier,
-			null_ls.builtins.formatting.shfmt,
-			null_ls.builtins.formatting.stylua,
-		},
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
