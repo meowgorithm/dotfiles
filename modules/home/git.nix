@@ -36,6 +36,7 @@
       lg = "!git lg1";
       quickfix = "rebase --interactive HEAD^^";
       pr = "!gh pr list | cut -f1,2 | gum choose | cut -f1 | xargs gh pr checkout";
+      wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D";
     };
 
     extraConfig = {
