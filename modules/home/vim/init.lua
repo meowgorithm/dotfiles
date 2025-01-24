@@ -280,23 +280,13 @@ do
 			yaml = { "prettier" },
 			-- ["_"] = { "trim_whitespace", "trim_newlines" },
 		},
-		format_on_save = function()
-			if not vim.g.autoformat or vim.b.autoformat == false then
-				return
-			end
-			return { lsp_fallback = true }
-		end,
+		format_on_save = {
+			timeout_ms = 500,
+			lsp_format = "fallback",
+		},
 	})
 
 	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
-	-- Urgh
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		pattern = "*",
-		callback = function(args)
-			require("conform").format({ bufnr = args.buf })
-		end,
-	})
 end
 
 -- LSP
@@ -314,14 +304,6 @@ do
 		},
 	}, true)
 
-	local format = function(bufnr)
-		vim.lsp.buf.format({
-			bufnr = bufnr,
-		})
-	end
-
-	local formatGroup = augroup("LspFormatting", {})
-
 	local on_attach = function(client, bufnr)
 		local map = function(key, cmd)
 			vim.api.nvim_buf_set_keymap(bufnr, "n", key, "<cmd>lua " .. cmd .. "<cr>", {
@@ -336,19 +318,6 @@ do
 
 		if client.supports_method(lspMethods.textDocument_codelens) then
 			map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
-		end
-
-		vim.cmd("command! Format execute 'lua vim.lsp.buf.format()'")
-
-		if client.supports_method(lspMethods.textDocument_formatting) then
-			clear_autocmds({ group = formatGroup, buffer = bufnr })
-			autocmd("BufWritePre", {
-				group = formatGroup,
-				buffer = bufnr,
-				callback = function()
-					format(bufnr)
-				end,
-			})
 		end
 	end
 
