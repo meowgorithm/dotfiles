@@ -111,7 +111,6 @@ in {
     ]))
     # macOS
     ++ (lib.optionals isDarwin (with pkgs; [
-      blender
       cachix
       dozer
       monitorcontrol

@@ -48,30 +48,6 @@
         "url": "ssh://git.rocha.is/benjamins-gothic"
       }
     },
-    "blenderMacOSAarch64": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-ykkIN6MKxujU90xIWIfPSbssOLBKsNCrdLq3wg2HVVc=",
-        "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.2-macos-arm64.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.2-macos-arm64.dmg"
-      }
-    },
-    "blenderMacOSx86_64": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-mzZ6jvhDy6NtzYr3atgT/tLZuVGxEfxyA+AR5y9rkQY=",
-        "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.2-macos-x64.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://mirror.clarkson.edu/blender/release/Blender4.3/blender-4.3.2-macos-x64.dmg"
-      }
-    },
     "carlos": {
       "inputs": {
         "nixpkgs": [
@@ -600,8 +576,6 @@
         "anchor": "anchor",
         "arno-pro": "arno-pro",
         "benjamins-gothic": "benjamins-gothic",
-        "blenderMacOSAarch64": "blenderMacOSAarch64",
-        "blenderMacOSx86_64": "blenderMacOSx86_64",
         "carlos": "carlos",
         "charm": "charm",
         "dozer": "dozer",

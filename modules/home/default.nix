@@ -115,11 +115,6 @@
     # macOS applications
     (
       self: super: {
-        blender = mkDmg "blender" "Blender" (
-          if self.pkgs.stdenv.hostPlatform.system == "aarch64-darwin"
-          then inputs.blenderMacOSAarch64
-          else inputs.blenderMacOSx86_64
-        );
         dozer = mkDmg "dozer" "Dozer" inputs.dozer;
         hammerspoon = self.pkgs.stdenv.mkDerivation {
           name = "hammerspoon";
