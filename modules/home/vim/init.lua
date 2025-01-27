@@ -2,7 +2,6 @@ local g = vim.g
 local opt = vim.opt
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local clear_autocmds = vim.api.nvim_clear_autocmds
 local hi = vim.api.nvim_set_hl
 
 local nmap = function(lhs, rhs, opts)
@@ -292,7 +291,9 @@ end
 -- LSP
 do
 	local lsp = require("lspconfig")
-	local lspMethods = require("vim.lsp.protocol").Methods
+	local lspMethods = vim.lsp.protocol.Methods
+	local group = vim.api.nvim_create_augroup("LspAttachGroup", { clear = true })
+
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local capabilities = require("blink.cmp").get_lsp_capabilities({
@@ -311,6 +312,7 @@ do
 				silent = true,
 			})
 		end
+
 		map("gd", "vim.lsp.buf.definition()")
 		map("<leader>lr", "vim.lsp.buf.rename()")
 		map("<leader>a", "vim.lsp.buf.code_action()")
@@ -318,6 +320,31 @@ do
 
 		if client.supports_method(lspMethods.textDocument_codelens) then
 			map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
+		end
+
+		-- Organize imports before save
+		if client.supports_method(lspMethods.textDocument_codeAction) then
+			if client.name ~= "lua_ls" then
+				vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+					buffer = bufnr,
+					callback = function()
+						local params = vim.lsp.util.make_range_params()
+						local timeoutms = 1000
+						params.context = { only = { "source.organizeImports" } }
+						local result = client.request_sync(lspMethods.textDocument_codeAction, params, timeoutms, bufnr)
+							or {}
+						for _, r in pairs(result.result or {}) do
+							if r.edit then
+								local enc = client.offset_encoding or "utf-16"
+								vim.lsp.util.apply_workspace_edit(r.edit, enc)
+							elseif r.command and r.command.command then
+								vim.lsp.buf.execute_command(r.command)
+							end
+						end
+					end,
+					group = group,
+				})
+			end
 		end
 	end
 
