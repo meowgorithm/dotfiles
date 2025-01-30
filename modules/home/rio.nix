@@ -39,7 +39,8 @@
 
     [cursor]
     blinking = true
-    blinking-interval = 1000
+    blinking-interval = 530
+
 
     line-height = 1.2
 
@@ -70,6 +71,7 @@
     mode = "Plain"
 
     [colors]
+    cursor = '#00af87'
     background = '${colors.background}'
     foreground = '${colors.foreground}'
     # cursor = '#F38BA3'
