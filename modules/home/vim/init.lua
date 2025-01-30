@@ -248,14 +248,14 @@ require("blink.cmp").setup({
 	sources = {
 		providers = {
 			lsp = {
-				min_keyword_length = 2,
+				min_keyword_length = 1,
 				score_offset = 0,
 			},
 			path = {
 				min_keyword_length = 0,
 			},
 			buffer = {
-				min_keyword_length = 5,
+				min_keyword_length = 1,
 				max_items = 5,
 			},
 		},
