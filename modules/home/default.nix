@@ -116,14 +116,6 @@
     (
       self: super: {
         dozer = mkDmg "dozer" "Dozer" inputs.dozer;
-        hammerspoon = self.pkgs.stdenv.mkDerivation {
-          name = "hammerspoon";
-          src = inputs.hammerspoon;
-          installPhase = ''
-            mkdir -p "$out/Applications/Hammerspoon.app";
-            cp -r "$src/Contents" "$out/Applications/Hammerspoon.app";
-          '';
-        };
         monitorcontrol = mkDmg "monitorcontrol" "MonitorControl" inputs.monitorcontrol;
       }
     )
@@ -144,36 +136,31 @@
       with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
 
-  extraModules =
-    lib.optionals (pkgs.stdenv.isLinux && ! headless) [
-      {
-        home.packages = with pkgs; [
-          _1password-cli
-          _1password-gui
-          brave
-          dunst
-          eyedropper
-          feh
-          firefox
-          inputs.ghostty.packages.${system}.default
-          google-chrome
-          gthumb
-          shotgun
-          slop
-          tdesktop
-          vlc
-          xfce.thunar
-        ];
-      }
-      ./discord.nix
-      ./hyprland
-      ./picom.nix
-      ./rofi
-    ]
-    ++ lib.optionals pkgs.stdenv.isDarwin
-    [
-      ./hammerspoon
-    ];
+  extraModules = lib.optionals (pkgs.stdenv.isLinux && ! headless) [
+    {
+      home.packages = with pkgs; [
+        _1password-cli
+        _1password-gui
+        brave
+        dunst
+        eyedropper
+        feh
+        firefox
+        inputs.ghostty.packages.${system}.default
+        google-chrome
+        gthumb
+        shotgun
+        slop
+        tdesktop
+        vlc
+        xfce.thunar
+      ];
+    }
+    ./discord.nix
+    ./hyprland
+    ./picom.nix
+    ./rofi
+  ];
 in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};

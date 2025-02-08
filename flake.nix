@@ -24,8 +24,6 @@
   inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs-unstable";
   inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
   inputs.dozer.flake = false;
-  inputs.hammerspoon.url = "https://github.com/Hammerspoon/hammerspoon/releases/download/1.0.0/Hammerspoon-1.0.0.zip";
-  inputs.hammerspoon.flake = false;
   inputs.monitorcontrol.url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg";
   inputs.monitorcontrol.flake = false;
 

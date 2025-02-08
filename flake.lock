@@ -217,19 +217,6 @@
         "url": "ssh://git@github.com/ghostty-org/ghostty"
       }
     },
-    "hammerspoon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1722928944,
-        "narHash": "sha256-vqjYCzEXCYBx/gJ32ZNAioruVDy9ghftPAOFMDtYcc0=",
-        "type": "tarball",
-        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/1.0.0/Hammerspoon-1.0.0.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/1.0.0/Hammerspoon-1.0.0.zip"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -583,7 +570,6 @@
         "gabriello": "gabriello",
         "gelion": "gelion",
         "ghostty": "ghostty",
-        "hammerspoon": "hammerspoon",
         "home-manager": "home-manager",
         "larsseit": "larsseit",
         "liza": "liza",
