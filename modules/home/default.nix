@@ -49,6 +49,7 @@
   # Packages from Carlos' Nix User Repository
   carlosPkgs = [
     "mdtree"
+    "svu"
   ];
 
   # Build a macOS application from a DMG. Will do nothing if the OS is not
