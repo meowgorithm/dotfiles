@@ -10,9 +10,10 @@
   };
 
   home.packages = with pkgs; [
-    gofumpt
     delve
+    gofumpt
     golangci-lint
+    golangci-lint-langserver
     gopls
     goreleaser
     gotools

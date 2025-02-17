@@ -93,6 +93,21 @@
         lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
     )
 
+    # Use stable node packages. For now, the unstable versions require that
+    # node.js be compiled on x86_64-darwin, which takes forever.
+    (
+      self: super: let
+        stableNodePkgs = [
+          "prettier"
+          "svgo"
+        ];
+        useStableNodePkg = name: {
+          nodePackages_latest.${name} = inputs.nixpkgs.legacyPackages.${self.system}.nodePackages_latest.${name};
+        };
+      in
+        lib.foldr lib.recursiveUpdate {} (map useStableNodePkg stableNodePkgs)
+    )
+
     # Add packages from NURs
     (
       self: super: let

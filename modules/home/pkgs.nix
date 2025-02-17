@@ -8,6 +8,7 @@
 }: let
   isLinux = pkgs.stdenv.isLinux;
   isDarwin = pkgs.stdenv.isDarwin;
+  # isX86_64 = pkgs.stdenv.isx86_64;
 in {
   home.packages = with pkgs;
     [
@@ -82,23 +83,24 @@ in {
     # V
     ++ (with pkgs; [vlang])
     # Various LSP
-    ++ (with pkgs;
-      with pkgs.nodePackages_latest; [
-        alejandra
-        bash-language-server
-        golangci-lint-langserver
-        lua-language-server
-        nil
-        prettier
-        semgrep
-        stylua
-        svgo
-        typescript
-        typescript-language-server
-        vim-language-server
-        vscode-langservers-extracted
-        yaml-language-server
-      ])
+    ++ (with pkgs; [
+      alejandra
+      bash-language-server
+      lua-language-server
+      nil
+      semgrep
+      stylua
+      typescript
+      typescript-language-server
+      vim-language-server
+      vscode-langservers-extracted
+      yaml-language-server
+    ])
+    # LSP that uses Node
+    ++ (with pkgs.nodePackages_latest; [
+      prettier
+      svgo
+    ])
     # Desktops only
     ++ (
       lib.optionals (! headless) (with pkgs; [
