@@ -1,12 +1,11 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-  inputs.nixpkgs-unstable.url = "flake:nixpkgs";
+  inputs.nixpkgs.url = "flake:nixpkgs";
   inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.charm.url = "github:charmbracelet/nur";
-  inputs.charm.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.charm.inputs.nixpkgs.follows = "nixpkgs";
   inputs.carlos.url = "github:caarlos0/nur";
-  inputs.carlos.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
   inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
   inputs.rio.url = "github:raphamorim/rio";
   inputs.rio.inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +20,7 @@
 
   # macOS stuff
   inputs.mkAlias.url = "github:cdmistman/mkAlias";
-  inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs";
   inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
   inputs.dozer.flake = false;
   inputs.monitorcontrol.url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg";
@@ -74,7 +73,6 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     ...
   }: let
@@ -116,7 +114,7 @@
         homeManagerConfigurations."christian@${hostname}" =
           import ./modules/home
           {
-            pkgs = import nixpkgs-unstable {
+            pkgs = import nixpkgs {
               inherit system;
               config.allowUnfree = true;
             };

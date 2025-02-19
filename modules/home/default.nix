@@ -72,42 +72,6 @@
     });
 
   overlays = [
-    # Use stable packages to match what NixOS is using
-    (
-      self: super: let
-        stablePkgs = [
-          # Match what NixOS is using
-          "gnupg"
-          "redis"
-          # Broken on unstable (at least, the last time we checked)
-          "lua-language-server"
-          "vim-language-server"
-          # These need to be built on unstable in some cases, and
-          # building them takes forever.
-          "ffmpeg"
-        ];
-        useStablePkg = name: {
-          ${name} = inputs.nixpkgs.legacyPackages.${self.system}.${name};
-        };
-      in
-        lib.foldr lib.recursiveUpdate {} (map useStablePkg stablePkgs)
-    )
-
-    # Use stable node packages. For now, the unstable versions require that
-    # node.js be compiled on x86_64-darwin, which takes forever.
-    (
-      self: super: let
-        stableNodePkgs = [
-          "prettier"
-          "svgo"
-        ];
-        useStableNodePkg = name: {
-          nodePackages_latest.${name} = inputs.nixpkgs.legacyPackages.${self.system}.nodePackages_latest.${name};
-        };
-      in
-        lib.foldr lib.recursiveUpdate {} (map useStableNodePkg stableNodePkgs)
-    )
-
     # Add packages from NURs
     (
       self: super: let
