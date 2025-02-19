@@ -300,78 +300,77 @@ do
 		},
 	}, true)
 
-	local on_attach = function(client, bufnr)
-		local map = function(key, cmd)
-			vim.api.nvim_buf_set_keymap(bufnr, "n", key, "<cmd>lua " .. cmd .. "<cr>", {
-				noremap = true,
-				silent = true,
-			})
-		end
-
-		map("gd", "vim.lsp.buf.definition()")
-		map("<leader>lr", "vim.lsp.buf.rename()")
-		map("<leader>a", "vim.lsp.buf.code_action()")
-		map("<leader>ll", "vim.diagnostic.open_float()")
-
-		if client.supports_method(lspMethods.textDocument_codelens) then
-			map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
-		end
-
-		-- Organize imports before save
-		if client.supports_method(lspMethods.textDocument_codeAction) then
-			if client.name ~= "lua_ls" then
-				-- Organize imports routine
-				local oraganize_imports = function()
-					local params = vim.lsp.util.make_range_params()
-					local timeoutms = 1000
-					params.context = { only = { "source.organizeImports" } }
-					local result = client.request_sync(lspMethods.textDocument_codeAction, params, timeoutms, bufnr)
-						or {}
-					for _, r in pairs(result.result or {}) do
-						if r.edit then
-							local enc = client.offset_encoding or "utf-16"
-							vim.lsp.util.apply_workspace_edit(r.edit, enc)
-						elseif r.command and r.command.command then
-							vim.lsp.buf.execute_command(r.command)
-						end
-					end
-				end
-
-				-- Group name for autocmd
-				local lspAttachGroup = vim.api.nvim_create_augroup("LspAttachGroup", { clear = true })
-
-				-- Create autocmd
-				vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-					buffer = bufnr,
-					callback = oraganize_imports,
-					group = lspAttachGroup,
-				})
+	local organize_imports = function(client, bufnr, timeoutms)
+		local params = vim.lsp.util.make_range_params()
+		params.context = { only = { "source.organizeImports" } }
+		local result = client.request_sync(lspMethods.textDocument_codeAction, params, timeoutms, bufnr) or {}
+		for _, r in pairs(result.result or {}) do
+			if r.edit then
+				local enc = client.offset_encoding or "utf-16"
+				vim.lsp.util.apply_workspace_edit(r.edit, enc)
+			elseif r.command and r.command.command then
+				vim.lsp.buf.execute_command(r.command)
 			end
 		end
 	end
 
+	local lspAttachGroup = vim.api.nvim_create_augroup("LspAttachGroup", { clear = true })
+
+	vim.api.nvim_create_autocmd("LspAttach", {
+		callback = function(args)
+			local bufnr = args.buf
+			local client = vim.lsp.get_client_by_id(args.data.client_id)
+			if client == nil then
+				return
+			end
+
+			local map = function(key, cmd)
+				vim.api.nvim_buf_set_keymap(bufnr, "n", key, "<cmd>lua " .. cmd .. "<cr>", {
+					noremap = true,
+					silent = true,
+				})
+			end
+
+			map("gd", "vim.lsp.buf.definition()")
+			map("<leader>lr", "vim.lsp.buf.rename()")
+			map("<leader>a", "vim.lsp.buf.code_action()")
+			map("<leader>ll", "vim.diagnostic.open_float()")
+
+			if client.supports_method(lspMethods.textDocument_codelens) then
+				map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
+			end
+
+			if client.supports_method(lspMethods.textDocument_codeAction) then
+				if client.name ~= "lua_ls" then -- organize_imports is comically broken in lua
+					vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+						buffer = bufnr,
+						callback = function()
+							organize_imports(client, bufnr, 1000)
+						end,
+						group = lspAttachGroup,
+					})
+				end
+			end
+		end,
+	})
+
 	lsp.bashls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.nil_ls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.hls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.golangci_lint_ls.setup({
-		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 
 	lsp.gopls.setup({
-		on_attach = on_attach,
 		capabilities = capabilities,
 		settings = {
 			gopls = {
@@ -413,7 +412,6 @@ do
 	})
 
 	lsp.lua_ls.setup({
-		on_attach = on_attach,
 		capabilities = capabilities,
 		settings = {
 			Lua = {
@@ -430,21 +428,17 @@ do
 
 	lsp.jsonls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.ts_ls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.html.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 
 	lsp.yamlls.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 end
