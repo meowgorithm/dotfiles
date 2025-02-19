@@ -134,5 +134,5 @@ hostname: {
     dedicatedServer.openFirewall = true;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "22.05";
 }
