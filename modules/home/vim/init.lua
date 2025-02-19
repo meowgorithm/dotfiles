@@ -217,10 +217,6 @@ imap("<c-l>", "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-l>'", {
 
 -- Blink
 require("blink.cmp").setup({
-	keymap = {
-		preset = "default",
-		cmdline = { preset = "default" },
-	},
 	completion = {
 		list = {
 			selection = {
