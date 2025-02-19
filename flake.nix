@@ -163,11 +163,5 @@
         hostname = "la-tigra";
         system = aarch64-darwin;
       }
-      {
-        # NixOS VPS
-        hostname = "jackie";
-        system = x86_64-linux;
-        headless = true;
-      }
     ]);
 }
