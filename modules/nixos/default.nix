@@ -36,9 +36,6 @@ hostname: {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # hardware.pulseaudio.enable = true;
-  # sound.enable = true;
-
   hardware.keyboard.zsa.enable = true;
   hardware.opentabletdriver.enable = true;
 
@@ -67,13 +64,10 @@ hostname: {
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
-    blender
+    # blender
     cachix
     # cudatoolkit
     faac
