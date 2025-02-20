@@ -172,14 +172,14 @@ in
         ./gpg.nix
         ./helix
         ./kakoune
+        ./neovim
         ./pkgs.nix
         ./prettier
         ./readline.nix
-        ./ssh.nix
         ./scripts
+        ./ssh.nix
         ./tmux
         ./wezterm
-        ./vim
         ./zellij.nix
       ]
       ++ (lib.optionals (! headless) [
