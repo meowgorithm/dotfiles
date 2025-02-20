@@ -27,22 +27,22 @@
       st = "status";
       ci = "commit";
       co = "checkout";
-      count = "!git log --pretty=oneline | wc -l";
+      rs = "restore --staged";
+      count = "!git log --pretty=oneline | wc -l | tr -d ' ' | sed 's/$/ commits/'";
       sync = "fetch --all --tags --prune";
       housekeeping = "!git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed";
+      quickfix = "rebase --interactive HEAD^^";
+      wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D";
+      lg = "!git lg1";
       lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
       lg2 = "log --graph --format=format:'%C(117)%h%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all";
       lgs = "log --graph --format=format:'%C(117)%h%C(reset) %C(226)%G?%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all";
-      lg = "!git lg1";
-      quickfix = "rebase --interactive HEAD^^";
-      pr = "!gh pr list | cut -f1,2 | gum choose | cut -f1 | xargs gh pr checkout";
-      wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D";
     };
 
     extraConfig = {
       color.ui = true;
       core = {
-        editor = "nvim";
+        editor = "hx";
       };
       url."git@github.com:".insteadOf = "https://github.com/";
     };
