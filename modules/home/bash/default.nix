@@ -23,7 +23,7 @@ in {
     historyIgnore = ["ls" "cd" "exit"];
     sessionVariables =
       {
-        EDITOR = "nvim";
+        EDITOR = "hx";
         PROMPT_DIRTRIM = "2";
         XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
         XDG_DATA_HOME = "$HOME/.local/share";
