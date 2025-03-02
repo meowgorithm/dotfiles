@@ -31,11 +31,11 @@ in {
       fzf
       getopt
       gh
-      go-task
       gnumake
       gnupg
       gnused
       gnutar
+      go-task
       htop
       imagemagick
       jq
@@ -62,16 +62,18 @@ in {
       wget
       yq
       z-lua
+      zlib
       zopfli
     ]
     # Haskell
-    ++ (with pkgs.haskellPackages; [
-      cabal-fmt
-      cabal-install
-      fourmolu
-      haskell-language-server
-      pkgs.haskell.compiler.ghc982
-    ])
+    ++ (with pkgs.haskellPackages;
+      with pkgs.haskell.compiler; [
+        cabal-fmt
+        cabal-install
+        fourmolu
+        ghc982
+        haskell-language-server
+      ])
     # Elm
     ++ (with pkgs.elmPackages; [
       elm

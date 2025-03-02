@@ -61,6 +61,7 @@ in {
       # Avante and its dependencies
       avante-nvim
       dressing-nvim
+      img-clip-nvim
       nui-nvim
       plenary-nvim
 
