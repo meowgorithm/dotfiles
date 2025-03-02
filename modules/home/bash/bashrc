@@ -7,101 +7,101 @@ os="$(which_os)"
 
 isGhostty=0
 if command -v ghostty &>/dev/null; then
-	isGhostty=1
+    isGhostty=1
 fi
 
 function thunderboltUp() {
-	local "$id"
-	case "$HOSTNAME" in
-	stardust)
-		id="00968984-4c6a-1e00-ffff-ffffffffffff"
-		;;
-	*) # lightningbolt
-		id="00b62260-4590-1e00-ffff-ffffffffffff"
-		;;
-	esac
-	sudo boltctl authorize "$id"
+    local "$id"
+    case "$HOSTNAME" in
+    stardust)
+        id="00968984-4c6a-1e00-ffff-ffffffffffff"
+        ;;
+    *) # lightningbolt
+        id="00b62260-4590-1e00-ffff-ffffffffffff"
+        ;;
+    esac
+    sudo boltctl authorize "$id"
 }
 
 # OS/Distro specific stuff
 case "$os" in
 nixos)
-	alias ls='ls --color=auto'
-	PS1='[\u@\h \W]\$ '
+    alias ls='ls --color=auto'
+    PS1='[\u@\h \W]\$ '
 
-	# Fixes for various things on demand
-	alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
-	alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
-	alias set-wallpaper='[ -f "$HOME/.wallpaper" ] && feh --bg-scale "$HOME/.wallpaper"'
-	alias start-picom='systemctl --user start picom.service'
-	alias stop-picom='systemctl --user stop picom.service'
-	alias restart-picom='systemctl --user restart picom.service'
-	;;
+    # Fixes for various things on demand
+    alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
+    alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
+    alias set-wallpaper='[ -f "$HOME/.wallpaper" ] && feh --bg-scale "$HOME/.wallpaper"'
+    alias start-picom='systemctl --user start picom.service'
+    alias stop-picom='systemctl --user stop picom.service'
+    alias restart-picom='systemctl --user restart picom.service'
+    ;;
 
 debian)
-	# shellcheck disable=1091
-	if ! shopt -oq posix; then
-		if [ -f /usr/share/bash-completion/bash_completion ]; then
-			. /usr/share/bash-completion/bash_completion
-		elif [ -f /etc/bash_completion ]; then
-			. /etc/bash_completion
-		fi
-	fi
-	;;
+    # shellcheck disable=1091
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
+        fi
+    fi
+    ;;
 
 darwin)
-	# Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
-	# in the shell with a script.
-	bash_bin_arm="/opt/homebrew/bin/brew"
-	if [[ $(uname -m) == "arm64" && -f $bash_bin_arm ]]; then
-		eval "$("$bash_bin_arm" shellenv)"
-	fi
+    # Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
+    # in the shell with a script.
+    bash_bin_arm="/opt/homebrew/bin/brew"
+    if [[ $(uname -m) == "arm64" && -f $bash_bin_arm ]]; then
+        eval "$("$bash_bin_arm" shellenv)"
+    fi
 
-	# Make sure XDG_CONFIG_HOME is a thing
-	if [[ -z $XDG_CONFIG_HOME ]]; then
-		export XDG_CONFIG_HOME="$HOME/.config"
-	fi
-	mkdir -p "$XDG_CONFIG_HOME"
+    # Make sure XDG_CONFIG_HOME is a thing
+    if [[ -z $XDG_CONFIG_HOME ]]; then
+        export XDG_CONFIG_HOME="$HOME/.config"
+    fi
+    mkdir -p "$XDG_CONFIG_HOME"
 
-	export CLICOLOR=1
-	export LSCOLORS=dxfxcxdxbxegedabagacad
-	alias ls='ls -h'
+    export CLICOLOR=1
+    export LSCOLORS=dxfxcxdxbxegedabagacad
+    alias ls='ls -h'
 
-	# Keep TAR from tarring-up resource forks
-	export COPYFILE_DISABLE=true
+    # Keep TAR from tarring-up resource forks
+    export COPYFILE_DISABLE=true
 
-	# History Management
-	shopt -s histappend
-	export HISTCONTROL=ignoredups:erasedups
-	export HISTSIZE=1000
+    # History Management
+    shopt -s histappend
+    export HISTCONTROL=ignoredups:erasedups
+    export HISTSIZE=1000
 
-	# Miscellaneous aliases
-	alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
-	alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
-	alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
+    # Miscellaneous aliases
+    alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
+    alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
+    alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
 
-	# Print local network adapter IPs and copy them to the clipboard
-	alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
-	alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
+    # Print local network adapter IPs and copy them to the clipboard
+    alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
+    alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
-	# Colored man pages
-	export LESS_TERMCAP_mb=$'\E[01;31m'
-	export LESS_TERMCAP_md=$'\E[01;31m'
-	export LESS_TERMCAP_me=$'\E[0m'
-	export LESS_TERMCAP_se=$'\E[0m'
-	export LESS_TERMCAP_so=$'\E[01;44;33m'
-	export LESS_TERMCAP_ue=$'\E[0m'
-	export LESS_TERMCAP_us=$'\E[01;32m'
-	;;
+    # Colored man pages
+    export LESS_TERMCAP_mb=$'\E[01;31m'
+    export LESS_TERMCAP_md=$'\E[01;31m'
+    export LESS_TERMCAP_me=$'\E[0m'
+    export LESS_TERMCAP_se=$'\E[0m'
+    export LESS_TERMCAP_so=$'\E[01;44;33m'
+    export LESS_TERMCAP_ue=$'\E[0m'
+    export LESS_TERMCAP_us=$'\E[01;32m'
+    ;;
 
 esac
 
 function nixPrompt() {
-	case $IN_NIX_SHELL in
-	pure) printf ' <nix>' ;;
-	impure) printf ' <nix*>' ;;
-	*) printf '' ;;
-	esac
+    case $IN_NIX_SHELL in
+    pure) printf ' <nix>' ;;
+    impure) printf ' <nix*>' ;;
+    *) printf '' ;;
+    esac
 }
 
 red='\[\e[0;31m\]'
@@ -112,15 +112,15 @@ no_color='\[\e[0m\]'
 indigo='\[\e[38;2;90;86;224m\]'
 
 function prompt_func() {
-	nix=$(nixPrompt)
-	dimensions="$(tput cols)×$(tput lines)"
-	git_branch=$(__git_ps1 " (%s)")
+    nix=$(nixPrompt)
+    dimensions="$(tput cols)×$(tput lines)"
+    git_branch=$(__git_ps1 " (%s)")
 
-	if [[ -n $DEMO_PROMPT ]]; then
-		PS1="$indigo>$no_color "
-	else
-		PS1="$indigo$dimensions $cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
-	fi
+    if [[ -n $DEMO_PROMPT ]]; then
+        PS1="$indigo>$no_color "
+    else
+        PS1="$indigo$dimensions $cyan\h:$red\w $cyan\u$yellow$git_branch$violet$nix $red\$ $no_color"
+    fi
 }
 
 PROMPT_COMMAND=prompt_func
@@ -131,17 +131,17 @@ export PATH="$PATH:$HOME/.bin"
 export PATH="$GOPATH/bin:$PATH"
 
 if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
-	export PATH="$PATH:$HOME/.bin-linux"
+    export PATH="$PATH:$HOME/.bin-linux"
 fi
 
 function updateinputs() {
-	local inputs
-	inputs="$(nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit)"
-	printf "Updating the following inputs:\n%s\n" "$input"
-	IFS=$'\n'
-	for input in $inputs; do
-		nix flake update "$input"
-	done
+    local inputs
+    inputs="$(nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit)"
+    printf "Updating the following inputs:\n%s\n" "$input"
+    IFS=$'\n'
+    for input in $inputs; do
+        nix flake update "$input"
+    done
 }
 
 alias delete_pyc='find . -name '\*.pyc' -delete'
@@ -165,21 +165,21 @@ alias tree='tree -C'
 
 # Kitty
 if [[ $TERM = 'xterm-kitty' ]]; then
-	# This has proved to work better than the ssh kitten for some reason.
-	alias ssh='TERM=xterm-256color && ssh'
+    # This has proved to work better than the ssh kitten for some reason.
+    alias ssh='TERM=xterm-256color && ssh'
 fi
 # shellcheck disable=1091
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
-	source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+    source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
 fi
 
 # Go mod replace helper for Charm stuff
 gmr() {
-	if [[ $# != 2 ]]; then
-		printf 'We need two arguments\n'
-		return
-	fi
-	go mod edit -replace "github.com/charmbracelet/$1=$2"
+    if [[ $# != 2 ]]; then
+        printf 'We need two arguments\n'
+        return
+    fi
+    go mod edit -replace "github.com/charmbracelet/$1=$2"
 }
 
 # Git
@@ -188,6 +188,7 @@ export GOPRIVATE="github.com/charmbracelet"
 # GHCUP
 # shellcheck disable=1091
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+export PATH="$PATH:$HOME/.ghcup/bin"
 
 # Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -207,6 +208,7 @@ export GOMEOW='github.com/charmbracelet'
 # Direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
+# Prioritize /usr/bin on macOS
 if [[ "$os" == "darwin" ]]; then
-	export PATH="/usr/bin:$PATH"
+    export PATH="/usr/bin:$PATH"
 fi
