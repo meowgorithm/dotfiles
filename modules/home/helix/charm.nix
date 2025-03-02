@@ -82,8 +82,7 @@ in {
   "debug" = normal.white;
   "diagnostic" = {modifiers = ["underlined"];};
   "error" = {
-    fg = "#F1F1F1";
-    bg = "#F05B5B";
+    fg = "#F05B5B";
   };
   "label" = "#C69669";
 

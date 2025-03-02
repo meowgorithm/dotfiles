@@ -29,6 +29,7 @@
         space.w = ":write";
         space.q = ":quit";
         space.H = ":toggle lsp.display-inlay-hints";
+        space.D = ":toggle end-of-line-diagnostics disable hint";
       };
       editor = {
         cursorline = true;
@@ -45,6 +46,11 @@
           left = ["mode" "spinner" "file-name"];
           center = [];
           right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type" "version-control"];
+        };
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "error";
+          other-lines = "error";
         };
       };
     };
@@ -65,7 +71,8 @@
       {
         name = "haskell";
         auto-format = true;
-        language-servers = ["hls" "copilot"];
+        formatter = {command = "fourmolu";};
+        language-servers = ["haskell-language-server-wrapper" "copilot"];
       }
       {
         name = "cabal";
