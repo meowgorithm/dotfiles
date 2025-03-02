@@ -65,15 +65,6 @@ in {
       zlib
       zopfli
     ]
-    # Haskell
-    ++ (with pkgs.haskellPackages;
-      with pkgs.haskell.compiler; [
-        cabal-fmt
-        cabal-install
-        fourmolu
-        ghc982
-        haskell-language-server
-      ])
     # Elm
     ++ (with pkgs.elmPackages; [
       elm
