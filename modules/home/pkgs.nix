@@ -31,6 +31,7 @@ in {
       fzf
       getopt
       gh
+      go-task
       gnumake
       gnupg
       gnused
@@ -67,8 +68,9 @@ in {
     ++ (with pkgs.haskellPackages; [
       cabal-fmt
       cabal-install
-      pkgs.haskell.compiler.ghc982
+      fourmolu
       haskell-language-server
+      pkgs.haskell.compiler.ghc982
     ])
     # Elm
     ++ (with pkgs.elmPackages; [
