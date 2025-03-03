@@ -241,6 +241,7 @@ require("blink.cmp").setup({
 			treesitter_highlighting = true,
 		},
 	},
+	fuzzy = { implementation = "lua" },
 	sources = {
 		providers = {
 			lsp = {
