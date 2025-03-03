@@ -1,7 +1,7 @@
 {
   inputs.nixpkgs.url = "flake:nixpkgs";
   inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  # inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.charm.url = "github:charmbracelet/nur";
   inputs.charm.inputs.nixpkgs.follows = "nixpkgs";
   inputs.carlos.url = "github:caarlos0/nur";
@@ -20,7 +20,7 @@
 
   # macOS stuff
   inputs.mkAlias.url = "github:cdmistman/mkAlias";
-  inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs";
+  # inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs";
   inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
   inputs.dozer.flake = false;
   inputs.monitorcontrol.url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg";
