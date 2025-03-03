@@ -280,6 +280,7 @@ do
 			markdown = { "prettier" },
 			nix = { "alejandra" },
 			sh = { "shfmt" },
+			templ = { "templ" },
 			yaml = { "prettier" },
 			-- ["_"] = { "trim_whitespace", "trim_newlines" },
 		},
@@ -362,21 +363,21 @@ do
 		end,
 	})
 
-	lsp.bashls.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.nil_ls.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.hls.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.golangci_lint_ls.setup({
-		capabilities = capabilities,
-	})
+	for _, server in ipairs({
+		"bashls",
+		"golangci_lint_ls",
+		"hls",
+		"html",
+		"jsonls",
+		"nil_ls",
+		"templ",
+		"ts_ls",
+		"yamlls",
+	}) do
+		lsp[server].setup({
+			capabilities = capabilities,
+		})
+	end
 
 	lsp.gopls.setup({
 		capabilities = capabilities,
@@ -432,21 +433,5 @@ do
 				enable = true,
 			},
 		},
-	})
-
-	lsp.jsonls.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.ts_ls.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.html.setup({
-		capabilities = capabilities,
-	})
-
-	lsp.yamlls.setup({
-		capabilities = capabilities,
 	})
 end

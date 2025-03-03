@@ -54,6 +54,7 @@ in {
             json
             lua
             scss
+            templ
             typescript
           ]
       ))
