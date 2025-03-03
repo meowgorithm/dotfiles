@@ -204,6 +204,13 @@ require("avante").setup({
 			rounded = true,
 		},
 	},
+	provider = "claude37",
+	vendors = {
+		claude37 = {
+			__inherited_from = "claude",
+			model = "claude-3-7-sonnet-20250219",
+		},
+	},
 })
 
 -- TreeSitter
