@@ -83,7 +83,7 @@ in {
       bash-language-server
       lua-language-server
       nil
-      semgrep
+      #semgrep # broken in nixpkgs unstable
       stylua
       typescript
       typescript-language-server
