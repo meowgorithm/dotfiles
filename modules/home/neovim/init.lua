@@ -248,6 +248,10 @@ require("blink.cmp").setup({
 			treesitter_highlighting = true,
 		},
 	},
+	cmdline = {
+		enabled = true,
+		completion = { menu = { auto_show = true } },
+	},
 	fuzzy = { implementation = "lua" },
 	sources = {
 		providers = {
