@@ -36,6 +36,7 @@ in {
       gnused
       gnutar
       go-task
+      haskellPackages.cabal-fmt
       htop
       imagemagick
       jq
@@ -75,8 +76,6 @@ in {
       rust-analyzer
       rustc
     ])
-    # V
-    ++ (with pkgs; [vlang])
     # Various LSP
     ++ (with pkgs; [
       alejandra
@@ -91,7 +90,7 @@ in {
       vscode-langservers-extracted
       yaml-language-server
     ])
-    # LSP that uses Node
+    # LSPs that use Node
     ++ (with pkgs.nodePackages_latest; [
       prettier
       svgo
