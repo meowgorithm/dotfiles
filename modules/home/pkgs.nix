@@ -67,6 +67,10 @@ in {
       zlib
       zopfli
     ]
+    # Haskell
+    ++ (with pkgs.haskellPackages; [
+      cabal-fmt
+    ])
     # Elm
     ++ (with pkgs.elmPackages; [
       elm
