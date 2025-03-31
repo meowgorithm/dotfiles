@@ -46,7 +46,6 @@ in {
       moreutils
       mosh
       ngrok
-      nodejs
       nushell
       optipng
       postgresql
