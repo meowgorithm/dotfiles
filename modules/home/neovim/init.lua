@@ -232,15 +232,10 @@ require("blink.cmp").setup({
 			},
 		},
 		menu = {
-			border = "none", -- "rounded" is the other one we like
-
 			-- Don't show completion menu automatically when searching
 			auto_show = function(ctx)
 				return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
 			end,
-
-			-- Don't show completion automatically in cmdline mode
-			-- auto_show = function(ctx) return ctx.mode ~= "cmdline" end,
 		},
 		documentation = {
 			auto_show = true,
@@ -255,17 +250,9 @@ require("blink.cmp").setup({
 	fuzzy = { implementation = "lua" },
 	sources = {
 		providers = {
-			lsp = {
-				min_keyword_length = 1,
-				score_offset = 0,
-			},
-			path = {
-				min_keyword_length = 0,
-			},
-			buffer = {
-				min_keyword_length = 1,
-				max_items = 5,
-			},
+			lsp = { min_keyword_length = 1, score_offset = 0 },
+			path = { min_keyword_length = 0 },
+			buffer = { min_keyword_length = 1, max_items = 5 },
 		},
 	},
 })
@@ -299,7 +286,7 @@ end
 
 -- LSP
 do
-	local lsp = require("lspconfig")
+	local lspCfg = require("lspconfig")
 	local lspMethods = vim.lsp.protocol.Methods
 
 	require("lspconfig.ui.windows").default_options.border = "rounded"
@@ -378,12 +365,10 @@ do
 		"ts_ls",
 		"yamlls",
 	}) do
-		lsp[server].setup({
-			capabilities = capabilities,
-		})
+		lspCfg[server].setup({ capabilities = capabilities })
 	end
 
-	lsp.gopls.setup({
+	lspCfg.gopls.setup({
 		capabilities = capabilities,
 		settings = {
 			gopls = {
@@ -424,18 +409,14 @@ do
 		},
 	})
 
-	lsp.lua_ls.setup({
+	lspCfg.lua_ls.setup({
 		capabilities = capabilities,
 		settings = {
 			Lua = {
-				diagnostics = { globals = { "vim", "hs" } },
+				diagnostics = { globals = { "vim" } },
 			},
-			completion = {
-				callSnippet = "Replace",
-			},
-			hint = {
-				enable = true,
-			},
+			completion = { callSnippet = "Replace" },
+			hint = { enable = true },
 		},
 	})
 end

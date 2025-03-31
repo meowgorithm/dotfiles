@@ -19,7 +19,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      # LSP
+      # LSP-ish
       blink-cmp
       nvim-lspconfig
       conform-nvim
