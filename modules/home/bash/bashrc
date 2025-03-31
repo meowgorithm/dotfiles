@@ -5,11 +5,6 @@ export DOTFILES="$HOME/.dotfiles"
 
 os="$(which_os)"
 
-isGhostty=0
-if command -v ghostty &>/dev/null; then
-    isGhostty=1
-fi
-
 function thunderboltUp() {
     local "$id"
     case "$HOSTNAME" in
@@ -163,11 +158,6 @@ alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
 alias install-gum="go install -v github.com/charmbracelet/gum@latest"
 alias tree='tree -C'
 
-# Kitty
-if [[ $TERM = 'xterm-kitty' ]]; then
-    # This has proved to work better than the ssh kitten for some reason.
-    alias ssh='TERM=xterm-256color && ssh'
-fi
 # shellcheck disable=1091
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
@@ -192,6 +182,7 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 
 # Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Nix
 export PATH="$PATH:$HOME/.nix-profile/bin"
@@ -212,6 +203,3 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 if [[ "$os" == "darwin" ]]; then
     export PATH="/usr/bin:$PATH"
 fi
-
-# Cabal (and other things) install stuff here
-export PATH="$HOME/.local/bin:$PATH"
