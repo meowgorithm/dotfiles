@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.emacs = {
-    enable = true;
-    package = pkgs.emacs30;
+    enable = false;
+    package = pkgs.emacs;
     extraPackages = emacsPkgs:
       with emacsPkgs; [
         go-mode
