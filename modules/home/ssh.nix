@@ -6,11 +6,6 @@
     matchBlocks = {
       "*" = {
         identityFile = "~/.ssh/id_ed25519";
-        setEnv = {
-          TERM = "xterm-256color";
-        };
-
-        sendEnv = ["COLORTERM"];
       };
 
       "localhost" = {
