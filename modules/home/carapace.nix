@@ -1,5 +1,0 @@
-{...}: {
-  programs.carapace = {
-    enable = false;
-  };
-}

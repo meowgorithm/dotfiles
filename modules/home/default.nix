@@ -161,7 +161,6 @@ in
             + home.username;
         }
         ./bash
-        ./carapace.nix
         ./darwin-app-activation.nix
         ./emacs
         ./floskell
@@ -180,7 +179,6 @@ in
         ./ssh.nix
         ./tmux
         ./wezterm
-        ./zellij.nix
       ]
       ++ (lib.optionals (! headless) [
         ./alacritty.nix
