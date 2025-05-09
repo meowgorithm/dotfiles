@@ -67,7 +67,7 @@ in {
       plenary-nvim
 
       # Plugins not in nixpkgs
-      (buildVimPlugin "smear")
+      # (buildVimPlugin "smear")
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

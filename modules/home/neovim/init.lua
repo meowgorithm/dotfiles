@@ -123,9 +123,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
 -- Colorizer
 require("colorizer").setup({ names = false })
 
--- Smear
-require("smear_cursor").enabled = false
-
 -- Tree
 nmap("<leader>t", "<cmd>NvimTreeToggle<cr>")
 require("nvim-tree").setup({
