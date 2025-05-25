@@ -161,9 +161,6 @@ gmr() {
     go mod edit -replace "github.com/charmbracelet/$1=$2"
 }
 
-# Git
-export GOPRIVATE="github.com/charmbracelet"
-
 # GHCUP
 # shellcheck disable=1091
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
