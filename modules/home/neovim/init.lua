@@ -233,6 +233,12 @@ require("blink.cmp").setup({
 			auto_show = function(ctx)
 				return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
 			end,
+			draw = {
+				columns = {
+					{ "label", "label_description", gap = 1 },
+					{ "kind", "source_name" },
+				},
+			},
 		},
 		documentation = {
 			auto_show = true,
