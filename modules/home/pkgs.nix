@@ -46,7 +46,6 @@ in {
       moreutils
       mosh
       ngrok
-      nushell
       optipng
       postgresql
       python3

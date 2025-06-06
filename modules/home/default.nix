@@ -172,6 +172,7 @@ in
         ./helix
         ./kakoune
         ./neovim
+        ./nushell.nix
         ./pkgs.nix
         ./prettier
         ./readline.nix
