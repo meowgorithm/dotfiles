@@ -189,27 +189,6 @@ hi(0, "GitGutterAdd", { fg = "#009900" })
 hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
--- Avante
-require("avante_lib").load()
-require("avante").setup({
-	behaviour = { auto_suggestions = false },
-	hints = { enabled = true },
-	windows = {
-		width = 30,
-		sidebar_header = {
-			align = "left",
-			rounded = true,
-		},
-	},
-	provider = "claude37",
-	vendors = {
-		claude37 = {
-			__inherited_from = "claude",
-			model = "claude-3-7-sonnet-20250219",
-		},
-	},
-})
-
 -- TreeSitter
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true, additional_vim_regex_highlighting = false },
