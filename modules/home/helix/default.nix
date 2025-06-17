@@ -1,13 +1,9 @@
-{pkgs, ...}: {
+{...}: {
   xdg.configFile."helix/ignore".text = ''
     *.gif
     *.mp4
     *.webm
   '';
-
-  home.packages = with pkgs; [
-    helix-gpt
-  ];
 
   programs.helix = {
     enable = true;
@@ -52,12 +48,6 @@
           cursor-line = "error";
           other-lines = "error";
         };
-      };
-    };
-
-    languages.language-server = {
-      copilot = {
-        command = "helix-gpt";
       };
     };
 
