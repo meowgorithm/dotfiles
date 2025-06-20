@@ -125,7 +125,6 @@
         dunst
         eyedropper
         feh
-        firefox
         inputs.ghostty.packages.${system}.default
         google-chrome
         gthumb
@@ -137,6 +136,7 @@
       ];
     }
     ./discord.nix
+    ./firefox.nix
     ./hyprland
     ./picom.nix
     ./rofi
