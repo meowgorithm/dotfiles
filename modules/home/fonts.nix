@@ -15,4 +15,6 @@
     ++ (map (x: pkgs.${x}) fonts);
 in {
   home.packages = maybeUse allFonts;
+
+  fonts.fontconfig.enable = true;
 }
