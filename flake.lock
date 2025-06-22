@@ -55,11 +55,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750206654,
-        "narHash": "sha256-M+akHyWiW0LpedhFBbLMg3NF3youvl/lq7klFqgF4kM=",
+        "lastModified": 1750465850,
+        "narHash": "sha256-WsP7nTLbzsABgLnwDH/qyA5rE8DOP3VpaoyTD+JXT+0=",
         "owner": "caarlos0",
         "repo": "nur",
-        "rev": "2013e677f7b93382c26218b0588ef023693364cc",
+        "rev": "bb22ab12adeabff8b1178ed5a283d7cc574cbae1",
         "type": "github"
       },
       "original": {
@@ -205,11 +205,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1750261123,
-        "narHash": "sha256-DQXRonmHaOshX4WyWvdWSvrOQf7+syTo6W3WMd4lHdw=",
+        "lastModified": 1750540612,
+        "narHash": "sha256-43YLR3wq9bNYnxa4gu5ZqvyGhu3NxSySQha6eb9QjVY=",
         "ref": "refs/heads/main",
-        "rev": "d0e145292e35994bf86908ac27864ff267ce0e4c",
-        "revCount": 10613,
+        "rev": "9d922e1c629dcd01b1bb2c7109f40305e5ac9c2c",
+        "revCount": 10672,
         "type": "git",
         "url": "ssh://git@github.com/ghostty-org/ghostty"
       },
@@ -440,11 +440,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1750215678,
-        "narHash": "sha256-Rc/ytpamXRf6z8UA2SGa4aaWxUXRbX2MAWIu2C8M+ok=",
+        "lastModified": 1750386251,
+        "narHash": "sha256-1ovgdmuDYVo5OUC5NzdF+V4zx2uT8RtsgZahxidBTyw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5395fb3ab3f97b9b7abca147249fa2e8ed27b192",
+        "rev": "076e8c6678d8c54204abcb4b1b14c366835a58bb",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1750335304,
-        "narHash": "sha256-av8b/g7EW52nP0KiQQ+xw0tsa7Q+LCtTITzdl7cbv9c=",
+        "lastModified": 1750434466,
+        "narHash": "sha256-1/WzmddEjMIvxiUjGPE51l0+o1XS7/U/DwyMz9u5iaY=",
         "owner": "raphamorim",
         "repo": "rio",
-        "rev": "4ba19a158826a7ca308c547370dbf41b0d69babc",
+        "rev": "b585d769f6e584c1ca66581dde7efc98a5cf4abf",
         "type": "github"
       },
       "original": {
@@ -644,11 +644,11 @@
     "smear": {
       "flake": false,
       "locked": {
-        "lastModified": 1750088362,
-        "narHash": "sha256-Dg8S/N580vvHNPhsIVN97W+wKygmMIcQDNWnVVlF8t0=",
+        "lastModified": 1750513064,
+        "narHash": "sha256-nD1fvPVZaXFbLtJeFlXrX1o1DpU3JVH3/rlvxo/WPFM=",
         "owner": "sphamba",
         "repo": "smear-cursor.nvim",
-        "rev": "1f90eb06eab82b5fe2ed708b94dcc325d6f5fb5a",
+        "rev": "cf2f73a4d0b402edb8177d059ee1127e621b79a7",
         "type": "github"
       },
       "original": {
