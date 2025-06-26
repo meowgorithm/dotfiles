@@ -42,7 +42,7 @@
     extraConfig = {
       color.ui = true;
       core = {
-        editor = "hx";
+        editor = "nvim";
       };
       url."git@github.com:".insteadOf = "https://github.com/";
     };
