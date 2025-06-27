@@ -75,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750187834,
-        "narHash": "sha256-4xeQyOVaWeNOtGbwqRRz5h4+eiiu3oE/nDeAmtAWXHo=",
+        "lastModified": 1750705934,
+        "narHash": "sha256-/5bmNWuSDPrkaneJ11bnFHoXHD5ewg2hQjMwp36f/Kk=",
         "owner": "charmbracelet",
         "repo": "nur",
-        "rev": "45b175a5b3422cd3491daca443d6bd0b986b4f1f",
+        "rev": "bdc405a45cdbe781c10af901323681e10d1cce9c",
         "type": "github"
       },
       "original": {
@@ -205,11 +205,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1750540612,
-        "narHash": "sha256-43YLR3wq9bNYnxa4gu5ZqvyGhu3NxSySQha6eb9QjVY=",
+        "lastModified": 1750979959,
+        "narHash": "sha256-ScD8ONt3gwDDCWN1znbnfqxcBufh4CMbcl3vwcs7nu0=",
         "ref": "refs/heads/main",
-        "rev": "9d922e1c629dcd01b1bb2c7109f40305e5ac9c2c",
-        "revCount": 10672,
+        "rev": "979d72056ba2f3485423bfdd07deff7626972e2a",
+        "revCount": 10792,
         "type": "git",
         "url": "ssh://git@github.com/ghostty-org/ghostty"
       },
@@ -223,11 +223,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750304462,
-        "narHash": "sha256-Mj5t4yX05/rXnRqJkpoLZTWqgStB88Mr/fegTRqyiWc=",
+        "lastModified": 1750973805,
+        "narHash": "sha256-BZXgag7I0rnL/HMHAsBz3tQrfKAibpY2vovexl2lS+Y=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "863842639722dd12ae9e37ca83bcb61a63b36f6c",
+        "rev": "080e8b48b0318b38143d5865de9334f46d51fce3",
         "type": "github"
       },
       "original": {
@@ -408,11 +408,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1750134718,
-        "narHash": "sha256-v263g4GbxXv87hMXMCpjkIxd/viIF7p3JpJrwgKdNiI=",
+        "lastModified": 1750365781,
+        "narHash": "sha256-XE/lFNhz5lsriMm/yjXkvSZz5DfvKJLUjsS6pP8EC50=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9e83b64f727c88a7711a2c463a7b16eedb69a84c",
+        "rev": "08f22084e6085d19bcfb4be30d1ca76ecb96fe54",
         "type": "github"
       },
       "original": {
@@ -440,11 +440,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1750386251,
-        "narHash": "sha256-1ovgdmuDYVo5OUC5NzdF+V4zx2uT8RtsgZahxidBTyw=",
+        "lastModified": 1750898778,
+        "narHash": "sha256-DXI7+SKDlTyA+C4zp0LoIywQ+BfdH5m4nkuxbWgV4UU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "076e8c6678d8c54204abcb4b1b14c366835a58bb",
+        "rev": "322d8a3c6940039f7cff179a8b09c5d7ca06359d",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1750434466,
-        "narHash": "sha256-1/WzmddEjMIvxiUjGPE51l0+o1XS7/U/DwyMz9u5iaY=",
+        "lastModified": 1751026248,
+        "narHash": "sha256-XRahkrpUHxNV0IerI5neju7bFenii0eqsB3YFFp3nY4=",
         "owner": "raphamorim",
         "repo": "rio",
-        "rev": "b585d769f6e584c1ca66581dde7efc98a5cf4abf",
+        "rev": "3589c689d2dc37eb962c6ea5c7a3095be46b06cd",
         "type": "github"
       },
       "original": {
@@ -596,11 +596,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1749868581,
-        "narHash": "sha256-oWO5KAIjhclLwYJp7kJiNbNqCcZo8ZLuKQEJd9WL6r4=",
+        "lastModified": 1750473400,
+        "narHash": "sha256-wiW2j63MyGQyyijRF25hf7Ab7vx4G8pCiGjUe3OGV4c=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "2ff6d56a67d75559f7b5d9edf9aa1fcf8e15f461",
+        "rev": "3d7d4c4e284f26d6dc4840491c66884912be0062",
         "type": "github"
       },
       "original": {
@@ -644,11 +644,11 @@
     "smear": {
       "flake": false,
       "locked": {
-        "lastModified": 1750513064,
-        "narHash": "sha256-nD1fvPVZaXFbLtJeFlXrX1o1DpU3JVH3/rlvxo/WPFM=",
+        "lastModified": 1750939317,
+        "narHash": "sha256-g2SXgtBvB1eivkPZvPkCevbA/HKSMvX/fK2MYZXDPIk=",
         "owner": "sphamba",
         "repo": "smear-cursor.nvim",
-        "rev": "cf2f73a4d0b402edb8177d059ee1127e621b79a7",
+        "rev": "4a0f7ac265b4ed1ce4d0af2afc13072763bfa691",
         "type": "github"
       },
       "original": {
