@@ -140,6 +140,7 @@
     ./hyprland
     ./picom.nix
     ./rofi
+    ./waybar.nix
   ];
 in
   home-manager.lib.homeManagerConfiguration {
