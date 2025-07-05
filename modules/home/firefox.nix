@@ -4,9 +4,8 @@
     profiles.default = {
       settings = {
         # Scale on Linux for HiDPI displays
-        "layout.css.devPixelsPerPx" = "2.5";
+        # "layout.css.devPixelsPerPx" = "2.5";
       };
     };
   };
 }
-
