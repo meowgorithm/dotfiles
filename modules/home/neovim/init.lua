@@ -175,6 +175,7 @@ require("telescope").setup({
 		mappings = {
 			i = { ["<c-d>"] = require("telescope.actions").delete_buffer },
 		},
+		file_ignore_patterns = { "vendor/" },
 	},
 })
 
