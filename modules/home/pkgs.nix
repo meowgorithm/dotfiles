@@ -96,7 +96,7 @@ in {
     # LSPs that use Node
     ++ (with pkgs.nodePackages_latest; [
       prettier
-      svgo
+      #svgo # this always wants to build nodejs from scratch
     ])
     # Desktops only
     ++ (
