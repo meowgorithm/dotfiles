@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.go = {
-    enable = true;
+    enable = false;
     package = pkgs.go_1_24;
     goPath = ".go";
     # goPrivate = [
