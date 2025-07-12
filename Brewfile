@@ -1,6 +1,8 @@
 tap "caarlos0/tap"
 tap "charmbracelet/tap"
 
+brew "bash"
+brew "bash-completion@2"
 brew "go"
 brew "nodejs"
 brew "svgo"
@@ -12,6 +14,7 @@ cask "ghostty"
 cask "google-drive"
 cask "linear-linear"
 cask "rio"
+cask "superhuman"
 cask "telegram"
 cask "whatsapp"
 

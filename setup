@@ -38,19 +38,31 @@ link() {
         echo "$BACKUP Linked $1 to $2 (backed up existing)"
     else
         # Linked!
-        ln -sf "$1" "$2"
+        ln -sf "$PWD/$1" "$2"
         echo "$LINKED $1 -> $2"
     fi
 }
 
-if [[ $OSTYPE == 'darwin'* ]]; then
-    brew bundle
-fi
+case "$OSTYPE" in
+darwin*)
+    brew bundle -v
+    ;;
+linux*)
+    echo "Linux detected - add package installation commands"
+    ;;
+*)
+    echo "Unsupported OS: $OSTYPE"
+    ;;
+esac
+
+# Bash
+link bash/bashrc "$HOME/.bashrc"
+link bash/bash_funcs "$HOME/.local/share/meowgorithm/bash_funcs"
+link bash/bash_profile "$HOME/.local/share/meowgorithm/bash_profile"
 
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
     echo "Adding $(which bash) to /etc/shells; will ask sudo password."
     which bash | sudo tee -a /etc/shells
+    chsh -s "$(which bash)"
 fi
-
-link "$PWD/bin" "$HOME/.bin"
