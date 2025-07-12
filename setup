@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+source "$PWD/bash/bash_funcs"
+
 BLACK=0
 GREEN=2
 YELLOW=3
@@ -48,15 +50,12 @@ link() {
     fi
 }
 
-case "$OSTYPE" in
-darwin*)
+case "$(whcich_os)" in
+darwin)
     brew bundle -v
     ;;
-linux*)
-    echo "Linux detected - add package installation commands"
-    ;;
-*)
-    echo "Unsupported OS: $OSTYPE"
+void)
+    grep -vE '^\s*#|^\s*$' Xbpsfile | xargs sudo xbps-install -y
     ;;
 esac
 
