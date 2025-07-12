@@ -10,6 +10,7 @@ export GIT_PS1_SHOWSTASHSTATE="true"
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
+# shellcheck source=/Users/christian/.local/share/meowgorithm/bash_funcs
 source ~/.local/share/meowgorithm/bash_funcs
 
 os="$(which_os)"
@@ -46,6 +47,12 @@ darwin)
     bash_bin_arm="/opt/homebrew/bin/brew"
     if [[ $(uname -m) == "arm64" && -f $bash_bin_arm ]]; then
         eval "$("$bash_bin_arm" shellenv)"
+    fi
+
+    gitPromptPath="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
+    if [ -f "$gitPromptPath" ]; then
+        # shellcheck source=/opt/homebrew/etc/bash_completion.d/git-prompt.sh
+        source "$gitPromptPath"
     fi
 
     # Make sure XDG_CONFIG_HOME is a thing

@@ -3,6 +3,7 @@ tap "charmbracelet/tap"
 
 brew "bash"
 brew "bash-completion@2"
+brew "git"
 brew "go"
 brew "nodejs"
 brew "svgo"
