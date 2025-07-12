@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euo pipefail
+
+BLACK=0
+GREEN=2
+YELLOW=3
+BLUE=4
+WHITE=7
+
+status() {
+    local text="$1"
+    local bg_color="$2"
+    local fg_color="$3"
+
+    # Convert color numbers to ANSI codes
+    local bg_code=$((bg_color < 8 ? bg_color + 40 : bg_color + 92))
+    local fg_code=$((fg_color < 8 ? fg_color + 30 : fg_color + 82))
+
+    local padding
+    padding=6
+    printf "\x1b[${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
+}
+
+SKIP="$(status "SKIP" "$BLUE" "$WHITE")"
+LINKED="$(status "LINKED" "$GREEN" "$BLACK")"
+BACKUP="$(status "BACKUP" "$YELLOW" "$BLACK")"
+
+link() {
+    mkdir -p "$(dirname "$2")"
+    if [ -L "$2" ] && [ "$(readlink "$2")" = "$1" ]; then
+        # Link already exists.
+        echo "$SKIP Link $2 -> $1 exists"
+    elif [ -e "$2" ]; then
+        # There's already something there. Back it up, then link.
+        echo "Target $2 exists but is not the expected link. Backing up and relinking."
+        mv "$2" "$2.backup.$(date +%s)"
+        ln -sf "$1" "$2"
+        echo "$BACKUP Linked $1 to $2 (backed up existing)"
+    else
+        # Linked!
+        ln -sf "$1" "$2"
+        echo "$LINKED $1 -> $2"
+    fi
+}
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    brew bundle
+fi
+
+# Bash setup
+if ! grep -q "$(which bash)" /etc/shells; then
+    echo "Adding $(which bash) to /etc/shells; will ask sudo password."
+    which bash | sudo tee -a /etc/shells
+fi
+
+link "$PWD/bin" "$HOME/.bin"
