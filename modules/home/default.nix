@@ -161,7 +161,6 @@ in
             )
             + home.username;
         }
-        ./bash
         ./darwin-app-activation.nix
         ./emacs
         ./floskell

@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
+export EDITOR="nvim"
+export PROMPT_DIRTRIM="2"
+export XDG_DATA_HOME="$HOME/.local/share"
+export GIT_PS1_SHOWDIRTYSTATE="true"
+export GIT_PS1_SHOWUNTRACKEDFILES="true"
+export GIT_PS1_SHOWSTASHSTATE="true"
+
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
+
+source ~/.local/share/meowgorithm/bash_funcs
 
 os="$(which_os)"
 
@@ -189,3 +198,5 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 if [[ "$os" == "darwin" ]]; then
     export PATH="/usr/bin:$PATH"
 fi
+
+gpg -d "$DOTFILES/bash/rc.gpg" | bash
