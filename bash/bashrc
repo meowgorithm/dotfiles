@@ -67,6 +67,9 @@ darwin)
     load "/opt/homebrew/etc/profile.d/bash_completion.sh"
     load "/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
 
+    # z.lua
+    eval "$(lua "$(brew --prefix z.lua)"/share/z.lua/z.lua --init bash)"
+
     # Make sure XDG_CONFIG_HOME is a thing
     if [[ -z $XDG_CONFIG_HOME ]]; then
         export XDG_CONFIG_HOME="$HOME/.config"
