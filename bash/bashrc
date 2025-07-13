@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export EDITOR="nvim"
+export EDITOR="vim"
 export PROMPT_DIRTRIM="2"
 export XDG_DATA_HOME="$HOME/.local/share"
 

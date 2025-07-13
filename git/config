@@ -20,7 +20,7 @@
 	gpgSign = true
 
 [core]
-	editor = "nvim"
+	editor = "vim"
 
 [filter "lfs"]
 	clean = "git-lfs clean -- %f"

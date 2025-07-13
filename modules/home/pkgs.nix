@@ -50,9 +50,6 @@ in {
       postgresql
       python3
       redis
-      ripgrep
-      rpm
-      shellcheck
       shfmt
       simple-http-server
       tree

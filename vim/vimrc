@@ -1,0 +1,139 @@
+vim9script
+
+# Auto-install vim-plug
+var plugPath = "~/.config/vim/autoload/plug.vim"
+var vimrcPath = "~/.config/vim/vimrc"
+if empty(glob(plugPath))
+  silent execute '!curl -fLo ' .. plugPath .. ' --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source vimrcPath
+endif
+
+# Install plugins only if vim-plug is available
+if filereadable(expand(plugPath))
+  call plug#begin()
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'github/copilot.vim'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'tpope/vim-commentary'
+  Plug 'vim-airline/vim-airline'
+  call plug#end()
+endif
+
+# colorscheme "pantera-negra"
+
+g:mapleader = " "
+
+# Options
+set nocompatible
+set nobackup
+set nowritebackup
+set noswapfile
+set shell=bash
+set number
+set nowrap
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set termguicolors
+set showmatch
+set autoread
+set colorcolumn=80
+set mouse=a
+set nospell
+set spelllang=en_us
+set cursorline
+set ruler
+set signcolumn=yes
+set listchars=tab:▸\ ,trail:·,eol:¶
+set splitbelow
+set splitright
+set scrolloff=8
+set sidescrolloff=5
+set foldmethod=marker
+set equalalways
+set conceallevel=0
+
+# Search
+set nohlsearch
+set ignorecase
+set incsearch
+set wrapscan
+
+# Persistent undo
+set undofile
+set undodir=~/.vim/undo
+
+# Text formatting options. See :help fo-table.
+set formatoptions=tcroq1]jp
+
+# Key mappings
+nnoremap gs ^
+nnoremap gl $
+nnoremap gn :bnext<CR>
+nnoremap gp :bprev<CR>
+nnoremap BO :BufOnly<CR>
+nnoremap <leader>f :find
+nnoremap <leader>g :grep
+nnoremap <leader>w :write<CR>
+nnoremap <leader>n :noautocmd write<CR>
+nnoremap <C-c> gcc
+nnoremap <leader>y "+y
+
+# Visual Mode Blockwise Indent. This keeps the current visual block selection
+# active after changing indent with '<' or '>'. Usually the visual block
+# selection is lost after you shift it, which is incredibly annoying.
+#
+# See: http://vim.wikia.com/wiki/Short_mappings_for_common_tasks
+vnoremap > >gv
+vnoremap < <gv
+
+# And how about if just one < or > indents in normal mode as well?
+nnoremap > >>
+nnoremap < <<
+
+# Toggles
+nnoremap <leader>i :set invlist<CR>
+nnoremap <leader>S :set hlsearch! hlsearch?<CR>
+nnoremap <leader>W :set wrap! wrap?<CR>
+
+# Autocommands
+augroup FileTypeSettings
+    autocmd!
+    autocmd FileType lua setlocal noexpandtab
+augroup END
+
+augroup TrimWhitespace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
+augroup CursorLine
+    autocmd!
+    autocmd WinEnter,BufEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
+
+augroup WindowResize
+    autocmd!
+    autocmd VimResized * wincmd =
+augroup END
+
+augroup MarkdownSpell
+    autocmd!
+    autocmd FileType markdown setlocal spell
+    autocmd BufRead,BufNewFile *.md setlocal spell
+augroup END
+
+
+# CtrlP
+nnoremap ; :CtrlPBuffer<cr>
+g:ctrlp_max_height = 25
+g:ctrlp_min_height = 25
+if executable('rg')
+    g:ctrlp_use_ripgrep = 1
+    g:ctrlp_use_caching = 0
+endif
