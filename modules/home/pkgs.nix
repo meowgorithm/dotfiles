@@ -12,23 +12,11 @@
 in {
   home.packages = with pkgs;
     [
-      age
-      awscli2
-      bc
-      brotli
       cargo
       clang
       coreutils
       ctags
-      curl
-      direnv
       doctl
-      duf
-      elvish
-      faketty
-      ffmpeg
-      fish
-      fzf
       getopt
       gh
       gnumake
@@ -39,28 +27,14 @@ in {
       haskellPackages.cabal-fmt
       htop
       imagemagick
-      jq
       librsvg # for the rsvg-convert binary
       libwebp
       luajit
       moreutils
-      mosh
-      ngrok
-      optipng
-      postgresql
       python3
-      redis
-      shfmt
-      simple-http-server
-      tree
       tree-sitter
       ttyd
-      viu
-      wget
-      yq
-      z-lua
       zlib
-      zopfli
     ]
     # Haskell
     ++ (with pkgs.haskellPackages; [
