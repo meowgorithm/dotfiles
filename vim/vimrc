@@ -17,6 +17,7 @@ if filereadable(expand(plugPath))
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/vim-lsp'
+  Plug 'preservim/nerdtree'
   Plug 'tpope/vim-commentary'
   Plug 'vim-airline/vim-airline'
   call plug#end()
@@ -139,6 +140,10 @@ if executable('rg')
 endif
 
 # Commentary
-noremap <c-c> <Plug>CommentaryLine<CR>
+noremap <c-c> <plug>CommentaryLine<cr>
+
+# NerdTree
+nnoremap <leader>t :NERDTreeToggle<cr>
+nnoremap <leader>f :NERDTreeFind<cr>
 
 colorscheme charmtone
