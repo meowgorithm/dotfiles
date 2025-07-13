@@ -7,6 +7,7 @@ brew "git"
 brew "go"
 brew "nodejs"
 brew "svgo"
+brew "tmux"
 brew "yarn"
 
 cask "1password"

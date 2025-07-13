@@ -71,6 +71,9 @@ link "bash/bash_profile" "$HOME/.bash_profile"
 link "bash/bash_funcs" "$HOME/.local/share/meowgorithm/bash_funcs"
 link "bash/rc.gpg" "$HOME/.local/share/meowgorithm/rc.gpg"
 
+# Tmux
+link "tmux.conf" "$HOME/.tmux.conf"
+
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
     echo "Adding $(which bash) to /etc/shells; will ask sudo password."
