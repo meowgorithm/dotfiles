@@ -1,0 +1,8 @@
+.DS_Store
+.ghc.environment.*
+xmonad-x86_64-linux
+xmonad.errors
+*.hi
+*.o
+nohup.out
+#*

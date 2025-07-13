@@ -166,7 +166,6 @@ in
         ./floskell
         ./fonts.nix
         ./fourmolu
-        ./git.nix
         ./go.nix
         ./gpg.nix
         ./helix

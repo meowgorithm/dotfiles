@@ -20,7 +20,7 @@ status() {
 
     local padding
     padding=6
-    printf "\x1b[${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
+    printf "\x1b[1;${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
 }
 
 SKIP="$(status "SKIP" "$BLUE" "$WHITE")"
@@ -50,7 +50,7 @@ link() {
     fi
 }
 
-case "$(whcich_os)" in
+case "$(which_os)" in
 darwin)
     brew bundle -v
     ;;
@@ -58,6 +58,10 @@ void)
     grep -vE '^\s*#|^\s*$' Xbpsfile | xargs sudo xbps-install -y
     ;;
 esac
+
+# Git
+link "git/config" "$HOME/.config/git/config"
+link "git/ignore" "$HOME/.config/git/ignore"
 
 # Bash
 link "bash/bashrc" "$HOME/.bashrc"
