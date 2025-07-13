@@ -3,9 +3,15 @@
 export EDITOR="nvim"
 export PROMPT_DIRTRIM="2"
 export XDG_DATA_HOME="$HOME/.local/share"
+
 export GIT_PS1_SHOWDIRTYSTATE="true"
 export GIT_PS1_SHOWUNTRACKEDFILES="true"
 export GIT_PS1_SHOWSTASHSTATE="true"
+
+shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=1000
+export HISTIGNORE="ls:cd:pwd:exit:clear"
 
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
@@ -74,20 +80,6 @@ darwin)
     # Keep TAR from tarring-up resource forks
     export COPYFILE_DISABLE=true
 
-    # History Management
-    shopt -s histappend
-    export HISTCONTROL=ignoredups:erasedups
-    export HISTSIZE=1000
-
-    # Miscellaneous aliases
-    alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
-    alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
-    alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
-
-    # Print local network adapter IPs and copy them to the clipboard
-    alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
-    alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
-
     # Colored man pages
     export LESS_TERMCAP_mb=$'\E[01;31m'
     export LESS_TERMCAP_md=$'\E[01;31m'
@@ -131,8 +123,6 @@ PROMPT_COMMAND=prompt_func
 
 gpg_TTY=$(tty)
 export GPG_TTY=$gpg_TTY
-export PATH="$PATH:$HOME/.bin"
-export PATH="$GOPATH/bin:$PATH"
 
 if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
     export PATH="$PATH:$HOME/.bin-linux"
@@ -148,30 +138,24 @@ function updateinputs() {
     done
 }
 
-alias delete_pyc='find . -name '\*.pyc' -delete'
-alias delete_orig='find . -name '\*.orig' -delete'
-alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
-alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias ggbt='go get github.com/charmbracelet/bubbletea/v2@latest'
 alias ggb='go get github.com/charmbracelet/bubbles/v2@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss/v2@latest'
 alias ggg='go get github.com/charmbracelet/glamour/v2/@latest'
 alias ggct='go get github.com/charmbracelet/x/exp/charmtone@main'
-alias lw='ssh localhost -p 23231'
 alias nb='nix build -L'
 alias nr='nix run -L'
 alias sshi='ssh -o IdentitiesOnly=yes'
-alias charm-install='gh repo list charmbracelet | cut -f1 | gum filter --no-limit | xargs -I {} go install -v "github.com/{}@latest"'
 alias code-review='git --no-pager diff | mods -f "code review this patch" | glow'
 alias filterkill='ps | awk "NR>1" | gum choose --header="  Kill Process?" | xargs kill'
-
-alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
-alias install-gum="go install -v github.com/charmbracelet/gum@latest"
 alias tree='tree -C'
 
 # shellcheck disable=1091
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+fi
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    export TERM="xterm-256color"
 fi
 
 # Go mod replace helper for Charm stuff
@@ -195,11 +179,12 @@ export PATH="$HOME/.local/bin:$PATH"
 # Nix
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
+# Go
+export PATH="$PATH:$HOME/.bin"
+export PATH="$GOPATH/bin:$PATH"
+
 # Helper vars
 export MEOW='git@github.com:meowgorithm'
-export MAGIC='git@github.com:magicnumbers'
-export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
-export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
 export GOCHARM='github.com/charmbracelet'
 export GOMEOW='github.com/charmbracelet'
