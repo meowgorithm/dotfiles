@@ -81,7 +81,6 @@ in {
     ])
     # Various LSP
     ++ (with pkgs; [
-      alejandra
       bash-language-server
       lua-language-server
       nil

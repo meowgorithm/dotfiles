@@ -1,6 +1,7 @@
 tap "caarlos0/tap"
 tap "charmbracelet/tap"
 
+brew "alejandra"
 brew "bash"
 brew "bash-completion@2"
 brew "git"
