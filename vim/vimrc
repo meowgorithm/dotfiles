@@ -22,8 +22,6 @@ if filereadable(expand(plugPath))
   call plug#end()
 endif
 
-# colorscheme "pantera-negra"
-
 g:mapleader = " "
 
 # Options
@@ -137,3 +135,8 @@ if executable('rg')
     g:ctrlp_use_ripgrep = 1
     g:ctrlp_use_caching = 0
 endif
+
+# Commentary
+noremap <c-c> <Plug>CommentaryLine<CR>
+
+colorscheme charmtone

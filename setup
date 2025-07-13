@@ -76,6 +76,7 @@ link "tmux.conf" "$HOME/.tmux.conf"
 
 # Vim
 link "vim/vimrc" "$HOME/.config/vim/vimrc"
+link "vim/charmtone.vim" "$HOME/.config/vim/colors/charmtone.vim"
 
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
