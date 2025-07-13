@@ -170,6 +170,8 @@ gmr() {
     go mod edit -replace "github.com/charmbracelet/$1=$2"
 }
 
+export PATH="$PATH:$HOME/.bin"
+
 # GHCUP
 # shellcheck disable=1091
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
@@ -183,7 +185,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
 # Go
-export PATH="$PATH:$HOME/.bin"
+export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
 # Helper vars
@@ -204,3 +206,4 @@ rc="$XDG_DATA_HOME/meowgorithm/rc.gpg"
 if [[ -f "$rc" ]]; then
     source <(gpg --quiet --decrypt "$rc" 2>/dev/null)
 fi
+
