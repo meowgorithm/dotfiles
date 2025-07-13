@@ -131,6 +131,7 @@ augroup END
 nnoremap ; :CtrlPBuffer<cr>
 g:ctrlp_max_height = 25
 g:ctrlp_min_height = 25
+g:ctrlp_custom_ignore = 'vendor'
 if executable('rg')
     g:ctrlp_use_ripgrep = 1
     g:ctrlp_use_caching = 0
