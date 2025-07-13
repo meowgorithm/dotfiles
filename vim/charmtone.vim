@@ -38,4 +38,9 @@ exe $'hi PmenuSel guifg={ash} guibg={charple} gui=NONE cterm=NONE'
 exe $'hi PmenuSbar guifg=NONE guibg={hazy} gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE'
 exe $'hi PmenuThumb guifg=NONE guibg={julep} gui=NONE cterm=NONE'
 
+" Set terminal background color to match colorscheme
+let &t_RB = "\e]11;" .. pepper .. "\e\\"
+let &t_RF = "\e]111\e\\"
+autocmd VimLeave * silent !printf "\e]111\e\\"
+
 set fillchars+=vert:│
