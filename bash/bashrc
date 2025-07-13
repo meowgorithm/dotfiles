@@ -34,6 +34,11 @@ nixos)
     alias restart-picom='systemctl --user restart picom.service'
     ;;
 
+void)
+    load "/usr/share/bash-completion/bash_completion"
+    load "/usr/share/git/git-prompt.sh"
+    ;;
+
 debian)
     # shellcheck disable=1091
     if ! shopt -oq posix; then
@@ -207,4 +212,7 @@ if [[ "$os" == "darwin" ]]; then
     export PATH="/usr/bin:$PATH"
 fi
 
-gpg -d "$DOTFILES/bash/rc.gpg" | bash
+rc="$XDG_DATA_HOME/meowgorithm/rc.gpg"
+if [[ -f "$rc" ]]; then
+    source <(gpg --quiet --decrypt "$rc" 2>/dev/null)
+fi

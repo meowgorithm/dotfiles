@@ -102,3 +102,8 @@ remove_headerbar() {
 	*) return ;;
 	esac
 }
+
+xbps-bundle() {
+    local path="$XDG_DATA_HOME/meowgorithm/Xbpsfile"
+    grep -vE '^\s*#|^\s*$' "$path" | xargs sudo xbps-install -y
+}

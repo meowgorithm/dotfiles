@@ -59,6 +59,8 @@ void)
     ;;
 esac
 
+printf '\n'
+
 # Git
 link "git/config" "$HOME/.config/git/config"
 link "git/ignore" "$HOME/.config/git/ignore"
@@ -67,6 +69,7 @@ link "git/ignore" "$HOME/.config/git/ignore"
 link "bash/bashrc" "$HOME/.bashrc"
 link "bash/bash_profile" "$HOME/.bash_profile"
 link "bash/bash_funcs" "$HOME/.local/share/meowgorithm/bash_funcs"
+link "bash/rc.gpg" "$HOME/.local/share/meowgorithm/rc.gpg"
 
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
