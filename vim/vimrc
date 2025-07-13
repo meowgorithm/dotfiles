@@ -128,7 +128,6 @@ augroup MarkdownSpell
     autocmd BufRead,BufNewFile *.md setlocal spell
 augroup END
 
-
 # CtrlP
 nnoremap ; :CtrlPBuffer<cr>
 g:ctrlp_max_height = 25
@@ -146,4 +145,27 @@ noremap <c-c> <plug>CommentaryLine<cr>
 nnoremap <leader>t :NERDTreeToggle<cr>
 nnoremap <leader>f :NERDTreeFind<cr>
 
-colorscheme charmtone
+# LSP
+g:lsp_diagnostics_virtual_text_align = 'after'
+
+# Toggle diagnostics.
+def ToggleLspLoclist()
+  var loclist = getloclist(0, {'winid': 0})
+  if loclist.winid != 0
+    lclose
+  else
+    execute('LspDocumentDiagnostics --loclist')
+    lopen
+  endif
+enddef
+
+def UpdateLspDiagnosticsLoclist()
+  execute 'call lsp#ui#vim#loclist#populate(0)'
+enddef
+
+nnoremap <silent> E <ScriptCmd>ToggleLspLoclist()<cr>
+
+augroup lsp_format_on_save
+  autocmd!
+  autocmd BufWritePre * if &modifiable && !&readonly | LspDocumentFormatSync | endif
+augroup END
