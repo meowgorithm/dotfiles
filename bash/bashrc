@@ -10,6 +10,10 @@ export GIT_PS1_SHOWSTASHSTATE="true"
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
+function load() {
+    [[ -r "$1" ]] && . "$1"
+}
+
 # shellcheck source=/Users/christian/.local/share/meowgorithm/bash_funcs
 source ~/.local/share/meowgorithm/bash_funcs
 
@@ -49,11 +53,8 @@ darwin)
         eval "$("$bash_bin_arm" shellenv)"
     fi
 
-    gitPromptPath="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
-    if [ -f "$gitPromptPath" ]; then
-        # shellcheck source=/opt/homebrew/etc/bash_completion.d/git-prompt.sh
-        source "$gitPromptPath"
-    fi
+    load "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    load "/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
 
     # Make sure XDG_CONFIG_HOME is a thing
     if [[ -z $XDG_CONFIG_HOME ]]; then
