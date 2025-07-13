@@ -54,6 +54,7 @@ set sidescrolloff=5
 set foldmethod=marker
 set equalalways
 set conceallevel=0
+set pumheight=20
 
 # Search
 set nohlsearch

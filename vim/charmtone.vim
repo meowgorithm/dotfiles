@@ -14,6 +14,16 @@ let ash = '#DFDBDD'
 let salt = '#F1EFEF'
 let butter = '#F2E9E4'
 
+let ox = '#3331B2'
+let sapphire = '#4949FF'
+let guppy = '#7272FF'
+
+let jelly ='#4A30D9'
+let charple = '#6B50FF'
+let hazy = '#8B75FF'
+
+let julep = '#00FFB2'
+
 exe $'hi Normal guifg={smoke} guibg={pepper} gui=NONE cterm=NONE'
 exe $'hi CursorLine guifg=NONE guibg={charcoal} gui=NONE cterm=NONE'
 exe $'hi SignColumn guifg={smoke} guibg={pepper} gui=NONE cterm=NONE'
@@ -22,5 +32,10 @@ exe $'hi CursorLineNr guifg={squid} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi CursorColumn guifg=NONE guibg={bbq} gui=NONE cterm=NONE'
 exe $'hi VertSplit guifg={bbq} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi ColorColumn guifg=NONE guibg={bbq} gui=NONE cterm=NONE'
+
+exe $'hi Pmenu guifg={smoke} guibg={jelly} gui=NONE cterm=NONE'
+exe $'hi PmenuSel guifg={ash} guibg={charple} gui=NONE cterm=NONE'
+exe $'hi PmenuSbar guifg=NONE guibg={hazy} gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE'
+exe $'hi PmenuThumb guifg=NONE guibg={julep} gui=NONE cterm=NONE'
 
 set fillchars+=vert:│
