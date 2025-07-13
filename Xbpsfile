@@ -1,5 +1,6 @@
 bash-completion
 git
+git-lfs
 gnupg
 go
 neovim
