@@ -174,7 +174,11 @@ enddef
 # Format on save.
 def FormatOnSave()
     if &modifiable && !&readonly
-        if &filetype ==# 'go'
+        if (&filetype ==# 'scss' || &filetype ==# 'css') && executable('prettier')
+            var cursorPos = getcurpos()
+            execute(':%!prettier --stdin-filepath %:p')
+            setpos('.', cursorPos)
+        elseif &filetype ==# 'go'
             ExecuteIfExissts('goimports')
         elseif &filetype ==# 'nix'
             ExecuteIfExissts('alejandra')
