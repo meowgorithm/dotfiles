@@ -60,6 +60,14 @@ set equalalways
 set conceallevel=0
 set pumheight=20
 
+# Cursor shape
+set ttimeout
+set ttimeoutlen=1
+set timeoutlen=3000
+&t_SI = "\e[6 q"
+&t_EI = "\e[2 q"
+&t_SR = "\e[4 q"
+
 # Search
 set nohlsearch
 set ignorecase
