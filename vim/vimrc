@@ -18,10 +18,13 @@ if filereadable(expand(plugPath))
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'preservim/nerdtree'
+  Plug 'rhysd/vim-healthcheck'
   Plug 'tpope/vim-commentary'
   Plug 'vim-airline/vim-airline'
   call plug#end()
 endif
+
+colorscheme charmtone
 
 g:mapleader = " "
 
@@ -65,7 +68,7 @@ set wrapscan
 
 # Persistent undo
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.config/vim/undo
 
 # Text formatting options. See :help fo-table.
 set formatoptions=tcroq1]jp
@@ -101,28 +104,28 @@ nnoremap <leader>S :set hlsearch! hlsearch?<CR>
 nnoremap <leader>W :set wrap! wrap?<CR>
 
 # Autocommands
-augroup FileTypeSettings
+augroup fileTypeSettings
     autocmd!
     autocmd FileType lua setlocal noexpandtab
 augroup END
 
-augroup TrimWhitespace
+augroup trimWhitespace
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//e
 augroup END
 
-augroup CursorLine
+augroup cursorLine
     autocmd!
     autocmd WinEnter,BufEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
-augroup WindowResize
+augroup windowResize
     autocmd!
     autocmd VimResized * wincmd =
 augroup END
 
-augroup MarkdownSpell
+augroup markdownSpell
     autocmd!
     autocmd FileType markdown setlocal spell
     autocmd BufRead,BufNewFile *.md setlocal spell
@@ -159,13 +162,32 @@ def ToggleLspLoclist()
   endif
 enddef
 
-def UpdateLspDiagnosticsLoclist()
-  execute 'call lsp#ui#vim#loclist#populate(0)'
-enddef
-
 nnoremap <silent> E <ScriptCmd>ToggleLspLoclist()<cr>
 
-augroup lsp_format_on_save
-  autocmd!
-  autocmd BufWritePre * if &modifiable && !&readonly | LspDocumentFormatSync | endif
+# Run command if it exists on the path.
+def ExecuteIfExissts(cmd: string)
+    if executable(cmd)
+        execute(':%!' .. cmd)
+    endif
+enddef
+
+# Format on save.
+def FormatOnSave()
+    if &modifiable && !&readonly
+        if &filetype ==# 'go'
+            ExecuteIfExissts('goimports')
+        elseif &filetype ==# 'nix'
+            ExecuteIfExissts('alejandra')
+        elseif &filetype ==# 'hs'
+            ExecuteIfExissts('fourmolu')
+        else
+            execute('LspDocumentFormatSync')
+        endif
+    endif
+enddef
+
+# Format on save before writing.
+augroup lspFormatOnSave
+    autocmd!
+    autocmd BufWritePre * FormatOnSave()
 augroup END
