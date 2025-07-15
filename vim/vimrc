@@ -11,6 +11,7 @@ endif
 # Install plugins only if vim-plug is available
 if filereadable(expand(plugPath))
   call plug#begin()
+  Plug 'airblade/vim-gitgutter'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'github/copilot.vim'
   Plug 'mattn/vim-lsp-settings'
