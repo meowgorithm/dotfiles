@@ -3,6 +3,7 @@ git
 git-lfs
 gnupg
 go
+kitty
 neovim
 ripgrep
 tmux

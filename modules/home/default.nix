@@ -182,7 +182,6 @@ in
       ++ (lib.optionals (! headless) [
         ./alacritty.nix
         ./ghostty.nix
-        ./kitty.nix
         ./rio.nix
       ])
       ++ extraModules;
