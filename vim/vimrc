@@ -159,6 +159,7 @@ nnoremap <leader>t :NERDTreeToggle<cr>
 nnoremap <leader>f :NERDTreeFind<cr>
 
 # ALE
+nnoremap E :ALEToggle<CR>
 g:ale_fix_on_save = 1
 g:ale_fixers = {
     go: ['gofumpt', 'golangci_lint'],
