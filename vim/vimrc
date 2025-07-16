@@ -11,6 +11,7 @@ endif
 # Install plugins only if vim-plug is available
 if filereadable(expand(plugPath))
   call plug#begin()
+  Plug 'schickling/vim-bufonly'
   Plug 'airblade/vim-gitgutter'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'github/copilot.vim'
@@ -149,6 +150,9 @@ if executable('rg')
     g:ctrlp_use_ripgrep = 1
     g:ctrlp_use_caching = 0
 endif
+
+# BufOnly
+nnoremap BO :BufOnly<cr>
 
 # Commentary
 noremap <c-c> <plug>CommentaryLine<cr>
