@@ -38,6 +38,10 @@ exe $'hi PmenuSel guifg={ash} guibg={charple} gui=NONE cterm=NONE'
 exe $'hi PmenuSbar guifg=NONE guibg={hazy} gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE'
 exe $'hi PmenuThumb guifg=NONE guibg={julep} gui=NONE cterm=NONE'
 
+exe $'hi GitGutterAdd guifg={julep} guibg=NONE gui=NONE cterm=NONE'
+" exe $'hi GitGutterChange guifg={julep} guibg=NONE gui=NONE cterm=NONE'
+" exe $'hi GitGutterDelete guifg={sapphire} guibg=NONE gui=NONE cterm=NONE'
+
 " Set terminal background color to match colorscheme
 " let &t_RB = "\e]11;" .. pepper .. "\e\\"
 " let &t_RF = "\e]111\e\\"

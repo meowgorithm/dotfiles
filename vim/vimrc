@@ -159,8 +159,13 @@ nnoremap <leader>t :NERDTreeToggle<cr>
 nnoremap <leader>f :NERDTreeFind<cr>
 
 # ALE
-nnoremap E :ALEToggle<CR>
+#g:ale_open_list = 1
+g:ale_set_highlights = 1
+g:ale_set_signs = 1
 g:ale_fix_on_save = 1
+g:ale_completion_enabled = 1
+g:ale_completion_delay = 100
+g:ale_completion_autoimport = 1
 g:ale_fixers = {
     go: ['gofumpt', 'golangci_lint'],
     haskell: ['fourmolu'],
@@ -169,3 +174,17 @@ g:ale_fixers = {
     scss: ['prettier'],
     toml: ['taplo'],
 }
+
+nnoremap <leader>gd :ALEGoToDefinition<cr>
+nnoremap <leader>gs :ALESymbolSearch<space>
+
+function ToggleALEList()
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        lclose
+    else
+        lopen
+    endif
+endfunction
+
+command! ALEToggleList call ToggleALEList()
+nnoremap E :ALEToggleList<CR>
