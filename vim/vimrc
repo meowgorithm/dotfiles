@@ -11,16 +11,13 @@ endif
 # Install plugins only if vim-plug is available
 if filereadable(expand(plugPath))
   call plug#begin()
-  Plug 'schickling/vim-bufonly'
   Plug 'airblade/vim-gitgutter'
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'dense-analysis/ale'
   Plug 'github/copilot.vim'
-  Plug 'mattn/vim-lsp-settings'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/vim-lsp'
   Plug 'preservim/nerdtree'
   Plug 'rhysd/vim-healthcheck'
+  Plug 'schickling/vim-bufonly'
   Plug 'tpope/vim-commentary'
   Plug 'vim-airline/vim-airline'
   call plug#end()
@@ -161,50 +158,12 @@ noremap <c-c> <plug>CommentaryLine<cr>
 nnoremap <leader>t :NERDTreeToggle<cr>
 nnoremap <leader>f :NERDTreeFind<cr>
 
-# LSP
-g:lsp_diagnostics_virtual_text_align = 'after'
-
-# Toggle diagnostics.
-def ToggleLspLoclist()
-  var loclist = getloclist(0, {'winid': 0})
-  if loclist.winid != 0
-    lclose
-  else
-    execute('LspDocumentDiagnostics --loclist')
-    lopen
-  endif
-enddef
-
-nnoremap <silent> E <ScriptCmd>ToggleLspLoclist()<cr>
-
-# Run command if it exists on the path.
-def ExecuteIfExissts(cmd: string)
-    if executable(cmd)
-        execute(':%!' .. cmd)
-    endif
-enddef
-
-# Format on save.
-def FormatOnSave()
-    if &modifiable && !&readonly
-        if (&filetype ==# 'scss' || &filetype ==# 'css') && executable('prettier')
-            var cursorPos = getcurpos()
-            execute(':%!prettier --stdin-filepath %:p')
-            setpos('.', cursorPos)
-        elseif &filetype ==# 'go'
-            ExecuteIfExissts('goimports')
-        elseif &filetype ==# 'nix'
-            ExecuteIfExissts('alejandra')
-        elseif &filetype ==# 'hs'
-            ExecuteIfExissts('fourmolu')
-        else
-            execute('LspDocumentFormatSync')
-        endif
-    endif
-enddef
-
-# Format on save before writing.
-augroup lspFormatOnSave
-    autocmd!
-    autocmd BufWritePre * FormatOnSave()
-augroup END
+# ALE
+g:ale_fix_on_save = 1
+g:ale_fixers = {
+    go: ['gofumpt', 'golangci_lint'],
+    html: ['prettier'],
+    scss: ['prettier'],
+    json: ['prettier'],
+    toml: ['taplo'],
+}

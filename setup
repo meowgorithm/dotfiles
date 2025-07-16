@@ -105,4 +105,3 @@ if ! grep -q "$(which bash)" /etc/shells; then
     which bash | sudo tee -a /etc/shells
     chsh -s "$(which bash)"
 fi
-
