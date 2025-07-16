@@ -157,7 +157,6 @@ in
         ./emacs
         ./floskell
         ./fonts.nix
-        ./fourmolu
         ./go.nix
         ./gpg.nix
         ./helix

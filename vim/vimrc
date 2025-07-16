@@ -162,8 +162,9 @@ nnoremap <leader>f :NERDTreeFind<cr>
 g:ale_fix_on_save = 1
 g:ale_fixers = {
     go: ['gofumpt', 'golangci_lint'],
+    haskell: ['fourmolu'],
     html: ['prettier'],
-    scss: ['prettier'],
     json: ['prettier'],
+    scss: ['prettier'],
     toml: ['taplo'],
 }

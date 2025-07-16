@@ -99,6 +99,9 @@ else
     link "ghostty/linux" "$HOME/.config/ghostty/os"
 fi
 
+# Fourmolu
+link "fourmolu.yaml" "$HOME/.config/fourmolu.yaml"
+
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
     echo "Adding $(which bash) to /etc/shells; will ask sudo password."
