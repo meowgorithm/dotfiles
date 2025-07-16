@@ -7,8 +7,6 @@
   inputs.carlos.url = "github:caarlos0/nur";
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
   inputs.ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
-  inputs.rio.url = "github:raphamorim/rio";
-  inputs.rio.inputs.nixpkgs.follows = "nixpkgs";
 
   # NeoVim Plugins
   inputs.smear.url = "github:sphamba/smear-cursor.nvim";

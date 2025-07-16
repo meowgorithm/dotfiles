@@ -85,13 +85,6 @@
         )
     )
 
-    # Rio
-    (
-      self: super: {
-        rio = inputs.rio.packages.${system}.rio;
-      }
-    )
-
     # macOS applications
     (
       self: super: {
@@ -182,7 +175,6 @@ in
       ++ (lib.optionals (! headless) [
         ./alacritty.nix
         ./ghostty.nix
-        ./rio.nix
       ])
       ++ extraModules;
   }

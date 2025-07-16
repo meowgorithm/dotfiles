@@ -88,6 +88,9 @@ else
     link "kitty/linux.conf" "$HOME/.config/kitty/os.conf"
 fi
 
+# Rio
+link "rio/config.toml" "$HOME/.config/rio/config.toml"
+
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
     echo "Adding $(which bash) to /etc/shells; will ask sudo password."

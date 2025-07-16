@@ -24,7 +24,7 @@ let hazy = '#8B75FF'
 
 let julep = '#00FFB2'
 
-exe $'hi Normal guifg={smoke} guibg={pepper} gui=NONE cterm=NONE'
+exe $'hi Normal guifg={smoke} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi CursorLine guifg=NONE guibg={charcoal} gui=NONE cterm=NONE'
 exe $'hi SignColumn guifg={smoke} guibg={pepper} gui=NONE cterm=NONE'
 exe $'hi LineNr guifg={iron} guibg=NONE gui=NONE cterm=NONE'
@@ -39,8 +39,8 @@ exe $'hi PmenuSbar guifg=NONE guibg={hazy} gui=NONE ctermfg=NONE ctermbg=NONE ct
 exe $'hi PmenuThumb guifg=NONE guibg={julep} gui=NONE cterm=NONE'
 
 " Set terminal background color to match colorscheme
-let &t_RB = "\e]11;" .. pepper .. "\e\\"
-let &t_RF = "\e]111\e\\"
-autocmd VimLeave * silent !printf "\e]111\e\\"
+" let &t_RB = "\e]11;" .. pepper .. "\e\\"
+" let &t_RF = "\e]111\e\\"
+" autocmd VimLeave * silent !printf "\e]111\e\\"
 
 set fillchars+=vert:│
