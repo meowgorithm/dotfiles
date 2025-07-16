@@ -26,7 +26,7 @@ let julep = '#00FFB2'
 
 exe $'hi Normal guifg={smoke} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi CursorLine guifg=NONE guibg={charcoal} gui=NONE cterm=NONE'
-exe $'hi SignColumn guifg={smoke} guibg={pepper} gui=NONE cterm=NONE'
+exe $'hi SignColumn guifg={smoke} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi LineNr guifg={iron} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi CursorLineNr guifg={squid} guibg=NONE gui=NONE cterm=NONE'
 exe $'hi CursorColumn guifg=NONE guibg={bbq} gui=NONE cterm=NONE'
