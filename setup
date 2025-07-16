@@ -91,6 +91,14 @@ fi
 # Rio
 link "rio/config.toml" "$HOME/.config/rio/config.toml"
 
+# Ghostty
+link "ghostty/config" "$HOME/.config/ghostty/config"
+if [ "$os" = "darwin" ]; then
+    link "ghostty/darwin" "$HOME/.config/ghostty/os"
+else
+    link "ghostty/linux" "$HOME/.config/ghostty/os"
+fi
+
 # Bash setup
 if ! grep -q "$(which bash)" /etc/shells; then
     echo "Adding $(which bash) to /etc/shells; will ask sudo password."

@@ -118,7 +118,6 @@
         dunst
         eyedropper
         feh
-        inputs.ghostty.packages.${system}.default
         google-chrome
         gthumb
         shotgun
@@ -174,7 +173,6 @@ in
       ]
       ++ (lib.optionals (! headless) [
         ./alacritty.nix
-        ./ghostty.nix
       ])
       ++ extraModules;
   }
