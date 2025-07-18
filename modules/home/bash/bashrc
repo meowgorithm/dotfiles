@@ -128,8 +128,6 @@ function updateinputs() {
 
 alias delete_pyc='find . -name '\*.pyc' -delete'
 alias delete_orig='find . -name '\*.orig' -delete'
-alias lock_pip='export PIP_REQUIRE_VIRTUALENV=true'
-alias unlock_pip='export PIP_REQUIRE_VIRTUALENV=false'
 alias ggbt='go get github.com/charmbracelet/bubbletea/v2@latest'
 alias ggb='go get github.com/charmbracelet/bubbles/v2@latest'
 alias gglg='go get github.com/charmbracelet/lipgloss/v2@latest'
@@ -175,8 +173,6 @@ export PATH="$PATH:$HOME/.nix-profile/bin"
 
 # Helper vars
 export MEOW='git@github.com:meowgorithm'
-export MAGIC='git@github.com:magicnumbers'
-export BIT='https://meowgorithm@bitbucket.org/meowgorithm'
 export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
 export GOCHARM='github.com/charmbracelet'
