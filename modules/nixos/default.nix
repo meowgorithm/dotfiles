@@ -116,7 +116,7 @@ hostname: {
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
-    settings.PasswordAuthentication = false;
+    settings.PasswordAuthentication = true;
   };
 
   services.avahi = {
