@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
@@ -11,13 +10,7 @@ nixos)
     alias ls='ls --color=auto'
     PS1='[\u@\h \W]\$ '
 
-    # Fixes for various things on demand
-    alias make-firefox-default="xdg-settings set default-web-browser firefox.desktop"
-    alias fix-display='xrandr --output DP-0 --mode 2560x2880 --pos 0x0 --output DP-2 --mode 2560x2880 --pos 2560x0'
-    alias set-wallpaper='[ -f "$HOME/.wallpaper" ] && feh --bg-scale "$HOME/.wallpaper"'
-    alias start-picom='systemctl --user start picom.service'
-    alias stop-picom='systemctl --user stop picom.service'
-    alias restart-picom='systemctl --user restart picom.service'
+    alias zzz="sudo systemctl suspend"
     ;;
 
 debian)
