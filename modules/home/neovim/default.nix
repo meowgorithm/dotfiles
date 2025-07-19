@@ -60,7 +60,8 @@ in {
       ))
 
       # Plugins not in nixpkgs
-      # (buildVimPlugin "smear")
+      (buildVimPlugin "nvim-dap")
+      (buildVimPlugin "nvim-dap-go")
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

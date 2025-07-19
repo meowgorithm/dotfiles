@@ -350,6 +350,38 @@
         "type": "indirect"
       }
     },
+    "nvim-dap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752825222,
+        "narHash": "sha256-gPzfEBrA1OJ3AVuE0noPrETaBRrV07GldwRmvCWDC/U=",
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "rev": "5dd4d50f2e6a2eaf9e57fad023d294ef371bda35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "type": "github"
+      }
+    },
+    "nvim-dap-go": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752264544,
+        "narHash": "sha256-wg9kiW2eAMmg4bvgqaAS9kt7qaVsIWl36BNqRbhZIgo=",
+        "owner": "leoluz",
+        "repo": "nvim-dap-go",
+        "rev": "b4421153ead5d726603b02743ea40cf26a51ed5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "leoluz",
+        "repo": "nvim-dap-go",
+        "type": "github"
+      }
+    },
     "pangaia": {
       "flake": false,
       "locked": {
@@ -436,6 +468,8 @@
         "mori": "mori",
         "neufile-grotesk": "neufile-grotesk",
         "nixpkgs": "nixpkgs_3",
+        "nvim-dap": "nvim-dap",
+        "nvim-dap-go": "nvim-dap-go",
         "pangaia": "pangaia",
         "pique": "pique",
         "rifton": "rifton",

@@ -10,6 +10,10 @@
   # NeoVim Plugins
   inputs.smear.url = "github:sphamba/smear-cursor.nvim";
   inputs.smear.flake = false;
+  inputs.nvim-dap.url = "github:mfussenegger/nvim-dap";
+  inputs.nvim-dap.flake = false;
+  inputs.nvim-dap-go.url = "github:leoluz/nvim-dap-go";
+  inputs.nvim-dap-go.flake = false;
 
   # Lua fzy implementation
   inputs.fzyLua.url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";

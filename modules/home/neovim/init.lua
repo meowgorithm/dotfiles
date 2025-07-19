@@ -240,32 +240,18 @@ require("blink.cmp").setup({
 	},
 })
 
--- Conform
-do
-	require("conform").setup({
-		formatters_by_ft = {
-			cabal = { "cabal_fmt" },
-			css = { "prettier" },
-			haskell = { "fourmolu" },
-			html = { "prettier" },
-			javascript = { "prettier" },
-			json = { "jq" },
-			lua = { "stylua" },
-			markdown = { "prettier" },
-			nix = { "alejandra" },
-			sh = { "shfmt" },
-			templ = { "templ" },
-			yaml = { "prettier" },
-			-- ["_"] = { "trim_whitespace", "trim_newlines" },
-		},
-		format_on_save = {
-			timeout_ms = 500,
-			lsp_format = "fallback",
-		},
-	})
-
-	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-end
+-- DAP
+local dapGoLoaded = false
+autocmd({ "FileType" }, {
+	pattern = "go",
+	callback = function()
+		if dapGoLoaded then
+			return
+		end
+		require("dap-go").setup()
+		dapGoLoaded = true
+	end,
+})
 
 -- LSP
 do
