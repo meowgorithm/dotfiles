@@ -24,6 +24,8 @@ in {
       nvim-lspconfig
       conform-nvim
 
+      nvim-dap-ui
+
       BufOnly-vim
       copilot-vim
       nvim-colorizer-lua
@@ -59,7 +61,7 @@ in {
           ]
       ))
 
-      # Plugins not in nixpkgs
+      # Plugins not from nixpkgs.
       (buildVimPlugin "nvim-dap")
       (buildVimPlugin "nvim-dap-go")
     ];

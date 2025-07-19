@@ -8,8 +8,8 @@
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
 
   # NeoVim Plugins
-  inputs.smear.url = "github:sphamba/smear-cursor.nvim";
-  inputs.smear.flake = false;
+  # inputs.smear.url = "github:sphamba/smear-cursor.nvim";
+  # inputs.smear.flake = false;
   inputs.nvim-dap.url = "github:mfussenegger/nvim-dap";
   inputs.nvim-dap.flake = false;
   inputs.nvim-dap-go.url = "github:leoluz/nvim-dap-go";

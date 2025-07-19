@@ -241,6 +241,7 @@ require("blink.cmp").setup({
 })
 
 -- DAP
+require("dapui").setup()
 local dapGoLoaded = false
 autocmd({ "FileType" }, {
 	pattern = "go",
