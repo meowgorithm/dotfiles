@@ -1,7 +1,11 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   colors = import ./colors.nix;
 in {
-  home.packages = [pkgs.ghostty];
+  home.packages = lib.optional pkgs.stdenv.isLinux [pkgs.ghostty];
 
   xdg.configFile."ghostty/config".text =
     ''
