@@ -6,3 +6,4 @@ xmonad.errors
 *.o
 config/kak/plugins/*
 /result
+**/.crush/**
