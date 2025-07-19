@@ -253,6 +253,7 @@ do
 			lua = { "stylua" },
 			markdown = { "prettier" },
 			nix = { "alejandra" },
+			scss = { "prettier" },
 			sh = { "shfmt" },
 			templ = { "templ" },
 			yaml = { "prettier" },
