@@ -1,9 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; (
-    if pkgs.stdenv.isDarwin
-    then []
-    else [rio]
-  );
+  home.packages = [pkgs.rio];
 
   xdg.configFile."rio/config.toml".text = let
     colors =

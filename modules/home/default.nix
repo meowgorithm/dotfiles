@@ -85,13 +85,6 @@
         )
     )
 
-    # Rio
-    (
-      self: super: {
-        rio = inputs.rio.packages.${system}.rio;
-      }
-    )
-
     # macOS applications
     (
       self: super: {
@@ -125,7 +118,6 @@
         dunst
         eyedropper
         feh
-        inputs.ghostty.packages.${system}.default
         google-chrome
         gthumb
         shotgun

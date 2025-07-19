@@ -1,6 +1,8 @@
 {pkgs, ...}: let
   colors = import ./colors.nix;
 in {
+  home.packages = [pkgs.ghostty];
+
   xdg.configFile."ghostty/config".text =
     ''
       term = xterm-256color
