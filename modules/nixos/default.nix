@@ -98,6 +98,9 @@ hostname: {
   users.users.christian = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker"];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILxWe2rXKoiO6W14LYPVfJKzRfJ1f3Jhzxrgjc/D4tU7"
+    ];
     packages = with pkgs; [
       discord
       slack
