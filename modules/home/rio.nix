@@ -37,7 +37,6 @@
     blinking = true
     blinking-interval = 530
 
-
     line-height = 1.2
 
     [fonts]
