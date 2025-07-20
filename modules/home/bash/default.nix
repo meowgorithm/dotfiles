@@ -20,7 +20,7 @@ in {
     enable = true;
     enableCompletion = true;
     historyControl = ["ignoredups" "erasedups"];
-    historyIgnore = ["ls" "cd" "exit"];
+    historyIgnore = ["ls" "cd" "exit" "clear" "pwd"];
     sessionVariables =
       {
         EDITOR = "nvim";
@@ -34,11 +34,12 @@ in {
       }
       // (
         if pkgs.stdenv.isDarwin
-        then {}
+        then {
+          HOMEBREW_NO_ANALYTICS = "1";
+        }
         else {
           HARDWARECLOCK = "localtime";
           BASH_ENV = "$HOME/.bashrc";
-          HOMEBREW_NO_ANALYTICS = "1";
         }
       );
     shellOptions = ["histappend"];
