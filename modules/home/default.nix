@@ -130,7 +130,6 @@
     ./discord.nix
     ./firefox.nix
     ./hyprland
-    ./picom.nix
     ./rofi
     ./waybar.nix
   ];
