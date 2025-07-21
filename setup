@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$PWD/modules/home/bash/bash_funcs"
+
+GREEN_CHECK="$(printf '\x1b[32m✓\x1b[m')"
+
+ensure() {
+    local name="$1"
+    local cmd="$2"
+    local script="$3"
+
+    # Require curl for installation checks.
+    if ! command -v curl &>/dev/null; then
+        printf "curl is not installed. Please install curl first.\n"
+        return
+    fi
+
+    if ! command -v "$cmd" &>/dev/null; then
+        echo "Installing $name..."
+        $script
+    else
+        printf "%s %s is installed.\n" "$GREEN_CHECK" "$name"
+    fi
+}
+
+ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
+ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
+ensure "Fourmolu" "fourmolu" "cabal install fourmolu -j$(num_cores)"
+ensure "Floskell" "floskell" "cabal install floskell -j$(num_cores)"
+
+printf "\n"
+
+brew bundle
