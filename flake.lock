@@ -445,7 +445,9 @@
         "smear": "smear",
         "symbolset": "symbolset",
         "untitled-sans": "untitled-sans",
-        "upton": "upton"
+        "upton": "upton",
+        "vim-bufonly": "vim-bufonly",
+        "vim-healthcheck": "vim-healthcheck"
       }
     },
     "saans": {
@@ -542,6 +544,38 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/upton"
+      }
+    },
+    "vim-bufonly": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1482952140,
+        "narHash": "sha256-3ZBeGDd16dexEDVpC8PXG0mBYMqs38lPckKlR8J+ddY=",
+        "owner": "schickling",
+        "repo": "vim-bufonly",
+        "rev": "05a9f2d79f7aa7e2a94f9a6e29555e878e88d411",
+        "type": "github"
+      },
+      "original": {
+        "owner": "schickling",
+        "repo": "vim-bufonly",
+        "type": "github"
+      }
+    },
+    "vim-healthcheck": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658481635,
+        "narHash": "sha256-nRz5VqbIW5386Ogf/aHEz5TlHb/tO8+aUmQiUVsKTLg=",
+        "owner": "rhysd",
+        "repo": "vim-healthcheck",
+        "rev": "45a95f6c98322410cffdcb4a1c8a9a44a25d18be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rhysd",
+        "repo": "vim-healthcheck",
+        "type": "github"
       }
     }
   },

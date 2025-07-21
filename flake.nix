@@ -7,6 +7,12 @@
   inputs.carlos.url = "github:caarlos0/nur";
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
 
+  # Vim Plugins
+  inputs.vim-healthcheck.url = "github:rhysd/vim-healthcheck";
+  inputs.vim-healthcheck.flake = false;
+  inputs.vim-bufonly.url = "github:schickling/vim-bufonly";
+  inputs.vim-bufonly.flake = false;
+
   # NeoVim Plugins
   inputs.smear.url = "github:sphamba/smear-cursor.nvim";
   inputs.smear.flake = false;

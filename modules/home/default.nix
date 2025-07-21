@@ -171,6 +171,7 @@ in
         ./scripts
         ./ssh.nix
         ./tmux
+        ./vim
         ./wezterm
       ]
       ++ (lib.optionals (! headless) [
