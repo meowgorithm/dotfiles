@@ -19,12 +19,9 @@ in {
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    historyControl = ["ignoredups" "erasedups"];
-    historyIgnore = ["ls" "cd" "exit" "clear" "pwd"];
     sessionVariables =
       {
         EDITOR = "nvim";
-        PROMPT_DIRTRIM = "2";
         XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
         XDG_DATA_HOME = "$HOME/.local/share";
         GIT_PS1_SHOWDIRTYSTATE = "true";

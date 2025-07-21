@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+shopt -s globstar
+shopt -s histappend
+
+export HISTCONTROL=ignorespace:ignoredups:erasedups
+export HISTSIZE=1000
+export HISTIGNORE="ls:cd:pwd:clear:exit:history:exit:shutdown:reboot"
+export PROMPT_DIRTRIM=2
+
+export CLICOLOR=1
+
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
@@ -8,8 +18,6 @@ os="$(which_os)"
 case "$os" in
 nixos)
     alias ls='ls --color=auto'
-    PS1='[\u@\h \W]\$ '
-
     alias zzz="sudo systemctl suspend"
     ;;
 
@@ -38,26 +46,14 @@ darwin)
     fi
     mkdir -p "$XDG_CONFIG_HOME"
 
-    export CLICOLOR=1
     export LSCOLORS=dxfxcxdxbxegedabagacad
     alias ls='ls -h'
 
     # Keep TAR from tarring-up resource forks
     export COPYFILE_DISABLE=true
 
-    # History Management
-    shopt -s histappend
-    export HISTCONTROL=ignoredups:erasedups
-    export HISTSIZE=1000
-
     # Miscellaneous aliases
-    alias flushdns='sudo dscacheutil -flushcache && dscacheutil -flushcache'
-    alias fix_spotlight="find . -type d -path './.*' -prune -o -path './Pictures*' -prune -o -path './Library*' -prune -o -path '*node_modules/*' -prune -o -type d -name 'node_modules' -exec touch '{}/.metadata_never_index' \; -print"
     alias brew-remove="brew list | sort | gum filter --no-limit | xargs brew remove"
-
-    # Print local network adapter IPs and copy them to the clipboard
-    alias en0="ipconfig getifaddr en0 | pbcopy && ipconfig getifaddr en0"
-    alias en1="ipconfig getifaddr en1 | pbcopy && ipconfig getifaddr en1"
 
     # Colored man pages
     export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -103,56 +99,34 @@ PROMPT_COMMAND=prompt_func
 gpg_TTY=$(tty)
 export GPG_TTY=$gpg_TTY
 
-if [[ "$OSTYPE" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
-    export PATH="$PATH:$HOME/.bin-linux"
-fi
-
-function updateinputs() {
-    local inputs
-    inputs="$(nix flake metadata --json | jq -r '.locks.nodes.root.inputs | keys | .[]' | gum filter --no-limit)"
-    printf "Updating the following inputs:\n%s\n" "$input"
-    IFS=$'\n'
-    for input in $inputs; do
-        nix flake update "$input"
-    done
-}
-
-alias delete_pyc='find . -name '\*.pyc' -delete'
-alias delete_orig='find . -name '\*.orig' -delete'
-alias ggbt='go get github.com/charmbracelet/bubbletea/v2@latest'
-alias ggb='go get github.com/charmbracelet/bubbles/v2@latest'
-alias gglg='go get github.com/charmbracelet/lipgloss/v2@latest'
-alias ggg='go get github.com/charmbracelet/glamour/v2/@latest'
-alias ggct='go get github.com/charmbracelet/x/exp/charmtone@main'
-alias lw='ssh localhost -p 23231'
 alias nb='nix build -L'
-alias nr='nix run -L'
+alias nr='nix run -L -j"$(num_cores)"'
 alias nrm='nix run -L -j"$(num_cores)" 2>&1 | tee >(mods "What does this NixOS output mean?")'
-alias sshi='ssh -o IdentitiesOnly=yes'
-alias charm-install='gh repo list charmbracelet | cut -f1 | gum filter --no-limit | xargs -I {} go install -v "github.com/{}@latest"'
 alias code-review='git --no-pager diff | mods -f "code review this patch" | glow'
 alias filterkill='ps | awk "NR>1" | gum choose --header="  Kill Process?" | xargs kill'
-
-alias install-melt="go install -v github.com/charmbracelet/melt/cmd/melt@latest"
-alias install-gum="go install -v github.com/charmbracelet/gum@latest"
 alias tree='tree -C'
+
+# Helper vars
+export MEOW='git@github.com:meowgorithm'
+export GITLAB='git@gitlab.com:meowgorithm'
+export CHARM='git@github.com:charmbracelet'
+export GOCHARM='github.com/charmbracelet'
+export GOMEOW='github.com/charmbracelet'
 
 # shellcheck disable=1091
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
 fi
 
-# Go mod replace helper for Charm stuff
-gmr() {
-    if [[ $# != 2 ]]; then
-        printf 'We need two arguments\n'
-        return
-    fi
-    go mod edit -replace "github.com/charmbracelet/$1=$2"
-}
-
 # Go
 export GOPATH="$HOME/.go"
+
+# GHCUP
+# shellcheck disable=1091
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+
+# Direnv
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 paths=(
     "$HOME/.local/bin"
@@ -170,20 +144,6 @@ for dir in "${paths[@]}"; do
         PATH="${PATH:+"$PATH:"}$dir"
     fi
 done
-
-# GHCUP
-# shellcheck disable=1091
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
-
-# Helper vars
-export MEOW='git@github.com:meowgorithm'
-export GITLAB='git@gitlab.com:meowgorithm'
-export CHARM='git@github.com:charmbracelet'
-export GOCHARM='github.com/charmbracelet'
-export GOMEOW='github.com/charmbracelet'
-
-# Direnv
-command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # Prioritize /usr/bin on macOS
 if [[ "$os" == "darwin" ]]; then
