@@ -58,13 +58,21 @@
         prefix = "m";
         body = "margin: \${1:0};";
       };
-      "Font Size" = {
-        prefix = "fs";
-        body = "font-size: \${1:1rem};";
+      Border = {
+        prefix = "b";
+        body = "border: \${1:1px solid red};";
       };
       "Border Radius" = {
         prefix = "br";
         body = "border-radius: \${1:0};";
+      };
+      "Font Size" = {
+        prefix = "fs";
+        body = "font-size: \${1:1rem};";
+      };
+      "Line Height" = {
+        prefix = "lh";
+        body = "line-height: \${1:120%};";
       };
     };
   };
