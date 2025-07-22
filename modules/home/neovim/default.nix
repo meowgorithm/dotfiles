@@ -11,6 +11,10 @@
       src = inputs."${name}";
     };
 in {
+  imports = [
+    ./vsnip.nix
+  ];
+
   programs.neovim = {
     enable = true;
     viAlias = true;
