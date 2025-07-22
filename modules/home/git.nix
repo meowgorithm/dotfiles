@@ -33,6 +33,7 @@
       housekeeping = "!git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed";
       quickfix = "rebase --interactive HEAD^^";
       wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D";
+      pr = "!gh pr checkout";
       lg = "!git lg1";
       lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
       lg2 = "log --graph --format=format:'%C(117)%h%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all";
