@@ -4,6 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local hi = vim.api.nvim_set_hl
 
+local map = vim.keymap.set
 local nmap = function(lhs, rhs, opts)
 	vim.keymap.set("n", lhs, rhs, opts)
 end
@@ -197,7 +198,31 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Vsnip
-imap("<c-l>", "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-l>'", { expr = true })
+do
+	-- Expand
+	map({ "i", "s" }, "<C-j>", function()
+		return vim.fn["vsnip#expandable"]() == 1 and "<Plug>(vsnip-expand)" or "<C-j>"
+	end, { expr = true, silent = true })
+
+	-- Expand or jump
+	map({ "i", "s" }, "<C-l>", function()
+		return vim.fn == 1 and "<Plug>(vsnip-expand-or-jump)" or "<C-l>"
+	end, { expr = true, silent = true })
+
+	-- Jump forward
+	map({ "i", "s" }, "<Tab>", function()
+		return vim.fn == 1 and "<Plug>(vsnip-jump-next)" or "<Tab>"
+	end, { expr = true, silent = true })
+
+	-- Jump backward
+	map({ "i", "s" }, "<S-Tab>", function()
+		return vim.fn["vsnip#jumpable"](-1) == 1 and "<Plug>(vsnip-jump-prev)" or "<S-Tab>"
+	end, { expr = true, silent = true })
+
+	-- Select or cut text to use as $TM_SELECTED_TEXT in the next snippet
+	map({ "n", "x" }, "s", "<Plug>(vsnip-select-text)", { silent = true })
+	map({ "n", "x" }, "S", "<Plug>(vsnip-cut-text)", { silent = true })
+end
 
 -- Blink
 require("blink.cmp").setup({
