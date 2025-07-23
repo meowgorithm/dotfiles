@@ -82,6 +82,7 @@
     mkSystem = {
       hostname,
       system ? x86_64-linux,
+      user ? "christian",
       default ? false,
       headless ? false,
     }:
@@ -123,9 +124,9 @@
           target =
             if default
             then "default"
-            else "christian@${hostname}";
+            else "${user}@${hostname}";
         in {
-          packages."${system}"."${target}" = self.homeManagerConfigurations."christian@${hostname}".activationPackage;
+          packages."${system}"."${target}" = self.homeManagerConfigurations."${user}@${hostname}".activationPackage;
         }
       );
   in
@@ -142,9 +143,9 @@
         system = x86_64-linux;
       }
       {
-        # iMac Pro
-        hostname = "thunderclap";
-        system = x86_64-darwin;
+        # Mac Studio
+        hostname = "pantera";
+        system = aarch64-darwin;
         default = true;
       }
       {
@@ -157,6 +158,13 @@
         # MacBook Air
         hostname = "la-tigra";
         system = aarch64-darwin;
+      }
+      {
+        # WSL
+        hostname = "wsl";
+        system = aarch64-darwin;
+        user = "chris";
+        headless = true;
       }
     ]);
 }
