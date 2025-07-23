@@ -50,6 +50,18 @@
         prefix = "bgc";
         body = "background-color: \${1:red};";
       };
+      "Background Repeat" = {
+        prefix = "bgr";
+        body = "background-repeat: \${1:no-repeat};";
+      };
+      "Background Postition" = {
+        prefix = "bgp";
+        body = "background-position: \${1:0} \${2:0};";
+      };
+      "Background Size" = {
+        prefix = "bgp";
+        body = "background-size: \${1:100%} \${2:100%};";
+      };
       Padding = {
         prefix = "p";
         body = "padding: \${1:0};";
@@ -59,7 +71,7 @@
         body = "margin: \${1:0};";
       };
       Border = {
-        prefix = "b";
+        prefix = "bo";
         body = "border: \${1:1px solid red};";
       };
       "Border Radius" = {
@@ -73,6 +85,26 @@
       "Line Height" = {
         prefix = "lh";
         body = "line-height: \${1:120%};";
+      };
+      Postition = {
+        prefix = "p";
+        body = "position: \${1:absolute};";
+      };
+      Top = {
+        prefix = "t";
+        body = "top: \${1:0};";
+      };
+      Bottom = {
+        prefix = "b";
+        body = "bottom: \${1:0};";
+      };
+      Left = {
+        prefix = "l";
+        body = "left: \${1:0};";
+      };
+      Right = {
+        prefix = "r";
+        body = "right: \${1:0};";
       };
     };
   };
