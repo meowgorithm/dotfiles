@@ -45,4 +45,6 @@ ensure "V" "v" "install_v"
 
 printf "\n"
 
-brew bundle
+if [[ "$(which_os)" == "darwin" ]]; then
+    brew bundle
+fi
