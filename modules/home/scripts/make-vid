@@ -1,27 +1,18 @@
 #!/bin/bash
+set -euo pipefail
+set -x
 
-source "$HOME/.local/share/meowgorithm/bash_funcs"
-
-if [[ $(command_exists ffmpeg) == 0 ]]; then
+# If ffmpeg is not installed, exit with an error message
+if ! command -v ffmpeg &>/dev/null; then
     printf "Can't find ffmpeg. Please install it (or check your path).\n"
     exit 1
 fi
 
-pngSeq='pngs/frame-%5d.png'
-
-function usage {
-    cmd=$(basename "$0")
-    local cmd
-    printf "Create a video from a PNG sequence.\n\n"
-    printf "Usage:\n"
-    printf "    %s [gif|mp4|webm] framerate width basename [max-gif-colors]\n\n" "$cmd"
-    printf "The input is expected to be a PNG sequence relative to the current\ndirectory with the format 'pngs/frame-%%5d.png'\n"
-}
-
 function makeGIF {
-    local framerate=$1
-    local width=$2
-    local basename=$3
+    local input=$1
+    local framerate=$2
+    local width=$3
+    local basename=$4
     local maxColors=$5
 
     # GIFs of 60fps videos have to be 50fps
@@ -34,35 +25,38 @@ function makeGIF {
     fi
 
     ffmpeg \
+        -i "$input" \
         -framerate "$framerate" \
-        -i $pngSeq \
         -vf "fps=$framerate,scale=$width:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=${maxColors}[p];[s1][p]paletteuse" \
-        "$basename".gif
+        "${basename}.gif"
 }
 
 function makeMP4 {
-    local framerate=$1
-    local width=$2
-    local basename=$3
+    local input=$1
+    local framerate=$2
+    local width=$3
+    local basename=$4
 
     ffmpeg \
-         -framerate "$framerate" \
-         -i $pngSeq \
-         -vcodec libx264 \
-         -pix_fmt yuv420p \
-         -an \
-         -crf 20 \
-         -filter:v scale="$width":-1 \
-         "${basename}.mp4"
+        -i "$input" \
+        -framerate "$framerate" \
+        -vcodec libx264 \
+        -pix_fmt yuv420p \
+        -an \
+        -crf 20 \
+        -filter:v scale="$width":-1 \
+        "${basename}.mp4"
 }
 
 function makeWebM {
-    local framerate=$1
-    local width=$2
-    local basename=$3
+    local input=$1
+    local framerate=$2
+    local width=$3
+    local basename=$4
 
-    ffmpeg -framerate "$framerate" \
-        -i $pngSeq \
+    ffmpeg \
+        -i "$input" \
+        -framerate "$framerate" \
         -pix_fmt yuv420p \
         -an \
         -crf 30 \
@@ -71,17 +65,58 @@ function makeWebM {
         "${basename}.webm"
 }
 
-if [[ $# -lt 4 || $1 == "-h" ]]; then
-    usage
+function requirePostiveInt {
+    if [[ ! $2 =~ ^[0-9]+$ ]]; then
+        printf "%s must be a positive integer.\n" "$1"
+        exit 1
+    fi
+}
+
+input="$(gum file --header "Input")"
+if [[ ! -f "$input" ]]; then
+    printf "Input file '%s' does not exist.\n" "$input"
     exit 1
 fi
 
-case $1 in
-    gif)
-        if [[ $# -lt 5 ]]; then exit 1; fi
-        makeGIF "$2" "$3" "$4" "$5"
-        ;;
-    mp4)  makeMP4 "$2" "$3" "$4" ;;
-    webm) makeWebM "$2" "$3" "$4" ;;
-    *)    usage ;;
+outputBase="$(gum input --header "Output base name" --value="$(basename "${input%.*}")")"
+if [[ -z $outputBase ]]; then
+    printf "Output base name cannot be empty.\n"
+    exit 1
+fi
+
+framerate="$(gum input --header "Framerate" --value="24")"
+requirePostiveInt "Framerate" "$framerate"
+
+width="$(gum input --header "Width" --value="1920")"
+requirePostiveInt "Width" "$width"
+
+type="$(gum choose --header "Output type" "gif" "mp4" "webm")"
+if [[ -z $type ]]; then
+    printf "No output type selected.\n"
+    exit 1
+fi
+
+maxColors=""
+if [[ $type == "gif" ]]; then
+    maxColors="$(gum input --header "Max GIF colors" --value="256")"
+    if [[ ! $maxColors =~ ^[0-9]+$ ]]; then
+        printf "Max GIF colors must be a positive integer.\n"
+        exit 1
+    fi
+fi
+
+case $type in
+gif)
+    makeGIF "$input" "$framerate" "$width" "$outputBase" "$maxColors"
+    ;;
+mp4)
+    makeMP4 "$input" "$framerate" "$width" "$outputBase"
+    ;;
+webm)
+    makeWebM "$input" "$framerate" "$width" "$outputBase"
+    ;;
+*)
+    printf "Unknown output type '%s'.\n" "$type"
+    exit 1
+    ;;
 esac
