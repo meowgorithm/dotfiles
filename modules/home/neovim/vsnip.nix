@@ -87,7 +87,7 @@
         body = "line-height: \${1:120%};";
       };
       Postition = {
-        prefix = "p";
+        prefix = "pos";
         body = "position: \${1:absolute};";
       };
       Top = {
