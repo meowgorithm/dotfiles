@@ -162,7 +162,7 @@
       {
         # WSL
         hostname = "wsl";
-        system = aarch64-darwin;
+        system = x86_64-linux;
         user = "chris";
         headless = true;
       }
