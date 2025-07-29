@@ -29,6 +29,7 @@ system cores and use the `-j` flag to speed up builds, e.g. `nix build -j 32`.
 
 ### Nix Files
 
+- When creating modules, prefer single file (`name.nix`) over directories (`./name/default.nix`)
 - Format all files with `alejandra`
 - Function parameters on separate lines with `}:`
 - `let...in` blocks for local bindings
@@ -56,4 +57,3 @@ system cores and use the `-j` flag to speed up builds, e.g. `nix build -j 32`.
 - Use `lib.mkIf` for conditionals
 - Platform-specific with `pkgs.stdenv.isDarwin`
 - Optional modules with `lib.optionals`
-
