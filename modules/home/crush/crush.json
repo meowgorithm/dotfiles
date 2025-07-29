@@ -1,0 +1,33 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "Go": {
+      "command": "gopls"
+    },
+    "Bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ]
+    },
+    "Nix": {
+      "command": "nil"
+    },
+    "Haskell": {
+      "command": "haskell-language-server-wrapper"
+    }
+  },
+  "mcp": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
+      }
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
