@@ -1,5 +1,12 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.rio];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages =
+    if pkgs.stdenv.isLinux
+    then [pkgs.rio]
+    else [];
 
   xdg.configFile."rio/config.toml".text = let
     colors =
