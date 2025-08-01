@@ -91,6 +91,7 @@ in {
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     _1password-gui
+    adwaita-icon-theme
     air
     alejandra
     bash
