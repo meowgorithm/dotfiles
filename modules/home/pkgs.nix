@@ -12,8 +12,6 @@
 in {
   home.packages = with pkgs;
     [
-      age
-      awscli2
       bc
       brotli
       cargo
@@ -22,12 +20,9 @@ in {
       ctags
       curl
       direnv
-      doctl
       duf
-      elvish
       faketty
       ffmpeg
-      fish
       fzf
       getopt
       gh
@@ -44,14 +39,11 @@ in {
       libwebp
       luajit
       moreutils
-      mosh
-      ngrok
       optipng
       postgresql
       python3
       redis
       ripgrep
-      rpm
       shellcheck
       shfmt
       simple-http-server
@@ -60,7 +52,6 @@ in {
       ttyd
       viu
       wget
-      yq
       z-lua
       zlib
       zopfli
