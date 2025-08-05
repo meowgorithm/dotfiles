@@ -21,3 +21,5 @@ cask "whatsapp"
 mas "1Password for Safari", id: 1569813296
 mas "Compressor", id: 424390742
 mas "Icon Slate", id: 439697913
+mas "Microsoft Excel", id: id462058435
+mas "Microsoft Word", id: id462054704
