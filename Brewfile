@@ -2,6 +2,7 @@ brew "nodejs"
 
 cask "1password"
 cask "adobe-creative-cloud"
+cask "blender"
 cask "cleanshot"
 cask "discord"
 cask "dropbox"
