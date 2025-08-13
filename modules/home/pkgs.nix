@@ -55,6 +55,7 @@ in {
       z-lua
       zlib
       zopfli
+      qemu
     ]
     # Haskell
     ++ (with pkgs.haskellPackages; [
