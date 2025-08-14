@@ -133,7 +133,7 @@
     lib.foldr lib.recursiveUpdate {} (map mkSystem [
       {
         # NixOS Desktop
-        hostname = "whitenoise";
+        hostname = "el-gato";
         system = x86_64-linux;
         default = true;
       }
