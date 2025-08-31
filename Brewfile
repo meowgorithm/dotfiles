@@ -1,6 +1,7 @@
 brew "nodejs"
 
 cask "1password"
+cask "airflow"
 cask "adobe-creative-cloud"
 cask "blender"
 cask "cleanshot"
