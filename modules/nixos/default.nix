@@ -71,18 +71,71 @@ hostname: {
     # cudatoolkit
 
     cachix
-    curl
     faac
     faad2
     git
     gnupg
-    lguf-brightness
     lsof
     pinentry
     sqlite-interactive
     tmux
     vim
+
+    alejandra
+    bash-language-server
+    brotli
+    cargo
+    clang
+    coreutils
+    curl
+    direnv
+    duf
+    element
+    elmPackages.elm
+    elmPackages.elm-language-server
+    ffmpeg
+    fzf
+    getopt
+    gh
+    gnumake
+    gnupg
+    gnused
+    gnutar
+    go-task
+    haskellPackages.cabal-fmt
+    htop
+    imagemagick
+    jq
+    librsvg
+    libwebp
+    lua-language-server
+    luajit
+    moreutils
+    nil
+    nodePackages_latest.prettier
+    nodePackages_latest.svgo
+    optipng
+    postgresql
+    python3
+    redis
+    ripgrep
+    semgrep
+    shellcheck
+    shfmt
+    simple-http-server
+    stylua
+    tree
+    tree-sitter
+    ttyd
+    vim-language-server
+    vscode
+    vscode-langservers-extracted
     wget
+    wget
+    yaml-language-server
+    z-lua
+    zlib
+    zopfli
   ];
 
   fonts.packages = with pkgs; [
