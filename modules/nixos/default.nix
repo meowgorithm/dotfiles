@@ -135,6 +135,15 @@ hostname: {
     z-lua
     zlib
     zopfli
+
+    delve
+    go
+    gofumpt
+    golangci-lint
+    golangci-lint-langserver
+    gopls
+    goreleaser
+    gotools
   ];
 
   fonts.packages = with pkgs; [

@@ -160,7 +160,6 @@ in
         ./fonts.nix
         ./fourmolu
         ./git.nix
-        ./go.nix
         ./gpg.nix
         ./helix
         ./kakoune
