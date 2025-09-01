@@ -33,12 +33,7 @@ debian)
     ;;
 
 darwin)
-    # Brew on Apple Silicon lives in /opt/homebrew and needs to initialize
-    # in the shell with a script.
-    bash_bin_arm="/opt/homebrew/bin/brew"
-    if [[ $(uname -m) == "arm64" && -f $bash_bin_arm ]]; then
-        eval "$("$bash_bin_arm" shellenv)"
-    fi
+    eval "$(brew shellenv)"
 
     # Make sure XDG_CONFIG_HOME is a thing
     if [[ -z $XDG_CONFIG_HOME ]]; then
