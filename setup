@@ -36,8 +36,6 @@ install_v() {
     cd "$here"
 }
 
-ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
-ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
 ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
 ensure "Fourmolu" "fourmolu" "cabal install fourmolu -j$(num_cores)"
 ensure "Floskell" "floskell" "cabal install floskell -j$(num_cores)"
@@ -46,5 +44,7 @@ ensure "V" "v" "install_v"
 printf "\n"
 
 if [[ "$(which_os)" == "darwin" ]]; then
+    ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
+    ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
     brew bundle
 fi
