@@ -122,7 +122,6 @@ hostname: {
     semgrep
     shellcheck
     shfmt
-    simple-http-server
     stylua
     tree
     tree-sitter

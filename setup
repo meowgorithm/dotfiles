@@ -46,5 +46,7 @@ printf "\n"
 if [[ "$(which_os)" == "darwin" ]]; then
     ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
     ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+    cabal update
+    ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
     brew bundle
 fi
