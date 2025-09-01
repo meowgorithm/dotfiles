@@ -18,7 +18,6 @@ in {
       clang
       coreutils
       ctags
-      curl
       direnv
       duf
       faketty

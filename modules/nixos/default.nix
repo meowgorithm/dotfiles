@@ -68,8 +68,10 @@ hostname: {
 
   environment.systemPackages = with pkgs; [
     # blender
-    cachix
     # cudatoolkit
+
+    cachix
+    curl
     faac
     faad2
     git

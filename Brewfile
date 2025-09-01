@@ -1,3 +1,4 @@
+brew "curl"
 brew "nodejs"
 
 cask "1password"
