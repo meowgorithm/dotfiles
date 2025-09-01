@@ -123,6 +123,15 @@ export GOPATH="$HOME/.go"
 # Direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
+# z.lua
+case "$os" in
+darwin)
+    zluaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua"
+    # shellcheck disable=1090
+    [ -f "$zluaPath" ] && eval "$(lua "$zluaPath" --init bash)"
+    ;;
+esac
+
 paths=(
     "$HOME/.local/bin"
     "$HOME/.nix-profile/bin"
