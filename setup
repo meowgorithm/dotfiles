@@ -36,9 +36,15 @@ install_v() {
     cd "$here"
 }
 
+cabal_install() {
+    local pkg="$1"
+    cabal install "$pkg" -j"$(num_cores)" --overwrite-policy=always
+}
+
 ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-ensure "Fourmolu" "fourmolu" "cabal install fourmolu -j$(num_cores)"
-ensure "Floskell" "floskell" "cabal install floskell -j$(num_cores)"
+cabal update
+ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
+ensure "Floskell" "floskell" "cabal_install floskell"
 ensure "V" "v" "install_v"
 
 printf "\n"
@@ -46,7 +52,6 @@ printf "\n"
 if [[ "$(which_os)" == "darwin" ]]; then
     ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
     ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-    cabal update
     ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
     brew bundle
 fi
