@@ -2,7 +2,9 @@ hostname: {
   pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  mainUser = "christian";
+in {
   imports = [
     ./hardware-config-${hostname}.nix
     ./cachix.nix
@@ -10,7 +12,7 @@ hostname: {
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["root" "christian"];
+    trusted-users = ["root" mainUser];
   };
 
   nixpkgs.config = {
@@ -60,11 +62,18 @@ hostname: {
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
+  # Hyprland
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # Virt Manager
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [mainUser];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   environment.systemPackages = with pkgs; [
     # blender
@@ -158,7 +167,7 @@ hostname: {
   ];
 
   security.sudo.wheelNeedsPassword = false;
-  users.users.christian = {
+  users.users.${mainUser} = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker"];
     openssh.authorizedKeys.keys = [
