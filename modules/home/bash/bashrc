@@ -33,7 +33,7 @@ debian)
     ;;
 
 darwin)
-    eval "$(brew shellenv)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # Make sure XDG_CONFIG_HOME is a thing
     if [[ -z $XDG_CONFIG_HOME ]]; then
