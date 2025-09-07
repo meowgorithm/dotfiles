@@ -152,3 +152,5 @@ if [[ $os = "darwin" ]]; then
 else
     link "$OP" "kitty/linux.conf" "$HOME/.config/kitty/os.conf"
 fi
+
+link "$OP" "fourmolu/fourmolu.yaml" "$HOME/.config/fourmolu.yaml"

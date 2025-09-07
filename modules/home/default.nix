@@ -158,7 +158,6 @@ in
         ./emacs
         ./floskell
         ./fonts.nix
-        ./fourmolu
         ./gpg.nix
         ./helix
         ./kakoune
@@ -174,7 +173,6 @@ in
       ]
       ++ (lib.optionals (! headless) [
         ./alacritty.nix
-        ./kitty.nix
         ./ghostty.nix
       ])
       ++ extraModules;
