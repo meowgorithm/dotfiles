@@ -1,0 +1,47 @@
+[user]
+	email = "christian@rocha.is"
+	name = "Christian Rocha"
+	signingKey = "92B3C5E83E309FE64CB2F833589F6FDD5B820611"
+
+[core]
+	editor = "nvim"
+
+[color]
+	ui = true
+
+[alias]
+	ci = "commit"
+	co = "checkout"
+	count = "!git log --pretty=oneline | wc -l | tr -d ' ' | sed 's/$/ commits/'"
+	housekeeping = "!git fsck && git fsck --unreachable && git gc --aggressive --prune && git prune && git prune-packed"
+	lg = "!git lg1"
+	lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+	lg2 = "log --graph --format=format:'%C(117)%h%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all"
+	lgs = "log --graph --format=format:'%C(117)%h%C(reset) %C(226)%G?%C(reset) %s %C(dim white)%ar%C(reset) %C(181)%ae%C(reset) %C(141)%d%C(reset)' --all"
+	pr = "!gh pr checkout"
+	quickfix = "rebase --interactive HEAD^^"
+	rs = "restore --staged"
+	st = "status"
+	sync = "fetch --all --tags --prune"
+	wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D"
+
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+
+[gpg]
+	format = "openpgp"
+
+[gpg "openpgp"]
+	program = "gpg"
+
+[commit]
+	gpgSign = true
+
+[tag]
+	gpgSign = true
+
+[filter "lfs"]
+	clean = "git-lfs clean -- %f"
+	process = "git-lfs filter-process"
+	required = true
+	smudge = "git-lfs smudge -- %f"

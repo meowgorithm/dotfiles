@@ -159,7 +159,6 @@ in
         ./floskell
         ./fonts.nix
         ./fourmolu
-        ./git.nix
         ./gpg.nix
         ./helix
         ./kakoune

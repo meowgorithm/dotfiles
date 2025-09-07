@@ -65,7 +65,7 @@ link() {
         mkdir -p "$(dirname "$target")"
         if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
             # Link already exists.
-            echo "$SKIP Link $target -> $source exists"
+            echo "$SKIP Link $source -> $target exists"
         elif [ -L "$target" ]; then
             # Wrong symlink exists, just replace it.
             ln -sf "$source" "$target"
@@ -140,4 +140,5 @@ if [[ $OP == "update" ]]; then
     fi
 fi
 
+link "$OP" "git/config" "$HOME/.config/git/config"
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
