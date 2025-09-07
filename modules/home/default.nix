@@ -177,7 +177,6 @@ in
         ./alacritty.nix
         ./kitty.nix
         ./ghostty.nix
-        ./rio.nix
       ])
       ++ extraModules;
   }

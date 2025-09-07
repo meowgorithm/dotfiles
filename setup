@@ -5,6 +5,80 @@ source "$PWD/modules/home/bash/bash_funcs"
 
 GREEN_CHECK="$(printf '\x1b[32m✓\x1b[m')"
 
+BLACK=0
+GREEN=2
+YELLOW=3
+BLUE=4
+WHITE=7
+
+status() {
+    local text="$1"
+    local bg_color="$2"
+    local fg_color="$3"
+
+    # Convert color numbers to ANSI codes
+    local bg_code=$((bg_color < 8 ? bg_color + 40 : bg_color + 92))
+    local fg_code=$((fg_color < 8 ? fg_color + 30 : fg_color + 82))
+
+    local padding
+    padding=6
+    printf "\x1b[1;${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
+}
+
+SKIP="$(status "SKIP" "$BLUE" "$WHITE")"
+LINKED="$(status "LINKED" "$GREEN" "$BLACK")"
+BACKUP="$(status "BACKUP" "$YELLOW" "$BLACK")"
+UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
+
+link() {
+    local op="$1"
+    local source="$PWD/$2"
+    local target="$3"
+
+    if [[ $op == "remove" ]]; then
+        # Remove symlink.
+
+        if [ -L "$target" ]; then
+            rm "$target"
+            echo "$UNLINKED $target"
+        else
+            echo "$SKIP No symlink to unlink at $target"
+        fi
+
+    else
+        # Create symlink.
+
+        mkdir -p "$(dirname "$target")"
+        if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
+            # Link already exists.
+            echo "$SKIP Link $target -> $source exists"
+        elif [ -L "$target" ]; then
+            # Wrong symlink exists, just replace it.
+            ln -sf "$source" "$target"
+            echo "$LINKED $1 -> $target (replaced wrong symlink)"
+        elif [ -e "$target" ]; then
+            # There's a real file/directory there. Back it up, then link.
+            mv "$target" "$target.backup.$(date +%s)"
+            ln -sf "$source" "$target"
+            echo "$BACKUP Linked $source to $target (backed up existing)"
+        else
+            # Nothing there, create link.
+            ln -sf "$source" "$target"
+            echo "$LINKED $1 -> $target"
+        fi
+
+    fi
+}
+
+unlink() {
+    local target="$1"
+}
+
+OP="$1"
+if [[ "$OP" != "remove" ]]; then
+    OP="link"
+fi
+
 ensure() {
     local name="$1"
     local cmd="$2"
@@ -46,6 +120,8 @@ cabal update
 ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
 ensure "Floskell" "floskell" "cabal_install floskell"
 ensure "V" "v" "install_v"
+
+link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
 
 printf "\n"
 
