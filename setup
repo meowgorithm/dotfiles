@@ -3,6 +3,20 @@ set -euo pipefail
 
 source "$PWD/modules/home/bash/bash_funcs"
 
+usage() {
+    echo "Usage: $0 [link|remove|update]"
+    exit 1
+}
+
+OP="${1:-}"
+if [[ "$OP" == "" ]]; then
+    OP="link"
+fi
+
+if [[ "$OP" != "link" && "$OP" != "remove" && "$OP" != "update" ]]; then
+    usage
+fi
+
 GREEN_CHECK="$(printf '\x1b[32m✓\x1b[m')"
 
 BLACK=0
@@ -11,6 +25,7 @@ YELLOW=3
 BLUE=4
 WHITE=7
 
+# Print a status message with colors.
 status() {
     local text="$1"
     local bg_color="$2"
@@ -25,11 +40,13 @@ status() {
     printf "\x1b[1;${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
 }
 
+# Rendered status messages.
 SKIP="$(status "SKIP" "$BLUE" "$WHITE")"
 LINKED="$(status "LINKED" "$GREEN" "$BLACK")"
 BACKUP="$(status "BACKUP" "$YELLOW" "$BLACK")"
 UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
 
+# Create or remove a symlink.
 link() {
     local op="$1"
     local source="$PWD/$2"
@@ -37,17 +54,14 @@ link() {
 
     if [[ $op == "remove" ]]; then
         # Remove symlink.
-
         if [ -L "$target" ]; then
             rm "$target"
             echo "$UNLINKED $target"
         else
             echo "$SKIP No symlink to unlink at $target"
         fi
-
     else
         # Create symlink.
-
         mkdir -p "$(dirname "$target")"
         if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
             # Link already exists.
@@ -66,19 +80,10 @@ link() {
             ln -sf "$source" "$target"
             echo "$LINKED $1 -> $target"
         fi
-
     fi
 }
 
-unlink() {
-    local target="$1"
-}
-
-OP="$1"
-if [[ "$OP" != "remove" ]]; then
-    OP="link"
-fi
-
+# Ensure a command exists. If it does not, install it using the given command.
 ensure() {
     local name="$1"
     local cmd="$2"
@@ -98,6 +103,13 @@ ensure() {
     fi
 }
 
+# Install a Haskell package using cabal.
+cabal_install() {
+    local pkg="$1"
+    cabal install "$pkg" -j"$(num_cores)" --overwrite-policy=always
+}
+
+# Install the V programming language from source.
 install_v() {
     local here="$PWD"
     local targetDir="$HOME/src/v"
@@ -110,24 +122,22 @@ install_v() {
     cd "$here"
 }
 
-cabal_install() {
-    local pkg="$1"
-    cabal install "$pkg" -j"$(num_cores)" --overwrite-policy=always
-}
+# Generally install or update stuff.
+if [[ $OP == "update" ]]; then
+    ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
+    cabal update
+    ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
+    ensure "Floskell" "floskell" "cabal_install floskell"
+    ensure "V" "v" "install_v"
 
-ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-cabal update
-ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
-ensure "Floskell" "floskell" "cabal_install floskell"
-ensure "V" "v" "install_v"
+    printf "\n"
+
+    if [[ "$(which_os)" == "darwin" ]]; then
+        ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
+        ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
+        brew bundle
+    fi
+fi
 
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
-
-printf "\n"
-
-if [[ "$(which_os)" == "darwin" ]]; then
-    ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
-    ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-    ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
-    brew bundle
-fi
