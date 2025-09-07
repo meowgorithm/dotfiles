@@ -12,7 +12,7 @@ args = []
 width = 600
 height = 640
 mode = "Windowed"
-opacity = 0.75
+opacity = 0.97
 blur = true
 decorations = "Buttonless"
 
