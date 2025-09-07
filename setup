@@ -122,6 +122,8 @@ install_v() {
     cd "$here"
 }
 
+os="$(which_os)"
+
 # Generally install or update stuff.
 if [[ $OP == "update" ]]; then
     ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
@@ -142,3 +144,11 @@ fi
 
 link "$OP" "git/config" "$HOME/.config/git/config"
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
+
+# Kitty.
+link "$OP" "kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+if [[ $os = "darwin" ]]; then
+    link "$OP" "kitty/darwin.conf" "$HOME/.config/kitty/os.conf"
+else
+    link "$OP" "kitty/linux.conf" "$HOME/.config/kitty/os.conf"
+fi
