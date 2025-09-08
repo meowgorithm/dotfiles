@@ -153,7 +153,6 @@ in
             + home.username;
         }
         ./bash
-        ./crush
         ./darwin-app-activation.nix
         ./emacs
         ./floskell

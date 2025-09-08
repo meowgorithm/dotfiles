@@ -9,12 +9,6 @@
       "args": [
         "start"
       ]
-    },
-    "Nix": {
-      "command": "nil"
-    },
-    "Haskell": {
-      "command": "haskell-language-server-wrapper"
     }
   },
   "mcp": {

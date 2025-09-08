@@ -144,6 +144,7 @@ fi
 
 link "$OP" "git/config" "$HOME/.config/git/config"
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
+link "$OP" "crush" "$HOME/.config/crush"
 
 # Kitty.
 link "$OP" "kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
