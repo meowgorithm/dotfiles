@@ -127,6 +127,9 @@ in {
     python3
     redis
     ripgrep
+    rust-analyzer
+    rust-fmt
+    rustc
     semgrep
     shellcheck
     shfmt

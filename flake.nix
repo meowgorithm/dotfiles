@@ -7,14 +7,6 @@
   inputs.carlos.url = "github:caarlos0/nur";
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
 
-  # NeoVim Plugins
-  inputs.smear.url = "github:sphamba/smear-cursor.nvim";
-  inputs.smear.flake = false;
-
-  # Lua fzy implementation
-  inputs.fzyLua.url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";
-  inputs.fzyLua.flake = false;
-
   # Fonts
   inputs.anchor.url = "git+ssh://git.rocha.is/anchor";
   inputs.anchor.flake = false;

@@ -1,15 +1,5 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{pkgs, ...}: let
   colorscheme = (import ./colorscheme.nix) pkgs.lib;
-
-  buildVimPlugin = name:
-    pkgs.vimUtils.buildVimPlugin {
-      name = name;
-      src = inputs."${name}";
-    };
 in {
   imports = [
     ./vsnip.nix
@@ -62,9 +52,6 @@ in {
             typescript
           ]
       ))
-
-      # Plugins not in nixpkgs
-      # (buildVimPlugin "smear")
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./init.lua}

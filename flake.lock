@@ -88,18 +88,6 @@
         "type": "github"
       }
     },
-    "fzyLua": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-HQDjDNNumHvbdskPPL1iUPyZzULf5iINZKhsDNnhPtk=",
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua"
-      }
-    },
     "gabriello": {
       "flake": false,
       "locked": {
@@ -363,7 +351,6 @@
         "benjamins-gothic": "benjamins-gothic",
         "carlos": "carlos",
         "charm": "charm",
-        "fzyLua": "fzyLua",
         "gabriello": "gabriello",
         "gelion": "gelion",
         "home-manager": "home-manager",
@@ -381,7 +368,6 @@
         "rois": "rois",
         "saans": "saans",
         "sf-mono": "sf-mono",
-        "smear": "smear",
         "symbolset": "symbolset",
         "untitled-sans": "untitled-sans",
         "upton": "upton"
@@ -417,22 +403,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git.rocha.is/sf-mono"
-      }
-    },
-    "smear": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1755687748,
-        "narHash": "sha256-DiUGH08yoC/LMJww2O4ZOsZYYurKYmQWTnY/vmnlqAM=",
-        "owner": "sphamba",
-        "repo": "smear-cursor.nvim",
-        "rev": "4b86df8a0c5f46e708616b21a02493bb0e47ecbd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sphamba",
-        "repo": "smear-cursor.nvim",
-        "type": "github"
       }
     },
     "symbolset": {
