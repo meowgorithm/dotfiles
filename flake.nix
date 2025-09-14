@@ -15,14 +15,6 @@
   inputs.fzyLua.url = "https://raw.githubusercontent.com/swarn/fzy-lua/a3f1dd75725b535e6b00af84048c7e066432f530/src/fzy_lua.lua";
   inputs.fzyLua.flake = false;
 
-  # macOS stuff
-  inputs.mkAlias.url = "github:cdmistman/mkAlias";
-  # inputs.mkAlias.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.dozer.url = "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg";
-  inputs.dozer.flake = false;
-  inputs.monitorcontrol.url = "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg";
-  inputs.monitorcontrol.flake = false;
-
   # Fonts
   inputs.anchor.url = "git+ssh://git.rocha.is/anchor";
   inputs.anchor.flake = false;
@@ -76,7 +68,6 @@
     lib = nixpkgs.lib;
 
     x86_64-linux = "x86_64-linux";
-    x86_64-darwin = "x86_64-darwin";
     aarch64-darwin = "aarch64-darwin";
 
     mkSystem = {

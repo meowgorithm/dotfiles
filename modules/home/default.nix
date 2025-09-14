@@ -52,25 +52,6 @@
     "svu"
   ];
 
-  # Build a macOS application from a DMG. Will do nothing if the OS is not
-  # macOS.
-  mkDmg = name: appName: src: let
-    mkIfDarwin = pkgs.lib.mkIf pkgs.stdenv.isDarwin;
-  in
-    mkIfDarwin (pkgs.stdenv.mkDerivation {
-      inherit name src;
-      buildInputs = with pkgs; [undmg];
-      sourceRoot = "${appName}.app";
-      phases = ["unpackPhase" "installPhase"];
-      unpackPhase = ''
-        undmg "${src}";
-      '';
-      installPhase = ''
-        mkdir -p "$out/Applications/${appName}.app"
-        cp -pR * "$out/Applications/${appName}.app"
-      '';
-    });
-
   overlays = [
     # Add packages from NURs
     (
@@ -83,14 +64,6 @@
           (map (useNurPkg "charm") charmPkgs)
           ++ (map (useNurPkg "carlos") carlosPkgs)
         )
-    )
-
-    # macOS applications
-    (
-      self: super: {
-        dozer = mkDmg "dozer" "Dozer" inputs.dozer;
-        monitorcontrol = mkDmg "monitorcontrol" "MonitorControl" inputs.monitorcontrol;
-      }
     )
 
     # Custom fonts
@@ -153,7 +126,6 @@ in
             + home.username;
         }
         ./bash
-        ./darwin-app-activation.nix
         ./emacs
         ./floskell
         ./fonts.nix

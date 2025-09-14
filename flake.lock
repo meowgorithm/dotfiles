@@ -88,18 +88,6 @@
         "type": "github"
       }
     },
-    "dozer": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-xmh5HiITXyPmH3RMSx6xy0vvis8wFrtowvbblcGCfPw=",
-        "type": "file",
-        "url": "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/Mortennn/Dozer/releases/download/v4.0.0/Dozer.4.0.0.dmg"
-      }
-    },
     "fzyLua": {
       "flake": false,
       "locked": {
@@ -210,36 +198,6 @@
         "url": "ssh://git.rocha.is/maru"
       }
     },
-    "mkAlias": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1678667396,
-        "narHash": "sha256-00gStGvYNlFi9d9e2KJr9qXlcJotry7YfZyv2NCAThE=",
-        "owner": "cdmistman",
-        "repo": "mkAlias",
-        "rev": "ab1afe594a3da8be30814b735cc5ad53d7c326f7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cdmistman",
-        "repo": "mkAlias",
-        "type": "github"
-      }
-    },
-    "monitorcontrol": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-I5Opt4Ql+2TyomtgWcM5eX+oY1MVhdFxg/e14yTjxYQ=",
-        "type": "file",
-        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/MonitorControl/MonitorControl/releases/download/v4.3.3/MonitorControl.4.3.3.dmg"
-      }
-    },
     "monoflow": {
       "flake": false,
       "locked": {
@@ -321,22 +279,6 @@
       }
     },
     "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1677624842,
-        "narHash": "sha256-4DF9DbDuK4/+KYx0L6XcPBeDHUFVCtzok2fWtwXtb5w=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d70f5cd5c3bef45f7f52698f39e7cc7a89daa7f0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-22.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
       "locked": {
         "lastModified": 1756536218,
         "narHash": "sha256-ynQxPVN2FIPheUgTFhv01gYLbaiSOS7NgWJPm9LF9D0=",
@@ -421,7 +363,6 @@
         "benjamins-gothic": "benjamins-gothic",
         "carlos": "carlos",
         "charm": "charm",
-        "dozer": "dozer",
         "fzyLua": "fzyLua",
         "gabriello": "gabriello",
         "gelion": "gelion",
@@ -429,13 +370,11 @@
         "larsseit": "larsseit",
         "liza": "liza",
         "maru": "maru",
-        "mkAlias": "mkAlias",
-        "monitorcontrol": "monitorcontrol",
         "monoflow": "monoflow",
         "mononoki": "mononoki",
         "mori": "mori",
         "neufile-grotesk": "neufile-grotesk",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "pangaia": "pangaia",
         "pique": "pique",
         "rifton": "rifton",

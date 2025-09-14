@@ -11,9 +11,7 @@ in {
   # macOS
     (lib.optionals isDarwin (with pkgs; [
       cachix
-      dozer
       elmPackages.elm-language-server
-      monitorcontrol
       nil
       vim-language-server
     ]))
