@@ -130,7 +130,6 @@ in
         ./floskell
         ./fonts.nix
         ./gpg.nix
-        ./helix
         ./kakoune
         ./neovim
         ./nushell.nix

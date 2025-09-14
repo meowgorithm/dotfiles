@@ -87,8 +87,6 @@ in {
     lsof
     pinentry
     sqlite-interactive
-    tmux
-    vim
 
     alejandra
     bash-language-server
@@ -112,6 +110,7 @@ in {
     gnutar
     go-task
     haskellPackages.cabal-fmt
+    helix
     htop
     imagemagick
     jq
@@ -132,9 +131,11 @@ in {
     shellcheck
     shfmt
     stylua
+    tmux
     tree
     tree-sitter
     ttyd
+    vim
     vim-language-server
     vscode
     vscode-langservers-extracted

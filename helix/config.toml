@@ -1,0 +1,59 @@
+theme = "charm"
+
+[editor]
+auto-format = true
+color-modes = true
+cursorline = true
+end-of-line-diagnostics = "hint"
+rulers = [80]
+true-color = true
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "error"
+
+[editor.lsp]
+display-inlay-hints = false
+display-messages = true
+
+[editor.statusline]
+center = []
+left = ["mode", "spinner", "file-name"]
+right = [
+    "diagnostics",
+    "selections",
+    "position",
+    "file-encoding",
+    "file-line-ending",
+    "file-type",
+    "version-control",
+]
+
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
+
+[keys.normal]
+D = ["select_mode", "goto_line_end", "delete_selection", "normal_mode"]
+X = "extend_line_above"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+[keys.normal.g]
+C = ":buffer-close-others"
+R = ":reload-all"
+W = ":set whitespace.render none"
+q = ":reflow"
+w = ":set whitespace.render all"
+
+[keys.normal.g.F]
+O = ":set auto-format true"
+o = ":set auto-format false"
+
+[keys.normal.space]
+D = ":toggle end-of-line-diagnostics disable hint"
+H = ":toggle lsp.display-inlay-hints"
+q = ":quit"
+w = ":write"
+

@@ -1,0 +1,83 @@
+[[language]]
+auto-format = true
+language-servers = ["nil", "copilot"]
+name = "nix"
+
+[language.formatter]
+command = "alejandra"
+
+[[language]]
+auto-format = true
+language-servers = ["haskell-language-server-wrapper", "copilot"]
+name = "haskell"
+
+[language.formatter]
+command = "fourmolu"
+
+[[language]]
+auto-format = true
+file-types = ["cabal"]
+name = "cabal"
+roots = []
+scope = ""
+
+[language.formatter]
+command = "cabal-fmt"
+
+[[language]]
+language-servers = ["gopls", "copilot"]
+name = "go"
+
+[language.formatter]
+command = "goimports"
+
+[[language]]
+auto-format = true
+name = "lua"
+
+[[language]]
+auto-format = false
+name = "html"
+
+[language.formatter]
+args = ["--parser", "html", "--tab-width", "2"]
+command = "prettier"
+
+[language.indent]
+tab-width = 2
+unit = " "
+
+[[language]]
+language-servers = ["css-languageserver", "copilot"]
+name = "css"
+
+[language.formatter]
+args = ["--parser", "css", "--tab-width", "2"]
+command = "prettier"
+
+[language.indent]
+tab-width = 4
+unit = " "
+
+[[language]]
+auto-format = true
+language-servers = ["typescript-language-server", "copilot"]
+name = "typescript"
+
+[language.formatter]
+args = ["--parser", "typescript", "--tab-width", "4"]
+command = "prettier"
+
+[language.indent]
+tab-width = 4
+unit = " "
+
+[[language]]
+file-types = ["svg"]
+name = "svg"
+roots = []
+scope = ""
+
+[language.formatter]
+args = ["--pretty", "-"]
+command = "svgo"

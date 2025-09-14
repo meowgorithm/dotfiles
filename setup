@@ -146,6 +146,7 @@ link "$OP" "git/config" "$HOME/.config/git/config"
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
 link "$OP" "crush/config.json" "$HOME/.config/crush/crush.json"
 link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
+link "$OP" "helix" "$HOME/.config/helix"
 
 # Kitty.
 link "$OP" "kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
