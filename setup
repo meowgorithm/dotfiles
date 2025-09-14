@@ -8,11 +8,11 @@ usage() {
     exit 1
 }
 
+# What operation to perform: link, remove, or update.
 OP="${1:-}"
 if [[ "$OP" == "" ]]; then
     OP="link"
 fi
-
 if [[ "$OP" != "link" && "$OP" != "remove" && "$OP" != "update" ]]; then
     usage
 fi
@@ -145,6 +145,7 @@ fi
 link "$OP" "git/config" "$HOME/.config/git/config"
 link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
 link "$OP" "crush/config.json" "$HOME/.config/crush/crush.json"
+link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
 
 # Kitty.
 link "$OP" "kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"

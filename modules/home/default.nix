@@ -139,7 +139,6 @@ in
         ./readline.nix
         ./scripts
         ./ssh.nix
-        ./tmux
         ./wezterm
       ]
       ++ (lib.optionals (! headless) [
