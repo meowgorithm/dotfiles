@@ -106,7 +106,6 @@ export MEOW='git@github.com:meowgorithm'
 export GITLAB='git@gitlab.com:meowgorithm'
 export CHARM='git@github.com:charmbracelet'
 export GOCHARM='github.com/charmbracelet'
-export GOMEOW='github.com/charmbracelet'
 
 # shellcheck disable=1091
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
