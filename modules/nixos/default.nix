@@ -128,7 +128,6 @@ in {
     redis
     ripgrep
     rust-analyzer
-    rust-fmt
     rustc
     semgrep
     shellcheck
