@@ -49,6 +49,7 @@ brew "webp"
 brew "wget"
 brew "yaml-language-server"
 brew "z.lua"
+brew "zellij"
 brew "zlib"
 brew "zopfli"
 
@@ -59,6 +60,8 @@ brew "golang"
 brew "golangci-lint"
 brew "golangci-lint-langserver"
 brew "gopls"
+
+brew "kakoune-lsp/kakoune-lsp/kakoune-lsp"
 
 cask "1password"
 cask "adobe-creative-cloud"
