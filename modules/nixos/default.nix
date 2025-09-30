@@ -108,10 +108,14 @@ in {
     gnupg
     gnused
     gnutar
+    kitty
+    ghostty
+    rio
     go-task
     haskellPackages.cabal-fmt
     helix
     htop
+    hyprpaper
     imagemagick
     jq
     librsvg
