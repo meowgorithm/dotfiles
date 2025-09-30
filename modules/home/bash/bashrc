@@ -153,3 +153,22 @@ done
 if [[ "$os" == "darwin" ]]; then
     export PATH="/usr/bin:$PATH"
 fi
+
+install_crush() {
+    local go="go install github.com/charmbracelet/crush@latest"
+    local numtide="nix run github:numtide/nix-ai-tools#crush"
+    local nixunstable="nix-shell -p crush"
+    local brew="install brew install charmbracelet/tap/crush"
+    local npm="npm install -g @charmland/crush"
+    local opts
+    opts="$(
+        cat <<EOF
+Build from source:$go
+Nix (numtide):$numtide
+Nixpkgs:$nixunstable
+Homebrew:$brew
+NPM:$npm
+EOF
+    )"
+    eval "$(printf "%s" "$opts" | gum choose --header="Install which Crush?" --label-delimiter=":")"
+}
