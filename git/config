@@ -4,7 +4,7 @@
 	signingKey = "92B3C5E83E309FE64CB2F833589F6FDD5B820611"
 
 [core]
-	editor = "nvim"
+	editor = "hx"
 
 [color]
 	ui = true

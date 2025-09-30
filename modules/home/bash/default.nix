@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-} @ inputs: let
+{pkgs, ...} @ inputs: let
   note = name: "\n\n# --- ${name} ---\n\n";
 
   readIntoVar = varName: path:
@@ -21,7 +16,7 @@ in {
     enableCompletion = true;
     sessionVariables =
       {
-        EDITOR = "nvim";
+        EDITOR = "hx";
         XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS"; # necessary for completion
         XDG_DATA_HOME = "$HOME/.local/share";
         GIT_PS1_SHOWDIRTYSTATE = "true";
