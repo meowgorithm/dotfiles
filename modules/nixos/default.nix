@@ -104,13 +104,11 @@ in {
     fzf
     getopt
     gh
+    ghostty
     gnumake
     gnupg
     gnused
     gnutar
-    kitty
-    ghostty
-    rio
     go-task
     haskellPackages.cabal-fmt
     helix
@@ -118,6 +116,7 @@ in {
     hyprpaper
     imagemagick
     jq
+    kitty
     librsvg
     libwebp
     lua-language-server
@@ -126,10 +125,12 @@ in {
     nil
     nodePackages_latest.prettier
     nodePackages_latest.svgo
+    nodejs
     optipng
     postgresql
     python3
     redis
+    rio
     ripgrep
     rust-analyzer
     rustc
@@ -151,7 +152,6 @@ in {
     z-lua
     zlib
     zopfli
-
     delve
     go
     gofumpt
