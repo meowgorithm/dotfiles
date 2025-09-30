@@ -142,7 +142,7 @@ in {
     vscode
     vscode-langservers-extracted
     wget
-    wget
+    wofi
     yaml-language-server
     z-lua
     zlib

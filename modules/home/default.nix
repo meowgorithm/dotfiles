@@ -102,8 +102,6 @@
     }
     ./discord.nix
     ./firefox.nix
-    ./hyprland
-    ./rofi
     ./waybar.nix
   ];
 in

@@ -136,12 +136,14 @@ if [[ $OP == "update" ]]; then
 
     printf "\n"
 
-    if [[ "$(which_os)" == "darwin" ]]; then
+    case $os in
+    darwin)
         ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
         ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
         brew bundle
-    fi
+        ;;
+    esac
 fi
 
 link "$OP" "git/config" "$HOME/.config/git/config"
@@ -159,3 +161,9 @@ else
 fi
 
 link "$OP" "fourmolu/fourmolu.yaml" "$HOME/.config/fourmolu.yaml"
+
+case "$os" in
+nixos)
+    link "$OP" "hypr/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
+    ;;
+esac
