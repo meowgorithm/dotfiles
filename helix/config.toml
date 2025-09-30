@@ -1,4 +1,4 @@
-theme = "charm"
+theme = "maas"
 
 [editor]
 auto-format = true

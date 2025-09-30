@@ -1,0 +1,137 @@
+attribute = "#FD5B5B"
+comment = "#05785F"
+"comment.block" = "#676767"
+"comment.block.documentation" = "#676767"
+"comment.line" = "#676767"
+constant = "#FFFF87"
+"constant.builtin" = ""
+"constant.builtin.boolean" = ""
+"constant.character.escape" = "#AFFFD7"
+"constant.numeric" = "#FFFF87"
+"constant.numeric.float" = "#FFFF87"
+"constant.numeric.integer" = "#FFFF87"
+constructor = "#8056FF"
+debug = "#C5C8C6"
+"diff.delta" = "#D3E561"
+"diff.minus" = "#FD5B5B"
+"diff.plus" = "#00D787"
+function = "#00D787"
+"function.builtin" = "#FF8EC7"
+"function.macro" = "#FD5B5B"
+"function.method" = "#FD5B5B"
+"function.special" = "#FD5B5B"
+hint = "#C5C8C6"
+info = "#8056FF"
+keyword = "#00AAFF"
+"keyword.control.conditional" = "#00AAFF"
+"keyword.control.exception" = "#00AAFF"
+"keyword.control.import" = "#00AAFF"
+"keyword.control.return" = "#00AAFF"
+"keyword.directive" = "#FF875F"
+"keyword.operator" = "#00AAFF"
+"keyword.storage" = "#FF875F"
+"keyword.storage.modifier" = "#FF875F"
+"keyword.storage.type" = "#FF875F"
+label = "#C69669"
+namespace = "#FF5F87"
+operator = "#EF8080"
+string = "#C69669"
+"string.regexp" = "#C69669"
+"string.special" = "#FF5FD2"
+"string.special.path" = "#C69669"
+"string.special.symbol" = "#C69669"
+"string.special.url" = "#C69669"
+tag = ""
+type = "#6E6ED8"
+"ui.window" = "#282a2e"
+variable = "#C5C8C6"
+"variable.builtin" = "#FF5FD2"
+"variable.other.member" = "#8056FF"
+"variable.parameter" = "#C5C8C6"
+warning = "#D3E561"
+
+[diagnostic]
+modifiers = ["underlined"]
+
+[error]
+fg = "#F05B5B"
+
+["ui.cursor"]
+modifiers = ["reversed"]
+
+["ui.cursor.match"]
+fg = "#04D7D7"
+modifiers = ["underlined"]
+
+["ui.cursorline.primary"]
+bg = "#080808"
+
+["ui.cursorline.secondary"]
+bg = "#121212"
+
+["ui.gutter"]
+
+["ui.help"]
+fg = "#C5C8C6"
+
+["ui.linenr"]
+fg = "#3A3A3A"
+
+["ui.linenr.selected"]
+fg = "#6C6C6C"
+
+["ui.menu"]
+bg = "#282a2e"
+
+["ui.menu.scroll"]
+bg = "#282a2e"
+fg = "#282a2e"
+
+["ui.menu.selected"]
+bg = "#4B4B4B"
+
+["ui.popup"]
+bg = "#282a2e"
+fg = "#C5C8C6"
+
+["ui.popup.info"]
+fg = "#C5C8C6"
+
+["ui.selection"]
+bg = "#8056FF"
+fg = "#282a2e"
+
+["ui.selection.primary"]
+bg = "#5C42FF"
+fg = "#FFFDF5"
+
+["ui.statusline"]
+bg = "#202020"
+fg = "#C5C8C6"
+
+["ui.statusline.inactive"]
+bg = "#1B1B1B"
+fg = "#363636"
+
+["ui.statusline.insert"]
+bg = "#00C3AC"
+fg = "#FFFDF5"
+modifiers = ["bold"]
+
+["ui.statusline.normal"]
+bg = "#333333"
+modifiers = ["bold"]
+
+["ui.statusline.select"]
+bg = "#FF86D6"
+fg = "#FFFDF5"
+modifiers = ["bold"]
+
+["ui.virtual.inlay-hint"]
+fg = "#585858"
+
+["ui.virtual.ruler"]
+bg = "#1D1D1D"
+
+["ui.virtual.whitespace"]
+fg = "#3A3A3A"
