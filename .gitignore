@@ -7,3 +7,5 @@ xmonad.errors
 config/kak/plugins/*
 /result
 **/.crush/**
+/vim/autoload/**
+/vim/plugged/**
