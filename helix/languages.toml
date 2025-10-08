@@ -1,45 +1,69 @@
-[[language]]
-name="bash"
-language-servers = [ "bash-language-server" ]
-formatter = { command="shfmt", args=["-i", "4"] }
-auto-format = true
+# TOML
 
 [[language]]
+name = "toml"
 auto-format = true
-language-servers = ["nil", "copilot"]
+
+[language.formatter]
+command = "taplo"
+args = ["format", "-"]
+
+# Bash
+
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server"]
+formatter = { command = "shfmt", args = ["-i", "4"] }
+auto-format = true
+
+# Nix
+
+[[language]]
 name = "nix"
+auto-format = true
+language-servers = ["nil"]
 
 [language.formatter]
 command = "alejandra"
 
+# Haskell
+
 [[language]]
 auto-format = true
-language-servers = ["haskell-language-server-wrapper", "copilot"]
+language-servers = ["haskell-language-server-wrapper"]
 name = "haskell"
 
 [language.formatter]
 command = "fourmolu"
 
+# Cabal
+
 [[language]]
-auto-format = true
-file-types = ["cabal"]
 name = "cabal"
+file-types = ["cabal"]
+auto-format = true
 roots = []
 scope = ""
 
 [language.formatter]
 command = "cabal-fmt"
 
+# Go
+
 [[language]]
-language-servers = ["gopls", "copilot"]
 name = "go"
+language-servers = ["gopls"]
 
 [language.formatter]
 command = "goimports"
 
+# Lua
+
 [[language]]
-auto-format = true
 name = "lua"
+auto-format = true
+
+# HTML
 
 [[language]]
 auto-format = false
@@ -53,6 +77,8 @@ command = "prettier"
 tab-width = 2
 unit = " "
 
+# CSS
+
 [[language]]
 language-servers = ["css-languageserver", "copilot"]
 name = "css"
@@ -65,10 +91,12 @@ command = "prettier"
 tab-width = 4
 unit = " "
 
+# Typescript
+
 [[language]]
-auto-format = true
-language-servers = ["typescript-language-server", "copilot"]
 name = "typescript"
+auto-format = true
+language-servers = ["typescript-language-server"]
 
 [language.formatter]
 args = ["--parser", "typescript", "--tab-width", "4"]
@@ -77,6 +105,8 @@ command = "prettier"
 [language.indent]
 tab-width = 4
 unit = " "
+
+# SVG
 
 [[language]]
 file-types = ["svg"]
