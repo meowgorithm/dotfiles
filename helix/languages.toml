@@ -1,4 +1,10 @@
 [[language]]
+name="bash"
+language-servers = [ "bash-language-server" ]
+formatter = { command="shfmt", args=["-i", "4"] }
+auto-format = true
+
+[[language]]
 auto-format = true
 language-servers = ["nil", "copilot"]
 name = "nix"

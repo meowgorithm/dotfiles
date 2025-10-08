@@ -7,10 +7,11 @@ cursorline = true
 end-of-line-diagnostics = "hint"
 rulers = [80]
 true-color = true
+clipboard-provider = "termcode"
 
 [editor.inline-diagnostics]
-cursor-line = "error"
-other-lines = "error"
+cursor-line = "disable" 
+other-lines = "disable"
 
 [editor.lsp]
 display-inlay-hints = false
@@ -21,6 +22,7 @@ center = []
 left = ["mode", "spinner", "file-name"]
 right = [
     "diagnostics",
+    "workspace-diagnostics",
     "selections",
     "position",
     "file-encoding",
