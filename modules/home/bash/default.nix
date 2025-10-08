@@ -49,7 +49,4 @@ in {
       note "bash_funcs"
       + builtins.readFile ./bash_funcs;
   };
-
-  # Also put our funcs here so we can source them in scripts.
-  xdg.dataFile."meowgorithm/bash_funcs".text = builtins.readFile ./bash_funcs;
 }

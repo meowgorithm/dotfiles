@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "$PWD/modules/home/bash/bash_funcs"
+source "$PWD/bash/bash_funcs"
 
 usage() {
     echo "Usage: $0 [link|remove|update]"
@@ -31,7 +31,7 @@ status() {
     local bg_color="$2"
     local fg_color="$3"
 
-    # Convert color numbers to ANSI codes
+    # Convert color numbers to ANSI codes.
     local bg_code=$((bg_color < 8 ? bg_color + 40 : bg_color + 92))
     local fg_code=$((fg_color < 8 ? fg_color + 30 : fg_color + 82))
 
@@ -149,25 +149,38 @@ if [[ $OP == "update" ]]; then
     esac
 fi
 
-link "$OP" "git/config" "$HOME/.config/git/config"
-link "$OP" "rio/config.toml" "$HOME/.config/rio/config.toml"
-link "$OP" "crush/config.json" "$HOME/.config/crush/crush.json"
-link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
-link "$OP" "vim" "$HOME/.config/vim"
-link "$OP" "helix" "$HOME/.config/helix"
-
-# Kitty.
-link "$OP" "kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
-if [[ $os = "darwin" ]]; then
-    link "$OP" "kitty/darwin.conf" "$HOME/.config/kitty/os.conf"
-else
-    link "$OP" "kitty/linux.conf" "$HOME/.config/kitty/os.conf"
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    XDG_CONFIG_HOME="$HOME/.config"
 fi
 
-link "$OP" "fourmolu/fourmolu.yaml" "$HOME/.config/fourmolu.yaml"
+if [ -z "$XDG_DATA_HOME" ]; then
+    XDG_DATA_HOME="$HOME/.local/share"
+fi
 
+# Bash.
+link "$OP" "bash/bash_funcs" "$XDG_CONFIG_HOME/meowgorithm/bash_funcs"
+
+link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
+link "$OP" "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
+link "$OP" "crush/config.json" "$XDG_CONFIG_HOME/crush/crush.json"
+link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
+link "$OP" "vim" "$XDG_CONFIG_HOME/vim"
+link "$OP" "helix" "$XDG_CONFIG_HOME/helix"
+
+# Kitty.
+link "$OP" "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
+if [[ $os = "darwin" ]]; then
+    link "$OP" "kitty/darwin.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+else
+    link "$OP" "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+fi
+
+# Fourmolu.
+link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
+
+# Hyprland.
 case "$os" in
 nixos)
-    link "$OP" "hypr/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
+    link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
     ;;
 esac

@@ -87,23 +87,10 @@ commands_exist() {
     printf ""
 }
 
-#shellcheck disable=1090
-decryptAndSource() {
-    command -v gpg >/dev/null 2>&1 &&
-        source <(gpg --decrypt <<<"$1" 2>/dev/null)
-}
-
 gitdiff() {
     if [[ $(which_os) == darwin ]]; then
         opendiff
     else
         vimdiff
     fi
-}
-
-remove_headerbar() {
-    case "$OSTYPE" in
-    linux*) xprop -format _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS 2 ;;
-    *) return ;;
-    esac
 }
