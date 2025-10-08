@@ -97,11 +97,11 @@ ensure() {
         return
     fi
 
-    if ! command -v "$cmd" &>/dev/null; then
-        echo "Installing $name..."
-        $script
-    else
+    if command -v "$cmd" &>/dev/null; then
         printf "%s %s is installed.\n" "$GREEN_CHECK" "$name"
+    else
+        printf "Installing %s...\n" "$name"
+        eval "$script"
     fi
 }
 
@@ -129,7 +129,10 @@ os="$(which_os)"
 # Generally install or update stuff.
 if [[ $OP == "update" ]]; then
     ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-    cabal update
+    if command -f cabal &>/dev/null; then
+        cabal update
+    fi
+
     ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
     ensure "Floskell" "floskell" "cabal_install floskell"
     ensure "V" "v" "install_v"
