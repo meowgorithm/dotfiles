@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Print the names of all public and private Charm repos.
 getCharmRepos() {
     getRepos() {
         gh repo list charmbracelet --visibility="$1" --json name
@@ -15,10 +16,12 @@ getCharmRepos() {
         sort
 }
 
+# Choose a Charm repo name with Gum.
 pickCharmRepo() {
     getCharmRepos | gum filter --height=10 --header "$1"
 }
 
+# Interactively choose a Charm repo.
 charm_clone() {
     local repo
     repo="$(pickCharmRepo "Clone which Charm™ repo?")"
@@ -29,6 +32,7 @@ charm_clone() {
     git clone "git@github.com:charmbracelet/$repo" "$HOME/src/$repo"
 }
 
+# Interactively use "go get" against a Charm repo.
 go_get_charm() {
     local repo
     repo="$(pickCharmRepo "Which Charm™ repo do you want to ‘go get?’")"
@@ -44,6 +48,7 @@ num_cores() {
     nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo "Could not determine core count"
 }
 
+# Return a string corresponding to the current OS.
 which_os() {
     case "$OSTYPE" in
     darwin*)
@@ -70,6 +75,7 @@ which_os() {
     printf ""
 }
 
+# Return 1 if a given command exists, and 0 if not.
 command_exists() {
     if command -v "$1" &>/dev/null; then
         printf 1
@@ -78,15 +84,7 @@ command_exists() {
     printf 0
 }
 
-commands_exist() {
-    for arg in "$@"; do
-        if [[ ! command_exists != "$arg" ]]; then
-            printf '%s' "$arg"
-        fi
-    done
-    printf ""
-}
-
+# Return the preferred diff tool for the given OS.
 gitdiff() {
     if [[ $(which_os) == darwin ]]; then
         opendiff
