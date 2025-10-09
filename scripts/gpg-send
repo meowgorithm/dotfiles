@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+key="589F6FDD5B820611"
+
+servers=(
+    "hkp://keyserver.ubuntu.com:80"
+    "hkp://keys.openpgp.org:80"
+)
+
+# Defaults to pgp.mit.edu
+gpg --send-keys "$key"
+
+for server in "${servers[@]}"; do
+    gpg --keyserver "$server" --send-keys "$key"
+done

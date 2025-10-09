@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+key="589F6FDD5B820611"
+
+servers=(
+    "hkp://keyserver.ubuntu.com:80"
+    "hkp://pgp.mit.edu:80"
+    "hkp://keys.openpgp.org:80"
+)
+
+# Try each server until one works
+for server in "${servers[@]}"; do
+    if gpg --keyserver "$server" --recv-keys "$key"; then
+        echo "Successfully received key from $server"
+        exit 0
+    else
+        echo "Failed to receive key from $server, trying next..."
+    fi
+done
+
+echo "Failed to receive key from all servers."
