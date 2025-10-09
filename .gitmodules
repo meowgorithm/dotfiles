@@ -1,0 +1,3 @@
+[submodule "pantera"]
+	path = pantera
+	url = git@github.com:meowgorithm/pantera.git
