@@ -92,3 +92,9 @@ gitdiff() {
         vimdiff
     fi
 }
+
+#shellcheck disable=1090
+decryptAndSource() {
+    command -v gpg >/dev/null 2>&1 &&
+        source <(gpg --decrypt <<<"$1" 2>/dev/null)
+}
