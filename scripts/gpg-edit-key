@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gpg --edit-key 589F6FDD5B820611
