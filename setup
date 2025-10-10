@@ -144,7 +144,7 @@ if [[ $OP == "update" ]]; then
         ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
         ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
-        brew bundle
+        brew bundle --verbose
         ;;
     esac
 fi
@@ -159,6 +159,7 @@ fi
 
 # Bash.
 link "$OP" "bash/profile" "$HOME/.profile"
+link "$OP" "bash/bash_profile" "$HOME/.bash_profile"
 link "$OP" "bash/bashrc" "$HOME/.bashrc"
 link "$OP" "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 link "$OP" "pantera/keys.asc" "$XDG_DATA_HOME/meowgorithm/keys.asc"

@@ -7,7 +7,4 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export POP_DEFAULT_FROM="christian@rocha.is"
 
-source "$XDG_DATA_HOME/meowgorithm/bash_funcs"
-decryptAndSource "$XDG_DATA_HOME/meowgorithm/keys.asc"
-
-# vim:syn=bash
+# vim:syn=sh

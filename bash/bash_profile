@@ -3,3 +3,5 @@
 
 # include .bashrc if it exists
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# vim:syn=bash
