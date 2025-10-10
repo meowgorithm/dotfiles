@@ -136,9 +136,5 @@ in
         ./ssh.nix
         ./wezterm
       ]
-      ++ (lib.optionals (! headless) [
-        ./alacritty.nix
-        ./ghostty.nix
-      ])
       ++ extraModules;
   }

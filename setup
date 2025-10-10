@@ -178,6 +178,14 @@ else
     link "$OP" "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
 fi
 
+# Ghostty
+link "$OP" "ghostty/config" "$XDG_CONFIG_HOME/ghostty/config"
+if [[ $os = "darwin" ]]; then
+    link "$OP" "ghostty/darwin" "$XDG_CONFIG_HOME/ghostty/os"
+else
+    link "$OP" "ghostty/linux" "$XDG_CONFIG_HOME/ghostty/os"
+fi
+
 # Fourmolu.
 link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 

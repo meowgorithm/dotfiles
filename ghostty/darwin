@@ -1,0 +1,12 @@
+font-family = JetBrains Mono Light
+font-family-bold = JetBrains Mono Bold
+font-family-italic = JetBrains Mono Italic
+font-family-bold-italic = JetBrains Mono Bold Italic
+font-size = 13
+font-thicken = true
+adjust-cursor-thickness = 175%
+adjust-cell-width = -4%
+window-padding-x = 12
+window-padding-y = 10
+keybind = super+f=toggle_fullscreen
+window-colorspace = display-p3
