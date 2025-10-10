@@ -91,6 +91,10 @@ cask "telegram"
 cask "visual-studio-code"
 cask "whatsapp"
 
+cask "font-ibm-plex"
+cask "font-inter"
+cask "font-jetbrains-mono"
+
 mas "1Password for Safari", id: 1569813296
 mas "Compressor", id: 424390742
 mas "Icon Slate", id: 439697913

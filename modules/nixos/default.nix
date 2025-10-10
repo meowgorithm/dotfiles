@@ -163,6 +163,8 @@ in {
   ];
 
   fonts.packages = with pkgs; [
+    ibm-plex
+    inter
     jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans
