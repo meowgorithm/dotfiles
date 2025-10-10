@@ -35,7 +35,7 @@
 	program = "gpg"
 
 [commit]
-	gpgSign = true
+	gpgSign = false
 
 [tag]
 	gpgSign = true

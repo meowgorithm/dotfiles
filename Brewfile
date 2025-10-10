@@ -1,4 +1,6 @@
 brew "alejandra"
+brew "bash"
+brew "bash-completion@2"
 brew "bash-language-server"
 brew "brotli"
 brew "coreutils"

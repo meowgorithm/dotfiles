@@ -123,9 +123,7 @@ in
             )
             + home.username;
         }
-        ./bash
         ./emacs
-        ./floskell
         ./fonts.nix
         ./gpg.nix
         ./kakoune

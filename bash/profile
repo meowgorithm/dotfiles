@@ -1,0 +1,13 @@
+export EDITOR="hx"
+export GIT_PS1_SHOWDIRTYSTATE="true"
+export GIT_PS1_SHOWSTASHSTATE="true"
+export GIT_PS1_SHOWUNTRACKEDFILES="true"
+export HOMEBREW_NO_ANALYTICS="1"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export POP_DEFAULT_FROM="christian@rocha.is"
+
+source "$XDG_DATA_HOME/meowgorithm/bash_funcs"
+decryptAndSource "$XDG_DATA_HOME/meowgorithm/keys.asc"
+
+# vim:syn=bash

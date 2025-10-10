@@ -158,7 +158,10 @@ if [ -z "$XDG_DATA_HOME" ]; then
 fi
 
 # Bash.
-link "$OP" "bash/bash_funcs" "$XDG_CONFIG_HOME/meowgorithm/bash_funcs"
+link "$OP" "bash/profile" "$HOME/.profile"
+link "$OP" "bash/bashrc" "$HOME/.bashrc"
+link "$OP" "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
+link "$OP" "pantera/keys.asc" "$XDG_DATA_HOME/meowgorithm/keys.asc"
 
 link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
 link "$OP" "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
