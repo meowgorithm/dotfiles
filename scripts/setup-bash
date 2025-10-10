@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#
+# This script add Homewbrew bash to /etc/shells if not already present.
+#
+
+set -euo pipefail
+
+SHELL_PATH="/opt/homebrew/bin/bash"
+SHELLS_FILE="/etc/shells"
+
+if [ ! -x "$SHELL_PATH" ]; then
+  echo "Error: $SHELL_PATH does not exist or is not executable."
+  exit 1
+fi
+
+if grep -qxF "$SHELL_PATH" "$SHELLS_FILE"; then
+  echo "$SHELL_PATH already present in $SHELLS_FILE"
+else
+  echo "Adding $SHELL_PATH to $SHELLS_FILE"
+  echo "$SHELL_PATH" | sudo tee -a "$SHELLS_FILE" >/dev/null
+fi
