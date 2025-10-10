@@ -91,7 +91,8 @@ cask "telegram"
 cask "visual-studio-code"
 cask "whatsapp"
 
-cask "font-ibm-plex"
+cask "font-ibm-plex-mono"
+cask "font-ibm-plex-sans"
 cask "font-inter"
 cask "font-jetbrains-mono"
 
