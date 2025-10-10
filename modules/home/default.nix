@@ -128,13 +128,11 @@ in
         ./gpg.nix
         ./kakoune
         ./neovim
-        ./nushell.nix
         ./pkgs.nix
         ./prettier
         ./readline.nix
         ./scripts
         ./ssh.nix
-        ./wezterm
       ]
       ++ extraModules;
   }
