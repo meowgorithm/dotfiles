@@ -200,3 +200,9 @@ nixos)
     link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
     ;;
 esac
+
+# Scripts
+link "$OP" "scripts/install_crush" "$HOME/.bin/install_crush"
+link "$OP" "scripts/uninstall_crush" "$HOME/.bin/uninstall_crush"
+link "$OP" "scripts/gpg-edit-key" "$HOME/.bin/gpg-edit-key"
+link "$OP" "scripts/gpg-send" "$HOME/.bin/gpg-recv"
