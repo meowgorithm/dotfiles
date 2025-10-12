@@ -1,10 +1,6 @@
 {pkgs, ...}: {
   home.file =
     {
-      ".bin/ask".source = ./ask;
-      ".bin/cmdai".source = ./cmdai;
-      ".bin/generate-commit-message".source = ./generate-commit-message;
-      ".bin/install-docker".source = ./install-docker;
       ".bin/make-vid".source = ./make-vid;
       ".bin/make-vid-from-pngs".source = ./make-vid-from-pngs;
       ".bin/sessions".source = ./sessions;
