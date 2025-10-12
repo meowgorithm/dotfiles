@@ -141,8 +141,6 @@ if [[ $OP == "update" ]]; then
     ensure "Floskell" "floskell" "cabal_install floskell"
     ensure "V" "v" "install_v"
 
-    printf "\n"
-
     case $os in
     darwin)
         ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"

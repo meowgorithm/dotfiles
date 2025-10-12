@@ -126,7 +126,6 @@ in
         ./emacs
         ./fonts.nix
         ./gpg.nix
-        ./kakoune
         ./neovim
         ./pkgs.nix
         ./prettier
