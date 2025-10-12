@@ -6,7 +6,7 @@ npmLocation="@charmland/crush"
 go="go install -v github.com/charmbracelet/crush"
 numtide="nix run github:numtide/nix-ai-tools#crush"
 nixunstable="nix-shell -p crush"
-brew="install brew install $brewLocation"
+brew="brew install $brewLocation"
 npm="npm install -g $npmLocation"
 
 opts="$(
