@@ -13,12 +13,9 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      # LSP-ish
-      blink-cmp
-      nvim-lspconfig
-      conform-nvim
-
       BufOnly-vim
+      blink-cmp
+      conform-nvim
       copilot-vim
       nvim-colorizer-lua
       nvim-tree-lua

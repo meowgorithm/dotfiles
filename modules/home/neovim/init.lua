@@ -11,9 +11,6 @@ end
 local vmap = function(lhs, rhs, opts)
 	vim.keymap.set("v", lhs, rhs, opts)
 end
-local imap = function(lhs, rhs, opts)
-	vim.keymap.set("i", lhs, rhs, opts)
-end
 
 g.mapleader = " "
 
@@ -47,14 +44,17 @@ local options = {
 	foldmethod = "marker",
 	equalalways = true,
 	conceallevel = 0,
+
 	-- Search
 	hlsearch = false,
 	ignorecase = true,
 	incsearch = true,
 	wrapscan = true,
+
 	-- Persistent undo
 	undofile = true,
 	undodir = vim.fn.stdpath("data") .. "/undo",
+
 	-- Text foramtting options. See :help fo-table.
 	formatoptions = "tcroq1]jp",
 }
@@ -295,10 +295,7 @@ end
 
 -- LSP
 do
-	local lspCfg = require("lspconfig")
 	local lspMethods = vim.lsp.protocol.Methods
-
-	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local capabilities = require("blink.cmp").get_lsp_capabilities({
 		workspace = {
@@ -363,22 +360,69 @@ do
 		end,
 	})
 
+	vim.lsp.config("*", {
+		capabilities = capabilities,
+		root_markers = { ".git" },
+	})
+
 	for _, server in ipairs({
-		"bashls",
-		"golangci_lint_ls",
-		"hls",
-		"html",
-		"jsonls",
-		"nil_ls",
-		"templ",
-		"ts_ls",
-		"yamlls",
+		{
+			name = "bashls",
+			cmd = { "bash-language-server", "start" },
+			filetypes = { "sh", "bash" },
+		},
+		{
+			name = "golangci_lint_ls",
+			cmd = { "golangci-lint-langserver" },
+			filetypes = { "go", "gomod" },
+		},
+		{
+			name = "hls",
+			cmd = { "haskell-language-server-wrapper", "--lsp" },
+			filetypes = { "haskell", "lhaskell" },
+		},
+		{
+			name = "html",
+			cmd = { "vscode-html-language-server", "--stdio" },
+			filetypes = { "html" },
+		},
+		{
+			name = "jsonls",
+			cmd = { "vscode-json-language-server", "--stdio" },
+			filetypes = { "json", "jsonc" },
+		},
+		{
+			name = "nil_ls",
+			cmd = { "nil" },
+			filetypes = { "nix" },
+		},
+		{
+			name = "templ",
+			cmd = { "templ", "lsp" },
+			filetypes = { "templ" },
+		},
+		{
+			name = "ts_ls",
+			cmd = { "typescript-language-server", "--stdio" },
+			filetypes = { "javascript", "typescript" },
+		},
+		{
+			name = "yamlls",
+			cmd = { "yaml-language-server", "--stdio" },
+			filetypes = { "yaml", "yaml.docker-compose" },
+		},
 	}) do
-		lspCfg[server].setup({ capabilities = capabilities })
+		vim.lsp.config(server.name, {
+			cmd = server.cmd,
+			filetypes = server.filetypes,
+		})
+		vim.lsp.enable(server.name)
 	end
 
-	lspCfg.gopls.setup({
-		capabilities = capabilities,
+	vim.lsp.config("gopls", {
+		cmd = { "gopls" },
+		filetypes = { "go", "gomod", "gowork", "gotmpl" },
+		root_markers = { "go.work", "go.mod", ".git" },
 		settings = {
 			gopls = {
 				gofumpt = true,
@@ -417,15 +461,28 @@ do
 			},
 		},
 	})
+	vim.lsp.enable("gopls")
 
-	lspCfg.lua_ls.setup({
-		capabilities = capabilities,
+	vim.lsp.config("lua_ls", {
+		cmd = { "lua-language-server" },
+		filetypes = { "lua" },
+		root_markers = {
+			".luarc.json",
+			".luarc.jsonc",
+			".luacheckrc",
+			".stylua.toml",
+			"stylua.toml",
+			"selene.toml",
+			"selene.yml",
+			".git",
+		},
 		settings = {
 			Lua = {
 				diagnostics = { globals = { "vim" } },
+				completion = { callSnippet = "Replace" },
+				hint = { enable = true },
 			},
-			completion = { callSnippet = "Replace" },
-			hint = { enable = true },
 		},
 	})
+	vim.lsp.enable("lua_ls")
 end
