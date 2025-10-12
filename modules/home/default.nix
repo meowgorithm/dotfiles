@@ -128,7 +128,6 @@ in
         ./gpg.nix
         ./neovim
         ./pkgs.nix
-        ./prettier
         ./readline.nix
         ./scripts
         ./ssh.nix
