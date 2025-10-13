@@ -6,29 +6,6 @@
 }: let
   lib = pkgs.lib;
 
-  # 3rd party fonts
-  fonts = [
-    "arno-pro"
-    "benjamins-gothic"
-    "gabriello"
-    "gelion"
-    "larsseit"
-    "liza"
-    "maru"
-    "monoflow"
-    "mononoki"
-    "neufile-grotesk"
-    "pangaia"
-    "pique"
-    "rifton"
-    "rois"
-    "saans"
-    "sf-mono"
-    "symbolset"
-    "untitled-sans"
-    "upton"
-  ];
-
   # Packges from the Charm Nix User Respository
   charmPkgs = [
     "freeze"
@@ -67,7 +44,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts charmPkgs carlosPkgs;
+      inherit inputs system charmPkgs carlosPkgs;
     };
     modules = [
       rec {
