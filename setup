@@ -223,7 +223,7 @@ fontDir="$HOME/Library/Fonts/Meowgorithm"
 mkdir -p "$fontDir"
 if [[ $OP != "remove" ]]; then
     # Copy fonts
-    find ./fonts/ -type f -name "*.otf" -exec cp {} "$fontDir/" \;
+    find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
     printf "%s Fonts\n" "$COPIED"
 else
     printf "%s Fonts\n" "$UNLINKED"
