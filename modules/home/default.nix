@@ -3,7 +3,6 @@
   pkgs,
   system ? "x86_64-linux",
   inputs,
-  headless,
 }: let
   lib = pkgs.lib;
 
@@ -81,49 +80,26 @@
     in
       with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
-
-  extraModules = lib.optionals (pkgs.stdenv.isLinux && ! headless) [
-    {
-      home.packages = with pkgs; [
-        _1password-cli
-        _1password-gui
-        brave
-        dunst
-        eyedropper
-        feh
-        google-chrome
-        gthumb
-        shotgun
-        slop
-        tdesktop
-        vlc
-        xfce.thunar
-      ];
-    }
-    ./discord.nix
-  ];
 in
   home-manager.lib.homeManagerConfiguration {
     pkgs = pkgs // {inherit overlays;};
     extraSpecialArgs = {
-      inherit inputs system fonts charmPkgs carlosPkgs headless;
+      inherit inputs system fonts charmPkgs carlosPkgs;
     };
-    modules =
-      [
-        rec {
-          home.stateVersion = "22.11";
-          home.username = "christian";
-          home.homeDirectory =
-            (
-              if pkgs.stdenv.isDarwin
-              then "/Users/"
-              else "/home/"
-            )
-            + home.username;
-        }
-        ./fonts.nix
-        ./neovim
-        ./pkgs.nix
-      ]
-      ++ extraModules;
+    modules = [
+      rec {
+        home.stateVersion = "22.11";
+        home.username = "christian";
+        home.homeDirectory =
+          (
+            if pkgs.stdenv.isDarwin
+            then "/Users/"
+            else "/home/"
+          )
+          + home.username;
+      }
+      ./fonts.nix
+      ./neovim
+      ./pkgs.nix
+    ];
   }

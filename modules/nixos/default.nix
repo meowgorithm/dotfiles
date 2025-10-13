@@ -88,6 +88,8 @@ in {
     pinentry
     sqlite-interactive
 
+    _1password-cli
+    _1password-gui
     alejandra
     bash-language-server
     brotli
@@ -95,8 +97,10 @@ in {
     clang
     coreutils
     curl
+    delve
     direnv
     duf
+    dunst
     element
     elmPackages.elm
     elmPackages.elm-language-server
@@ -110,6 +114,7 @@ in {
     gnused
     gnutar
     go-task
+    google-chrome
     haskellPackages.cabal-fmt
     helix
     htop
@@ -152,7 +157,7 @@ in {
     z-lua
     zlib
     zopfli
-    delve
+
     go
     gofumpt
     golangci-lint

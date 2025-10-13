@@ -67,7 +67,6 @@
       system ? x86_64-linux,
       user ? "christian",
       default ? false,
-      headless ? false,
     }:
       {
         nixosConfigurations."${hostname}" = lib.nixosSystem {
@@ -99,7 +98,7 @@
               inherit system;
               config.allowUnfree = true;
             };
-            inherit system home-manager inputs headless;
+            inherit system home-manager inputs;
           };
       }
       // (
@@ -147,7 +146,6 @@
         hostname = "wsl";
         system = x86_64-linux;
         user = "chris";
-        headless = true;
       }
     ]);
 }

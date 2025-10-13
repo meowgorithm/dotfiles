@@ -1,12 +1,8 @@
 {
   pkgs,
   fonts,
-  headless,
   ...
-}: let
-  maybeUse = pkgs.lib.optionals (! headless);
-  allFonts = map (x: pkgs.${x}) fonts;
-in {
-  home.packages = maybeUse allFonts;
+}: {
+  home.packages = map (x: pkgs.${x}) fonts;
   fonts.fontconfig.enable = true;
 }
