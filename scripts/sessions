@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bash <( gpg -d "$XDG_DATA_HOME/meowgorithm/sessions.asc" )

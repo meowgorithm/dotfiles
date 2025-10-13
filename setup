@@ -8,6 +8,14 @@ usage() {
     exit 1
 }
 
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [ -z "$XDG_DATA_HOME" ]; then
+    XDG_DATA_HOME="$HOME/.local/share"
+fi
+
 # What operation to perform: link, remove, or update.
 OP="${1:-}"
 if [[ "$OP" == "" ]]; then
@@ -151,14 +159,6 @@ if [[ $OP == "update" ]]; then
     esac
 fi
 
-if [ -z "$XDG_CONFIG_HOME" ]; then
-    XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [ -z "$XDG_DATA_HOME" ]; then
-    XDG_DATA_HOME="$HOME/.local/share"
-fi
-
 # Bash.
 link "$OP" "bash/profile" "$HOME/.profile"
 link "$OP" "bash/bash_profile" "$HOME/.bash_profile"
@@ -201,8 +201,19 @@ nixos)
     ;;
 esac
 
+linkScript() {
+    link "$OP" "scripts/$1" "$HOME/.bin/$1"
+}
+
 # Scripts
-link "$OP" "scripts/install_crush" "$HOME/.bin/install_crush"
-link "$OP" "scripts/uninstall_crush" "$HOME/.bin/uninstall_crush"
-link "$OP" "scripts/gpg-edit-key" "$HOME/.bin/gpg-edit-key"
-link "$OP" "scripts/gpg-send" "$HOME/.bin/gpg-recv"
+linkScript "gpg-edit-key"
+linkScript "gpg-send"
+linkScript "install_crush"
+linkScript "make-vid"
+linkScript "setup-mouse"
+linkScript "setup-wacom"
+linkScript "tm"
+linkScript "tmls"
+linkScript "uninstall_crush"
+link "$OP" "panhera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
+linkScript "sessions"

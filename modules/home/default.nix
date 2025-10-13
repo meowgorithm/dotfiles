@@ -128,8 +128,6 @@ in
         ./gpg.nix
         ./neovim
         ./pkgs.nix
-        ./readline.nix
-        ./scripts
         ./ssh.nix
       ]
       ++ extraModules;
