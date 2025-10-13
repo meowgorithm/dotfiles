@@ -8,13 +8,8 @@ usage() {
     exit 1
 }
 
-if [ -z "$XDG_CONFIG_HOME" ]; then
-    XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [ -z "$XDG_DATA_HOME" ]; then
-    XDG_DATA_HOME="$HOME/.local/share"
-fi
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
 
 # What operation to perform: link, remove, or update.
 OP="${1:-}"
@@ -166,9 +161,12 @@ link "$OP" "bash/bashrc" "$HOME/.bashrc"
 link "$OP" "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 link "$OP" "pantera/keys.asc" "$XDG_DATA_HOME/meowgorithm/keys.asc"
 
+# Git
+link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
+link "$OP" "git/ignore" "$XDG_CONFIG_HOME/git/ignore"
+
 link "$OP" "readline/inputrc" "$HOME/.inputrc"
 link "$OP" "ssh/config" "$HOME/.ssh/config"
-link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
 link "$OP" "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
 link "$OP" "crush/config.json" "$XDG_CONFIG_HOME/crush/crush.json"
 link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
