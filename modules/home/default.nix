@@ -101,7 +101,6 @@
       ];
     }
     ./discord.nix
-    ./firefox.nix
     ./waybar.nix
   ];
 in
