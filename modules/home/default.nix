@@ -101,7 +101,6 @@
       ];
     }
     ./discord.nix
-    ./waybar.nix
   ];
 in
   home-manager.lib.homeManagerConfiguration {
