@@ -124,7 +124,6 @@ in
         ./fonts.nix
         ./neovim
         ./pkgs.nix
-        ./ssh.nix
       ]
       ++ extraModules;
   }

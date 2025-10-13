@@ -1,0 +1,8 @@
+Include ~/.ssh/config.local
+
+Host localhost
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+
+Host *
+  IdentityFile ~/.ssh/id_ed25519
