@@ -123,7 +123,6 @@ in
             )
             + home.username;
         }
-        ./emacs
         ./fonts.nix
         ./gpg.nix
         ./neovim
