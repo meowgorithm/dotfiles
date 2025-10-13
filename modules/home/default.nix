@@ -122,7 +122,6 @@ in
             + home.username;
         }
         ./fonts.nix
-        ./gpg.nix
         ./neovim
         ./pkgs.nix
         ./ssh.nix
