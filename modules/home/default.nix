@@ -8,7 +8,6 @@
 
   # 3rd party fonts
   fonts = [
-    "anchor"
     "arno-pro"
     "benjamins-gothic"
     "gabriello"
@@ -18,7 +17,6 @@
     "maru"
     "monoflow"
     "mononoki"
-    "mori"
     "neufile-grotesk"
     "pangaia"
     "pique"
@@ -64,21 +62,6 @@
           ++ (map (useNurPkg "carlos") carlosPkgs)
         )
     )
-
-    # Custom fonts
-    (self: super: let
-      mkFont = name: {
-        "${name}" = pkgs.stdenv.mkDerivation {
-          inherit name;
-          src = inputs."${name}";
-          installPhase = ''
-            mkdir -p $out/share/fonts/otf
-            cp $src/* $out/share/fonts/otf
-          '';
-        };
-      };
-    in
-      with lib; foldr recursiveUpdate {} (map mkFont fonts))
   ];
 in
   home-manager.lib.homeManagerConfiguration {
@@ -98,7 +81,6 @@ in
           )
           + home.username;
       }
-      ./fonts.nix
       ./neovim
       ./pkgs.nix
     ];

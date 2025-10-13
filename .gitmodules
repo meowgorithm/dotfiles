@@ -1,3 +1,6 @@
 [submodule "pantera"]
 	path = pantera
 	url = git@github.com:meowgorithm/pantera.git
+[submodule "fonts"]
+	path = fonts
+	url = git@github.com:meowgorithm/fonts

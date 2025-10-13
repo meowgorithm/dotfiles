@@ -46,6 +46,7 @@ status() {
 # Rendered status messages.
 SKIP="$(status "SKIP" "$BLUE" "$WHITE")"
 LINKED="$(status "LINKED" "$GREEN" "$BLACK")"
+COPIED="$(status "COPIED" "$GREEN" "$BLACK")"
 BACKUP="$(status "BACKUP" "$YELLOW" "$BLACK")"
 UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
 
@@ -216,3 +217,14 @@ linkScript "tmls"
 linkScript "uninstall_crush"
 link "$OP" "panthera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 linkScript "sessions"
+
+# Fonts
+fontDir="$HOME/Library/Fonts/Meowgorithm"
+mkdir -p "$fontDir"
+if [[ $OP != "remove" ]]; then
+    # Copy fonts
+    find ./fonts/ -type f -name "*.otf" -exec cp {} "$fontDir/" \;
+    printf "%s Fonts\n" "$COPIED"
+else
+    printf "%s Fonts\n" "$UNLINKED"
+fi

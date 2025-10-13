@@ -1,55 +1,10 @@
 {
   inputs.nixpkgs.url = "flake:nixpkgs";
   inputs.home-manager.url = "github:nix-community/home-manager";
-  # inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
   inputs.charm.url = "github:charmbracelet/nur";
   inputs.charm.inputs.nixpkgs.follows = "nixpkgs";
   inputs.carlos.url = "github:caarlos0/nur";
   inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
-
-  # Fonts
-  inputs.anchor.url = "git+ssh://git.rocha.is/anchor";
-  inputs.anchor.flake = false;
-  inputs.arno-pro.url = "git+ssh://git.rocha.is/arno-pro";
-  inputs.arno-pro.flake = false;
-  inputs.benjamins-gothic.url = "git+ssh://git.rocha.is/benjamins-gothic";
-  inputs.benjamins-gothic.flake = false;
-  inputs.gabriello.url = "git+ssh://git.rocha.is/gabriello";
-  inputs.gabriello.flake = false;
-  inputs.gelion.url = "git+ssh://git.rocha.is/gelion";
-  inputs.gelion.flake = false;
-  inputs.larsseit.url = "git+ssh://git.rocha.is/larsseit";
-  inputs.larsseit.flake = false;
-  inputs.liza.url = "git+ssh://git.rocha.is/liza";
-  inputs.liza.flake = false;
-  inputs.maru.url = "git+ssh://git.rocha.is/maru";
-  inputs.maru.flake = false;
-  inputs.monoflow.url = "git+ssh://git.rocha.is/monoflow";
-  inputs.mononoki.url = "git+ssh://git.rocha.is/mononoki";
-  inputs.mononoki.flake = false;
-  inputs.mori.url = "git+ssh://git.rocha.is/mori";
-  inputs.mori.flake = false;
-  inputs.monoflow.flake = false;
-  inputs.neufile-grotesk.url = "git+ssh://git.rocha.is/neufile-grotesk";
-  inputs.neufile-grotesk.flake = false;
-  inputs.pique.url = "git+ssh://git.rocha.is/pique";
-  inputs.pique.flake = false;
-  inputs.pangaia.url = "git+ssh://git.rocha.is/pangaia";
-  inputs.pangaia.flake = false;
-  inputs.rifton.url = "git+ssh://git.rocha.is/rifton";
-  inputs.rifton.flake = false;
-  inputs.rois.url = "git+ssh://git.rocha.is/rois";
-  inputs.rois.flake = false;
-  inputs.sf-mono.url = "git+ssh://git.rocha.is/sf-mono";
-  inputs.sf-mono.flake = false;
-  inputs.saans.url = "git+ssh://git.rocha.is/saans";
-  inputs.saans.flake = false;
-  inputs.symbolset.url = "git+ssh://git.rocha.is/symbolset";
-  inputs.symbolset.flake = false;
-  inputs.untitled-sans.url = "git+ssh://git.rocha.is/untitled-sans";
-  inputs.untitled-sans.flake = false;
-  inputs.upton.url = "git+ssh://git.rocha.is/upton";
-  inputs.upton.flake = false;
 
   outputs = inputs @ {
     self,
