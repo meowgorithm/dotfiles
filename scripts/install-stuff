@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+opts="$(
+    cat <<EOF
+Charmtone:go install github.com/charmbracelet/x/examples/charmtone@main
+EOF
+)"
+
+eval "$(
+    printf "%s" "$opts" |
+        gum choose \
+            --header="What would you like to install?" \
+            --label-delimiter=":"
+)"
