@@ -27,8 +27,8 @@ system cores and use the `-j` flag to speed up builds, e.g. `nix build -j 32`.
 
 ## Architecture Notes
 
-This repository is undergoing a transition from fully Nix-managed configurations 
-to a hybrid approach where some tools are configured via direct symlinks rather 
+This repository is undergoing a transition from fully Nix-managed configurations
+to a hybrid approach where some tools are configured via direct symlinks rather
 than Home Manager modules. Recent commits have moved configurations for:
 
 - Helix editor
@@ -38,11 +38,11 @@ than Home Manager modules. Recent commits have moved configurations for:
 - Kitty terminal
 - Git
 
-Out of Home Manager modules. This simplifies the configuration structure and 
-reduces the complexity of Nix-generated configs in favor of traditional dotfiles 
+Out of Home Manager modules. This simplifies the configuration structure and
+reduces the complexity of Nix-generated configs in favor of traditional dotfiles
 symlink management.
 
-The ultimate goal is to drop Home Manager entirely and manage all configurations 
+The ultimate goal is to drop Home Manager entirely and manage all configurations
 through direct symlinks and NixOS for package management only.
 
 ## Code Style Guidelines
@@ -77,3 +77,8 @@ through direct symlinks and NixOS for package management only.
 - Use `lib.mkIf` for conditionals
 - Platform-specific with `pkgs.stdenv.isDarwin`
 - Optional modules with `lib.optionals`
+
+### Commits
+
+All commit messages must be one line and under 78 columns. That said, please
+keep the Crush attribution as well.
