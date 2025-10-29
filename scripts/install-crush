@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+brewLocation="charmbracelet/tap/crush"
+npmLocation="@charmland/crush"
+
+go="go install -v github.com/charmbracelet/crush"
+numtide="nix run github:numtide/nix-ai-tools#crush"
+nixunstable="nix-shell -p crush"
+brew="brew install $brewLocation"
+npm="npm install -g $npmLocation"
+
+opts="$(
+    cat <<EOF
+Build from source (release):$go@latest
+Build from source (main):$go@main
+Nix (numtide):$numtide
+Nixpkgs:$nixunstable
+Homebrew:$brew
+NPM:$npm
+EOF
+)"
+
+eval "$(
+    printf "%s" "$opts" |
+        gum choose \
+            --header="Install which Crush?" \
+            --label-delimiter=":"
+)"
