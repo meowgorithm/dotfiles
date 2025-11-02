@@ -1,2 +1,11 @@
 .DS_Store
 **/node_modules/**
+
+# Emacs stuff
+*~
+\#*\#
+.\#*
+*.elc
+auto-save-list
+tramp
+.\#*

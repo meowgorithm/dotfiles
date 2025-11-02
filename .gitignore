@@ -7,5 +7,8 @@ xmonad.errors
 config/kak/plugins/*
 /result
 **/.crush/**
-/vim/autoload/**
-/vim/plugged/**
+/vim/autoload/*
+/vim/plugged/*
+/emacs/elpa/*
+/emacs/auto-saves/*
+/emacs/backups/*
