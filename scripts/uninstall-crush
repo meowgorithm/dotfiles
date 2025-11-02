@@ -23,7 +23,7 @@ fi
 
 if [[ $found -eq 0 ]]; then
     echo "Crush is not installed"
-    return 1
+    exit 1
 fi
 
 if command -v brew >/dev/null 2>&1 && brew list "$brewLocation" >/dev/null 2>&1; then
