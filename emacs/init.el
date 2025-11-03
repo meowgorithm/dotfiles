@@ -20,7 +20,7 @@
   (package-refresh-contents))
 
 ;; Auto-install packages
-(dolist (package '(company editorconfig))
+(dolist (package '(company editorconfig vertico consult diff-hl))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -29,10 +29,28 @@
 (setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 1)
 
+;; Fuzzy file finding
+(vertico-mode 1)
+(if (executable-find "fd")
+    (global-set-key (kbd "C-c f") 'consult-fd)
+  (progn
+    (setq consult-find-args "find . -not ( -path '*/.git/*' -prune )")
+    (global-set-key (kbd "C-c f") 'consult-find)))
+(if (executable-find "rg")
+    (global-set-key (kbd "C-c g") 'consult-ripgrep)
+  (global-set-key (kbd "C-c g") 'consult-grep))
+(global-set-key (kbd "C-c l") 'consult-line)
+
+;; Git gutter
+(global-diff-hl-mode 1)
+
 ;; Diagnostics navigation
 (add-hook 'prog-mode-hook 'flymake-mode)
 (global-set-key (kbd "M-n") 'flymake-goto-next-error)
 (global-set-key (kbd "M-p") 'flymake-goto-prev-error)
+
+;; Undo/redo
+(global-set-key (kbd "M-_") 'undo-redo)
 
 ;; Format on save
 (defun my-elisp-autoformat-on-save ()
