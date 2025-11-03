@@ -20,7 +20,7 @@
   (package-refresh-contents))
 
 ;; Auto-install packages
-(dolist (package '(company editorconfig vertico consult diff-hl))
+(dolist (package '(company editorconfig vertico consult diff-hl neotree))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -43,6 +43,9 @@
 
 ;; Git gutter
 (global-diff-hl-mode 1)
+
+;; File tree
+(global-set-key (kbd "C-c t") 'neotree-toggle)
 
 ;; Diagnostics navigation
 (add-hook 'prog-mode-hook 'flymake-mode)
