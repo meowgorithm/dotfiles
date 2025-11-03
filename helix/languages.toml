@@ -52,10 +52,16 @@ command = "cabal-fmt"
 
 [[language]]
 name = "go"
-language-servers = ["gopls"]
+language-servers = ["gopls", "golangci-lint-langserver"]
 
 [language.formatter]
 command = "goimports"
+
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = ["golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false", "--issues-exit-code=1"]
 
 # Lua
 
