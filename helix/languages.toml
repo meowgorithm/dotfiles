@@ -57,6 +57,43 @@ language-servers = ["gopls", "golangci-lint-langserver"]
 [language.formatter]
 command = "goimports"
 
+[language-server.gopls]
+command = "gopls"
+
+[language-server.gopls.config]
+gofumpt = true
+usePlaceholders = true
+completeUnimported = true
+staticcheck = true
+
+[language-server.gopls.config.analyses]
+nilness = true
+shadow = true
+shift = true
+unusedparams = true
+unusedwrite = true
+useany = true
+unusedvariable = true
+
+[language-server.gopls.config.codelenses]
+gc_details = true
+generate = true
+regenerate_cgo = true
+run_govulncheck = true
+test = true
+tidy = true
+upgrade_dependency = true
+vendor = true
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
 [language-server.golangci-lint-langserver]
 command = "golangci-lint-langserver"
 
