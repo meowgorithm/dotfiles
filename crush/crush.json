@@ -1,16 +1,6 @@
 {
   "$schema": "https://charm.land/crush.json",
-  "lsp": {
-    "Go": {
-      "command": "gopls"
-    },
-    "Bash": {
-      "command": "bash-language-server",
-      "args": [
-        "start"
-      ]
-    }
-  },
+  "lsp": {},
   "mcp": {
     "github": {
       "type": "http",
