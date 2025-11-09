@@ -134,10 +134,12 @@ os="$(which_os)"
 if [[ $OP == "update" ]]; then
     git submodule update --init --recursive
 
-    bash "./scripts/setup-bash"
+    if [[ $os == "darwin" ]]; then
+        bash "./scripts/setup-bash"
+    fi
 
     ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-    if command -f cabal &>/dev/null; then
+    if command -v cabal &>/dev/null; then
         cabal update
     fi
 
