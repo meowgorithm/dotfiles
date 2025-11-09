@@ -160,6 +160,16 @@ darwin)
     # shellcheck disable=1090
     [ -f "$zluaPath" ] && eval "$(lua "$zluaPath" --init bash)"
     ;;
+nixos)
+    # Check system-wide nix store for z.lua
+    for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
+        if [[ -f "$f" ]]; then
+            # shellcheck disable=1090
+            eval "$(lua "$f" --init bash)"
+            break
+        fi
+    done
+    ;;
 esac
 
 paths=(
