@@ -16,7 +16,7 @@ keys="$XDG_DATA_HOME/meowgorithm/keys.asc"
 export HISTCONTROL=ignorespace:ignoredups:erasedups
 export HISTFILESIZE=100000
 export HISTSIZE=10000
-export HISTIGNORE="ls:cd:pwd:clear:exit:history:exit:shutdown:reboot"
+export HISTIGNORE="ls:cd:pwd:clear:exit:history:shutdown:reboot"
 export PROMPT_DIRTRIM=2
 export CLICOLOR=1
 
