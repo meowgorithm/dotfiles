@@ -84,6 +84,13 @@ darwin)
     export LESS_TERMCAP_us=$'\E[01;32m'
     ;;
 
+nixos)
+    # Git prompt on NixoS
+    for f in /nix/store/*-git-*/share/git/contrib/completion/git-prompt.sh; do
+        [[ -f "$f" ]] && source "$f" && break
+    done
+    ;;
+
 esac
 
 function nixPrompt() {
