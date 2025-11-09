@@ -83,6 +83,7 @@ in {
     faac
     faad2
     git
+    git-lfs
     gnupg
     lsof
     pinentry-curses
