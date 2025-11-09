@@ -85,7 +85,7 @@ in {
     git
     gnupg
     lsof
-    pinentry
+    pinentry-curses
     sqlite-interactive
 
     _1password-cli
@@ -174,10 +174,9 @@ in {
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
-    noto-fonts-extra
+    noto-fonts-color-emoji
     source-han-sans
-    ubuntu_font_family
+    ubuntu-classic
   ];
 
   security.sudo.wheelNeedsPassword = false;
