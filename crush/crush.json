@@ -12,13 +12,6 @@
     "context7": {
       "type": "http",
       "url": "https://mcp.context7.com/mcp"
-    },
-    "linear": {
-      "type": "http",
-      "url": "https://mcp.linear.app/mcp",
-      "headers": {
-        "Authorization": "$(echo Bearer $LINEAR_API_KEY)"
-      }
     }
   }
 }
