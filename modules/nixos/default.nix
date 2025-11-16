@@ -89,6 +89,12 @@ in {
     pinentry-curses
     sqlite-interactive
 
+    gcc
+    gmp
+    ncurses
+    xz
+    pkg-config
+
     _1password-cli
     _1password-gui
     alejandra
@@ -106,6 +112,7 @@ in {
     elmPackages.elm
     elmPackages.elm-language-server
     ffmpeg
+    firefox
     fzf
     getopt
     gh
@@ -152,6 +159,7 @@ in {
     vim-language-server
     vscode
     vscode-langservers-extracted
+    waybar
     wget
     wofi
     yaml-language-server
