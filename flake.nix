@@ -70,7 +70,7 @@
     lib.foldr lib.recursiveUpdate {} (map mkSystem [
       {
         # NixOS Desktop
-        hostname = "el-gato";
+        hostname = "artemis";
         system = x86_64-linux;
         default = true;
       }
