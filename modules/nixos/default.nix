@@ -1,13 +1,10 @@
-hostname: {
-  pkgs,
-  modulesPath,
-  ...
-}: let
+hostname: {pkgs}: let
   mainUser = "christian";
 in {
   imports = [
     ./hardware-config-${hostname}.nix
     ./cachix.nix
+    ./discord.nix
   ];
 
   nix.settings = {
@@ -17,7 +14,7 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
-    # cudaSupport = true;
+    cudaSupport = true;
   };
 
   boot = {
