@@ -128,6 +128,7 @@ in {
     htop
     hyprpaper
     imagemagick
+    inotify-tools
     jq
     kitty
     librsvg
@@ -184,6 +185,7 @@ in {
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
+    sarasa-gothic
     source-han-sans
     ubuntu-classic
   ];

@@ -136,15 +136,16 @@ if [[ $OP == "update" ]]; then
 
     if [[ $os == "darwin" ]]; then
         bash "./scripts/setup-bash"
+
+        ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
+        if command -v cabal &>/dev/null; then
+            cabal update
+        fi
+
+        ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
+        ensure "Floskell" "floskell" "cabal_install floskell"
     fi
 
-    ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-    if command -v cabal &>/dev/null; then
-        cabal update
-    fi
-
-    ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
-    ensure "Floskell" "floskell" "cabal_install floskell"
     ensure "V" "v" "install_v"
 
     case $os in
@@ -201,6 +202,7 @@ link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 case "$os" in
 nixos)
     link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
+    link "$OP" "waybar/" "$XDG_CONFIG_HOME/waybar"
     ;;
 esac
 
@@ -222,13 +224,19 @@ linkScript "uninstall-crush"
 link "$OP" "panthera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 linkScript "sessions"
 
+if [[ $os == "nixos" ]]; then
+    linkScript "watch-waybar"
+fi
+
 # Fonts
-fontDir="$HOME/Library/Fonts/Meowgorithm"
-mkdir -p "$fontDir"
-if [[ $OP != "remove" ]]; then
-    # Copy fonts
-    find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
-    printf "%s Fonts\n" "$COPIED"
-else
-    printf "%s Fonts\n" "$UNLINKED"
+if [[ $os == "darwin" ]]; then
+    fontDir="$HOME/Library/Fonts/Meowgorithm"
+    mkdir -p "$fontDir"
+    if [[ $OP != "remove" ]]; then
+        # Copy fonts
+        find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
+        printf "%s Fonts\n" "$COPIED"
+    else
+        printf "%s Fonts\n" "$UNLINKED"
+    fi
 fi

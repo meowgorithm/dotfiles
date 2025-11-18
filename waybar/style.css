@@ -1,0 +1,54 @@
+@define-color bg rgba(33, 33, 33, 0.97);
+@define-color fg #999;
+
+window {
+  border-radius: 3px;
+  background-color: @bg;
+  color: @fg;
+  font-size: 9px;
+  font-family: "Sarasa Gothic SC";
+}
+
+#workspaces {
+  padding: 0;
+}
+#workspaces button {
+  padding: 0 4px;
+  margin: 0 4px;
+  border: none;
+}
+#workspaces button:hover {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  color: inherit;
+}
+#workspaces button.active {
+  color: @fg;
+}
+#clock {
+  padding-right: 9px;
+}
+#clock.date {
+  color: #888;
+}
+#cpu {
+  padding-left: 9px;
+  padding-right: 6px;
+}
+#memory {
+  padding-right: 6px;
+}
+#disk {
+  padding-right: 6px;
+}
+#temperature {
+  padding-right: 6px;
+}
+#network {
+  padding-right: 6px;
+}
+#pulseaudio {
+  padding-right: 6px;
+}

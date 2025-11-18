@@ -1,0 +1,60 @@
+{
+    "height": 20,
+    "margin-left": 5,
+    "margin-right": 5,
+    "margin-top": 5,
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-left": [
+        "cpu",
+        "memory",
+        "disk",
+        "temperature",
+        "network"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "clock"
+    ],
+
+    "clock": {
+        "format": "{:%Y年%m月%d日 %H:%M}"
+    },
+
+    "cpu": {
+        "format": "CPU {usage}%"
+    },
+
+    "memory": {
+        "format": "MEM {percentage}%"
+    },
+
+    "disk": {
+        "format": "DISK {percentage_used}%",
+        "path": "/"
+    },
+
+    "temperature": {
+        "format": "TEMP {temperatureC}°C"
+    },
+
+    "network": {
+        "format-wifi": "WiFi {signalStrength}%",
+        "format-ethernet": "NET {ipaddr}",
+        "format-disconnected": "NET DOWN"
+    },
+
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "VOL MUTED",
+        "on-click": "pavucontrol"
+    },
+
+    "hyprland/workspaces": {
+        "on-click": ""
+    }
+}
