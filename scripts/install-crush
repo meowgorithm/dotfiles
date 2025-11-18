@@ -20,9 +20,16 @@ NPM:$npm
 EOF
 )"
 
-eval "$(
+selection="$(
     printf "%s" "$opts" |
         gum choose \
             --header="Install which Crush?" \
             --label-delimiter=":"
 )"
+
+if [ -n "$selection" ]; then
+    uninstall-crush
+    echo "Installing Crush..."
+    eval "$selection"
+    echo "Done!"
+fi
