@@ -60,6 +60,7 @@ in {
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_FONT_DPI = "192";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   # Hyprland
