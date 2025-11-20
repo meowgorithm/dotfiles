@@ -214,6 +214,7 @@ linkScript() {
 linkScript "gpg-edit-key"
 linkScript "gpg-send"
 linkScript "install-crush"
+linkScript "install-crush-version"
 linkScript "install-stuff"
 linkScript "make-vid"
 linkScript "setup-mouse"

@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+REPO="charmbracelet/crush"
+MODULE="github.com/${REPO}"
+DEFAULT_LIMIT=50
+
+require() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        echo "Missing required command: $1" >&2
+        exit 1
+    fi
+}
+
+require go
+
+version="${1:-}"
+
+if [[ -z "$version" ]]; then
+    require gh
+    require gum
+
+    echo "Fetching latest releases from ${REPO}..." >&2
+    releases="$(gh api "/repos/${REPO}/releases?per_page=${DEFAULT_LIMIT}" --jq '.[].tag_name' | sed '/^$/d')"
+
+    if [[ -z "$releases" ]]; then
+        echo "No releases found for ${REPO}" >&2
+        exit 1
+    fi
+
+    version="$(printf "%s\n" "$releases" | gum choose --header="Select Crush release")"
+fi
+
+if [[ -z "$version" ]]; then
+    echo "No version selected or provided" >&2
+    exit 1
+fi
+
+if command -v uninstall-crush >/dev/null 2>&1; then
+    echo "Removing existing Crush installation (if any)..."
+    uninstall-crush || true
+fi
+
+echo "Installing Crush ${version} via go install..."
+GO111MODULE=on go install -v "${MODULE}@${version}"
+
+install_dir="${GOBIN:-${GOPATH:-$HOME/go}/bin}"
+
+if [[ ! -x "$install_dir/crush" ]]; then
+    echo "No Crush binary found after installation" >&2
+    exit 1
+fi
+
+echo "Crush ${version} installed at ${install_dir}/crush"
