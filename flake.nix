@@ -76,7 +76,7 @@
       }
       {
         # NixOS Desktop
-        hostname = "athena";
+        hostname = "whitenoise";
         system = x86_64-linux;
       }
       {
