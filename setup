@@ -222,7 +222,7 @@ linkScript "setup-wacom"
 linkScript "tm"
 linkScript "tmls"
 linkScript "uninstall-crush"
-link "$OP" "panthera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
+link "$OP" "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 linkScript "sessions"
 
 if [[ $os == "nixos" ]]; then
