@@ -51,7 +51,7 @@ call plug#end()
 
 g.mapleader = " "
 
-vim.cmd("colorscheme pantera-negra")
+vim.cmd("colorscheme charmtone")
 
 local options = {
 	compatible = false,
@@ -158,6 +158,14 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.md",
 	command = "setlocal spell",
 	group = "markdownSpell",
+})
+
+-- Reload colorscheme on save
+augroup("reloadColorscheme", { clear = true })
+autocmd({ "BufWritePost" }, {
+	pattern = "*/nvim/colors/charmtone.vim",
+	command = "colorscheme charmtone",
+	group = "reloadColorscheme",
 })
 
 -- Colorizer

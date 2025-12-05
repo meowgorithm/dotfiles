@@ -50,6 +50,7 @@ set cursorline
 set ruler
 set signcolumn=yes
 set listchars=tab:▸\ ,trail:·,eol:¶
+set fillchars+=vert:│
 set splitbelow
 set splitright
 set scrolloff=8
