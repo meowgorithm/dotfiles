@@ -1,45 +1,5 @@
 {
   "nodes": {
-    "carlos": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1764894760,
-        "narHash": "sha256-kOfj6iqih6JW+insWqj2REQSLeiew7VmtIUqAZpjjJc=",
-        "owner": "caarlos0",
-        "repo": "nur",
-        "rev": "b8b75426079577845eb12de2b316d06b25c4662e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "caarlos0",
-        "repo": "nur",
-        "type": "github"
-      }
-    },
-    "charm": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1764865458,
-        "narHash": "sha256-vEeCdVieepG8F5aervHmcqLLOUsVSk6+3bwmgP1pnik=",
-        "owner": "charmbracelet",
-        "repo": "nur",
-        "rev": "70312fef32efa47a3d297806927d6ddd0169ae78",
-        "type": "github"
-      },
-      "original": {
-        "owner": "charmbracelet",
-        "repo": "nur",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -53,9 +13,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
+        "id": "home-manager",
+        "type": "indirect"
       }
     },
     "nixpkgs": {
@@ -90,8 +49,6 @@
     },
     "root": {
       "inputs": {
-        "carlos": "carlos",
-        "charm": "charm",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2"
       }

@@ -179,6 +179,11 @@ link "$OP" "helix" "$XDG_CONFIG_HOME/helix"
 link "$OP" "prettier/prettierrc.yaml" "$HOME/.prettierrc.yaml"
 link "$OP" "emacs/init.el" "$HOME/.emacs.d/init.el"
 
+# Neovim
+link "$OP" "nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+link "$OP" "nvim/vsnip" "$XDG_CONFIG_HOME/.vsnip"
+link "$OP" "nvim/colors" "$XDG_CONFIG_HOME/nvim/colors"
+
 # Kitty.
 link "$OP" "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
 if [[ $os = "darwin" ]]; then

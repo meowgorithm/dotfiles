@@ -12,7 +12,46 @@ local vmap = function(lhs, rhs, opts)
 	vim.keymap.set("v", lhs, rhs, opts)
 end
 
+-- Bootstrap vim-plug
+local plug_dir = vim.fn.stdpath("data") .. "/site/autoload/plug.vim"
+if not vim.loop.fs_stat(plug_dir) then
+	print("Installing vim-plug...")
+	vim.fn.system({
+		"curl",
+		"-fLo",
+		plug_dir,
+		"--create-dirs",
+		"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+	})
+end
+vim.cmd("source " .. plug_dir)
+
+-- Load plugins with vim-plug
+vim.cmd([[
+call plug#begin()
+Plug 'airblade/vim-gitgutter'
+Plug 'catgoose/nvim-colorizer.lua'
+Plug 'folke/trouble.nvim'
+Plug 'github/copilot.vim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'jamessan/vim-gnupg'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'schickling/vim-bufonly'
+Plug 'stevearc/conform.nvim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+call plug#end()
+]])
+
 g.mapleader = " "
+
+vim.cmd("colorscheme pantera-negra")
 
 local options = {
 	compatible = false,

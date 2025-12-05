@@ -1,10 +1,5 @@
 {
   inputs.nixpkgs.url = "flake:nixpkgs";
-  inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.charm.url = "github:charmbracelet/nur";
-  inputs.charm.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.carlos.url = "github:caarlos0/nur";
-  inputs.carlos.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = inputs @ {
     self,
