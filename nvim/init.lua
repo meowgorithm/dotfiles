@@ -51,7 +51,7 @@ call plug#end()
 
 g.mapleader = " "
 
-vim.cmd("colorscheme charmtone")
+vim.cmd("colorscheme pantera-negra")
 
 local options = {
 	compatible = false,
@@ -168,6 +168,30 @@ autocmd({ "BufWritePost" }, {
 	group = "reloadColorscheme",
 })
 
+-- TreeSitter
+require("nvim-treesitter.configs").setup({
+	highlight = { enable = true, additional_vim_regex_highlighting = false },
+	indent = { enable = true },
+	ensure_installed = {
+		"bash",
+		"css",
+		"elm",
+		"go",
+		"gomod",
+		"gowork",
+		"haskell",
+		"html",
+		"javascript",
+		"json",
+		"lua",
+		"scss",
+		"templ",
+		"typescript",
+		"yaml",
+	},
+	auto_install = true,
+})
+
 -- Colorizer
 require("colorizer").setup({ names = false })
 
@@ -237,12 +261,6 @@ g.gitgutter_sign_modified = "•"
 hi(0, "GitGutterAdd", { fg = "#009900" })
 hi(0, "GitGutterChange", { fg = "#bbbb00" })
 hi(0, "GitGutterDelete", { fg = "#ff2222" })
-
--- TreeSitter
-require("nvim-treesitter.configs").setup({
-	highlight = { enable = true, additional_vim_regex_highlighting = false },
-	indent = { enable = true },
-})
 
 -- Vsnip
 do

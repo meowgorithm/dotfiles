@@ -183,6 +183,7 @@ link "$OP" "emacs/init.el" "$HOME/.emacs.d/init.el"
 link "$OP" "nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
 link "$OP" "nvim/vsnip" "$XDG_CONFIG_HOME/.vsnip"
 link "$OP" "nvim/colors" "$XDG_CONFIG_HOME/nvim/colors"
+link "$OP" "nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
 
 # Kitty.
 link "$OP" "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
