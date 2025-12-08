@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+sudo rm -rf ~/Library/Containers/com.docker.docker*
+sudo rm -rf ~/.docker
+
+sudo docker system prune -a --volumes
+
+# Fix symlinks
+sudo ln -s /Applications/Docker.app/Contents/Resources/bin/docker /usr/local/bin/docker
+sudo ln -s /Applications/Docker.app/Contents/Resources/bin/docker-compose /usr/local/bin/docker-compose

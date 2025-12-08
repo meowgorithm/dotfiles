@@ -217,6 +217,7 @@ linkScript() {
 }
 
 # Scripts
+linkScript "fix-docker-desktop"
 linkScript "gpg-edit-key"
 linkScript "gpg-send"
 linkScript "install-crush"
