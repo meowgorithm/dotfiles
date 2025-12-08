@@ -64,6 +64,8 @@ brew "zellij"
 brew "zlib"
 brew "zopfli"
 
+brew "gum"
+
 brew "delve"
 brew "gofumpt"
 brew "goimports"
