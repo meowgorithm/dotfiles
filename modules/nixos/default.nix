@@ -1,4 +1,4 @@
-hostname: {pkgs}: let
+hostname: {pkgs, ...}: let
   mainUser = "christian";
 in {
   imports = [

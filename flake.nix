@@ -41,7 +41,7 @@
           ];
         };
 
-        homeManagerConfigurations."christian@${hostname}" =
+        homeManagerConfigurations."${user}@${hostname}" =
           import ./modules/home
           {
             pkgs = import nixpkgs {
