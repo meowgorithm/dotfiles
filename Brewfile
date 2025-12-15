@@ -98,6 +98,7 @@ cask "slack"
 cask "superhuman"
 cask "telegram"
 cask "visual-studio-code"
+cask "wezterm"
 cask "whatsapp"
 
 cask "font-ibm-plex-mono"
