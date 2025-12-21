@@ -48,6 +48,21 @@ debian)
     fi
     ;;
 
+void)
+    # Bash Completion
+    # shellcheck disable=1091
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        fi
+    fi
+    
+    # Git prompt
+    if [ -f /usr/share/git/git-prompt.sh ]; then
+        . /usr/share/git/git-prompt.sh
+    fi
+    ;;
+
 darwin)
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
