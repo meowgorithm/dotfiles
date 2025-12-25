@@ -13,5 +13,12 @@
       "type": "http",
       "url": "https://mcp.context7.com/mcp"
     }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "fetch",
+      "mcp_github_pull_request_read",
+      "view"
+    ]
   }
 }
