@@ -42,6 +42,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'saghen/blink.cmp'
 Plug 'schickling/vim-bufonly'
 Plug 'stevearc/conform.nvim'
+Plug 'taigrr/neocrush.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -356,6 +357,18 @@ do
 	})
 
 	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+end
+
+-- Neocrush
+local ok, neocrush = pcall(require, "neocrush")
+if ok then
+	neocrush.setup({
+		highlight_group = "IncSearch",
+		highlight_duration = 900,
+		auto_focus = true,
+		terminal_width = 80,
+		terminal_cmd = "crush",
+	})
 end
 
 -- LSP
