@@ -163,7 +163,7 @@ link "$OP" "bash/profile" "$HOME/.profile"
 link "$OP" "bash/bash_profile" "$HOME/.bash_profile"
 link "$OP" "bash/bashrc" "$HOME/.bashrc"
 link "$OP" "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
-link "$OP" "pantera/keys.asc" "$XDG_DATA_HOME/meowgorithm/keys.asc"
+link "$OP" "pantera/env.asc" "$XDG_DATA_HOME/meowgorithm/env.asc"
 
 # Git
 link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
