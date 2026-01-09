@@ -1,7 +1,15 @@
 {
   "$schema": "https://charm.land/crush.json",
-  "lsp": {},
+  "lsp": {
+    "*": {
+      "command": "neocrush"
+    }
+  },
   "mcp": {
+    "neocrush": {
+      "command": "neocrush",
+      "type": "stdio"
+    },
     "github": {
       "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
@@ -22,6 +30,7 @@
     "allowed_tools": [
       "fetch",
       "mcp_github_pull_request_read",
+      "mcp_neocrush_editor_context",
       "view"
     ]
   }
