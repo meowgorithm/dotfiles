@@ -1,37 +1,28 @@
 {
-  "$schema": "https://charm.land/crush.json",
-  "lsp": {
-    "*": {
-      "command": "neocrush"
+    "$schema": "https://charm.land/crush.json",
+    "mcp": {
+        "github": {
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/",
+            "headers": {
+                "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
+            }
+        },
+        "context7": {
+            "type": "http",
+            "url": "https://mcp.context7.com/mcp"
+        },
+        "figma": {
+            "type": "http",
+            "url": "http://127.0.0.1:3845/mcp"
+        }
+    },
+    "permissions": {
+        "allowed_tools": [
+            "fetch",
+            "mcp_github_pull_request_read",
+            "mcp_neocrush_editor_context",
+            "view"
+        ]
     }
-  },
-  "mcp": {
-    "neocrush": {
-      "command": "neocrush",
-      "type": "stdio"
-    },
-    "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/",
-      "headers": {
-        "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
-      }
-    },
-    "context7": {
-      "type": "http",
-      "url": "https://mcp.context7.com/mcp"
-    },
-    "figma": {
-      "type": "http",
-      "url": "http://127.0.0.1:3845/mcp"
-    }
-  },
-  "permissions": {
-    "allowed_tools": [
-      "fetch",
-      "mcp_github_pull_request_read",
-      "mcp_neocrush_editor_context",
-      "view"
-    ]
-  }
 }
