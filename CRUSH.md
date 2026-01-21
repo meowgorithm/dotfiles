@@ -1,84 +1,188 @@
-# CRUSH Configuration for Christian’s Dotfiles
+# CRUSH Configuration for Christian's Dotfiles
 
-## Build/Deploy Commands
+## Overview
+
+This is a hybrid dotfiles repository that uses direct symlinks for configuration management rather than Nix/Home Manager. The repository supports multiple platforms and uses different package managers depending on the OS.
+
+## Platform Support
+
+- **macOS** (aarch64 and x86_64): Homebrew for packages, direct symlinks for configs
+- **NixOS** (x86_64): Nix for system packages, direct symlinks for user configs
+- **Other Linux**: System package manager (e.g., apt, pacman) + direct symlinks
+- **WSL**: Treats as Linux
+
+## Setup & Management
+
+### Initial Setup
+
+```bash
+# Clone the repo
+git clone <repo-url> ~/.dotfiles
+cd ~/.dotfiles
+
+# Install and link everything
+./setup link
+
+# Update all dependencies (installs tools via Homebrew, etc.)
+./setup update
+```
+
+### Symlink Management
+
+The `setup` script manages configuration files via symlinks to this repository:
+
+```bash
+# Link all configs (backs up existing files)
+./setup link
+
+# Remove all symlinks
+./setup remove
+
+# Update dependencies
+./setup update
+```
+
+### Nix (for existing Nix systems only)
+
+The flake exists primarily to remove Nix/Home Manager packages from existing systems:
 
 ```bash
 # Enable flakes on non-NixOS systems
 ./enable-flakes
 
-# Deploy home-manager configuration (default)
+# Remove home-manager packages and clean up
 nix run
 
-# Deploy for headless systems
-nix run .#christian@headless
-
-# Deploy NixOS system configuration
+# For NixOS systems (system configuration)
 nixos-rebuild switch --flake .
 
 # Deploy from remote
 nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
-
-# Test configuration build without switching
-nix build .#packages.x86_64-linux.default
 ```
 
-Note: Nix commands you can, and are encouraged, to check the number of
-system cores and use the `-j` flag to speed up builds, e.g. `nix build -j 32`.
+## Architecture
 
-## Architecture Notes
+### Configuration Structure
 
-This repository is undergoing a transition from fully Nix-managed configurations
-to a hybrid approach where some tools are configured via direct symlinks rather
-than Home Manager modules. Recent commits have moved configurations for:
+All user configurations are managed as direct symlinks from the repository:
 
-- Helix editor
-- tmux
-- Crush
-- fourmolu
-- Kitty terminal
-- Git
+- **Shell**: `bash/` → `~/.bashrc`, `~/.bash_profile`, `~/.profile`
+- **Editors**: `nvim/`, `vim/`, `helix/` → `~/.config/`
+- **Terminal**: `kitty/`, `ghostty/` → `~/.config/`
+- **Window Manager (NixOS)**: `hypr/`, `waybar/` → `~/.config/`
+- **Tools**: `tmux/`, `git/`, `ssh/`, `prettier/`, `fourmolu/` → various locations
+- **Scripts**: `scripts/` → `~/.bin/`
 
-Out of Home Manager modules. This simplifies the configuration structure and
-reduces the complexity of Nix-generated configs in favor of traditional dotfiles
-symlink management.
+### Package Management
 
-The ultimate goal is to drop Home Manager entirely and manage all configurations
-through direct symlinks and NixOS for package management only.
+**macOS**:
+- Uses `Brewfile` for all package management
+- Includes Homebrew formulas and casks
+- Font management via symlinks
 
-## Code Style Guidelines
+**NixOS**:
+- System packages defined in `modules/nixos/default.nix`
+- Only for system-level tools and services
+- User packages are NOT managed via Nix
 
-### Nix Files
+**Other Linux**:
+- Uses system package manager (apt, pacman, etc.)
+- Manual installation of tools via `./setup update`
 
-- When creating modules, prefer single file (`name.nix`) over directories (`./name/default.nix`)
-- Format all files with `alejandra`
-- Function parameters on separate lines with `}:`
-- `let...in` blocks for local bindings
-- Attribute sets use `{}` with proper alignment
-- String interpolation: `"${variable}"`
-- Comments with `#` prefix
-- Import paths: `./relative/path.nix`
+### Functions & Utilities
 
-### Imports & Dependencies
+Common bash functions available in `bash/bash_funcs`:
 
-- System imports: `{pkgs, lib, ...}:`
-- Input references: `inputs."${name}"`
-- Use `lib.` prefix for lib functions
-- Overlays for custom packages/NURs
+- `num_cores()`: Returns number of CPU cores
+- `which_os()`: Detects OS (darwin, nixos, void, arch, debian, linux)
+- `command_exists()`: Checks if a command exists
+- `getCharmRepos()`: Lists all Charm repos
+- `pickCharmRepo()`: Interactive repo selection with gum
 
-### Naming Conventions
+## Supported Systems
 
-- camelCase for variables and functions
-- kebab-case for package names and attributes
-- hostname-based configurations
-- Module files: `default.nix`
+### Configured Hostnames
 
-### Error Handling
+From `flake.nix`:
+- **artemis** - NixOS desktop (x86_64-linux)
+- **whitenoise** - NixOS desktop (x86_64-linux)
+- **pantera** - Mac Studio (aarch64-darwin)
+- **meowmachine** - MacBook Pro (aarch64-darwin)
+- **la-tigra** - MacBook Air (aarch64-darwin)
+- **wsl** - WSL (x86_64-linux, user: chris)
 
-- Use `lib.mkIf` for conditionals
-- Platform-specific with `pkgs.stdenv.isDarwin`
-- Optional modules with `lib.optionals`
+### Desktop Environments
 
-### Commits
+- **NixOS**: Hyprland + Waybar
+- **macOS**: Native desktop with Kitty/Ghostty terminals
 
-All commit messages must be one line and under 78 columns. That said, please
-keep the Crush attribution as well.
+## Important Notes
+
+### Nix is Being Phased Out
+
+Nix and Home Manager are deprecated for user configuration. The flake only exists to:
+- Remove existing Nix/Home Manager packages from systems
+- Provide NixOS system configuration (Hyprland, system packages, services)
+- Eventually be removed entirely
+
+### Workflow
+
+1. **Add new config**: Add file to repository, run `./setup link`
+2. **Remove config**: Delete symlink, run `./setup remove` if needed
+3. **Update tools**: Run `./setup update` to install/update dependencies
+
+### Migration Path
+
+For systems still using Nix/Home Manager:
+1. Run `nix run` to remove home-manager packages
+2. Run `./setup link` to establish symlink-based configs
+3. Eventually remove Nix entirely (except for NixOS systems)
+
+## Editor Configuration
+
+### Neovim
+- Located in `nvim/init.lua`
+- LSP setup, colorschemes (charmtone, pantera-negra)
+- Snippets in `nvim/vsnip/`
+
+### Vim
+- Located in `vim/vimrc`
+- Traditional vim configuration
+- Plugins managed via `vim/plugged/`
+
+### Helix
+- Located in `helix/config.toml`
+- Language configuration in `helix/languages.toml`
+- Themes: maas, charm
+
+## Key Tools & Scripts
+
+### Scripts in `~/.bin/`
+- `tm`, `tmls`: tmux utilities
+- `sessions`: Session management
+- `install-stuff`: Install additional tools
+- `fix-docker-desktop`: Fix Docker Desktop issues
+- `setup-mouse`, `setup-wacom`: Peripheral setup
+
+### GPG
+- `gpg-send`, `gpg-recv`: Key sharing utilities
+- `gpg-edit-key`: Edit GPG keys
+- Encrypted environment files in `pantera/`
+
+### Development Tools
+- Format: Fourmolu (Haskell), Prettier, shfmt, stylua, gofumpt
+- LSP: Language servers for Go, Lua, Python, etc.
+- Git: Configured with useful aliases and hooks
+
+## Fonts
+
+Custom fonts managed via `fonts/` directory:
+- Copied to `~/Library/Fonts/Meowgorithm` on macOS via `./setup`
+- Includes: IBM Plex, Inter, JetBrains Mono, and custom fonts
+
+## Commit Style
+
+All commit messages should:
+- Be one line
+- Be under 78 columns
+- Include Crush attribution when appropriate
