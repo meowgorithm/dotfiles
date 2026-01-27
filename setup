@@ -115,6 +115,13 @@ cabal_install() {
     cabal install "$pkg" -j"$(num_cores)" --overwrite-policy=always
 }
 
+# Install a Python package using pipx (system-wide isolated installation).
+pipx_install() {
+    local pkg="$1"
+    pipx install "$pkg"
+    pipx upgrade "$pkg"
+}
+
 # Install the V programming language from source.
 install_v() {
     local here="$PWD"
@@ -148,12 +155,19 @@ if [[ $OP == "update" ]]; then
 
     ensure "V" "v" "install_v"
 
+    # Ensure pipx is available on non-darwin systems
+    if [[ $os != "darwin" ]] && command -v python3 &>/dev/null && ! command -v pipx &>/dev/null; then
+        python3 -m pip install --user pipx
+        python3 -m pipx ensurepath
+    fi
+
     case $os in
     darwin)
         ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
         ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
         brew bundle --verbose
+        ensure "pipx" "pipx" "brew install pipx"
         ;;
     esac
 fi
