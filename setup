@@ -253,6 +253,7 @@ fi
 # Fonts
 if [[ $os == "darwin" ]]; then
     fontDir="$HOME/Library/Fonts/Meowgorithm"
+    rm -rf "${fontDir/*:?/}"
     mkdir -p "$fontDir"
     if [[ $OP != "remove" ]]; then
         # Copy fonts
