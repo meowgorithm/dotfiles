@@ -25,6 +25,15 @@ export DOTFILES="$HOME/.dotfiles"
 
 os="$(which_os)"
 
+# Look for git-prompt and setup the first one we find
+gitPromptPaths=(
+    "/usr/share/git-core/contrib/completion/git-prompt.sh" # fedora
+    "/usr/share/git/git-prompt.sh" # void
+)
+for path in "${gitPromptPaths[@]}"; do
+    [[ -f "$path" ]] && source "$path" && break
+done
+
 # OS/Distro specific stuff
 case "$os" in
 nixos)
@@ -56,12 +65,6 @@ void)
         if [ -f /usr/share/bash-completion/bash_completion ]; then
             . /usr/share/bash-completion/bash_completion
         fi
-    fi
-
-    # Git prompt
-    # shellcheck disable=1091
-    if [ -f /usr/share/git/git-prompt.sh ]; then
-        . /usr/share/git/git-prompt.sh
     fi
     ;;
 
