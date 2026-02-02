@@ -7,4 +7,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export POP_DEFAULT_FROM="christian@rocha.is"
 
+export XKB_DEFAULT_OPTIONS=caps:escape
+
 # vim:syn=sh
