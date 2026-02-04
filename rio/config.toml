@@ -2,6 +2,7 @@ hide-cursor-when-typing = true
 padding-x = 16
 padding-y = [0, 8]
 option-as-alt = 'left'
+
 confirm-before-quit = false
 
 [editor]
@@ -12,8 +13,8 @@ args = []
 width = 600
 height = 640
 mode = "Windowed"
-opacity = 0.97
-blur = true
+opacity = 1.00
+blur = false
 decorations = "Buttonless"
 
 [cursor]
@@ -62,4 +63,4 @@ foreground = '#C5C8C6'
 
 [platform]
 macos.font.size = 13
-linux.font.size = 7
+linux.font.size = 11 
