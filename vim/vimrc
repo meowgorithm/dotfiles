@@ -23,7 +23,7 @@ if filereadable(expand(plugPath))
   call plug#end()
 endif
 
-colorscheme charmtone
+# colorscheme charmtone
 
 g:mapleader = " "
 
