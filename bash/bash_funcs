@@ -50,6 +50,16 @@ num_cores() {
 
 # Return a string corresponding to the current OS.
 which_os() {
+    if [[ -f /etc/os-release ]]; then
+	    source /etc/os-release
+	    case "$NAME" in
+		    Fedora*)
+			    printf "fedora"
+			    return
+			    ;;
+	    esac
+    fi
+	
     case "$OSTYPE" in
     darwin*)
         printf "darwin"
