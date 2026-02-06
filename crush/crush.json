@@ -1,5 +1,8 @@
 {
     "$schema": "https://charm.land/crush.json",
+    "options": {
+        "progress": false
+    },
     "mcp": {
         "github": {
             "type": "http",
