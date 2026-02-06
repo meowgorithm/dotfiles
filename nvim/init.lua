@@ -430,12 +430,23 @@ do
 
 			if client.supports_method(lspMethods.textDocument_codeAction) then
 				if client.name ~= "lua_ls" then -- organize_imports is comically broken in lua
-					vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+					local organize_auid = vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 						buffer = bufnr,
 						callback = function()
 							organize_imports(client, bufnr, 1000)
 						end,
 						group = lspAttachGroup,
+					})
+					-- Clean up the autocmd when LSP detaches to avoid nil buf_state errors
+					vim.api.nvim_create_autocmd("LspDetach", {
+						buffer = bufnr,
+						callback = function(args)
+							if args.data.client_id == client.id then
+								vim.api.nvim_del_autocmd(organize_auid)
+							end
+						end,
+						group = lspAttachGroup,
+						once = true,
 					})
 				end
 			end
