@@ -403,6 +403,10 @@ do
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)
 			local bufnr = args.buf
+			-- Defensive: buffer may have been deleted before vim.schedule callback runs
+			if not vim.api.nvim_buf_is_valid(bufnr) then
+				return
+			end
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
 			if client == nil then
 				return
