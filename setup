@@ -153,14 +153,6 @@ if [[ $OP == "update" ]]; then
         ensure "Floskell" "floskell" "cabal_install floskell"
     fi
 
-    ensure "V" "v" "install_v"
-
-    # Ensure pipx is available on non-darwin systems
-    if [[ $os != "darwin" ]] && command -v python3 &>/dev/null && ! command -v pipx &>/dev/null; then
-        python3 -m pip install --user pipx
-        python3 -m pipx ensurepath
-    fi
-
     case $os in
     darwin)
         ensure "Nix" "nix" "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)"
@@ -231,7 +223,9 @@ linkScript() {
 }
 
 # Scripts
-linkScript "fix-docker-desktop"
+if [[ $os == "darwin" ]]; then
+	linkScript "fix-docker-desktop"
+fi
 linkScript "gpg-edit-key"
 linkScript "gpg-send"
 linkScript "install-crush"
@@ -252,12 +246,21 @@ fi
 
 # Fonts
 if [[ $os == "darwin" ]]; then
+    # macOS
     fontDir="$HOME/Library/Fonts/Meowgorithm"
+else
+    # Linux
+    fontDir="$HOME/.local/share/fonts/Meowgorithm"
+fi
+
+if [[ -n "${fontDir:-}" ]]; then
     rm -rf "${fontDir/*:?/}"
     mkdir -p "$fontDir"
     if [[ $OP != "remove" ]]; then
-        # Copy fonts
         find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
+        if [[ $os != "darwin" ]] && command -v fc-cache &>/dev/null; then
+            fc-cache -f "$fontDir"
+        fi
         printf "%s Fonts\n" "$COPIED"
     else
         printf "%s Fonts\n" "$UNLINKED"
