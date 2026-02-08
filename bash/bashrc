@@ -36,6 +36,15 @@ done
 
 # OS/Distro specific stuff
 case "$os" in
+fedora)
+    alias zzz="sudo systemctl suspend"
+    alias enable="sudo systemctl enable --now"
+    alias status="sudo systemctl status"
+    alias start="sudo systemctl start"
+    alias stop="sudo systemctl stop"
+    alias restart="sudo systemctl restart"
+    ;;
+
 nixos)
     alias ls='ls --color=auto'
     alias zzz="sudo systemctl suspend"
