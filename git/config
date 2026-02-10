@@ -23,6 +23,7 @@
 	rs = "restore --staged"
 	st = "status"
 	sync = "fetch --all --tags --prune"
+	treebranch = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); git worktree add ~/src/\"$repo\"-\"$1\" -b \"$1\"; }; f"
 	wipeout = "!git branch | sed 's/^[*]* *//' | gum choose --no-limit --header 'Wipeout which branches?' | xargs git branch -D"
 
 [url "git@github.com:"]
