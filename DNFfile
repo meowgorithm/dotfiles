@@ -1,0 +1,49 @@
+# DNFfile - Package management for Fedora
+# Format: pkgname
+# Lines starting with # are comments
+
+ImageMagick
+curl
+direnv
+duf
+ffmpeg
+fzf
+gcc
+gcc-c++
+git
+git-lfs
+gmp
+gmp-devel
+gnupg
+go
+gofumpt
+goimports
+golangci-lint
+gopls
+htop
+jq
+make
+ncurses
+ncurses-compat-libs
+neovim
+optipng
+perl
+postgresql-server
+valkey
+ripgrep
+shellcheck
+tmux
+vim
+xz
+
+# Copr packages (syntax: copr "repo" "pkg")
+copr "scottames/ghostty" "ghostty"
+copr "lukenukem/asus-linux" "asusctl"
+copr "varlad/zellij" "zellij"
+
+# Fonts
+jetbrains-mono-fonts-all
+
+# Flatpak packages (syntax: flatpak "app-id")
+flatpak "com.discordapp.Discord"
+flatpak "com.slack.Slack"

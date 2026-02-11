@@ -240,6 +240,15 @@ linkScript "uninstall-crush"
 link "$OP" "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 linkScript "sessions"
 
+# Fedora bundle script
+case "$os" in
+fedora|linux)
+    link "$OP" "scripts/dnf-bundle" "$HOME/.bin/bundle"
+    link "$OP" "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
+    link "$OP" "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
+    ;;
+esac
+
 if [[ $os == "nixos" ]]; then
     linkScript "watch-waybar"
 fi
