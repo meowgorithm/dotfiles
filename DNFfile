@@ -19,9 +19,14 @@ go
 gofumpt
 goimports
 golangci-lint
+google-chrome-stable
 gopls
+gum
+helix
 htop
+jetbrains-mono-fonts-all
 jq
+kitty
 make
 ncurses
 ncurses-compat-libs
@@ -29,20 +34,20 @@ neovim
 optipng
 perl
 postgresql-server
-valkey
 ripgrep
+rust
 shellcheck
 tmux
+valkey
+vercel-geist-fonts
 vim
+waybar
 xz
 
 # Copr packages (syntax: copr "repo" "pkg")
 copr "scottames/ghostty" "ghostty"
 copr "lukenukem/asus-linux" "asusctl"
 copr "varlad/zellij" "zellij"
-
-# Fonts
-jetbrains-mono-fonts-all
 
 # Flatpak packages (syntax: flatpak "app-id")
 flatpak "com.discordapp.Discord"
