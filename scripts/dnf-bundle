@@ -166,7 +166,7 @@ setup_flatpak_packages() {
     while IFS= read -r line; do
         [ -z "$line" ] && continue
         local appid
-        appid=$(parse_flatpak "$line)")
+        appid=$(parse_flatpak "$line")
         if [ -n "$appid" ]; then
             echo "  → $appid"
             flatpak install -y flathub "$appid" 2>/dev/null || echo "    (may already be installed)"
