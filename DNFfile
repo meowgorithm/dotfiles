@@ -52,3 +52,8 @@ copr "varlad/zellij" "zellij"
 # Flatpak packages (syntax: flatpak "app-id")
 flatpak "com.discordapp.Discord"
 flatpak "com.slack.Slack"
+cargo
+pkg-config
+openssl
+podman-compose
+go-task
