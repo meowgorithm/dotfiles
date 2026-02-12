@@ -325,8 +325,7 @@ add_package() {
     # Check if package already exists
     if grep -q "^$pkg\b" "$DNFFILE"; then
         echo "  → $pkg already in DNFfile (skipping)"
-        sleep 0.05
-        return 1
+        return 0
     fi
 
     # Detect type and install
@@ -390,12 +389,15 @@ case "${1:-help}" in
     add)
         sleep 0.1
         if [ -z "${2:-}" ]; then
-            echo "Usage: dnf-bundle add <package>"
+            echo "Usage: dnf-bundle add <package> [<package> ...]"
             exit 1
         fi
-        echo "Adding: $2"
-        sleep 0.05
-        add_package "$2"
+        shift
+        for pkg in "$@"; do
+            echo "Adding: $pkg"
+            sleep 0.05
+            add_package "$pkg"
+        done
         ;;
     regen)
         regen_lockfile
@@ -412,7 +414,7 @@ Commands:
     sync     Sync packages (install + remove extra)
     upgrade  Upgrade all installed packages
     check    Check for missing/extra packages
-    add      Add package to DNFfile and install
+    add      Add packages to DNFfile and install
     regen    Regenerate lockfile from DNFfile
 
 DNFfile location: $DNFFILE

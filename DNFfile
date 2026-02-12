@@ -3,6 +3,7 @@
 # Lines starting with # are comments
 
 ImageMagick
+cargo
 curl
 direnv
 duf
@@ -16,6 +17,7 @@ gmp
 gmp-devel
 gnupg
 go
+go-task
 gofumpt
 goimports
 golangci-lint
@@ -31,8 +33,11 @@ make
 ncurses
 ncurses-compat-libs
 neovim
+openssl
 optipng
 perl
+pkg-config
+podman-compose
 postgresql-server
 ripgrep
 rust
@@ -52,8 +57,3 @@ copr "varlad/zellij" "zellij"
 # Flatpak packages (syntax: flatpak "app-id")
 flatpak "com.discordapp.Discord"
 flatpak "com.slack.Slack"
-cargo
-pkg-config
-openssl
-podman-compose
-go-task
