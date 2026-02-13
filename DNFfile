@@ -2,8 +2,18 @@
 # Format: pkgname
 # Lines starting with # are comments
 
+# Copr packages (syntax: copr "repo" "pkg")
+copr "scottames/ghostty" "ghostty"
+copr "lukenukem/asus-linux" "asusctl"
+copr "varlad/zellij" "zellij"
+
+# Flatpak packages (syntax: flatpak "app-id")
+flatpak "com.discordapp.Discord"
+flatpak "com.slack.Slack"
+
 ImageMagick
 cargo
+cmake
 curl
 direnv
 duf
@@ -30,6 +40,9 @@ jetbrains-mono-fonts-all
 jq
 kitty
 make
+mesa-libEGL-devel
+mesa-libGL-devel
+mesa-libGLES-devel
 ncurses
 ncurses-compat-libs
 neovim
@@ -48,12 +61,3 @@ vercel-geist-fonts
 vim
 waybar
 xz
-
-# Copr packages (syntax: copr "repo" "pkg")
-copr "scottames/ghostty" "ghostty"
-copr "lukenukem/asus-linux" "asusctl"
-copr "varlad/zellij" "zellij"
-
-# Flatpak packages (syntax: flatpak "app-id")
-flatpak "com.discordapp.Discord"
-flatpak "com.slack.Slack"
