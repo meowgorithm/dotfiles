@@ -1,3 +1,5 @@
+macos-non-native-fullscreen = true
+macos-option-as-alt = left
 font-family = JetBrains Mono Light
 font-family-bold = JetBrains Mono Bold
 font-family-italic = JetBrains Mono Italic

@@ -1,8 +1,5 @@
 term = xterm-256color
-
-macos-non-native-fullscreen = true
-macos-option-as-alt = left
-
+window-inherit-working-directory = true
 mouse-hide-while-typing = false
 copy-on-select = true
 confirm-close-surface = false
@@ -10,7 +7,6 @@ link-url = true
 
 background = #171717
 foreground = #C5C8C6
-
 palette = 0=#282a2e
 palette = 1=#D74E6F
 palette = 2=#31BB71
@@ -27,17 +23,5 @@ palette = 12=#8F69FF
 palette = 13=#FF7AEA
 palette = 14=#00FEFE
 palette = 15=#FFFFFF
-font-family = JetBrains Mono Light
-font-family-bold = JetBrains Mono Bold
-font-family-italic = JetBrains Mono Italic
-font-family-bold-italic = JetBrains Mono Bold Italic
-font-size = 13
-font-thicken = true
-adjust-cursor-thickness = 175%
-adjust-cell-width = -4%
-window-padding-x = 12
-window-padding-y = 10
-keybind = super+f=toggle_fullscreen
-window-colorspace = display-p3
 
 config-file = os
