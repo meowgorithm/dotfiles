@@ -212,7 +212,7 @@ link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 
 # Hyprland.
 case "$os" in
-nixos)
+nixos|fedora)
     link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
     link "$OP" "waybar/" "$XDG_CONFIG_HOME/waybar"
     ;;

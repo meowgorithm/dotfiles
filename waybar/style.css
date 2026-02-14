@@ -5,8 +5,8 @@ window {
   border-radius: 3px;
   background-color: @bg;
   color: @fg;
-  font-size: 9px;
-  font-family: "Sarasa Gothic SC";
+  font-size: 13px;
+  font-family: "JetBrains Mono";
 }
 
 #workspaces {
