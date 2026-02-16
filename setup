@@ -179,11 +179,12 @@ link "$OP" "readline/inputrc" "$HOME/.inputrc"
 link "$OP" "ssh/config" "$HOME/.ssh/config"
 link "$OP" "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
 link "$OP" "crush" "$XDG_CONFIG_HOME/crush"
-link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
 link "$OP" "vim" "$XDG_CONFIG_HOME/vim"
 link "$OP" "helix" "$XDG_CONFIG_HOME/helix"
 link "$OP" "prettier/prettierrc.yaml" "$HOME/.prettierrc.yaml"
 link "$OP" "emacs/init.el" "$HOME/.emacs.d/init.el"
+link "$OP" "zellij/config.kdl" "$XDG_CONFIG_HOME/zellij/config.kdl"
+link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
 
 # Neovim
 link "$OP" "nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
