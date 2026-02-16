@@ -105,3 +105,10 @@ fuzzel
 iniparser-devel
 libqalculate-devel
 brightnessctl
+ninja
+pre-commit
+libcurl-devel
+openssl-devel
+zlib-devel
+systemd-devel
+rpmbuild
