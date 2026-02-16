@@ -213,7 +213,7 @@ link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 
 # Hyprland.
 case "$os" in
-nixos|fedora)
+nixos | fedora)
     link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
     link "$OP" "waybar/" "$XDG_CONFIG_HOME/waybar"
     ;;
@@ -225,7 +225,7 @@ linkScript() {
 
 # Scripts
 if [[ $os == "darwin" ]]; then
-	linkScript "fix-docker-desktop"
+    linkScript "fix-docker-desktop"
 fi
 linkScript "gpg-edit-key"
 linkScript "gpg-send"
@@ -243,7 +243,7 @@ linkScript "sessions"
 
 # Fedora bundle script
 case "$os" in
-fedora|linux)
+fedora | linux)
     link "$OP" "scripts/dnf-bundle" "$HOME/.bin/bundle"
     link "$OP" "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
     link "$OP" "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
