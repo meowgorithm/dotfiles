@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+ensure() {
+    if ! command -v "$1" &>/dev/null; then
+        printf "%s not found. Please install it (or check your PATH) and try again.\n" "$1"
+        exit 1
+    fi
+}
+
+filter() {
+    zellij list-sessions --short | gum filter --placeholder "$1"
+}
+
+ensure zellij
+ensure gum
+
+if ! zellij list-sessions &>/dev/null; then
+    printf "no sessions\n"
+    exit 1
+fi
+
+session=$(filter "Select a session to attach...")
+
+if [ -z "$session" ]; then
+    exit 0
+fi
+
+zellij attach "$session"
