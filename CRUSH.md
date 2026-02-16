@@ -2,7 +2,9 @@
 
 ## Overview
 
-This is a hybrid dotfiles repository that uses direct symlinks for configuration management rather than Nix/Home Manager. The repository supports multiple platforms and uses different package managers depending on the OS.
+This is a hybrid dotfiles repository that uses direct symlinks for
+configuration management rather than Nix/Home Manager. The repository supports
+multiple platforms and uses different package managers depending on the OS.
 
 ## Platform Support
 
@@ -60,6 +62,12 @@ nixos-rebuild switch --flake .
 nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
 ```
 
+### Skills
+
+Skills go in the ./crush/skills directory, which is symlinked to 
+~/.config/crush/skills. When creating or managing skills, do not try and put
+them anywhere else.
+
 ## Architecture
 
 ### Configuration Structure
@@ -76,16 +84,19 @@ All user configurations are managed as direct symlinks from the repository:
 ### Package Management
 
 **macOS**:
+
 - Uses `Brewfile` for all package management
 - Includes Homebrew formulas and casks
 - Font management via symlinks
 
 **NixOS**:
+
 - System packages defined in `modules/nixos/default.nix`
 - Only for system-level tools and services
 - User packages are NOT managed via Nix
 
 **Other Linux**:
+
 - Uses system package manager (apt, pacman, etc.)
 - Manual installation of tools via `./setup update`
 
@@ -104,6 +115,7 @@ Common bash functions available in `bash/bash_funcs`:
 ### Configured Hostnames
 
 From `flake.nix`:
+
 - **artemis** - NixOS desktop (x86_64-linux)
 - **whitenoise** - NixOS desktop (x86_64-linux)
 - **pantera** - Mac Studio (aarch64-darwin)
@@ -121,6 +133,7 @@ From `flake.nix`:
 ### Nix is Being Phased Out
 
 Nix and Home Manager are deprecated for user configuration. The flake only exists to:
+
 - Remove existing Nix/Home Manager packages from systems
 - Provide NixOS system configuration (Hyprland, system packages, services)
 - Eventually be removed entirely
@@ -134,6 +147,7 @@ Nix and Home Manager are deprecated for user configuration. The flake only exist
 ### Migration Path
 
 For systems still using Nix/Home Manager:
+
 1. Run `nix run` to remove home-manager packages
 2. Run `./setup link` to establish symlink-based configs
 3. Eventually remove Nix entirely (except for NixOS systems)
@@ -141,16 +155,19 @@ For systems still using Nix/Home Manager:
 ## Editor Configuration
 
 ### Neovim
+
 - Located in `nvim/init.lua`
 - LSP setup, colorschemes (charmtone, pantera-negra)
 - Snippets in `nvim/vsnip/`
 
 ### Vim
+
 - Located in `vim/vimrc`
 - Traditional vim configuration
 - Plugins managed via `vim/plugged/`
 
 ### Helix
+
 - Located in `helix/config.toml`
 - Language configuration in `helix/languages.toml`
 - Themes: maas, charm
@@ -158,6 +175,7 @@ For systems still using Nix/Home Manager:
 ## Key Tools & Scripts
 
 ### Scripts in `~/.bin/`
+
 - `tm`, `tmls`: tmux utilities
 - `sessions`: Session management
 - `install-stuff`: Install additional tools
@@ -165,11 +183,13 @@ For systems still using Nix/Home Manager:
 - `setup-mouse`, `setup-wacom`: Peripheral setup
 
 ### GPG
+
 - `gpg-send`, `gpg-recv`: Key sharing utilities
 - `gpg-edit-key`: Edit GPG keys
 - Encrypted environment files in `pantera/`
 
 ### Development Tools
+
 - Format: Fourmolu (Haskell), Prettier, shfmt, stylua, gofumpt
 - LSP: Language servers for Go, Lua, Python, etc.
 - Git: Configured with useful aliases and hooks
@@ -177,12 +197,14 @@ For systems still using Nix/Home Manager:
 ## Fonts
 
 Custom fonts managed via `fonts/` directory:
+
 - Copied to `~/Library/Fonts/Meowgorithm` on macOS via `./setup`
 - Includes: IBM Plex, Inter, JetBrains Mono, and custom fonts
 
 ## Commit Style
 
 All commit messages should:
+
 - Be one line
 - Be under 78 columns
 - Include Crush attribution when appropriate
