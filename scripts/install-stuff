@@ -6,6 +6,7 @@ Charmtone:go install -v github.com/charmbracelet/x/examples/charmtone@main
 Task:go install -v github.com/go-task/task/v3/cmd/task@latest
 Air:go install -v github.com/air-verse/air@latest
 Hivemind:go install -v github.com/DarthSim/hivemind@latest
+Templ:go install -v github.com/a-h/templ/cmd/templ@latest
 EOF
 )"
 
