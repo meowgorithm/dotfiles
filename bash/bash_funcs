@@ -15,8 +15,10 @@ toLower() {
 # Return a string corresponding to the current OS.
 which_os() {
     if [[ -f /etc/os-release ]]; then
+        # shellcheck disable=SC1091
         source /etc/os-release
         local name
+        # shellcheck disable=SC2153
         name=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
         case $name in
         fedora*)
@@ -55,22 +57,6 @@ which_os() {
         ;;
     esac
     printf ""
-}
-
-# Print the names of all public and private Charm repos.
-getCharmRepos() {
-    getRepos() {
-        gh repo list charmbracelet --visibility="$1" --json name
-    }
-
-    getAllRepos() {
-        printf '%s %s' "$(getRepos "public")" "$(getRepos "private")" | jq -s 'add'
-    }
-
-    getAllRepos |
-        jq .[].name |
-        tr -d '"' |
-        sort
 }
 
 # Choose a Charm repo name with Gum.
@@ -126,4 +112,20 @@ gitdiff() {
 #shellcheck disable=1090
 decryptAndSource() {
     source <(gpg --decrypt "$1" 2>/dev/null)
+}
+
+# Print the names of all public and private Charm repos.
+getCharmRepos() {
+    getRepos() {
+        gh repo list charmbracelet --visibility="$1" --json name
+    }
+
+    getAllRepos() {
+        printf '%s %s' "$(getRepos "public")" "$(getRepos "private")" | jq -s 'add'
+    }
+
+    getAllRepos |
+        jq .[].name |
+        tr -d '"' |
+        sort
 }

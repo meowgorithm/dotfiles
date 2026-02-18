@@ -28,9 +28,10 @@ os="$(which_os)"
 # Look for git-prompt and setup the first one we find
 gitPromptPaths=(
     "/usr/share/git-core/contrib/completion/git-prompt.sh" # fedora
-    "/usr/share/git/git-prompt.sh" # void
+    "/usr/share/git/git-prompt.sh"                         # void
 )
 for path in "${gitPromptPaths[@]}"; do
+    # shellcheck disable=SC1090
     [[ -f "$path" ]] && source "$path" && break
 done
 
