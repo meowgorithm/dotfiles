@@ -3,6 +3,8 @@
 opts="$(
     cat <<EOF
 Charmtone:go install github.com/charmbracelet/x/examples/charmtone@main
+Task:go install github.com/go-task/task/v3/cmd/task@latest
+Air:go install github.com/air-verse/air@latest
 EOF
 )"
 
