@@ -12,3 +12,4 @@ config/kak/plugins/*
 /emacs/elpa/*
 /emacs/auto-saves/*
 /emacs/backups/*
+*.backup
