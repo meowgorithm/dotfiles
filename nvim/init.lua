@@ -42,6 +42,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'saghen/blink.cmp'
 Plug 'schickling/vim-bufonly'
 Plug 'stevearc/conform.nvim'
+Plug 'taigrr/blast.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -166,6 +167,14 @@ autocmd({ "BufWritePost" }, {
 	pattern = "*/nvim/colors/charmtone.vim",
 	command = "colorscheme charmtone",
 	group = "reloadColorscheme",
+})
+
+-- Blast
+require("blast").setup({
+	socket_path = "~/.local/share/blastd/blastd.sock",
+	idle_timeout = 120,
+	debounce_ms = 1000,
+	debug = false,
 })
 
 -- TreeSitter
