@@ -1,5 +1,62 @@
 #!/usr/bin/env bash
 
+# Bash 4.0+ only. Faster than using tr or awk + no fork.
+toLower() {
+    if [[ $# -eq 0 ]]; then
+        while IFS= read -r line; do
+            echo "${line,,}"
+        done
+    else
+        local str="$*"
+        echo "${str,,}"
+    fi
+}
+
+# Return a string corresponding to the current OS.
+which_os() {
+    if [[ -f /etc/os-release ]]; then
+        source /etc/os-release
+        local name
+        name=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
+        case $name in
+        fedora*)
+            printf "fedora"
+            return
+            ;;
+        esac
+    fi
+
+    case "$OSTYPE" in
+    darwin*)
+        printf "darwin"
+        return
+        ;;
+
+    linux*)
+        if [[ -f "/etc/issue" ]]; then
+            issue=$(cat /etc/issue)
+            if [[ $issue =~ "NixOS" ]]; then
+                printf "nixos"
+                return
+            elif [[ $issue =~ "Void" ]]; then
+                printf "void"
+                return
+            elif [[ $issue =~ "Arch" ]]; then
+                printf "arch"
+                return
+            elif [[ $issue =~ "Debian" ]]; then
+                printf "debian"
+                return
+            else
+                printf "linux"
+                return
+            fi
+        fi
+        ;;
+    esac
+    printf ""
+}
+
 # Print the names of all public and private Charm repos.
 getCharmRepos() {
     getRepos() {
@@ -46,43 +103,6 @@ go_get_charm() {
 # Returns the number of CPU cores available on the system.
 num_cores() {
     nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo "Could not determine core count"
-}
-
-# Return a string corresponding to the current OS.
-which_os() {
-    if [[ -f /etc/os-release ]]; then
-	    source /etc/os-release
-	    case "$NAME" in
-		    Fedora*)
-			    printf "fedora"
-			    return
-			    ;;
-	    esac
-    fi
-	
-    case "$OSTYPE" in
-    darwin*)
-        printf "darwin"
-        ;;
-
-    linux*)
-        if [[ -f "/etc/issue" ]]; then
-            issue=$(cat /etc/issue)
-            if [[ $issue =~ "NixOS" ]]; then
-                printf "nixos"
-            elif [[ $issue =~ "Void" ]]; then
-                printf "void"
-            elif [[ $issue =~ "Arch" ]]; then
-                printf "arch"
-            elif [[ $issue =~ "Debian" ]]; then
-                printf "debian"
-            else
-                printf "linux"
-            fi
-        fi
-        ;;
-    esac
-    printf ""
 }
 
 # Return 1 if a given command exists, and 0 if not.
