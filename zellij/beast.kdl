@@ -1,0 +1,24 @@
+layout {
+    cwd "/Users/christian"
+    tab name="Main" focus=true hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+            pane name="Crush" size="25%" {
+            }
+            pane name="Main" size="50%" {
+            }
+            pane size="25%" {
+                pane name="Servers" size="60%" {
+                }
+                pane name="Cmd" focus=true size="40%" {
+                }
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
+
