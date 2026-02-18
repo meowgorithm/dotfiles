@@ -81,7 +81,7 @@ local options = {
 	splitright = true,
 	scrolloff = 8,
 	sidescrolloff = 5,
-	foldmethod = "marker",
+	foldmethod = "expr",
 	equalalways = true,
 	conceallevel = 0,
 
@@ -169,9 +169,14 @@ autocmd({ "BufWritePost" }, {
 	group = "reloadColorscheme",
 })
 
+-- Folding with TreeSitter
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevelstart = 99 -- start with all folds open
+
 -- Blast
 require("blast").setup({
-	socket_path = "~/.local/share/blastd/blastd.sock",
+	socket_path = vim.fn.expand("$HOME/.local/share/blastd/blastd.sock"),
 	idle_timeout = 120,
 	debounce_ms = 1000,
 	debug = false,
