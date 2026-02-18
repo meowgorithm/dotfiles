@@ -112,3 +112,5 @@ openssl-devel
 zlib-devel
 systemd-devel
 rpmbuild
+fuse
+fuse-libs
