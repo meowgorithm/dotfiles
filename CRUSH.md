@@ -64,7 +64,7 @@ nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
 
 ### Skills
 
-Skills go in the ./crush/skills directory, which is symlinked to 
+Skills go in the ./crush/skills directory, which is symlinked to
 ~/.config/crush/skills. When creating or managing skills, do not try and put
 them anywhere else.
 
@@ -87,7 +87,7 @@ All user configurations are managed as direct symlinks from the repository:
 
 - Uses `Brewfile` for all package management
 - Includes Homebrew formulas and casks
-- Font management via symlinks
+- Font management via copying
 
 **NixOS**:
 
