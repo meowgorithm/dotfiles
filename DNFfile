@@ -43,10 +43,12 @@ htop
 jetbrains-mono-fonts-all
 jq
 kitty
+libwebp-tools
 make
 ncurses
 ncurses-compat-libs
 neovim
+nix
 openssl
 optipng
 perl
@@ -111,3 +113,5 @@ xcb-util-errors-devel
 xcb-util-wm-devel
 xdg-desktop-portal-wlr
 zlib-devel
+
+# New stuff
