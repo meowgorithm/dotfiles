@@ -9,6 +9,7 @@ shopt -s histappend
 # shellcheck disable=SC1091
 source "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 
+# shellcheck disable=1090
 env="$XDG_DATA_HOME/meowgorithm/env.asc"
 # shellcheck disable=SC1090
 [ -f "$env" ] && source <(gpg --decrypt "$env" 2>/dev/null)
@@ -35,6 +36,18 @@ for path in "${gitPromptPaths[@]}"; do
     [[ -f "$path" ]] && source "$path" && break
 done
 
+# Load bash completion if available
+if ! shopt -oq posix; then
+    bashCompletionPaths=(
+        "/usr/share/bash-completion/bash_completion"
+        "/etc/bash_completion"
+    )
+    for path in "${bashCompletionPaths[@]}"; do
+        # shellcheck disable=SC1090
+        [[ -f "$path" ]] && source "$path" && break
+    done
+fi
+
 # OS/Distro specific stuff
 case "$os" in
 fedora)
@@ -56,27 +69,6 @@ nixos)
     for f in /nix/store/*-git-*/share/git/contrib/completion/git-prompt.sh; do
         [[ -f "$f" ]] && source "$f" && break
     done
-    ;;
-
-debian)
-    # shellcheck disable=1091
-    if ! shopt -oq posix; then
-        if [ -f /usr/share/bash-completion/bash_completion ]; then
-            . /usr/share/bash-completion/bash_completion
-        elif [ -f /etc/bash_completion ]; then
-            . /etc/bash_completion
-        fi
-    fi
-    ;;
-
-void)
-    # Bash Completion
-    # shellcheck disable=1091
-    if ! shopt -oq posix; then
-        if [ -f /usr/share/bash-completion/bash_completion ]; then
-            . /usr/share/bash-completion/bash_completion
-        fi
-    fi
     ;;
 
 darwin)
@@ -151,8 +143,7 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 
-gpg_TTY=$(tty)
-export GPG_TTY=$gpg_TTY
+export GPG_TTY=$(tty)
 
 alias nb='nix build -L'
 alias nr='nix run -L -j"$(num_cores)"'
@@ -183,32 +174,32 @@ export GOTOOLCHAIN="auto"
 # Direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
-# z.lua
-luaPath=""
-for f in /nix/store/*-lua-*/bin/lua; do
-    [[ -x "$f" ]] && luaPath="$f" && break
-done
+# Find lua executable
+lua_path=$(command -v lua 2>/dev/null)
+if [[ -z "$lua_path" ]]; then
+    for f in /nix/store/*-lua-*/bin/lua; do
+        [[ -x "$f" ]] && lua_path="$f" && break
+    done
+fi
 
-zluaPaths=(
-    "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" # macOS
-    "$HOME/.local/share/z.lua/z.lua"                           # manual install
-)
-for zluaPath in "${zluaPaths[@]}"; do
-    if [[ -f "$zluaPath" && -n "$luaPath" ]]; then
-        # shellcheck disable=1090
-        eval "$("$luaPath" "$zluaPath" --init bash)"
-        break
-    fi
-done
+# Find z.lua script and initialize
+if [[ -n "$lua_path" ]]; then
+    z_lua_path=""
+    for path in \
+        "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
+        "$HOME/.local/share/z.lua/z.lua"; do
+        [[ -f "$path" ]] && z_lua_path="$path" && break
+    done
 
-# Also check nix store for z.lua (glob can fail in array)
-for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
-    if [[ -f "$f" && -n "$luaPath" ]]; then
-        # shellcheck disable=1090
-        eval "$("$luaPath" "$f" --init bash)"
-        break
+    # Check nix store if not found
+    if [[ -z "$z_lua_path" ]]; then
+        for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
+            [[ -f "$f" ]] && z_lua_path="$f" && break
+        done
     fi
-done
+
+    [[ -n "$z_lua_path" ]] && eval "$("$lua_path" "$z_lua_path" --init bash)"
+fi
 
 paths=(
     "$HOME/.local/bin"
