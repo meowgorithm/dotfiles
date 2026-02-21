@@ -122,19 +122,6 @@ pipx_install() {
     pipx upgrade "$pkg"
 }
 
-# Install the V programming language from source.
-install_v() {
-    local here="$PWD"
-    local targetDir="$HOME/src/v"
-    rm -rf "$targetDir"
-    mkdir -p "$targetDir"
-    git clone --depth=1 https://github.com/vlang/v "$targetDir"
-    cd "$targetDir"
-    make
-    sudo ./v symlink
-    cd "$here"
-}
-
 os="$(which_os)"
 
 # Generally install or update stuff.
@@ -144,7 +131,6 @@ if [[ $OP == "update" ]]; then
     if [[ $os == "darwin" ]]; then
         bash "./scripts/setup-bash"
 
-        ensure "GHCup" "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
         if command -v cabal &>/dev/null; then
             cabal update
         fi
@@ -232,6 +218,8 @@ linkScript "gpg-send"
 linkScript "install-crush"
 linkScript "install-crush-version"
 linkScript "install-stuff"
+linkScript "install-v"
+linkScript "install-ghcup"
 linkScript "make-vid"
 linkScript "setup-mouse"
 linkScript "setup-wacom"

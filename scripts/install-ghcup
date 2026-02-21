@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install GHCup (Haskell toolchain installer).
+
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh

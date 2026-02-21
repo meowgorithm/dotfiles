@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install the V programming language from source.
+
+here="$PWD"
+targetDir="$HOME/src/v"
+rm -rf "$targetDir"
+mkdir -p "$targetDir"
+git clone --depth=1 https://github.com/vlang/v "$targetDir"
+cd "$targetDir"
+make
+sudo ./v symlink
+cd "$here"
