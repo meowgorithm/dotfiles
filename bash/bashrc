@@ -184,23 +184,31 @@ export GOTOOLCHAIN="auto"
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 # z.lua
-case "$os" in
-darwin)
-    zluaPath="$(brew --prefix)/opt/z.lua/share/z.lua/z.lua"
-    # shellcheck disable=1090
-    [ -f "$zluaPath" ] && eval "$(lua "$zluaPath" --init bash)"
-    ;;
-nixos)
-    # Check system-wide nix store for z.lua
-    for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
-        if [[ -f "$f" ]]; then
-            # shellcheck disable=1090
-            eval "$(lua "$f" --init bash)"
-            break
-        fi
-    done
-    ;;
-esac
+luaPath=""
+for f in /nix/store/*-lua-*/bin/lua; do
+    [[ -x "$f" ]] && luaPath="$f" && break
+done
+
+zluaPaths=(
+    "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" # macOS
+    "$HOME/.local/share/z.lua/z.lua"                           # manual install
+)
+for zluaPath in "${zluaPaths[@]}"; do
+    if [[ -f "$zluaPath" && -n "$luaPath" ]]; then
+        # shellcheck disable=1090
+        eval "$("$luaPath" "$zluaPath" --init bash)"
+        break
+    fi
+done
+
+# Also check nix store for z.lua (glob can fail in array)
+for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
+    if [[ -f "$f" && -n "$luaPath" ]]; then
+        # shellcheck disable=1090
+        eval "$("$luaPath" "$f" --init bash)"
+        break
+    fi
+done
 
 paths=(
     "$HOME/.local/bin"

@@ -44,6 +44,7 @@ jetbrains-mono-fonts-all
 jq
 kitty
 libwebp-tools
+lua
 make
 ncurses
 ncurses-compat-libs
