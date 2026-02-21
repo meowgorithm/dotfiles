@@ -14,49 +14,20 @@ toLower() {
 
 # Return a string corresponding to the current OS.
 which_os() {
-    if [[ -f /etc/os-release ]]; then
-        # shellcheck disable=SC1091
-        source /etc/os-release
-        local name
-        # shellcheck disable=SC2153
-        name=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
-        case $name in
-        fedora*)
-            printf "fedora"
-            return
-            ;;
-        esac
-    fi
-
     case "$OSTYPE" in
     darwin*)
         printf "darwin"
-        return
         ;;
-
     linux*)
-        if [[ -f "/etc/issue" ]]; then
-            issue=$(cat /etc/issue)
-            if [[ $issue =~ "NixOS" ]]; then
-                printf "nixos"
-                return
-            elif [[ $issue =~ "Void" ]]; then
-                printf "void"
-                return
-            elif [[ $issue =~ "Arch" ]]; then
-                printf "arch"
-                return
-            elif [[ $issue =~ "Debian" ]]; then
-                printf "debian"
-                return
-            else
-                printf "linux"
-                return
-            fi
+        if [[ -f /etc/os-release ]]; then
+            # shellcheck disable=SC1091
+            source /etc/os-release
+            printf "%s" "${ID,,}"
+        else
+            printf "linux"
         fi
         ;;
     esac
-    printf ""
 }
 
 # Choose a Charm repo name with Gum.
