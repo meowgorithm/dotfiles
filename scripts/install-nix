@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install Nix package manager and set up unstable channel.
+
+# Detect OS.
+os=""
+if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    os="${ID,,}"
+else
+    os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+fi
+
+# Install Nix if not already installed.
+if ! command -v nix &>/dev/null; then
+    case "$os" in
+    darwin)
+        echo "Installing Nix..."
+        sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+        ;;
+    fedora)
+        echo "Nix should be installed via dnf: sudo dnf install nix"
+        exit 1
+        ;;
+    *)
+        echo "Nix installation is not supported on this OS ($os)."
+        exit 1
+        ;;
+    esac
+fi
+
+# Enable nix-daemon on Fedora (if installed via dnf).
+if [[ "$os" == "fedora" ]]; then
+    echo "Enabling nix-daemon service..."
+    sudo systemctl enable --now nix-daemon
+fi
+
+# Set up nixpkgs unstable channel (works on all systems with Nix).
+echo "Setting up nixpkgs unstable channel..."
+nix registry add nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable
+nix registry pin nixpkgs
