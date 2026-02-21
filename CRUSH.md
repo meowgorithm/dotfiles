@@ -10,6 +10,7 @@ multiple platforms and uses different package managers depending on the OS.
 
 - **macOS** (aarch64 and x86_64): Homebrew for packages, direct symlinks for configs
 - **NixOS** (x86_64): Nix for system packages, direct symlinks for user configs
+- **Fedora**: dnf for packages, direct symlinks for configs
 - **Other Linux**: System package manager (e.g., apt, pacman) + direct symlinks
 - **WSL**: Treats as Linux
 
@@ -68,6 +69,11 @@ Skills go in the ./crush/skills directory, which is symlinked to
 ~/.config/crush/skills. When creating or managing skills, do not try and put
 them anywhere else.
 
+**Note:** Do not create `.skill` packaged files in this repository. The
+`package_skill.py` script creates these for distribution, but for personal
+use the unpacked skill directories are sufficient. Keep only the source
+files (SKILL.md, scripts/, etc.) in the repo.
+
 ## Architecture
 
 ### Configuration Structure
@@ -95,6 +101,13 @@ All user configurations are managed as direct symlinks from the repository:
 - Only for system-level tools and services
 - User packages are NOT managed via Nix
 
+**Fedora**:
+
+- Uses dnf for system package management
+- `./setup update` installs tools via dnf
+- `scripts/dnf-bundle` manages packages declaratively (like Homebrew's Brewfile)
+- User configs managed via direct symlinks
+
 **Other Linux**:
 
 - Uses system package manager (apt, pacman, etc.)
@@ -105,7 +118,7 @@ All user configurations are managed as direct symlinks from the repository:
 Common bash functions available in `bash/bash_funcs`:
 
 - `num_cores()`: Returns number of CPU cores
-- `which_os()`: Detects OS (darwin, nixos, void, arch, debian, linux)
+- `which_os()`: Detects OS (darwin, nixos, fedora, void, arch, debian, linux)
 - `command_exists()`: Checks if a command exists
 - `getCharmRepos()`: Lists all Charm repos
 - `pickCharmRepo()`: Interactive repo selection with gum
