@@ -109,12 +109,6 @@ ensure() {
     fi
 }
 
-# Install a Haskell package using cabal.
-cabal_install() {
-    local pkg="$1"
-    cabal install "$pkg" -j"$(num_cores)" --overwrite-policy=always
-}
-
 # Install a Python package using pipx (system-wide isolated installation).
 pipx_install() {
     local pkg="$1"
@@ -130,23 +124,26 @@ if [[ $OP == "update" ]]; then
 
     if [[ $os == "darwin" ]]; then
         bash "./scripts/setup-bash"
-
-        if command -v cabal &>/dev/null; then
-            cabal update
-        fi
-
-        ensure "Fourmolu" "fourmolu" "cabal_install fourmolu"
-        ensure "Floskell" "floskell" "cabal_install floskell"
     fi
 
     case $os in
     darwin)
         ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-        ensure "cabal-fmt" "cabal-fmt" "cabal install cabal-fmt -j$(num_cores)"
+
         brew bundle --verbose
         ensure "pipx" "pipx" "brew install pipx"
         ;;
     esac
+
+    # Ensure Nix is installed
+    if ! command -v nix &>/dev/null; then
+        echo "Nix not found, running install-nix..."
+        bash "./scripts/install-nix"
+    fi
+
+    # Install/upgrade nix-profile packages
+    echo "Updating nix-profile packages..."
+    nix profile upgrade --all || nix profile install ./nix-profile
 fi
 
 # Bash.

@@ -7,3 +7,4 @@ mkdir -p "$dir"
 cat << EOF > "$file"
 experimental-features = nix-command flakes
 EOF
+

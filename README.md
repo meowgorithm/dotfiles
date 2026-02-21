@@ -1,35 +1,41 @@
-# The Meowgorithm Dotfiles, Collectors’ Edition
+# The Meowgorithm Dotfiles, Collectors' Edition
 
-This repo contains NixOS and Home Manager configurations to support a few
-systems:
+This repo contains configuration files managed for:
 
-- NixOS `x86_64` with Hyprland
-- macOS `x86_64` and `aarch64`
-- Headless, general-purpose Linux `x86_64` (including WSL)
+- macOS (aarch64 and x86_64)
+- Linux (Fedora, NixOS, and others, including WSL)
 
-## User Management
+## Quick Start
 
 ```bash
-# Enable flakes on non-NixOS systems:
-./enable-flakes
+# Clone the repo
+git clone <repo-url> ~/.dotfiles
+cd ~/.dotfiles
 
-# Let it rip:
-nix run
+# Link all configs
+./setup link
 
-# Or, for headless VMs and WSL:
-nix run .#christian@headless
+# Update dependencies (installs Nix, Homebrew packages, etc.)
+./setup update
 ```
 
-## OS Management
-
-Update the system locally:
+## Management
 
 ```bash
-nixos-rebuild switch --flake .
+# Link all configs (backs up existing files)
+./setup link
+
+# Remove all symlinks
+./setup remove
+
+# Update dependencies
+./setup update
 ```
 
-Or just do it over the network:
+## Package Management
 
-```bash
-nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
-```
+- **macOS**: Homebrew via `Brewfile`
+- **Fedora**: dnf via `DNFfile`
+- **All platforms**: Nix profile via `nix-profile/flake.nix`
+
+See `CRUSH.md` for more details.

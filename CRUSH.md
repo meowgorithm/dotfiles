@@ -45,23 +45,22 @@ The `setup` script manages configuration files via symlinks to this repository:
 ./setup update
 ```
 
-### Nix (for existing Nix systems only)
+### Nix Profile
 
-The flake exists primarily to remove Nix/Home Manager packages from existing systems:
+Package installation is managed via `nix-profile/flake.nix` using the modern `nix profile` command. This handles tools like `fourmolu`, `cabal-fmt`, and other packages previously installed via `cabal`.
+
+The `setup update` command automatically:
+1. Installs Nix if not present (via `scripts/install-nix`)
+2. Upgrades all profile packages: `nix profile upgrade --all`
+3. Or installs them initially: `nix profile install ./nix-profile`
 
 ```bash
-# Enable flakes on non-NixOS systems
-./enable-flakes
-
-# Remove home-manager packages and clean up
-nix run
-
-# For NixOS systems (system configuration)
-nixos-rebuild switch --flake .
-
-# Deploy from remote
-nixos-rebuild switch --flake github:meowgorithm/dotfiles/master
+# Manual nix-profile management
+nix profile install ./nix-profile    # First-time install
+nix profile upgrade --all            # Upgrade all packages
 ```
+
+
 
 ### Skills
 
@@ -93,24 +92,26 @@ All user configurations are managed as direct symlinks from the repository:
 
 - Uses `Brewfile` for all package management
 - Includes Homebrew formulas and casks
+- Nix profile for Haskell tools (fourmolu, cabal-fmt, etc.)
 - Font management via copying
 
 **NixOS**:
 
-- System packages defined in `modules/nixos/default.nix`
-- Only for system-level tools and services
-- User packages are NOT managed via Nix
+- User packages are NOT managed via Nix (use nix-profile instead)
+- `modules/nixos/` is being phased out
 
 **Fedora**:
 
 - Uses dnf for system package management
 - `./setup update` installs tools via dnf
+- Nix profile for Haskell tools (fourmolu, cabal-fmt, etc.)
 - `scripts/dnf-bundle` manages packages declaratively (like Homebrew's Brewfile)
 - User configs managed via direct symlinks
 
 **Other Linux**:
 
 - Uses system package manager (apt, pacman, etc.)
+- Nix profile for Haskell tools (fourmolu, cabal-fmt, etc.)
 - Manual installation of tools via `./setup update`
 
 ### Functions & Utilities
@@ -125,31 +126,16 @@ Common bash functions available in `bash/bash_funcs`:
 
 ## Supported Systems
 
-### Configured Hostnames
-
-From `flake.nix`:
-
-- **artemis** - NixOS desktop (x86_64-linux)
-- **whitenoise** - NixOS desktop (x86_64-linux)
-- **pantera** - Mac Studio (aarch64-darwin)
-- **meowmachine** - MacBook Pro (aarch64-darwin)
-- **la-tigra** - MacBook Air (aarch64-darwin)
-- **wsl** - WSL (x86_64-linux, user: chris)
+- **macOS** (aarch64 and x86_64): Homebrew for packages
+- **Fedora**: dnf for packages
+- **Other Linux**: System package manager + nix profile
 
 ### Desktop Environments
 
-- **NixOS**: Hyprland + Waybar
 - **macOS**: Native desktop with Kitty/Ghostty terminals
+- **Linux**: Hyprland + Waybar (config still present but NixOS module deprecated)
 
 ## Important Notes
-
-### Nix is Being Phased Out
-
-Nix and Home Manager are deprecated for user configuration. The flake only exists to:
-
-- Remove existing Nix/Home Manager packages from systems
-- Provide NixOS system configuration (Hyprland, system packages, services)
-- Eventually be removed entirely
 
 ### Workflow
 
@@ -157,13 +143,7 @@ Nix and Home Manager are deprecated for user configuration. The flake only exist
 2. **Remove config**: Delete symlink, run `./setup remove` if needed
 3. **Update tools**: Run `./setup update` to install/update dependencies
 
-### Migration Path
 
-For systems still using Nix/Home Manager:
-
-1. Run `nix run` to remove home-manager packages
-2. Run `./setup link` to establish symlink-based configs
-3. Eventually remove Nix entirely (except for NixOS systems)
 
 ## Editor Configuration
 
@@ -192,6 +172,7 @@ For systems still using Nix/Home Manager:
 - `tm`, `tmls`: tmux utilities
 - `sessions`: Session management
 - `install-stuff`: Install additional tools
+- `install-nix`: Install the Nix package manager
 - `fix-docker-desktop`: Fix Docker Desktop issues
 - `setup-mouse`, `setup-wacom`: Peripheral setup
 
