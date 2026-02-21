@@ -1,0 +1,6 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "options": {
+    "skills_paths": ["./skills"]
+  }
+}
