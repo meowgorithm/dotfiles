@@ -2,8 +2,8 @@
 
 This repo contains configuration files managed for:
 
-- macOS (aarch64 and x86_64)
-- Linux (Fedora, NixOS, and others, including WSL)
+- macOS aarch64
+- Linux x86_64 (Fedora, NixOS, and others, including WSL)
 
 ## Quick Start
 
