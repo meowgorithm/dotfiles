@@ -249,7 +249,7 @@ if [[ $os == "nixos" ]]; then
 fi
 
 # Fonts
-if [[ $os == "darwin" ]]; then
+if [[ -d "$HOME/Library/Fonts" ]]; then
     # macOS
     fontDir="$HOME/Library/Fonts/Meowgorithm"
 else
@@ -262,7 +262,7 @@ if [[ -n "${fontDir:-}" ]]; then
     mkdir -p "$fontDir"
     if [[ $OP != "remove" ]]; then
         find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
-        if [[ $os != "darwin" ]] && command -v fc-cache &>/dev/null; then
+        if command -v fc-cache &>/dev/null; then
             fc-cache -f "$fontDir"
         fi
         printf "%s Fonts\n" "$COPIED"
