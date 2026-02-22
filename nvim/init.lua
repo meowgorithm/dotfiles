@@ -175,12 +175,15 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99 -- start with all folds open
 
 -- Blast
-require("blast").setup({
-	socket_path = vim.fn.expand("$HOME/.local/share/blastd/blastd.sock"),
-	idle_timeout = 120,
-	debounce_ms = 1000,
-	debug = false,
-})
+local blast_ok, blast = pcall(require, "blast")
+if blast_ok then
+	blast.setup({
+		socket_path = vim.fn.expand("$HOME/.local/share/blastd/blastd.sock"),
+		idle_timeout = 120,
+		debounce_ms = 1000,
+		debug = false,
+	})
+end
 
 -- TreeSitter
 require("nvim-treesitter").setup({
