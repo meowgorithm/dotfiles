@@ -51,7 +51,7 @@ BACKUP="$(status "BACKUP" "$YELLOW" "$BLACK")"
 UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
 
 # Create or remove a symlink.
-link() {
+symlink() {
     local op="$1"
     local source="$PWD/$2"
     local target="$3"
@@ -87,6 +87,11 @@ link() {
             echo "$LINKED $display_source -> $display_target"
         fi
     fi
+}
+
+# Curried symlink using the global OP.
+link() {
+    symlink "$OP" "$@"
 }
 
 # Ensure a command exists. If it does not, install it using the given command.
@@ -147,93 +152,95 @@ if [[ $OP == "update" ]]; then
 fi
 
 # Bash.
-link "$OP" "bash/profile" "$HOME/.profile"
-link "$OP" "bash/bash_profile" "$HOME/.bash_profile"
-link "$OP" "bash/bashrc" "$HOME/.bashrc"
-link "$OP" "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
-link "$OP" "pantera/env.asc" "$XDG_DATA_HOME/meowgorithm/env.asc"
+link "bash/profile" "$HOME/.profile"
+link "bash/bash_profile" "$HOME/.bash_profile"
+link "bash/bashrc" "$HOME/.bashrc"
+link "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
+link "pantera/env.asc" "$XDG_DATA_HOME/meowgorithm/env.asc"
 
 # Git
-link "$OP" "git/config" "$XDG_CONFIG_HOME/git/config"
-link "$OP" "git/ignore" "$XDG_CONFIG_HOME/git/ignore"
+link "git/config" "$XDG_CONFIG_HOME/git/config"
+link "git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 
-link "$OP" "readline/inputrc" "$HOME/.inputrc"
-link "$OP" "ssh/config" "$HOME/.ssh/config"
-link "$OP" "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
-link "$OP" "crush" "$XDG_CONFIG_HOME/crush"
-link "$OP" "vim" "$XDG_CONFIG_HOME/vim"
-link "$OP" "helix" "$XDG_CONFIG_HOME/helix"
-link "$OP" "prettier/prettierrc.yaml" "$HOME/.prettierrc.yaml"
-link "$OP" "emacs/init.el" "$HOME/.emacs.d/init.el"
-link "$OP" "zellij/config.kdl" "$XDG_CONFIG_HOME/zellij/config.kdl"
-link "$OP" "tmux/tmux.conf" "$HOME/.tmux.conf"
+link "readline/inputrc" "$HOME/.inputrc"
+link "ssh/config" "$HOME/.ssh/config"
+link "rio/config.toml" "$XDG_CONFIG_HOME/rio/config.toml"
+link "crush" "$XDG_CONFIG_HOME/crush"
+link "vim" "$XDG_CONFIG_HOME/vim"
+link "helix" "$XDG_CONFIG_HOME/helix"
+link "prettier/prettierrc.yaml" "$HOME/.prettierrc.yaml"
+link "emacs/init.el" "$HOME/.emacs.d/init.el"
+link "zellij/config.kdl" "$XDG_CONFIG_HOME/zellij/config.kdl"
+link "tmux/tmux.conf" "$HOME/.tmux.conf"
 
 # Neovim
-link "$OP" "nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
-link "$OP" "nvim/vsnip" "$XDG_CONFIG_HOME/.vsnip"
-link "$OP" "nvim/colors" "$XDG_CONFIG_HOME/nvim/colors"
-link "$OP" "nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
+link "nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+link "nvim/vsnip" "$XDG_CONFIG_HOME/.vsnip"
+link "nvim/colors" "$XDG_CONFIG_HOME/nvim/colors"
+link "nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
 
 # Kitty.
-link "$OP" "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
+link "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
 if [[ $os = "darwin" ]]; then
-    link "$OP" "kitty/darwin.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+    link "kitty/darwin.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
 else
-    link "$OP" "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+    link "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
 fi
 
 # Ghostty
-link "$OP" "ghostty/config" "$XDG_CONFIG_HOME/ghostty/config"
+link "ghostty/config" "$XDG_CONFIG_HOME/ghostty/config"
 if [[ $os = "darwin" ]]; then
-    link "$OP" "ghostty/darwin" "$XDG_CONFIG_HOME/ghostty/os"
+    link "ghostty/darwin" "$XDG_CONFIG_HOME/ghostty/os"
 else
-    link "$OP" "ghostty/linux" "$XDG_CONFIG_HOME/ghostty/os"
+    link "ghostty/linux" "$XDG_CONFIG_HOME/ghostty/os"
 fi
 
 # Fourmolu.
-link "$OP" "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
+link "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 
 # Hyprland.
 case "$os" in
 nixos | fedora)
-    link "$OP" "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
-    link "$OP" "waybar/" "$XDG_CONFIG_HOME/waybar"
+    link "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
+    link "waybar/" "$XDG_CONFIG_HOME/waybar"
     ;;
 esac
 
-linkScript() {
-    link "$OP" "scripts/$1" "$HOME/.bin/$1"
-}
+link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 
-# Scripts
+# Scripts.
+scripts=(
+    "gpg-edit-key"
+    "gpg-send"
+    "install-crush"
+    "install-crush-version"
+    "install-stuff"
+    "install-v"
+    "install-z.lua"
+    "install-ghcup"
+    "install-nix"
+    "make-vid"
+    "setup-mouse"
+    "setup-wacom"
+    "zellijls"
+    "tm"
+    "tmls"
+    "uninstall-crush"
+    "sessions"
+)
 if [[ $os == "darwin" ]]; then
-    linkScript "fix-docker-desktop"
+    scripts+=("fix-docker-desktop")
 fi
-linkScript "gpg-edit-key"
-linkScript "gpg-send"
-linkScript "install-crush"
-linkScript "install-crush-version"
-linkScript "install-stuff"
-linkScript "install-v"
-linkScript "install-z.lua"
-linkScript "install-ghcup"
-linkScript "install-nix"
-linkScript "make-vid"
-linkScript "setup-mouse"
-linkScript "setup-wacom"
-linkScript "zellijls"
-linkScript "tm"
-linkScript "tmls"
-linkScript "uninstall-crush"
-link "$OP" "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
-linkScript "sessions"
+for script in "${scripts[@]}"; do
+    link "scripts/$script" "$HOME/.bin/$script"
+done
 
 # Fedora bundle script
 case "$os" in
 fedora | linux)
-    link "$OP" "scripts/dnf-bundle" "$HOME/.bin/bundle"
-    link "$OP" "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
-    link "$OP" "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
+    link "scripts/dnf-bundle" "$HOME/.bin/bundle"
+    link "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
+    link "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
     ;;
 esac
 
