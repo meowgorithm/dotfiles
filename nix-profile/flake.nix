@@ -2,15 +2,24 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs = {nixpkgs, ...}: let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    supportedSystems = [
+      "x86_64-linux"
+      "aarch64-darwin"
+    ];
+
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
-    packages.x86_64-linux.default = pkgs.buildEnv {
-      name = "meowgorithm";
-      paths = with pkgs; [
-        alejandra
-        haskellPackages.cabal-fmt
-        haskellPackages.fourmolu
-      ];
-    };
+    packages = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.buildEnv {
+        name = "meowgorithm";
+        paths = with pkgs; [
+          alejandra
+          haskellPackages.cabal-fmt
+          haskellPackages.fourmolu
+        ];
+      };
+    });
   };
 }
