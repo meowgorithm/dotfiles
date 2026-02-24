@@ -6,14 +6,14 @@
 set -e
 
 # Default values
-QUALITY=85
+QUALITY=90
 RESIZE=""
 FORMAT=""
 VERBOSE=false
 
 # Show usage
 usage() {
-    cat << 'EOF'
+    cat <<'EOF'
 Usage: convert.sh [options] <input> [output]
 
 Options:
@@ -37,19 +37,19 @@ check_deps() {
     local has_im=false
     local has_cwebp=false
     local has_dwebp=false
-    
+
     if command -v convert &>/dev/null || command -v magick &>/dev/null; then
         has_im=true
     fi
-    
+
     if command -v cwebp &>/dev/null; then
         has_cwebp=true
     fi
-    
+
     if command -v dwebp &>/dev/null; then
         has_dwebp=true
     fi
-    
+
     echo "$has_im|$has_cwebp|$has_dwebp"
 }
 
@@ -82,26 +82,27 @@ convert_with_im() {
     local format="$3"
     local quality="$4"
     local resize="$5"
-    
-    local cmd=($(get_im_cmd))
+
+    local cmd
+    cmd=("$(get_im_cmd)")
     cmd+=("$input")
-    
+
     if [[ -n "$resize" ]]; then
         cmd+=("-resize" "$resize")
     fi
-    
+
     if [[ "$format" == "jpg" || "$format" == "jpeg" ]]; then
         cmd+=("-quality" "$quality")
     elif [[ "$format" == "webp" ]]; then
         cmd+=("-quality" "$quality" "-define" "webp:target-quality=$quality")
     fi
-    
+
     cmd+=("$output")
-    
+
     if [[ "$VERBOSE" == true ]]; then
         echo "Running: ${cmd[*]}"
     fi
-    
+
     "${cmd[@]}"
 }
 
@@ -111,9 +112,9 @@ convert_to_webp() {
     local output="$2"
     local quality="$3"
     local resize="$4"
-    
+
     local opts=()
-    
+
     if [[ -n "$resize" ]]; then
         # Parse resize geometry (e.g., "800x600" or "50%")
         if [[ "$resize" == *%* ]]; then
@@ -123,13 +124,13 @@ convert_to_webp() {
             opts+=("-resize" "$resize")
         fi
     fi
-    
+
     opts+=("-q" "$quality" "$input" "-o" "$output")
-    
+
     if [[ "$VERBOSE" == true ]]; then
         echo "Running: cwebp ${opts[*]}"
     fi
-    
+
     cwebp "${opts[@]}"
 }
 
@@ -138,21 +139,21 @@ convert_from_webp() {
     local input="$1"
     local output="$2"
     local resize="$3"
-    
+
     local opts=()
-    
+
     if [[ -n "$resize" ]]; then
         # dwebp doesn't support resize directly, use ImageMagick
         convert_with_im "$input" "$output" "" "" "$resize"
         return
     fi
-    
+
     opts+=("$input" "-o" "$output")
-    
+
     if [[ "$VERBOSE" == true ]]; then
         echo "Running: dwebp ${opts[*]}"
     fi
-    
+
     dwebp "${opts[@]}"
 }
 
@@ -161,17 +162,17 @@ detect_format() {
     local output="$1"
     local ext
     ext=$(get_extension "$output")
-    
+
     case "$ext" in
-        png) echo "png" ;;
-        jpg|jpeg) echo "jpg" ;;
-        webp) echo "webp" ;;
-        gif) echo "gif" ;;
-        bmp) echo "bmp" ;;
-        tiff|tif) echo "tiff" ;;
-        avif) echo "avif" ;;
-        heic|heif) echo "heic" ;;
-        *) echo "" ;;
+    png) echo "png" ;;
+    jpg | jpeg) echo "jpg" ;;
+    webp) echo "webp" ;;
+    gif) echo "gif" ;;
+    bmp) echo "bmp" ;;
+    tiff | tif) echo "tiff" ;;
+    avif) echo "avif" ;;
+    heic | heif) echo "heic" ;;
+    *) echo "" ;;
     esac
 }
 
@@ -179,37 +180,37 @@ detect_format() {
 convert_file() {
     local input="$1"
     local output="$2"
-    
+
     if [[ ! -f "$input" ]]; then
         echo "Error: Input file not found: $input" >&2
         return 1
     fi
-    
+
     local input_ext
     input_ext=$(get_extension "$input")
-    
+
     # Auto-detect output format if not specified
     if [[ -z "$FORMAT" && -n "$output" ]]; then
         FORMAT=$(detect_format "$output")
     fi
-    
+
     if [[ -z "$FORMAT" ]]; then
         echo "Error: Could not detect output format from: $output" >&2
         return 1
     fi
-    
+
     # Determine output filename
     if [[ -z "$output" ]]; then
         output="$(get_basename "$input").$FORMAT"
     fi
-    
+
     # Create output directory if needed
     local out_dir
     out_dir=$(dirname "$output")
     if [[ "$out_dir" != "." && ! -d "$out_dir" ]]; then
         mkdir -p "$out_dir"
     fi
-    
+
     # Use specialized tools when available
     if [[ "$input_ext" == "webp" && "$FORMAT" != "webp" ]]; then
         local deps
@@ -219,7 +220,7 @@ convert_file() {
             return
         fi
     fi
-    
+
     if [[ "$FORMAT" == "webp" && "$input_ext" != "webp" ]]; then
         local deps
         deps=$(check_deps)
@@ -228,7 +229,7 @@ convert_file() {
             return
         fi
     fi
-    
+
     # Fallback to ImageMagick
     local deps
     deps=$(check_deps)
@@ -244,78 +245,83 @@ convert_file() {
 main() {
     local inputs=()
     local output=""
-    
+
     # Parse arguments
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -f|--format)
-                FORMAT="$2"
-                shift 2
-                ;;
-            -q|--quality)
-                QUALITY="$2"
-                shift 2
-                ;;
-            -r|--resize)
-                RESIZE="$2"
-                shift 2
-                ;;
-            -v|--verbose)
-                VERBOSE=true
-                shift
-                ;;
-            -h|--help)
-                usage
-                ;;
-            -*)
-                echo "Unknown option: $1" >&2
-                exit 1
-                ;;
-            *)
-                if [[ ${#inputs[@]} -eq 0 && -z "$output" ]]; then
-                    inputs+=("$1")
-                elif [[ -z "$output" && "$1" != -* ]]; then
-                    # Check if this looks like an output file (has extension different from input)
-                    local in_ext out_ext
-                    in_ext=$(get_extension "${inputs[0]}")
-                    out_ext=$(get_extension "$1")
-                    if [[ "$in_ext" != "$out_ext" ]] || [[ -n "$FORMAT" ]]; then
-                        output="$1"
-                    else
-                        inputs+=("$1")
-                    fi
-                else
-                    inputs+=("$1")
-                fi
-                shift
-                ;;
+        -f | --format)
+            FORMAT="$2"
+            shift 2
+            ;;
+        -q | --quality)
+            QUALITY="$2"
+            shift 2
+            ;;
+        -r | --resize)
+            RESIZE="$2"
+            shift 2
+            ;;
+        -v | --verbose)
+            VERBOSE=true
+            shift
+            ;;
+        -h | --help)
+            usage
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            exit 1
+            ;;
+        *)
+            inputs+=("$1")
+            shift
+            ;;
         esac
     done
-    
+
     if [[ ${#inputs[@]} -eq 0 ]]; then
         echo "Error: No input files specified" >&2
         usage
     fi
-    
+
+    # Determine if last argument is an output file (not batch mode)
+    # Output file detection: single input + different extension OR explicit format mismatch
+    if [[ ${#inputs[@]} -eq 2 ]]; then
+        local in_ext out_ext
+        in_ext=$(get_extension "${inputs[0]}")
+        out_ext=$(get_extension "${inputs[1]}")
+
+        # If extensions differ, treat second as output
+        if [[ "$in_ext" != "$out_ext" ]]; then
+            output="${inputs[1]}"
+            inputs=("${inputs[0]}")
+        # If explicit format specified and matches second file's extension, treat as output
+        elif [[ -n "$FORMAT" ]] && [[ "$FORMAT" == "$out_ext" || "$FORMAT" == "jpg" && "$out_ext" == "jpeg" || "$FORMAT" == "jpeg" && "$out_ext" == "jpg" ]]; then
+            output="${inputs[1]}"
+            inputs=("${inputs[0]}")
+        fi
+    fi
+
     # Batch conversion mode
-    if [[ ${#inputs[@]} -gt 1 && -z "$output" ]]; then
+    if [[ ${#inputs[@]} -gt 1 ]]; then
         if [[ -z "$FORMAT" ]]; then
             echo "Error: Format required for batch conversion. Use -f <format>" >&2
             exit 1
         fi
-        
+
         for input in "${inputs[@]}"; do
-            output="$(get_basename "$input").$FORMAT"
-            echo "Converting: $input -> $output"
-            convert_file "$input" "$output"
+            local out
+            out="$(get_basename "$input").$FORMAT"
+            if [[ "$VERBOSE" == true ]]; then
+                echo "Converting: $input -> $out"
+            fi
+            convert_file "$input" "$out"
         done
         return
     fi
-    
+
     # Single file conversion
-    if [[ ${#inputs[@]} -eq 1 ]]; then
-        convert_file "${inputs[0]}" "$output"
-    fi
+    convert_file "${inputs[0]}" "$output"
 }
 
 main "$@"
