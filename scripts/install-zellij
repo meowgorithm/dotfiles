@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install the latest Zellij binary on Linux.
+# https://zellij.dev/
+
+# Only support Linux.
+if [[ "$OSTYPE" != linux* ]]; then
+    echo "This script only supports Linux."
+    exit 1
+fi
+
+# Detect architecture.
+arch="$(uname -m)"
+case "$arch" in
+x86_64)
+    target="x86_64-unknown-linux-musl"
+    ;;
+aarch64)
+    target="aarch64-unknown-linux-musl"
+    ;;
+*)
+    echo "Unsupported architecture: $arch"
+    exit 1
+    ;;
+esac
+
+# Get the latest release URL.
+echo "Fetching latest Zellij release..."
+release_url="https://api.github.com/repos/zellij-org/zellij/releases/latest"
+download_url=$(curl -s "$release_url" | grep -o "https://github.com/zellij-org/zellij/releases/download/[^\"]*/zellij-$target.tar.gz" | head -1)
+
+if [[ -z "$download_url" ]]; then
+    echo "Failed to find download URL for $target"
+    exit 1
+fi
+
+# Create temp directory and download.
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+echo "Downloading Zellij from $download_url..."
+curl -sL "$download_url" -o "$tmpdir/zellij.tar.gz"
+
+# Extract.
+tar -xzf "$tmpdir/zellij.tar.gz" -C "$tmpdir"
+
+# Install to ~/.local/bin.
+install_dir="$HOME/.local/bin"
+mkdir -p "$install_dir"
+
+mv "$tmpdir/zellij" "$install_dir/zellij"
+chmod +x "$install_dir/zellij"
+
+echo "Zellij installed to $install_dir/zellij"
+echo "Version: $($install_dir/zellij --version)"

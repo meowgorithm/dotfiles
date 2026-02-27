@@ -10,6 +10,7 @@ Task:go install -v github.com/go-task/task/v3/cmd/task@latest
 Templ:go install -v github.com/a-h/templ/cmd/templ@latest
 V:install-v
 z.lua:install-z.lua
+Zellij:install-zellij
 EOF
 )"
 
