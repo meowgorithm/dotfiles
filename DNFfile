@@ -116,3 +116,4 @@ xdg-desktop-portal-wlr
 zlib-devel
 
 # New stuff
+postgresql-contrib
