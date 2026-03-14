@@ -117,3 +117,5 @@ zlib-devel
 
 # New stuff
 postgresql-contrib
+xclip
+wl-copy
