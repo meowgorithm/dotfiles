@@ -18,6 +18,7 @@
           alejandra
           haskellPackages.cabal-fmt
           haskellPackages.fourmolu
+          sqlc
         ];
       };
     });
