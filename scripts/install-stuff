@@ -6,6 +6,7 @@ Air:go install -v github.com/air-verse/air@latest
 Charmtone:go install -v github.com/charmbracelet/x/examples/charmtone@main
 GHCup:install-ghcup
 Hivemind:go install -v github.com/DarthSim/hivemind@latest
+Rio:install-rio
 Task:go install -v github.com/go-task/task/v3/cmd/task@latest
 Templ:go install -v github.com/a-h/templ/cmd/templ@latest
 V:install-v

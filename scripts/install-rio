@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install the latest Rio terminal RPM on Fedora.
+# https://raphamorim.io/rio/
+
+# Check if running on Fedora.
+if [[ ! -f /etc/os-release ]]; then
+    echo "Cannot detect OS. This script only supports Fedora."
+    exit 1
+fi
+
+source /etc/os-release
+if [[ "$ID" != "fedora" ]]; then
+    echo "This script only supports Fedora. Detected: $ID"
+    exit 1
+fi
+
+# Detect architecture.
+arch="$(uname -m)"
+case "$arch" in
+x86_64)
+    rpm_arch="x86_64"
+    ;;
+aarch64)
+    rpm_arch="aarch64"
+    ;;
+*)
+    echo "Unsupported architecture: $arch"
+    exit 1
+    ;;
+esac
+
+# Detect display server (default to wayland).
+if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+    display_server="wayland"
+elif [[ -n "${DISPLAY:-}" ]]; then
+    display_server="x11"
+else
+    # Default to wayland for modern Fedora systems.
+    display_server="wayland"
+fi
+
+echo "Detected: $rpm_arch with $display_server"
+
+# Get the latest release URL.
+echo "Fetching latest Rio release..."
+release_url="https://api.github.com/repos/raphamorim/rio/releases/latest"
+release_json=$(curl -s "$release_url")
+
+# Extract version and download URL.
+version=$(echo "$release_json" | grep -o '"tag_name": "[^"]*"' | head -1 | cut -d'"' -f4)
+download_url=$(echo "$release_json" | grep -o "https://github.com/raphamorim/rio/releases/download/[^\"]*/rioterm-${version#v}-1.${rpm_arch}_${display_server}.rpm" | head -1)
+
+if [[ -z "$download_url" ]]; then
+    echo "Failed to find download URL for $rpm_arch with $display_server"
+    exit 1
+fi
+
+echo "Found Rio $version"
+echo "Downloading from $download_url..."
+
+# Create temp directory and download.
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+rpm_file="$tmpdir/rioterm.rpm"
+curl -sL "$download_url" -o "$rpm_file"
+
+# Install the RPM.
+echo "Installing Rio..."
+sudo dnf install -y "$rpm_file"
+
+echo "Rio $version installed successfully."

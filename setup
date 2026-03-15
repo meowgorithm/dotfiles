@@ -214,6 +214,7 @@ scripts=(
     "gpg-send"
     "install-crush"
     "install-crush-version"
+    "install-rio"
     "install-stuff"
     "install-v"
     "install-z.lua"
