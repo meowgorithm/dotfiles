@@ -192,7 +192,7 @@ install_packages() {
     packages=$(read_packages)
     if [ -n "$packages" ]; then
         echo "Installing DNF packages..."
-        echo "$packages" | xargs sudo dnf install -y
+        echo "$packages" | xargs sudo dnf install -y --skip-unavailable
     fi
 }
 
