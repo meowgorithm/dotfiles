@@ -6,6 +6,7 @@
 copr "scottames/ghostty" "ghostty"
 copr "lukenukem/asus-linux" "asusctl"
 copr "varlad/zellij" "zellij"
+copr "solopasha/hyprland" "hyprland"
 
 # Flatpak packages (syntax: flatpak "app-id")
 flatpak "com.discordapp.Discord"
