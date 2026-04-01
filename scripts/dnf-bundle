@@ -169,7 +169,14 @@ setup_flatpak_packages() {
         appid=$(parse_flatpak "$line")
         if [ -n "$appid" ]; then
             echo "  → $appid"
-            flatpak install -y flathub "$appid" 2>/dev/null || echo "    (may already be installed)"
+            flatpak install -y flathub "$appid" 2>/dev/null || echo "    (may already been installed)"
+
+            # Configure HiDPI for Electron apps on Wayland
+            if [ "$appid" = "com.slack.Slack" ] || [ "$appid" = "com.discordapp.Discord" ]; then
+                echo "    → Configuring HiDPI..."
+                flatpak override --user --socket=wayland --nosocket=x11 \
+                    --env=ELECTRON_OZONE_PLATFORM_HINT=wayland "$appid" 2>/dev/null || true
+            fi
         fi
     done <<< "$entries"
 }
