@@ -14,10 +14,39 @@
     },
     "permissions": {
         "allowed_tools": [
+            "bash",
+            "edit",
             "fetch",
+            "glob",
+            "grep",
+            "mcp_github_get_commit",
+            "mcp_github_get_copilot_job_status",
+            "mcp_github_get_file_contents",
+            "mcp_github_get_label",
+            "mcp_github_get_latest_release",
+            "mcp_github_get_me",
+            "mcp_github_get_release_by_tag",
+            "mcp_github_get_tag",
+            "mcp_github_get_team_members",
+            "mcp_github_get_teams",
+            "mcp_github_issue_read",
+            "mcp_github_list_branches",
+            "mcp_github_list_commits",
+            "mcp_github_list_issue_types",
+            "mcp_github_list_issues",
+            "mcp_github_list_pull_requests",
+            "mcp_github_list_releases",
+            "mcp_github_list_tags",
             "mcp_github_pull_request_read",
-            "mcp_neocrush_editor_context",
-            "view"
+            "mcp_github_run_secret_scanning",
+            "mcp_github_search_code",
+            "mcp_github_search_issues",
+            "mcp_github_search_pull_requests",
+            "mcp_github_search_repositories",
+            "mcp_github_search_users",
+            "multiedit",
+            "view",
+            "write"
         ]
     }
 }
