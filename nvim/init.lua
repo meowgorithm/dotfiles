@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 local g = vim.g
 local opt = vim.opt
 local autocmd = vim.api.nvim_create_autocmd
@@ -12,43 +14,43 @@ local vmap = function(lhs, rhs, opts)
 	vim.keymap.set("v", lhs, rhs, opts)
 end
 
--- Bootstrap vim-plug
-local plug_dir = vim.fn.stdpath("data") .. "/site/autoload/plug.vim"
-if not vim.loop.fs_stat(plug_dir) then
-	print("Installing vim-plug...")
-	vim.fn.system({
-		"curl",
-		"-fLo",
-		plug_dir,
-		"--create-dirs",
-		"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
-	})
-end
-vim.cmd("source " .. plug_dir)
+-- PackChanged hook for nvim-treesitter to run TSUpdate after update
+vim.api.nvim_create_autocmd("PackChanged", {
+	callback = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if name == "nvim-treesitter" and kind == "update" then
+			if not ev.data.active then
+				vim.cmd.packadd("nvim-treesitter")
+			end
+			vim.cmd("TSUpdate")
+		end
+	end,
+})
 
--- Load plugins with vim-plug
-vim.cmd([[
-call plug#begin()
-Plug 'airblade/vim-gitgutter'
-Plug 'catgoose/nvim-colorizer.lua'
-Plug 'folke/trouble.nvim'
-Plug 'github/copilot.vim'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'jamessan/vim-gnupg'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'saghen/blink.cmp'
-Plug 'schickling/vim-bufonly'
-Plug 'stevearc/conform.nvim'
-Plug 'taigrr/blast.nvim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-call plug#end()
-]])
+-- Plugins
+local github = function(repo)
+	return "https://github.com/" .. repo
+end
+vim.pack.add(vim.tbl_map(github, {
+	"airblade/vim-gitgutter",
+	"catgoose/nvim-colorizer.lua",
+	"folke/trouble.nvim",
+	"github/copilot.vim",
+	"hrsh7th/vim-vsnip",
+	"jamessan/vim-gnupg",
+	"nvim-lua/plenary.nvim",
+	"nvim-telescope/telescope.nvim",
+	"nvim-tree/nvim-tree.lua",
+	"nvim-treesitter/nvim-treesitter",
+	"saghen/blink.cmp",
+	"schickling/vim-bufonly",
+	"stevearc/conform.nvim",
+	"taigrr/blast.nvim",
+	"tpope/vim-fugitive",
+	"tpope/vim-surround",
+	"tpope/vim-unimpaired",
+	"vim-airline/vim-airline",
+}))
 
 g.mapleader = " "
 
@@ -440,11 +442,11 @@ do
 			map("<leader>a", "vim.lsp.buf.code_action()")
 			map("<leader>ll", "vim.diagnostic.open_float()")
 
-			if client.supports_method(lspMethods.textDocument_codelens) then
+			if client:supports_method(lspMethods.textDocument_codelens) then
 				map("<leader>lh", "vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())")
 			end
 
-			if client.supports_method(lspMethods.textDocument_codeAction) then
+			if client:supports_method(lspMethods.textDocument_codeAction) then
 				if client.name ~= "lua_ls" then -- organize_imports is comically broken in lua
 					local organize_auid = vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 						buffer = bufnr,
