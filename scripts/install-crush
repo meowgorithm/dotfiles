@@ -3,38 +3,47 @@ set -euo pipefail
 
 is_fedora=false
 if [[ -f /etc/os-release ]]; then
-    source /etc/os-release
-    if [[ "$ID" == "fedora" ]]; then
-        is_fedora=true
-    fi
+	source /etc/os-release
+	if [[ "$ID" == "fedora" ]]; then
+		is_fedora=true
+	fi
 fi
 
 brewLocation="charmbracelet/tap/crush"
 npmLocation="@charmland/crush"
 
+is_linux=false
+if [[ "$(uname -s)" == "Linux" ]]; then
+	is_linux=true
+fi
+
 go="go install -v github.com/charmbracelet/crush"
 numtide="nix run github:numtide/nix-ai-tools#crush"
 nixunstable="nix-shell -p crush"
 brew="brew install $brewLocation"
-npm="npm install -g $npmLocation"
+if [[ "$is_linux" == true ]]; then
+	npm="sudo npm install -g $npmLocation"
+else
+	npm="npm install -g $npmLocation"
+fi
 
 fedora_setup_repo() {
-    if ! grep -q '\[charm\]' /etc/yum.repos.d/charm.repo 2>/dev/null; then
-        echo "Adding Charm repo..."
-        echo '[charm]
+	if ! grep -q '\[charm\]' /etc/yum.repos.d/charm.repo 2>/dev/null; then
+		echo "Adding Charm repo..."
+		echo '[charm]
 name=Charm
 baseurl=https://repo.charm.sh/yum/
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.charm.sh/yum/gpg.key' | sudo tee /etc/yum.repos.d/charm.repo >/dev/null
-        sudo rpm --import https://repo.charm.sh/yum/gpg.key
-    fi
+		sudo rpm --import https://repo.charm.sh/yum/gpg.key
+	fi
 }
 
 fedora="fedora_setup_repo; if rpm -q crush >/dev/null 2>&1; then sudo dnf upgrade -y crush; else sudo dnf install -y crush; fi"
 
 opts="$(
-    cat <<EOF
+	cat <<EOF
 Build from source (release):$go@latest
 Build from source (main):$go@main
 Nix (numtide):$numtide
@@ -45,24 +54,24 @@ EOF
 )"
 
 if [[ "$is_fedora" == true ]]; then
-    opts="$(printf "Build from source (release):%s\nBuild from source (main):%s\nFedora (dnf):%s\nNix (numtide):%s\nNixpkgs:%s\nHomebrew:%s\nNPM:%s" "$go@latest" "$go@main" "$fedora" "$numtide" "$nixunstable" "$brew" "$npm")"
+	opts="$(printf "Build from source (release):%s\nBuild from source (main):%s\nFedora (dnf):%s\nNix (numtide):%s\nNixpkgs:%s\nHomebrew:%s\nNPM:%s" "$go@latest" "$go@main" "$fedora" "$numtide" "$nixunstable" "$brew" "$npm")"
 fi
 
 selection="$(
-    printf "%s" "$opts" |
-        gum choose \
-            --header="Install which Crush?" \
-            --label-delimiter=":"
+	printf "%s" "$opts" |
+		gum choose \
+			--header="Install which Crush?" \
+			--label-delimiter=":"
 )"
 
 if [ -n "$selection" ]; then
-    echo "Installing Crush..."
-    stty sane 2>/dev/null || true
-    if [[ "$is_fedora" == true && "$selection" == "$fedora" ]]; then
-        eval "$selection" </dev/tty
-    else
-        uninstall-crush </dev/tty || true
-        eval "$selection" </dev/tty
-    fi
-    echo "Done!"
+	echo "Installing Crush..."
+	stty sane 2>/dev/null || true
+	if [[ "$is_fedora" == true && "$selection" == "$fedora" ]]; then
+		eval "$selection" </dev/tty
+	else
+		uninstall-crush </dev/tty || true
+		eval "$selection" </dev/tty
+	fi
+	echo "Done!"
 fi

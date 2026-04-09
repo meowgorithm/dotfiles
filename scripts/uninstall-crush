@@ -7,6 +7,19 @@ npmLocation="@charmland/crush"
 local_bin="${HOME}/.bin/crush"
 go_crush="${GOBIN:-${GOPATH:-$HOME/go}/bin}/crush"
 
+is_linux=false
+if [[ "$(uname -s)" == "Linux" ]]; then
+	is_linux=true
+fi
+
+if [[ "$is_linux" == true ]]; then
+	npm_check_cmd="sudo npm list -g $npmLocation"
+	npm_uninstall_cmd="sudo npm uninstall -g $npmLocation"
+else
+	npm_check_cmd="npm list -g $npmLocation"
+	npm_uninstall_cmd="npm uninstall -g $npmLocation"
+fi
+
 found=0
 
 if command -v brew >/dev/null 2>&1 && brew list "$brewLocation" >/dev/null 2>&1; then
@@ -14,7 +27,7 @@ if command -v brew >/dev/null 2>&1 && brew list "$brewLocation" >/dev/null 2>&1;
 	found=1
 fi
 
-if command -v npm >/dev/null 2>&1 && npm list -g "$npmLocation" >/dev/null 2>&1; then
+if command -v npm >/dev/null 2>&1 && eval "$npm_check_cmd" >/dev/null 2>&1; then
 	echo "Found Crush via NPM"
 	found=1
 fi
@@ -44,9 +57,9 @@ if command -v brew >/dev/null 2>&1 && brew list "$brewLocation" >/dev/null 2>&1;
 	brew uninstall "$brewLocation"
 fi
 
-if command -v npm >/dev/null 2>&1 && npm list -g "$npmLocation" >/dev/null 2>&1; then
+if command -v npm >/dev/null 2>&1 && eval "$npm_check_cmd" >/dev/null 2>&1; then
 	echo "Uninstalling via NPM..."
-	npm uninstall -g "$npmLocation"
+	eval "$npm_uninstall_cmd"
 fi
 
 if [[ -x "$local_bin" ]]; then

@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+brewLocation="charmbracelet/tap/crush"
+npmLocation="@charmland/crush"
+goModule="github.com/charmbracelet/crush"
+go_crush="${GOBIN:-${GOPATH:-$HOME/go}/bin}/crush"
+
+is_linux=false
+if [[ "$(uname -s)" == "Linux" ]]; then
+	is_linux=true
+fi
+
+if command -v rpm >/dev/null 2>&1 && rpm -q crush >/dev/null 2>&1; then
+	echo "Upgrading Crush via DNF..."
+	sudo dnf upgrade -y crush
+	exit 0
+fi
+
+if command -v brew >/dev/null 2>&1 && brew list "$brewLocation" >/dev/null 2>&1; then
+	echo "Upgrading Crush via Homebrew..."
+	brew upgrade "$brewLocation"
+	exit 0
+fi
+
+if command -v npm >/dev/null 2>&1 && npm list -g "$npmLocation" >/dev/null 2>&1; then
+	echo "Upgrading Crush via NPM..."
+	if [[ "$is_linux" == true ]]; then
+		sudo npm install -g "$npmLocation"
+	else
+		npm install -g "$npmLocation"
+	fi
+	exit 0
+fi
+
+if [[ -x "$go_crush" ]]; then
+	if ! command -v go >/dev/null 2>&1; then
+		echo "Go-based Crush install found, but 'go' is missing." >&2
+		exit 1
+	fi
+	echo "Upgrading Crush via go install..."
+	GO111MODULE=on go install -v "$goModule@latest"
+	exit 0
+fi
+
+echo "Crush not found. Running install-crush..."
+"$(dirname "$0")/install-crush" </dev/tty

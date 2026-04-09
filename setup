@@ -4,8 +4,8 @@ set -euo pipefail
 source "$PWD/bash/bash_funcs"
 
 usage() {
-    echo "Usage: $0 [link|remove|update]"
-    exit 1
+	echo "Usage: $0 [link|remove|update]"
+	exit 1
 }
 
 XDG_CONFIG_HOME="$HOME/.config"
@@ -14,10 +14,10 @@ XDG_DATA_HOME="$HOME/.local/share"
 # What operation to perform: link, remove, or update.
 OP="${1:-}"
 if [[ "$OP" == "" ]]; then
-    OP="link"
+	OP="link"
 fi
 if [[ "$OP" != "link" && "$OP" != "remove" && "$OP" != "update" ]]; then
-    usage
+	usage
 fi
 
 GREEN_CHECK="$(printf '\x1b[32m✓\x1b[m')"
@@ -30,17 +30,17 @@ WHITE=7
 
 # Print a status message with colors.
 status() {
-    local text="$1"
-    local bg_color="$2"
-    local fg_color="$3"
+	local text="$1"
+	local bg_color="$2"
+	local fg_color="$3"
 
-    # Convert color numbers to ANSI codes.
-    local bg_code=$((bg_color < 8 ? bg_color + 40 : bg_color + 92))
-    local fg_code=$((fg_color < 8 ? fg_color + 30 : fg_color + 82))
+	# Convert color numbers to ANSI codes.
+	local bg_code=$((bg_color < 8 ? bg_color + 40 : bg_color + 92))
+	local fg_code=$((fg_color < 8 ? fg_color + 30 : fg_color + 82))
 
-    local padding
-    padding=6
-    printf "\x1b[1;${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
+	local padding
+	padding=6
+	printf "\x1b[1;${bg_code};${fg_code}m %-${padding}s \x1b[m" "$text"
 }
 
 # Rendered status messages.
@@ -52,103 +52,103 @@ UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
 
 # Create or remove a symlink.
 symlink() {
-    local op="$1"
-    local source="$PWD/$2"
-    local target="$3"
-    local display_source="./$2"
-    local display_target="${target/#$HOME/\~}"
+	local op="$1"
+	local source="$PWD/$2"
+	local target="$3"
+	local display_source="./$2"
+	local display_target="${target/#$HOME/\~}"
 
-    if [[ $op == "remove" ]]; then
-        # Remove symlink.
-        if [ -L "$target" ]; then
-            rm "$target"
-            echo "$UNLINKED $display_target"
-        else
-            echo "$SKIP No symlink to unlink at $display_target"
-        fi
-    else
-        # Create symlink.
-        mkdir -p "$(dirname "$target")"
-        if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-            # Link already exists.
-            echo "$SKIP Link $display_source -> $display_target exists"
-        elif [ -L "$target" ]; then
-            # Wrong symlink exists, just replace it.
-            ln -sf "$source" "$target"
-            echo "$LINKED $display_source -> $display_target (replaced wrong symlink)"
-        elif [ -e "$target" ]; then
-            # There's a real file/directory there. Back it up, then link.
-            mv "$target" "$target.backup.$(date +%s)"
-            ln -sf "$source" "$target"
-            echo "$BACKUP Linked $display_source to $display_target (backed up existing)"
-        else
-            # Nothing there, create link.
-            ln -sf "$source" "$target"
-            echo "$LINKED $display_source -> $display_target"
-        fi
-    fi
+	if [[ $op == "remove" ]]; then
+		# Remove symlink.
+		if [ -L "$target" ]; then
+			rm "$target"
+			echo "$UNLINKED $display_target"
+		else
+			echo "$SKIP No symlink to unlink at $display_target"
+		fi
+	else
+		# Create symlink.
+		mkdir -p "$(dirname "$target")"
+		if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
+			# Link already exists.
+			echo "$SKIP Link $display_source -> $display_target exists"
+		elif [ -L "$target" ]; then
+			# Wrong symlink exists, just replace it.
+			ln -sf "$source" "$target"
+			echo "$LINKED $display_source -> $display_target (replaced wrong symlink)"
+		elif [ -e "$target" ]; then
+			# There's a real file/directory there. Back it up, then link.
+			mv "$target" "$target.backup.$(date +%s)"
+			ln -sf "$source" "$target"
+			echo "$BACKUP Linked $display_source to $display_target (backed up existing)"
+		else
+			# Nothing there, create link.
+			ln -sf "$source" "$target"
+			echo "$LINKED $display_source -> $display_target"
+		fi
+	fi
 }
 
 # Curried symlink using the global OP.
 link() {
-    symlink "$OP" "$@"
+	symlink "$OP" "$@"
 }
 
 # Ensure a command exists. If it does not, install it using the given command.
 ensure() {
-    local name="$1"
-    local cmd="$2"
-    local script="$3"
+	local name="$1"
+	local cmd="$2"
+	local script="$3"
 
-    # Require curl for installation checks.
-    if ! command -v curl &>/dev/null; then
-        printf "curl is not installed. Please install curl first.\n"
-        return
-    fi
+	# Require curl for installation checks.
+	if ! command -v curl &>/dev/null; then
+		printf "curl is not installed. Please install curl first.\n"
+		return
+	fi
 
-    if command -v "$cmd" &>/dev/null; then
-        printf "%s %s is installed.\n" "$GREEN_CHECK" "$name"
-    else
-        printf "Installing %s...\n" "$name"
-        eval "$script"
-    fi
+	if command -v "$cmd" &>/dev/null; then
+		printf "%s %s is installed.\n" "$GREEN_CHECK" "$name"
+	else
+		printf "Installing %s...\n" "$name"
+		eval "$script"
+	fi
 }
 
 # Install a Python package using pipx (system-wide isolated installation).
 pipx_install() {
-    local pkg="$1"
-    pipx install "$pkg"
-    pipx upgrade "$pkg"
+	local pkg="$1"
+	pipx install "$pkg"
+	pipx upgrade "$pkg"
 }
 
 os="$(which_os)"
 
 # Generally install or update stuff.
 if [[ $OP == "update" ]]; then
-    git submodule update --init --recursive
+	git submodule update --init --recursive
 
-    if [[ $os == "darwin" ]]; then
-        bash "./scripts/setup-bash"
-    fi
+	if [[ $os == "darwin" ]]; then
+		bash "./scripts/setup-bash"
+	fi
 
-    case $os in
-    darwin)
-        ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+	case $os in
+	darwin)
+		ensure "Homebrew" "brew" "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
 
-        brew bundle --verbose
-        ensure "pipx" "pipx" "brew install pipx"
-        ;;
-    esac
+		brew bundle --verbose
+		ensure "pipx" "pipx" "brew install pipx"
+		;;
+	esac
 
-    # Ensure Nix is installed
-    if ! command -v nix &>/dev/null; then
-        echo "Nix not found, running install-nix..."
-        bash "./scripts/install-nix"
-    fi
+	# Ensure Nix is installed
+	if ! command -v nix &>/dev/null; then
+		echo "Nix not found, running install-nix..."
+		bash "./scripts/install-nix"
+	fi
 
-    # Install/upgrade nix-profile packages
-    echo "Updating nix-profile packages..."
-    nix profile upgrade --all || nix profile add ./nix-profile
+	# Install/upgrade nix-profile packages
+	echo "Updating nix-profile packages..."
+	nix profile upgrade --all || nix profile add ./nix-profile
 fi
 
 # Bash.
@@ -182,17 +182,17 @@ link "nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
 # Kitty.
 link "kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/kitty.conf"
 if [[ $os = "darwin" ]]; then
-    link "kitty/darwin.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+	link "kitty/darwin.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
 else
-    link "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
+	link "kitty/linux.conf" "$XDG_CONFIG_HOME/kitty/os.conf"
 fi
 
 # Ghostty
 link "ghostty/config" "$XDG_CONFIG_HOME/ghostty/config"
 if [[ $os = "darwin" ]]; then
-    link "ghostty/darwin" "$XDG_CONFIG_HOME/ghostty/os"
+	link "ghostty/darwin" "$XDG_CONFIG_HOME/ghostty/os"
 else
-    link "ghostty/linux" "$XDG_CONFIG_HOME/ghostty/os"
+	link "ghostty/linux" "$XDG_CONFIG_HOME/ghostty/os"
 fi
 
 # Fourmolu.
@@ -201,75 +201,76 @@ link "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 # Hyprland.
 case "$os" in
 nixos | fedora)
-    link "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
-    link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
-    link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
-    link "waybar/" "$XDG_CONFIG_HOME/waybar"
-    ;;
+	link "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
+	link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
+	link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
+	link "waybar/" "$XDG_CONFIG_HOME/waybar"
+	;;
 esac
 
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 
 # Scripts.
 scripts=(
-    "gpg-edit-key"
-    "gpg-send"
-    "install-crush"
-    "install-crush-version"
-    "install-rio"
-    "install-stuff"
-    "install-v"
-    "install-z.lua"
-    "install-ghcup"
-    "install-nix"
-    "make-vid"
-    "setup-mouse"
-    "setup-wacom"
-    "zellijls"
-    "tm"
-    "tmls"
-    "uninstall-crush"
-    "sessions"
+	"gpg-edit-key"
+	"gpg-send"
+	"install-crush"
+	"upgrade-crush"
+	"install-crush-version"
+	"install-rio"
+	"install-stuff"
+	"install-v"
+	"install-z.lua"
+	"install-ghcup"
+	"install-nix"
+	"make-vid"
+	"setup-mouse"
+	"setup-wacom"
+	"zellijls"
+	"tm"
+	"tmls"
+	"uninstall-crush"
+	"sessions"
 )
 if [[ $os == "darwin" ]]; then
-    scripts+=("fix-docker-desktop")
+	scripts+=("fix-docker-desktop")
 fi
 for script in "${scripts[@]}"; do
-    link "scripts/$script" "$HOME/.bin/$script"
+	link "scripts/$script" "$HOME/.bin/$script"
 done
 
 # Fedora bundle script
 case "$os" in
 fedora | linux)
-    link "scripts/dnf-bundle" "$HOME/.bin/bundle"
-    link "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
-    link "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
-    ;;
+	link "scripts/dnf-bundle" "$HOME/.bin/bundle"
+	link "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
+	link "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
+	;;
 esac
 
 if [[ $os == "nixos" ]]; then
-    linkScript "watch-waybar"
+	linkScript "watch-waybar"
 fi
 
 # Fonts
 if [[ -d "$HOME/Library/Fonts" ]]; then
-    # macOS
-    fontDir="$HOME/Library/Fonts/Meowgorithm"
+	# macOS
+	fontDir="$HOME/Library/Fonts/Meowgorithm"
 else
-    # Linux
-    fontDir="$HOME/.local/share/fonts/Meowgorithm"
+	# Linux
+	fontDir="$HOME/.local/share/fonts/Meowgorithm"
 fi
 
 if [[ -n "${fontDir:-}" ]]; then
-    rm -rf "${fontDir/*:?/}"
-    mkdir -p "$fontDir"
-    if [[ $OP != "remove" ]]; then
-        find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
-        if command -v fc-cache &>/dev/null; then
-            fc-cache -f "$fontDir"
-        fi
-        printf "%s Fonts\n" "$COPIED"
-    else
-        printf "%s Fonts\n" "$UNLINKED"
-    fi
+	rm -rf "${fontDir/*:?/}"
+	mkdir -p "$fontDir"
+	if [[ $OP != "remove" ]]; then
+		find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
+		if command -v fc-cache &>/dev/null; then
+			fc-cache -f "$fontDir"
+		fi
+		printf "%s Fonts\n" "$COPIED"
+	else
+		printf "%s Fonts\n" "$UNLINKED"
+	fi
 fi
