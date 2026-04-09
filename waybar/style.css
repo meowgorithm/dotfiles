@@ -6,7 +6,7 @@ window {
   background-color: @bg;
   color: @fg;
   font-size: 13px;
-  font-family: "JetBrains Mono";
+  font-family: "JetBrainsMonoNL Nerd Font", "JetBrains Mono";
 }
 
 #workspaces {
@@ -28,27 +28,30 @@ window {
   color: @fg;
 }
 #clock {
-  padding-right: 9px;
+  padding-right: 10px;
 }
 #clock.date {
   color: #888;
 }
 #cpu {
-  padding-left: 9px;
-  padding-right: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #memory {
-  padding-right: 6px;
+  padding-right: 10px;
 }
 #disk {
-  padding-right: 6px;
+  padding-right: 10px;
 }
 #temperature {
-  padding-right: 6px;
+  padding-right: 10px;
+}
+#custom-gpu {
+  padding-right: 10px;
 }
 #network {
-  padding-right: 6px;
+  padding-right: 10px;
 }
 #pulseaudio {
-  padding-right: 6px;
+  padding-right: 10px;
 }

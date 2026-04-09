@@ -13,6 +13,7 @@
         "memory",
         "disk",
         "temperature",
+        "custom/gpu",
         "network"
     ],
 
@@ -26,35 +27,45 @@
     },
 
     "cpu": {
-        "format": "CPU {usage}%"
+        "format": "<span font='Font Awesome 6 Free'></span> {usage}%"
     },
 
     "memory": {
-        "format": "MEM {percentage}%"
+        "format": "<span font='Font Awesome 6 Free'>󰆳</span> {percentage}%"
     },
 
     "disk": {
-        "format": "DISK {percentage_used}%",
+        "format": "<span font='Font Awesome 6 Free'></span> {percentage_used}%",
         "path": "/"
     },
 
     "temperature": {
-        "format": "TEMP {temperatureC}°C"
+        "format": "<span font='Font Awesome 6 Free'></span> {temperatureC}°C"
     },
 
     "network": {
-        "format-wifi": "WiFi {signalStrength}%",
-        "format-ethernet": "NET {ipaddr}",
-        "format-disconnected": "NET DOWN"
+        "format-wifi": "<span font='Font Awesome 6 Free'></span> {essid} ({signalStrength}%)",
+        "format-ethernet": "<span font='Font Awesome 6 Free'></span> {ipaddr}",
+        "format-disconnected": "<span font='Font Awesome 6 Free'></span>",
+        "tooltip-format-wifi": "{ipaddr}"
     },
 
     "pulseaudio": {
-        "format": "VOL {volume}%",
-        "format-muted": "VOL MUTED",
+        "format": "{icon} {volume}%",
+        "format-muted": "<span font='Font Awesome 6 Free'></span>",
+        "format-icons": {
+            "default": ["<span font='Font Awesome 6 Free'></span>", "<span font='Font Awesome 6 Free'></span>", "<span font='Font Awesome 6 Free'></span>"]
+        },
         "on-click": "pavucontrol"
     },
 
     "hyprland/workspaces": {
         "on-click": ""
+    },
+
+    "custom/gpu": {
+        "format": "<span font='Font Awesome 6 Free'></span> {}",
+        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null || (sensors 2>/dev/null | grep -E '(edge|GPU)' | head -1 | awk '{print $2}' | tr -d '+°C' || echo 'N/A')",
+        "interval": 5
     }
 }
