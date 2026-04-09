@@ -9,4 +9,8 @@ export POP_DEFAULT_FROM="christian@rocha.is"
 
 export XKB_DEFAULT_OPTIONS=caps:escape
 
+if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
 # vim:syn=sh
