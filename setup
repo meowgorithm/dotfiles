@@ -202,6 +202,8 @@ link "fourmolu/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
 case "$os" in
 nixos | fedora)
     link "hypr/hyprland.conf" "$XDG_CONFIG_HOME/hypr/hyprland.conf"
+    link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
+    link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
     link "waybar/" "$XDG_CONFIG_HOME/waybar"
     ;;
 esac

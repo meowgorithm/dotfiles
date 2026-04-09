@@ -120,3 +120,6 @@ zlib-devel
 postgresql-contrib
 xclip
 wl-copy
+pavucontrol
+hyprlock
+hypridle
