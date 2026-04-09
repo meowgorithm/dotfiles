@@ -10,6 +10,11 @@
             "headers": {
                 "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
             }
+        },
+        "linear": {
+            "type": "stdio",
+            "command": "npx",
+            "args": ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
         }
     },
     "permissions": {
@@ -20,6 +25,8 @@
             "fetch",
             "glob",
             "grep",
+            "ls",
+            "list_mcp_resources",
             "mcp_github_get_commit",
             "mcp_github_get_copilot_job_status",
             "mcp_github_get_file_contents",
@@ -47,7 +54,29 @@
             "mcp_github_search_users",
             "multiedit",
             "view",
-            "write"
+            "write",
+            "mcp_linear_get_attachment",
+            "mcp_linear_get_document",
+            "mcp_linear_get_issue",
+            "mcp_linear_get_issue_status",
+            "mcp_linear_get_milestone",
+            "mcp_linear_get_project",
+            "mcp_linear_get_team",
+            "mcp_linear_get_user",
+            "mcp_linear_list_comments",
+            "mcp_linear_list_cycles",
+            "mcp_linear_list_documents",
+            "mcp_linear_list_issue_labels",
+            "mcp_linear_list_issue_statuses",
+            "mcp_linear_list_issues",
+            "mcp_linear_list_milestones",
+            "mcp_linear_list_project_labels",
+            "mcp_linear_list_projects",
+            "mcp_linear_list_teams",
+            "mcp_linear_list_users",
+            "mcp_linear_search_documentation",
+            "mcp_linear_research",
+            "mcp_linear_extract_images"
         ]
     }
 }
