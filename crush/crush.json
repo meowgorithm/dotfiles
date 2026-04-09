@@ -16,6 +16,7 @@
         "allowed_tools": [
             "bash",
             "edit",
+            "agentic_fetch",
             "fetch",
             "glob",
             "grep",
