@@ -41,6 +41,8 @@ gopls
 gum
 helix
 htop
+hypridle
+hyprlock
 jetbrains-mono-fonts-all
 jq
 kitty
@@ -51,11 +53,14 @@ ncurses
 ncurses-compat-libs
 neovim
 nix
+nodejs
 openssl
 optipng
+pavucontrol
 perl
 pkg-config
 podman-compose
+postgresql-contrib
 postgresql-server
 ripgrep
 rust
@@ -66,6 +71,8 @@ valkey
 vercel-geist-fonts
 vim
 waybar
+wl-copy
+xclip
 xz
 
 # For building Linux stuff
@@ -120,9 +127,3 @@ xdg-desktop-portal-wlr
 zlib-devel
 
 # New stuff
-postgresql-contrib
-xclip
-wl-copy
-pavucontrol
-hyprlock
-hypridle
