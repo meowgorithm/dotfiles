@@ -69,12 +69,11 @@ waybar
 xz
 
 # For building Linux stuff
-mesa-libEGL-devel
-mesa-libGL-devel
-mesa-libGLES-devel
 cairo-devel
 file-devel
 fuzzel
+gcc-c++
+gettext
 hwdata
 hwdata-devel
 iniparser-devel
@@ -95,6 +94,9 @@ libwebp-devel
 libxkbcommon-devel
 libzip-devel
 mako
+mesa-libEGL-devel
+mesa-libGL-devel
+mesa-libGLES-devel
 mesa-libgbm-devel
 muParser-devel
 ninja
@@ -108,6 +110,7 @@ rpmbuild
 systemd-devel
 tomlplusplus-devel
 udis86-devel
+unzip
 uuid-devel
 wayland-devel
 wayland-protocols-devel
