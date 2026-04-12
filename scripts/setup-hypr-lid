@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+#
+# This script sets up Hyprland to turn off the display on a notebook when the
+# lid is closed and its connected to an external monitor.
+#
+
+set -euo pipefail
+
+HYPR_CONF="${HOME}/.config/hypr/hyprland.conf"
+LOGIND_DROPIN="/etc/systemd/logind.conf.d/lid-ignore.conf"
+INTERNAL_DISP="eDP-1"
+
+# Get scale from current monitor config
+SCALE=$(hyprctl -j monitors | jq -r ".[] | select(.name==\"${INTERNAL_DISP}\") | .scale" 2>/dev/null || echo "1.67")
+SCALE=${SCALE:-1.67}
+
+# Add lid switch bindings to hyprland.conf if not already present
+if ! grep -q "switch:on:Lid Switch" "${HYPR_CONF}"; then
+    sed -i "/# Laptop multimedia keys for volume/i\\
+# Lid switch — disable internal display when closed\\
+bindl = , switch:on:Lid Switch, exec, hyprctl keyword monitor \"${INTERNAL_DISP}, disable\"\\
+bindl = , switch:off:Lid Switch, exec, hyprctl keyword monitor \"${INTERNAL_DISP}, preferred, auto, ${SCALE}\"\\
+" "${HYPR_CONF}"
+    echo "Added lid switch bindings to ${HYPR_CONF}"
+else
+    echo "Lid switch bindings already present in ${HYPR_CONF}"
+fi
+
+# Create logind drop-in to prevent suspend on lid close
+sudo mkdir -p /etc/systemd/logind.conf.d
+sudo tee "${LOGIND_DROPIN}" >/dev/null <<EOF
+[Login]
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+EOF
+echo "Created ${LOGIND_DROPIN}"
+
+RESTART=$(gum choose "Yes" "No" --header="Restart systemd-logind now?")
+if [[ "${RESTART}" == "Yes" ]]; then
+    sudo systemctl restart systemd-logind
+    echo "Restarted systemd-logind"
+else
+    echo "Skipped restarting systemd-logind. Reboot or run 'sudo systemctl restart systemd-logind' to apply."
+fi
+
+echo ""
+echo "Done. Closing the lid will now disable ${INTERNAL_DISP} instead of suspending."
+echo "Opening the lid will re-enable it at scale ${SCALE}."
