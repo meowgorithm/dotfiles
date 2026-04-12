@@ -7,6 +7,9 @@ copr "scottames/ghostty" "ghostty"
 copr "lukenukem/asus-linux" "asusctl"
 copr "varlad/zellij" "zellij"
 copr "solopasha/hyprland" "hyprland"
+copr "solopasha/hyprland" "hypridle"
+copr "solopasha/hyprland" "hyprlock"
+copr "solopasha/hyprland" "hyprshot"
 
 # Flatpak packages (syntax: flatpak "app-id")
 flatpak "com.discordapp.Discord"
@@ -27,6 +30,7 @@ fuse-libs
 fzf
 gcc
 gcc-c++
+gh
 git
 git-lfs
 gmp
@@ -35,14 +39,12 @@ gnupg
 go
 gofumpt
 goimports
-golangci-lint
 google-chrome-stable
 gopls
 gum
 helix
 htop
-hypridle
-hyprlock
+inotify-tools
 jetbrains-mono-fonts-all
 jq
 kitty
@@ -51,9 +53,9 @@ lua
 make
 ncurses
 ncurses-compat-libs
-neovim
 nix
 nodejs
+golangci-lint
 openssl
 optipng
 pavucontrol
