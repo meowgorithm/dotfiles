@@ -1,86 +1,95 @@
 {
-    "$schema": "https://charm.land/crush.json",
-    "options": {
-        "progress": false
+  "$schema": "https://charm.land/crush.json",
+  "options": {
+    "progress": false
+  },
+  "mcp": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
+      }
     },
-    "mcp": {
-        "github": {
-            "type": "http",
-            "url": "https://api.githubcopilot.com/mcp/",
-            "headers": {
-                "Authorization": "$(echo Bearer $GITHUB_TOKEN)"
-            }
-        },
-        "linear": {
-            "type": "stdio",
-            "command": "npx",
-            "args": [
-                "-y",
-                "mcp-remote",
-                "https://mcp.linear.app/mcp"
-            ]
-        }
+    "linear": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.linear.app/mcp"
+      ]
     },
-    "permissions": {
-        "allowed_tools": [
-            "bash",
-            "edit",
-            "agentic_fetch",
-            "fetch",
-            "glob",
-            "grep",
-            "ls",
-            "list_mcp_resources",
-            "mcp_github_get_commit",
-            "mcp_github_get_copilot_job_status",
-            "mcp_github_get_file_contents",
-            "mcp_github_get_label",
-            "mcp_github_get_latest_release",
-            "mcp_github_get_me",
-            "mcp_github_get_release_by_tag",
-            "mcp_github_get_tag",
-            "mcp_github_get_team_members",
-            "mcp_github_get_teams",
-            "mcp_github_issue_read",
-            "mcp_github_list_branches",
-            "mcp_github_list_commits",
-            "mcp_github_list_issue_types",
-            "mcp_github_list_issues",
-            "mcp_github_list_pull_requests",
-            "mcp_github_list_releases",
-            "mcp_github_list_tags",
-            "mcp_github_pull_request_read",
-            "mcp_github_run_secret_scanning",
-            "mcp_github_search_code",
-            "mcp_github_search_issues",
-            "mcp_github_search_pull_requests",
-            "mcp_github_search_repositories",
-            "mcp_github_search_users",
-            "multiedit",
-            "view",
-            "write",
-            "mcp_linear_get_attachment",
-            "mcp_linear_get_document",
-            "mcp_linear_get_issue",
-            "mcp_linear_get_issue_status",
-            "mcp_linear_get_milestone",
-            "mcp_linear_get_project",
-            "mcp_linear_get_team",
-            "mcp_linear_get_user",
-            "mcp_linear_list_comments",
-            "mcp_linear_list_cycles",
-            "mcp_linear_list_documents",
-            "mcp_linear_list_issue_labels",
-            "mcp_linear_list_issue_statuses",
-            "mcp_linear_list_issues",
-            "mcp_linear_list_milestones",
-            "mcp_linear_list_project_labels",
-            "mcp_linear_list_projects",
-            "mcp_linear_list_teams",
-            "mcp_linear_list_users",
-            "mcp_linear_search_documentation",
-            "mcp_linear_research",
-            "mcp_linear_extract_images"
-        ]
+    "ceramic": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.ceramic.ai/mcp"
+      ]
     }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "agentic_fetch",
+      "bash",
+      "edit",
+      "fetch",
+      "glob",
+      "grep",
+      "list_mcp_resources",
+      "ls",
+      "multiedit",
+      "view",
+      "write",
+      "mcp_github_get_commit",
+      "mcp_github_get_copilot_job_status",
+      "mcp_github_get_file_contents",
+      "mcp_github_get_label",
+      "mcp_github_get_latest_release",
+      "mcp_github_get_me",
+      "mcp_github_get_release_by_tag",
+      "mcp_github_get_tag",
+      "mcp_github_get_team_members",
+      "mcp_github_get_teams",
+      "mcp_github_issue_read",
+      "mcp_github_list_branches",
+      "mcp_github_list_commits",
+      "mcp_github_list_issue_types",
+      "mcp_github_list_issues",
+      "mcp_github_list_pull_requests",
+      "mcp_github_list_releases",
+      "mcp_github_list_tags",
+      "mcp_github_pull_request_read",
+      "mcp_github_run_secret_scanning",
+      "mcp_github_search_code",
+      "mcp_github_search_issues",
+      "mcp_github_search_pull_requests",
+      "mcp_github_search_repositories",
+      "mcp_github_search_users",
+      "mcp_linear_extract_images",
+      "mcp_linear_get_attachment",
+      "mcp_linear_get_document",
+      "mcp_linear_get_issue",
+      "mcp_linear_get_issue_status",
+      "mcp_linear_get_milestone",
+      "mcp_linear_get_project",
+      "mcp_linear_get_team",
+      "mcp_linear_get_user",
+      "mcp_linear_list_comments",
+      "mcp_linear_list_cycles",
+      "mcp_linear_list_documents",
+      "mcp_linear_list_issue_labels",
+      "mcp_linear_list_issue_statuses",
+      "mcp_linear_list_issues",
+      "mcp_linear_list_milestones",
+      "mcp_linear_list_project_labels",
+      "mcp_linear_list_projects",
+      "mcp_linear_list_teams",
+      "mcp_linear_list_users",
+      "mcp_linear_research",
+      "mcp_linear_search_documentation"
+    ]
+  }
 }
