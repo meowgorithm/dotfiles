@@ -100,3 +100,83 @@ getCharmRepos() {
         tr -d '"' |
         sort
 }
+
+# Git worktree helper.
+# This is a function (not a script) because cd must affect the caller's shell.
+# A script runs in a child process, so cd would only change the subshell.
+# Usage:
+#   wt <name>       create worktree + branch one level up from git root, cd into it
+#   wt wipe [name]  destroy current (or named) worktree, cd back to main project
+wt() {
+    local subcmd="$1"
+
+    if [[ -z "$subcmd" ]]; then
+        echo "Usage: wt <name>       create worktree and branch <name>"
+        echo "       wt wipe [name]  remove worktree and branch"
+        return 1
+    fi
+
+    local root
+    root="$(git rev-parse --show-toplevel 2>/dev/null)"
+    if [[ -z "$root" ]]; then
+        echo "Not in a git repository" >&2
+        return 1
+    fi
+
+    local parent
+    parent="$(dirname "$root")"
+
+    if [[ "$subcmd" == "wipe" ]]; then
+        local name="$2"
+        if [[ -z "$name" ]]; then
+            name="$(basename "$PWD")"
+        fi
+        local target="$parent/$name"
+        local main_dir="$parent/main"
+
+        if [[ ! -d "$target" ]]; then
+            echo "Worktree directory '$target' not found" >&2
+            return 1
+        fi
+
+        if ! gum confirm "Remove worktree and branch '$name'?"; then
+            return 0
+        fi
+
+        if ! git worktree remove "$target" --force 2>/dev/null; then
+            echo "Failed to remove worktree" >&2
+            return 1
+        fi
+
+        git branch -D "$name" 2>/dev/null
+
+        if [[ "$PWD" == "$target" || "$PWD" == "$target"* ]]; then
+            cd "$main_dir" || return 1
+        fi
+        return 0
+    fi
+
+    local name="$subcmd"
+    local target="$parent/$name"
+
+    if [[ "$name" == "wipe" ]]; then
+        echo "Cannot create a worktree named 'wipe'" >&2
+        return 1
+    fi
+
+    if [[ -d "$target" ]]; then
+        echo "Directory '$target' already exists" >&2
+        return 1
+    fi
+
+    if git show-ref --verify --quiet "refs/heads/$name" 2>/dev/null; then
+        echo "Branch '$name' already exists" >&2
+        return 1
+    fi
+
+    if ! git worktree add -b "$name" "$target" HEAD; then
+        return 1
+    fi
+
+    cd "$target" || return 1
+}
