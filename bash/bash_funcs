@@ -170,12 +170,20 @@ wt() {
     fi
 
     if git show-ref --verify --quiet "refs/heads/$name" 2>/dev/null; then
-        echo "Branch '$name' already exists" >&2
-        return 1
-    fi
-
-    if ! git worktree add -b "$name" "$target" HEAD; then
-        return 1
+        # Local branch exists, use it
+        if ! git worktree add "$target" "$name"; then
+            return 1
+        fi
+    elif git show-ref --verify --quiet "refs/remotes/origin/$name" 2>/dev/null; then
+        # Remote branch exists on origin, use it
+        if ! git worktree add "$target" "origin/$name"; then
+            return 1
+        fi
+    else
+        # New branch
+        if ! git worktree add -b "$name" "$target" HEAD; then
+            return 1
+        fi
     fi
 
     cd "$target" || return 1
