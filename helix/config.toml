@@ -10,7 +10,7 @@ true-color = true
 clipboard-provider = "termcode"
 
 [editor.inline-diagnostics]
-cursor-line = "disable" 
+cursor-line = "disable"
 other-lines = "disable"
 
 [editor.lsp]
@@ -21,14 +21,14 @@ display-messages = true
 center = []
 left = ["mode", "spinner", "file-name"]
 right = [
-    "diagnostics",
-    "workspace-diagnostics",
-    "selections",
-    "position",
-    "file-encoding",
-    "file-line-ending",
-    "file-type",
-    "version-control",
+  "diagnostics",
+  "workspace-diagnostics",
+  "selections",
+  "position",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+  "version-control",
 ]
 
 [editor.statusline.mode]
@@ -53,9 +53,11 @@ w = ":set whitespace.render all"
 O = ":set auto-format true"
 o = ":set auto-format false"
 
+[keys.normal.";"]
+r = ":reload"
+h = ":toggle lsp.display-inlay-hints"
+
 [keys.normal.space]
 D = ":toggle end-of-line-diagnostics disable hint"
-H = ":toggle lsp.display-inlay-hints"
 q = ":quit"
 w = ":write"
-
