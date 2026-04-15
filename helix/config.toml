@@ -56,6 +56,7 @@ o = ":set auto-format false"
 [keys.normal.";"]
 r = ":reload"
 h = ":toggle lsp.display-inlay-hints"
+l = ":reflow 79"
 
 [keys.normal.space]
 D = ":toggle end-of-line-diagnostics disable hint"
