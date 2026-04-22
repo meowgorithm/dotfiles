@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ! -f /etc/os-release ]]; then
+    printf "This script only runs on Fedora\n" && exit 1
+fi
+source /etc/os-release
+if [[ "$ID" != "fedora" ]]; then
+    printf "This script only runs on Fedora\n" && exit 1
+fi
+
+TAG="${1:-$(git ls-remote --tags --sort=-v:refname https://github.com/neovim/neovim.git | head -n1 | sed 's/.*refs\/tags\///')}"
+
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+printf "→ Installing build dependencies\n"
+sudo dnf install cmake gcc gcc-c++ make gettext unzip curl
+
+printf "→ Cloning neovim (tag: %s)\n" "$TAG"
+git clone https://github.com/neovim/neovim.git "$tmpdir/neovim"
+cd "$tmpdir/neovim"
+git checkout "$TAG"
+
+printf "→ Building neovim\n"
+make CMAKE_BUILD_TYPE=Release
+
+printf "→ Installing neovim\n"
+sudo make install
+
+printf "✓ Neovim %s installed\n" "$TAG"
