@@ -1,0 +1,29 @@
+#!/bin/bash
+# Set libinput disable-while-typing for all touchpads
+# This is needed because Hyprland's disable_while_typing doesn't always work reliably
+
+# Log for debugging
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S'): $1" >> /tmp/touchpad-dwt.log
+}
+
+log "Starting touchpad DWT setup"
+
+# Find and configure all touchpad devices using xinput
+for id in $(xinput list 2>/dev/null | grep -i touchpad | grep -o 'id=[0-9]*' | cut -d= -f2); do
+    if [ -n "$id" ]; then
+        device_name=$(xinput list --name-only "$id" 2>/dev/null)
+        log "Found touchpad: $device_name (id=$id)"
+        
+        # Check if the property exists and set it
+        if xinput list-props "$id" 2>/dev/null | grep -q "libinput Disable While Typing Enabled"; then
+            xinput set-prop "$id" "libinput Disable While Typing Enabled" 1 2>/dev/null
+            log "Set disable-while-typing via xinput: result=$?"
+        else
+            log "disable-while-typing property not found for device $id"
+        fi
+    fi
+done
+
+log "Touchpad DWT setup complete"
+exit 0
