@@ -208,6 +208,11 @@ nixos | fedora)
 	;;
 esac
 
+# Mako (notification daemon).
+if [[ $os != "darwin" ]]; then
+	link "mako/config" "$XDG_CONFIG_HOME/mako/config"
+fi
+
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 
 # Scripts.

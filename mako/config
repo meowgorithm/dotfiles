@@ -1,0 +1,50 @@
+# Mako notification daemon config
+# Colors: Charple bg (#6B50FF), Butter fg (#FFFAF1)
+
+# Global settings
+default-timeout=5000
+ignore-timeout=0
+anchor=top-right
+
+# Appearance
+background-color=#201F26
+text-color=#DFDBDD
+border-color=#201F26
+border-size=2
+border-radius=8
+padding=8,10
+margin=10
+width=350
+height=200
+font=Geist 11
+
+# Icons
+icons=1
+icon-path=/usr/share/icons/hicolor
+max-icon-size=48
+
+# Actions
+actions=1
+on-button-left=dismiss
+on-button-middle=none
+on-button-right=dismiss-all
+
+# History & grouping
+history=1
+group-by=none
+
+# Urgency-specific settings
+[urgency=low]
+background-color=#201F26
+border-color=#201F26
+default-timeout=3000
+
+[urgency=normal]
+background-color=#201F26
+border-color=#201F26
+default-timeout=5000
+
+[urgency=critical]
+background-color=#201F26
+border-color=#FFB587
+default-timeout=0
