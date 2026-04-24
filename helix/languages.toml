@@ -52,12 +52,11 @@ command = "cabal-fmt"
 
 [[language]]
 name = "go"
-auto-format = true
 language-servers = ["gopls", "golangci-lint-langserver"]
 
 [language.formatter]
-command = "sh"
-args = ["-c", "goimports | gofumpt"]
+command = "goimports"
+
 [language-server.gopls]
 command = "gopls"
 
