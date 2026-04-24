@@ -57,7 +57,7 @@ language-servers = ["gopls", "golangci-lint-langserver"]
 
 [language.formatter]
 command = "sh"
-args = ["-c", "goimports | gofumpt"]
+args = ["-c", "set -o pipefail; in=$(cat); printf '%s' \"$in\" | goimports | gofumpt || printf '%s' \"$in\""]
 [language-server.gopls]
 command = "gopls"
 
