@@ -53,12 +53,12 @@ w = ":set whitespace.render all"
 O = ":set auto-format true"
 o = ":set auto-format false"
 
-[keys.normal.";"]
-r = ":reload"
-h = ":toggle lsp.display-inlay-hints"
-l = ":reflow 79"
-
 [keys.normal.space]
 D = ":toggle end-of-line-diagnostics disable hint"
 q = ":quit"
 w = ":write"
+
+[keys.normal.space.";"]
+r = ":reload"
+h = ":toggle lsp.display-inlay-hints"
+l = ":reflow 79"
