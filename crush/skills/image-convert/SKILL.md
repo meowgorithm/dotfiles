@@ -131,6 +131,11 @@ scripts/convert.sh -f jpg -q 95 IMG_1234.HEIC output.jpg
 scripts/convert.sh -f webp -q 85 large.png small.webp
 ```
 
+## Related Skills
+
+- **Video → animated WebP**: Use the `video-to-webp` skill. It handles
+  fps, trimming, looping, and scaling with ffmpeg + `img2webp`.
+
 ## Tips
 
 - **WebP**: Best for web - 25-35% smaller than JPEG with same quality
