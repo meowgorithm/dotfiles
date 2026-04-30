@@ -62,4 +62,4 @@ w = ":write"
 r = ":reload"
 g = ["select_all", ":pipe gofumpt"]
 h = ":toggle lsp.display-inlay-hints"
-l = ":reflow 79"
+l = ":reflow 72"
