@@ -34,7 +34,7 @@
     "PreToolUse": [
       {
         "matcher": "^bash$",
-        "command": "hooks/rtk-rewrite.sh"
+        "command": "~/.config/crush/hooks/rtk-rewrite.sh"
       }
     ]
   },
