@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Remove Nix build users and group
+# This script removes all nixbld users and the nixbld group from the system
+
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root" >&2
+    exit 1
+fi
+
+echo "Removing Nix build users and group..."
+
+# Get all nixbld users
+nix_users=$(getent passwd | grep -E '^nixbld[0-9]+:' | cut -d: -f1 || true)
+
+if [[ -z "$nix_users" ]]; then
+    echo "No Nix build users found."
+else
+    echo "Found Nix build users:"
+    echo "$nix_users"
+    echo ""
+
+    # Remove each user
+    while IFS= read -r user; do
+        if [[ -n "$user" ]]; then
+            echo "Removing user: $user"
+            userdel "$user" 2>/dev/null || echo "Warning: Failed to remove user $user (may already be removed)"
+        fi
+    done <<< "$nix_users"
+fi
+
+echo ""
+
+# Remove the nixbld group
+if getent group nixbld >/dev/null 2>&1; then
+    echo "Removing group: nixbld"
+    groupdel nixbld 2>/dev/null || echo "Warning: Failed to remove group nixbld (may already be removed or still in use)"
+else
+    echo "Group nixbld not found."
+fi
+
+echo ""
+echo "Done. Nix build users and group have been removed."
