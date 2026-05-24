@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install the local udev hwdb override that marks the ASUS GZ302EA
+# detachable touchpad as internal so libinput enables
+# disable-while-typing. See hypr/71-touchpad-local.hwdb for details.
+#
+# Idempotent: exits early if the hwdb file is already installed and
+# every detected touchpad is tagged as internal.
+
+SRC="$(cd "$(dirname "$0")/.." && pwd)/hypr/71-touchpad-local.hwdb"
+DEST="/etc/udev/hwdb.d/71-touchpad-local.hwdb"
+
+if [[ ! -f "$SRC" ]]; then
+	echo "error: source hwdb not found at $SRC" >&2
+	exit 1
+fi
+
+# Check whether the setup is already in the desired state.
+already_set_up() {
+	[[ -f "$DEST" ]] || return 1
+	cmp -s "$SRC" "$DEST" || return 1
+
+	local found=0
+	for ev in /dev/input/event*; do
+		udevadm info "$ev" 2>/dev/null | grep -q "ID_INPUT_TOUCHPAD=1" || continue
+		found=1
+		udevadm info "$ev" 2>/dev/null |
+			grep -q "ID_INPUT_TOUCHPAD_INTEGRATION=internal" || return 1
+	done
+	[[ $found -eq 1 ]]
+}
+
+if already_set_up; then
+	echo "Touchpad quirk already installed and active. Nothing to do."
+	exit 0
+fi
+
+SUDO=""
+if [[ $EUID -ne 0 ]]; then
+	if ! command -v sudo &>/dev/null; then
+		echo "error: sudo not found; re-run as root" >&2
+		exit 1
+	fi
+	SUDO="sudo"
+fi
+
+echo "Installing $SRC -> $DEST"
+$SUDO install -m 0644 -D "$SRC" "$DEST"
+
+echo "Updating hwdb..."
+$SUDO systemd-hwdb update
+
+echo "Triggering udev for input devices..."
+$SUDO udevadm trigger /dev/input/event*
+
+echo
+echo "Done. Verifying:"
+for ev in /dev/input/event*; do
+	if udevadm info "$ev" 2>/dev/null | grep -q "ID_INPUT_TOUCHPAD=1"; then
+		name=$(udevadm info "$ev" 2>/dev/null | awk -F= '/NAME=/{print $2}')
+		integ=$(udevadm info "$ev" 2>/dev/null |
+			awk -F= '/ID_INPUT_TOUCHPAD_INTEGRATION/{print $2}')
+		printf "  %s %s integration=%s\n" "$ev" "$name" "$integ"
+	fi
+done
+
+if command -v libinput &>/dev/null; then
+	echo
+	libinput list-devices 2>/dev/null |
+		awk '/^Device:/{d=$0} /Disable-w-typing/{print d"\n  "$0"\n"}' |
+		grep -B1 -A1 -i touchpad || true
+fi
+
+echo
+echo "Restart Hyprland (Super+M or log out/in) for libinput to re-read"
+echo "the device."
