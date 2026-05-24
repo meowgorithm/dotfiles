@@ -256,6 +256,12 @@ fedora | linux)
 	;;
 esac
 
+# Arch Linux: helix symlink
+if [[ $os == "arch" ]]; then
+	mkdir -p ~/.local/bin
+	ln -sf /usr/bin/helix ~/.local/bin/hx
+fi
+
 if [[ $os == "nixos" ]]; then
 	linkScript "watch-waybar"
 fi
