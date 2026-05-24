@@ -1,25 +1,30 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install the local udev hwdb override that marks the ASUS GZ302EA
-# detachable touchpad as internal so libinput enables
-# disable-while-typing. See hypr/71-touchpad-local.hwdb for details.
+# Install a local udev hwdb override that marks the ASUS GZ302EA detachable
+# touchpad as internal so libinput enables disable-while-typing.
 #
-# Idempotent: exits early if the hwdb file is already installed and
-# every detected touchpad is tagged as internal.
+# Idempotent: exits early if the hwdb file is already installed with the
+# expected contents and every detected touchpad is tagged as internal.
 
-SRC="$(cd "$(dirname "$0")/.." && pwd)/hypr/71-touchpad-local.hwdb"
 DEST="/etc/udev/hwdb.d/71-touchpad-local.hwdb"
 
-if [[ ! -f "$SRC" ]]; then
-	echo "error: source hwdb not found at $SRC" >&2
-	exit 1
-fi
+read -r -d '' HWDB <<'EOF' || true
+# Local touchpad integration overrides. Managed by
+# scripts/install-touchpad-quirk in the dotfiles repo; edits here will be
+# overwritten the next time the script runs.
+
+# ASUS ROG Flow Z13 2025 (GZ302EA) detachable keyboard/touchpad.
+# Lives on USB but is the laptop's only touchpad, so tag it as internal so
+# libinput pairs it with the keyboard and enables disable-while-typing.
+touchpad:usb:v0b05p1a30:*
+ ID_INPUT_TOUCHPAD_INTEGRATION=internal
+EOF
 
 # Check whether the setup is already in the desired state.
 already_set_up() {
 	[[ -f "$DEST" ]] || return 1
-	cmp -s "$SRC" "$DEST" || return 1
+	[[ "$(cat "$DEST")" == "$HWDB" ]] || return 1
 
 	local found=0
 	for ev in /dev/input/event*; do
@@ -45,8 +50,10 @@ if [[ $EUID -ne 0 ]]; then
 	SUDO="sudo"
 fi
 
-echo "Installing $SRC -> $DEST"
-$SUDO install -m 0644 -D "$SRC" "$DEST"
+echo "Installing hwdb override to $DEST"
+$SUDO install -d -m 0755 "$(dirname "$DEST")"
+printf '%s\n' "$HWDB" | $SUDO tee "$DEST" >/dev/null
+$SUDO chmod 0644 "$DEST"
 
 echo "Updating hwdb..."
 $SUDO systemd-hwdb update
