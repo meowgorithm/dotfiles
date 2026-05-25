@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mode="${1:-region}"
+
+if ! command -v wf-recorder &>/dev/null; then
+	notify-send -u critical "screen-record" "wf-recorder not installed"
+	exit 1
+fi
+
+if pgrep -x wf-recorder >/dev/null; then
+	pkill -INT -x wf-recorder
+	notify-send "Recording stopped" "Saved to ~/Videos"
+	exit 0
+fi
+
+mkdir -p ~/Videos
+file=~/Videos/rec-$(date +%Y%m%d-%H%M%S).mp4
+
+case "$mode" in
+output)
+	notify-send "Recording started" "Full monitor → $(basename "$file")"
+	exec wf-recorder -f "$file"
+	;;
+region)
+	if ! command -v slurp &>/dev/null; then
+		notify-send -u critical "screen-record" "slurp not installed"
+		exit 1
+	fi
+	geometry=$(slurp) || exit 0
+	notify-send "Recording started" "Region → $(basename "$file")"
+	exec wf-recorder -g "$geometry" -f "$file"
+	;;
+*)
+	notify-send -u critical "screen-record" "unknown mode: $mode"
+	exit 1
+	;;
+esac

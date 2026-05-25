@@ -243,6 +243,12 @@ scripts=(
 if [[ $os == "darwin" ]]; then
 	scripts+=("fix-docker-desktop")
 fi
+case "$os" in
+darwin) ;;
+*)
+	scripts+=("screen-record")
+	;;
+esac
 for script in "${scripts[@]}"; do
 	link "scripts/$script" "$HOME/.bin/$script"
 done
