@@ -50,14 +50,16 @@ fi
 
 # OS/Distro specific stuff
 case "$os" in
-fedora)
+arch | fedora)
     alias zzz="sudo systemctl suspend"
     alias enable="sudo systemctl enable --now"
     alias status="sudo systemctl status"
     alias start="sudo systemctl start"
     alias stop="sudo systemctl stop"
     alias restart="sudo systemctl restart"
-    alias go-task="task"
+    if [[ $os == "fedora" ]]; then
+        alias go-task="task"
+    fi
     ;;
 
 nixos)
