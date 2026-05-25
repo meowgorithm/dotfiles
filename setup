@@ -207,6 +207,7 @@ nixos | fedora | arch)
 	link "hypr/hyprland.lua" "$XDG_CONFIG_HOME/hypr/hyprland.lua"
 	link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
 	link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
+	link "hypr/hyprpaper.conf" "$XDG_CONFIG_HOME/hypr/hyprpaper.conf"
 	link "waybar/" "$XDG_CONFIG_HOME/waybar"
 	link "quickshell/default" "$XDG_CONFIG_HOME/quickshell/default"
 	;;
@@ -218,6 +219,7 @@ if [[ $os != "darwin" ]]; then
 fi
 
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
+link "bg.png" "$XDG_DATA_HOME/meowgorithm/bg.png"
 
 # Scripts.
 scripts=(
