@@ -87,7 +87,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
     general = {
         gaps_in  = 5,
-        gaps_out = 10,
+        gaps_out = { top = 8, right = 10, bottom = 10, left = 10 },
 
         border_size = 2,
 
@@ -269,7 +269,7 @@ hl.bind(mainMod .. " + Return",      hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + F",           hl.dsp.window.fullscreen())
-hl.bind("CTRL + ALT + SHIFT + backslash", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 hl.bind(mainMod .. " + E",           hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",           hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Space",       hl.dsp.exec_cmd(menu))
@@ -296,10 +296,10 @@ hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
 -- Resize submap: Super+R enters, hjkl resize, Escape/q exits
 hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
-    hl.bind("H",      hl.dsp.window.resize({ x = -40, y = 0 }),  { repeating = true })
-    hl.bind("L",      hl.dsp.window.resize({ x = 40,  y = 0 }),  { repeating = true })
-    hl.bind("K",      hl.dsp.window.resize({ x = 0,   y = -40 }), { repeating = true })
-    hl.bind("J",      hl.dsp.window.resize({ x = 0,   y = 40 }),  { repeating = true })
+    hl.bind("H",      hl.dsp.window.resize({ x = -40, y = 0,   relative = true }), { repeating = true })
+    hl.bind("L",      hl.dsp.window.resize({ x = 40,  y = 0,   relative = true }), { repeating = true })
+    hl.bind("K",      hl.dsp.window.resize({ x = 0,   y = -40, relative = true }), { repeating = true })
+    hl.bind("J",      hl.dsp.window.resize({ x = 0,   y = 40,  relative = true }), { repeating = true })
     hl.bind("escape", hl.dsp.submap("reset"))
     hl.bind("Q",      hl.dsp.submap("reset"))
     hl.bind("Return", hl.dsp.submap("reset"))

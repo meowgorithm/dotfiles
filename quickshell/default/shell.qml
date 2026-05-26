@@ -9,14 +9,16 @@ PanelWindow {
     id: root
 
     // Theme - CharmTone palette
-    property color colBg: "transparent"
+    property color colBg: "#CC3A3943"
     property color colFg: "#D6D3DC"
     property color colMuted: "#605F6B"
     property color colCyan: "#A2A0AD"
     property color colBlue: "#BFBCC8"
     property color colYellow: "#BFBCC8"
     property color colCharple: "#6B50FF"
-    property string fontFamily: "JetBrains Mono"
+    property color colSquid: "#858392"
+    property color colCoral: "#FF577D"
+    property string fontFamily: "Maple Mono NF CN"
     property int fontSize: 14
 
     // System data
@@ -33,6 +35,12 @@ PanelWindow {
     property var lastNetRx: -1
     property var lastNetTx: -1
     property var lastNetTime: 0
+    property string wifiSsid: ""
+    property int wifiSignal: 0
+    property int diskUsage: 0
+    property int volume: 0
+    property bool volumeMuted: false
+    property bool micMuted: true
 
     function fmtRate(bps) {
         var n, unit
@@ -41,6 +49,22 @@ PanelWindow {
         else if (bps < 1024 * 1024 * 1024) { n = (bps / 1048576).toFixed(1); unit = "M/s" }
         else                             { n = (bps / 1073741824).toFixed(2); unit = "G/s" }
         return n.padStart(5, "\u2007") + " " + unit
+    }
+    function ratePad(bps) {
+        var n
+        if (bps < 1024) n = bps.toFixed(0)
+        else if (bps < 1024 * 1024) n = (bps / 1024).toFixed(0)
+        else if (bps < 1024 * 1024 * 1024) n = (bps / 1048576).toFixed(1)
+        else n = (bps / 1073741824).toFixed(2)
+        return "\u00B7".repeat(Math.max(0, 5 - n.length))
+    }
+    function rateBody(bps) {
+        var n, unit
+        if (bps < 1024)                  { n = bps.toFixed(0);            unit = "B/s" }
+        else if (bps < 1024 * 1024)      { n = (bps / 1024).toFixed(0);   unit = "K/s" }
+        else if (bps < 1024 * 1024 * 1024) { n = (bps / 1048576).toFixed(1); unit = "M/s" }
+        else                             { n = (bps / 1073741824).toFixed(2); unit = "G/s" }
+        return n + " " + unit
     }
 
     // Processes and timers here...
@@ -137,28 +161,95 @@ PanelWindow {
         onTriggered: netFile.reload()
     }
 
+    Process {
+        id: wifiProc
+        command: ["sh", "-c",
+            "nmcli -t -f IN-USE,SIGNAL,SSID dev wifi 2>/dev/null | " +
+            "awk -F: '$1==\"*\"{print $2\"\\t\"$3; exit}'"
+        ]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                var line = this.text.trim()
+                if (!line) { root.wifiSignal = 0; root.wifiSsid = ""; return }
+                var parts = line.split("\t")
+                root.wifiSignal = parseInt(parts[0], 10) || 0
+                root.wifiSsid = parts[1] || ""
+            }
+        }
+    }
+
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: if (!wifiProc.running) wifiProc.running = true
+    }
+
+    Process {
+        id: diskProc
+        command: ["sh", "-c", "df -P / 2>/dev/null | awk 'NR==2{gsub(\"%\",\"\",$5); print $5}'"]
+        stdout: StdioCollector {
+            onStreamFinished: root.diskUsage = parseInt(this.text.trim(), 10) || 0
+        }
+    }
+
+    Timer {
+        interval: 30000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: if (!diskProc.running) diskProc.running = true
+    }
+
+    Process {
+        id: audioProc
+        command: ["sh", "-c",
+            "v=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null); " +
+            "m=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ 2>/dev/null); " +
+            "vol=$(echo \"$v\" | awk '{print $2}'); " +
+            "vmute=$(echo \"$v\" | grep -q MUTED && echo 1 || echo 0); " +
+            "mmute=$(echo \"$m\" | grep -q MUTED && echo 1 || echo 0); " +
+            "echo \"$vol $vmute $mmute\""
+        ]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                var parts = this.text.trim().split(/\s+/)
+                root.volume = Math.round((parseFloat(parts[0]) || 0) * 100)
+                root.volumeMuted = parts[1] === "1"
+                root.micMuted = parts[2] === "1"
+            }
+        }
+    }
+
+    Timer {
+        interval: 1500
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: if (!audioProc.running) audioProc.running = true
+    }
+
     anchors.top: true
     anchors.left: true
     anchors.right: true
     margins { top: 6; left: 9; right: 9}
-    implicitHeight: 20
+    implicitHeight: 26
     color: "transparent"
     
     Rectangle {
         anchors.fill: parent
-        radius: 3
+        anchors.topMargin: 0
+        anchors.bottomMargin: 0
+        radius: 8
         color: root.colBg
     }
 
-    RowLayout {
-        anchors.fill: parent
-        anchors.leftMargin: 8
-        anchors.rightMargin: 8
-        anchors.topMargin: 2
-        anchors.bottomMargin: 2
-        spacing: 8
-
-        // Workspaces
+    // Workspaces (true center)
+    Row {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        spacing: 16
         Repeater {
             model: 9
             Text {
@@ -173,81 +264,225 @@ PanelWindow {
                 }
             }
         }
+    }
+
+    RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: 8
+        anchors.rightMargin: 8
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        spacing: 16
+
+        // CPU
+        Row {
+            spacing: 0
+            property int filled: Math.min(4, Math.max(0, Math.round(root.cpuUsage / 25)))
+            Text {
+                text: "\uf4bc " + "|".repeat(parent.filled)
+                color: root.colYellow
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: "\u00B7".repeat(4 - parent.filled)
+                color: root.colSquid
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.cpuUsage + "%"
+                color: root.colYellow
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+        }
+
+
+        // CPU / GPU temp
+        Text {
+            text: "\uf2c8 " + root.cpuTemp + "/" + root.gpuTemp + "\u00B0C"
+            color: (root.cpuTemp >= 85 || root.gpuTemp >= 85) ? root.colCharple : root.colFg
+            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+        }
+
+
+        // Memory
+        Row {
+            spacing: 0
+            property int filled: Math.min(4, Math.max(0, Math.round(root.memUsage / 25)))
+            Text {
+                text: "\ue266 " + "|".repeat(parent.filled)
+                color: root.colCyan
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: "\u00B7".repeat(4 - parent.filled)
+                color: root.colSquid
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.memUsage + "%"
+                color: root.colCyan
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+        }
+
+
+        // Disk (/)
+        Row {
+            spacing: 0
+            property int filled: Math.min(4, Math.max(0, Math.round(root.diskUsage / 25)))
+            property color sectionCol: root.diskUsage >= 90 ? root.colCharple : root.colFg
+            Text {
+                text: "\uf0a0 " + "|".repeat(parent.filled)
+                color: parent.sectionCol
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: "\u00B7".repeat(4 - parent.filled)
+                color: root.colSquid
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.diskUsage + "%"
+                color: parent.sectionCol
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+        }
+
+
+        // Network I/O
+        Row {
+            spacing: 0
+            Text {
+                text: "\u2193"
+                color: root.colFg
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.ratePad(root.netRxRate)
+                color: root.colSquid
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.rateBody(root.netRxRate) + " \u2191"
+                color: root.colFg
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.ratePad(root.netTxRate)
+                color: root.colSquid
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+            Text {
+                text: root.rateBody(root.netTxRate)
+                color: root.colFg
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            }
+        }
 
         Item { Layout.fillWidth: true }
 
-        // CPU
-        Text {
-            text: "CPU " + cpuUsage + "%"
-            color: root.colYellow
-            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-        }
-
-        Rectangle { width: 1; height: 16; color: root.colMuted }
-
-        // CPU temp
-        Text {
-            text: "CPU " + root.cpuTemp + "\u00B0C"
-            color: root.cpuTemp >= 85 ? root.colCharple : root.colFg
-            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-        }
-
-        Rectangle { width: 1; height: 16; color: root.colMuted }
-
-        // GPU temp
-        Text {
-            text: "GPU " + root.gpuTemp + "\u00B0C"
-            color: root.gpuTemp >= 85 ? root.colCharple : root.colFg
-            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-        }
-
-        Rectangle { width: 1; height: 16; color: root.colMuted }
-
-        // Memory
-        Text {
-            text: "Mem " + memUsage + "%"
-            color: root.colCyan
-            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-        }
-
-        Rectangle { width: 1; height: 16; color: root.colMuted }
-
-        // Network I/O
-        Text {
-            text: "\u2193 " + root.fmtRate(root.netRxRate) + "  \u2191 " + root.fmtRate(root.netTxRate)
-            color: root.colFg
-            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-        }
-
-        Rectangle { width: 1; height: 16; color: root.colMuted }
-
-        // Battery
+        // WiFi
         Text {
             text: {
-                var prefix = "Bat"
-                if (root.batteryStatus === "Charging") prefix = "Chg"
-                else if (root.batteryStatus === "Full") prefix = "Full"
-                return prefix + " " + root.batteryCapacity + "%"
+                if (root.wifiSignal <= 0 || !root.wifiSsid) return "\uf6ac off"
+                return "\uf1eb\u2003" + root.wifiSsid + " " + root.wifiSignal + "%"
             }
-            color: root.batteryCapacity <= 15 && root.batteryStatus !== "Charging"
-                ? root.colCharple : root.colFg
+            color: root.wifiSignal <= 0 ? root.colMuted : root.colFg
             font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
         }
 
-        Rectangle { width: 1; height: 16; color: root.colMuted }
+
+        // Volume
+        Text {
+            id: volText
+            text: {
+                var g
+                if (root.volumeMuted || root.volume <= 0) g = "\uf026"
+                else if (root.volume < 50) g = "\uf027"
+                else g = "\uf028"
+                return g + "\u2009" + root.volume + "%"
+            }
+            color: root.volumeMuted ? root.colSquid : root.colFg
+            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: volMuteProc.running = true
+            }
+        }
+
+        Process {
+            id: volMuteProc
+            command: ["wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"]
+            onExited: audioProc.running = true
+        }
+
+
+        // Mic
+        Text {
+            id: micText
+            TextMetrics { id: micOn;  font: micText.font; text: "\uf130" }
+            TextMetrics { id: micOff; font: micText.font; text: "\uf131" }
+            Layout.preferredWidth: Math.ceil(Math.max(micOn.advanceWidth, micOff.advanceWidth))
+            horizontalAlignment: Text.AlignLeft
+            text: root.micMuted ? "\uf131" : "\uf130"
+            color: root.micMuted ? root.colCoral : root.colFg
+            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: micMuteProc.running = true
+            }
+        }
+
+        Process {
+            id: micMuteProc
+            command: ["wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"]
+            onExited: audioProc.running = true
+        }
+
 
         // Clock
         Text {
             id: clock
+            property var zh: Qt.locale("zh_CN")
+            property bool showDate: true
+            function fmt() {
+                return showDate
+                    ? zh.toString(new Date(), "ddd MMMd\u65E5 HH:mm")
+                    : zh.toString(new Date(), "HH:mm")
+            }
             color: root.colBlue
             font { family: root.fontFamily; pixelSize: root.fontSize; bold: false}
-            text: Qt.formatDateTime(new Date(), "ddd dd MMM HH:mm")
+            text: fmt()
             Timer {
                 interval: 1000
                 running: true
                 repeat: true
-                onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd dd MMM HH:mm")
+                onTriggered: clock.text = clock.fmt()
             }
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: { clock.showDate = !clock.showDate; clock.text = clock.fmt() }
+            }
+        }
+
+        // Battery
+        Text {
+            text: {
+                var glyph
+                if (root.batteryStatus === "Charging") glyph = "\uf0e7"
+                else if (root.batteryCapacity >= 88) glyph = "\uf240"
+                else if (root.batteryCapacity >= 63) glyph = "\uf241"
+                else if (root.batteryCapacity >= 38) glyph = "\uf242"
+                else if (root.batteryCapacity >= 13) glyph = "\uf243"
+                else glyph = "\uf244"
+                return glyph + " " + root.batteryCapacity + "%"
+            }
+            color: root.batteryCapacity <= 15 && root.batteryStatus !== "Charging"
+                ? root.colCharple : root.colFg
+            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
         }
     }
 }
