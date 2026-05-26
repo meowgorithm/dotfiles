@@ -272,6 +272,20 @@ hl.bind(mainMod .. " + F",           hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 hl.bind(mainMod .. " + E",           hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",           hl.dsp.window.float({ action = "toggle" }))
+
+-- Toggle all windows on the current workspace between tiled and floating
+local workspaceFloatState = {}
+hl.bind(mainMod .. " + SHIFT + T", function()
+    local ws = hl.get_active_workspace()
+    if not ws then return end
+    local makeFloat = not workspaceFloatState[ws.id]
+    workspaceFloatState[ws.id] = makeFloat
+    for _, w in ipairs(ws:get_windows()) do
+        if w.floating ~= makeFloat then
+            hl.dispatch(hl.dsp.window.float({ action = "toggle", window = "address:" .. w.address }))
+        end
+    end
+end)
 hl.bind(mainMod .. " + Space",       hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T",           hl.dsp.layout("togglesplit"))    -- dwindle only
