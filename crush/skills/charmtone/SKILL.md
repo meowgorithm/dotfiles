@@ -5,7 +5,8 @@ description: Use charmtone colors via the `charmtone` CLI or Go API (`github.com
 
 # CharmTone
 
-Use CharmTone colors via the CLI or Go API.
+Use CharmTone colors via the CLI or Go API. The complete palette is listed
+below — refer to it directly rather than guessing hex values.
 
 ## CLI
 
@@ -28,13 +29,13 @@ charmtone vim > charmtone.vim
 # Output: let cherry = '#FF388B' | let charple = '#6B50FF' | ...
 ```
 
-The CLI is ideal for generating static color files or quickly looking up hex values. It does not accept color name arguments — it always outputs the full palette.
+The CLI is ideal for generating static color files or quickly looking up hex
+values. It does not accept color name arguments — it always outputs the full
+palette.
 
 ## Go API
 
 Import: `github.com/charmbracelet/x/exp/charmtone`
-
-Use the Go API for programmatic color usage in Go programs.
 
 ```go
 import "github.com/charmbracelet/x/exp/charmtone"
@@ -64,23 +65,100 @@ charmtone.Darple.IsCharple()   // true
 charmtone.Chili.IsSpectrum()   // true
 ```
 
-For the complete color list, method signatures, and grouping details, see [references/go-api.md](references/go-api.md).
+See [references/go-api.md](references/go-api.md) for full method signatures
+and grouping details.
 
-## Quick Reference — Key Colors
+## Complete Color Palette
 
-| Color | Hex | Group |
-|-------|-----|-------|
-| Cherry | `#FF388B` | Spectrum |
-| Charple | `#6B50FF` | Spectrum / Primary |
-| Julep | `#00FFB2` | Spectrum / Primary / Additions |
-| Hazy | `#8B75FF` | Spectrum / Primary / Charples |
-| Blush | `#FF84FF` | Spectrum / Primary |
-| Dolly | `#FF60FF` | Spectrum / Primary |
-| Bok | `#68FFD6` | Spectrum / Primary |
-| Zest | `#E8FE96` | Spectrum / Primary |
-| Butter | `#FFFAF1` | Primary |
-| Ice | `#00FFFC` | Secondary |
-| Pepper | `#201F26` | Neutral (dark) |
-| Soda | `#FBFBFB` | Neutral (light) |
+All 68 CharmTone colors, grouped by palette.
 
-Primary colors are marked with ● in the CLI output. Secondary (○) include: Uni, Coral, Tuna, Violet, Malibu, Turtle, Ice.
+### Spectrum (47 colors, Cumin → Zest)
+
+| Color | Hex | Color | Hex | Color | Hex |
+|-------|-----|-------|-----|-------|-----|
+| Cumin | `#BF976F` | Tang | `#FF985A` | Yam | `#FFB587` |
+| Paprika | `#D36C64` | Bengal | `#FF6E63` | Uni | `#FF937D` |
+| Sriracha | `#EB4268` | Coral | `#FF577D` | Salmon | `#FF7F90` |
+| Chili | `#E23080` | Cherry | `#FF388B` | Tuna | `#FF6DAA` |
+| Macaron | `#E940B0` | Pony | `#FF4FBF` | Cheeky | `#FF79D0` |
+| Flamingo | `#F947E3` | Dolly | `#FF60FF` | Blush | `#FF84FF` |
+| Urchin | `#C337E0` | Mochi | `#EB5DFF` | Lilac | `#F379FF` |
+| Prince | `#9C35E1` | Violet | `#C259FF` | Mauve | `#D46EFF` |
+| Grape | `#7134DD` | Plum | `#9953FF` | Orchid | `#AD6EFF` |
+| Jelly | `#4A30D9` | Charple | `#6B50FF` | Hazy | `#8B75FF` |
+| Ox | `#3331B2` | Sapphire | `#4949FF` | Guppy | `#7272FF` |
+| Oceania | `#2B55B3` | Thunder | `#4776FF` | Anchovy | `#719AFC` |
+| Damson | `#007AB8` | Malibu | `#00A4FF` | Sardine | `#4FBEFE` |
+| Zinc | `#10B1AE` | Turtle | `#0ADCD9` | Lichen | `#5CDFEA` |
+| Guac | `#12C78F` | Julep | `#00FFB2` | Bok | `#68FFD6` |
+| Mustard | `#F5EF34` | Citron | `#E8FF27` | Zest | `#E8FE96` |
+
+### Butter
+
+| Color | Hex |
+|-------|-----|
+| Butter | `#FFFAF1` |
+
+### Neutrals (12 colors, Pepper → Soda)
+
+| Color | Hex | Color | Hex | Color | Hex |
+|-------|-----|-------|-----|-------|-----|
+| Pepper | `#201F26` | BBQ | `#2D2C36` | Char | `#3A3943` |
+| Iron | `#4D4C57` | Oyster | `#605F6B` | Squid | `#858392` |
+| Steam | `#A2A0AD` | Smoke | `#BFBCC8` | Steep | `#D6D3DC` |
+| Sash | `#ECEBF0` | Salt | `#F7F6FB` | Soda | `#FBFBFB` |
+
+### Charples (5 colors: Jelly → Darple → Charple → Larple → Hazy)
+
+| Color | Hex |
+|-------|-----|
+| Jelly | `#4A30D9` |
+| Darple | `#5B40EC` |
+| Charple | `#6B50FF` |
+| Larple | `#7B62FF` |
+| Hazy | `#8B75FF` |
+
+### Diff Additions (Spinach → Gator → Pickle → Julep)
+
+| Color | Hex |
+|-------|-----|
+| Spinach | `#1C3634` |
+| Gator | `#18463D` |
+| Pickle | `#00A475` |
+| Julep | `#00FFB2` |
+
+### Diff Deletions (Toast → Steak → Pom → Cherry)
+
+| Color | Hex |
+|-------|-----|
+| Toast | `#412130` |
+| Steak | `#582238` |
+| Pom | `#AB2454` |
+| Cherry | `#FF388B` |
+
+### Secondary extras
+
+| Color | Hex |
+|-------|-----|
+| Ice | `#00FFFC` |
+
+### Deprecated aliases
+
+| Alias | Renamed to |
+|-------|------------|
+| Charcoal | Char |
+| Ash | Sash |
+
+## Palette Membership
+
+| Group | Count | Colors |
+|-------|-------|--------|
+| **Primary** | 8 | Charple, Dolly, Julep, Zest, Hazy, Blush, Bok, Butter |
+| **Secondary** | 7 | Uni, Coral, Tuna, Violet, Malibu, Turtle, Ice |
+| **Spectrum** | 47 | Cumin through Zest |
+| **Neutrals** | 12 | Pepper through Soda |
+| **Charples** | 5 | Jelly, Darple, Charple, Larple, Hazy |
+| **Additions** | 4 | Spinach, Gator, Pickle, Julep |
+| **Deletions** | 4 | Toast, Steak, Pom, Cherry |
+
+Primary colors are marked with ● in the CLI output, secondary with ○.
