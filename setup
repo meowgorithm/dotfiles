@@ -208,7 +208,6 @@ nixos | fedora | arch)
     link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
     link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
     link "hypr/hyprpaper.conf" "$XDG_CONFIG_HOME/hypr/hyprpaper.conf"
-    link "waybar/" "$XDG_CONFIG_HOME/waybar"
     link "quickshell/default" "$XDG_CONFIG_HOME/quickshell/default"
     ;;
 esac
@@ -268,10 +267,6 @@ esac
 if [[ $os == "arch" ]]; then
     mkdir -p ~/.local/bin
     ln -sf /usr/bin/helix ~/.local/bin/hx
-fi
-
-if [[ $os == "nixos" ]]; then
-    linkScript "watch-waybar"
 fi
 
 # Fonts
