@@ -211,12 +211,24 @@ hl.config({
         force_default_wallpaper  = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo    = true, -- If true disables the random hyprland logo / anime girl background. :(
         disable_splash_rendering = true, -- Disable the splash text on desktop
-        vrr                      = 1,    -- Variable refresh rate: 0=off, 1=on, 2=fullscreen only, 3=fullscreen for games
+        vrr                      = 2,    -- Variable refresh rate: 0=off, 1=on, 2=fullscreen only, 3=fullscreen for games
         focus_on_activate        = true, -- Auto-focus windows that request activation (e.g. "open in browser")
         animate_manual_resizes   = true, -- Smoother animation when resizing windows by hand
         animate_mouse_windowdragging = false, -- Whether or not to animate window drags
         enable_swallow           = true, -- Hide terminal when it launches a GUI app (e.g. nautilus from kitty)
         swallow_regex            = "^(kitty|Alacritty|foot|com\\.mitchellh\\.ghostty|io\\.github\\.raphamorim\\.rio)$",
+    },
+})
+
+
+----------------
+---- CURSOR ----
+----------------
+
+hl.config({
+    cursor = {
+        no_hardware_cursors = true,  -- Fixes VRR flicker on AMD GPUs
+        no_break_fs_vrr     = false, -- Allow VRR in fullscreen apps
     },
 })
 
