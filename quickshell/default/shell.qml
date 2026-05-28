@@ -257,7 +257,7 @@ PanelWindow {
                 property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
                 text: index + 1
                 color: isActive ? root.colCharple : (ws ? root.colBlue : root.colMuted)
-                font { family: root.fontFamily;pixelSize: root.fontSize; variableAxes: { "wght": 700 } }
+                font { family: root.fontFamily; pixelSize: root.fontSize; weight: Font.Black }
                 MouseArea {
                     anchors.fill: parent
                     onClicked: Hyprland.dispatch("workspace " + (index + 1))
