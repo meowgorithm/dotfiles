@@ -1,0 +1,4 @@
+# Prevent USB autosuspend for ASUS 5M webcam (636e:0bda)
+# The device fails to resume from suspend (error -22) and disconnects
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="636e", ATTR{idProduct}=="0bda", ATTR{power/autosuspend}="-1"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="636e", ATTR{idProduct}=="0bda", ATTR{power/control}="on"

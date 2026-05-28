@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+#
+# Configure deep sleep and AMDGPU suspend/resume fixes for ASUS ROG Flow Z13
+# (Strix Halo). Safe to re-run — idempotent, no-ops if already configured.
+#
+# Usage: sudo ./setup-sleep-state
+#
+
+set -euo pipefail
+
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root (sudo)." >&2
+    exit 1
+fi
+
+SLEEP_DROPIN="/etc/systemd/sleep.conf.d/deep-sleep.conf"
+AMDGPU_MODPROBE="/etc/modprobe.d/amdgpu-suspend.conf"
+SLEEP_HOOK="/usr/lib/systemd/system-sleep/amdgpu-resume"
+BOOTLOADER_CONF="/etc/default/grub"
+NEEDS_UPDATE=false
+
+echo "=== Sleep State Setup for ASUS ROG Flow Z13 ==="
+echo ""
+
+# 1. Enable deep sleep (S3) instead of s2idle
+if [[ -f "$SLEEP_DROPIN" ]] && grep -q 'SuspendState=deep' "$SLEEP_DROPIN" 2>/dev/null; then
+    echo "[✓] Deep sleep already configured"
+else
+    mkdir -p /etc/systemd/sleep.conf.d
+    cat > "$SLEEP_DROPIN" <<EOF
+[Sleep]
+SuspendState=mem standby freeze
+EOF
+    echo "[+] Created $SLEEP_DROPIN"
+    NEEDS_UPDATE=true
+fi
+
+# 2. AMDGPU module options for suspend stability
+#    - runpm=0: disable runtime PM (prevents dGPU power-down crashes on Strix Halo)
+#    - ppfeaturemask=0xffff7fff: disable PP_GFXOFF_MASK (fixes idle freezes)
+if [[ -f "$AMDGPU_MODPROBE" ]] && grep -q 'runpm=0' "$AMDGPU_MODPROBE" 2>/dev/null; then
+    echo "[✓] AMDGPU suspend options already configured"
+else
+    cat > "$AMDGPU_MODPROBE" <<EOF
+options amdgpu runpm=0 ppfeaturemask=0xffff7fff
+EOF
+    echo "[+] Created $AMDGPU_MODPROBE"
+    echo "    → runpm=0: disables runtime PM (Strix Halo freeze workaround)"
+    echo "    → ppfeaturemask=0xffff7fff: disables GFXOFF (idle freeze workaround)"
+    NEEDS_UPDATE=true
+fi
+
+# 3. Systemd sleep hook: reset display on resume
+if [[ -f "$SLEEP_HOOK" ]]; then
+    echo "[✓] AMDGPU resume hook already installed"
+else
+    cat > "$SLEEP_HOOK" <<'HOOK'
+#!/bin/bash
+# Workaround for AMDGPU resume issues on Strix Halo
+case "$1" in
+    post)
+        # Brief delay for GPU firmware reinit
+        sleep 1
+        # Force DPMS cycle to recover display
+        if command -v hyprctl &>/dev/null; then
+            hyprctl dispatch dpms off
+            sleep 0.5
+            hyprctl dispatch dpms on
+        fi
+        ;;
+esac
+HOOK
+    chmod +x "$SLEEP_HOOK"
+    echo "[+] Installed $SLEEP_HOOK"
+fi
+
+# 4. Check if mem_sleep_default=deep is needed in kernel cmdline
+CURRENT_SLEEP=$(cat /sys/power/mem_sleep 2>/dev/null || echo "")
+if echo "$CURRENT_SLEEP" | grep -q '\[deep\]'; then
+    echo "[✓] Deep sleep already active"
+elif echo "$CURRENT_SLEEP" | grep -q 'deep'; then
+    echo "[!] Deep sleep available but not default. Add 'mem_sleep_default=deep' to kernel params."
+    echo "    Current: $CURRENT_SLEEP"
+    if [[ -f "$BOOTLOADER_CONF" ]]; then
+        if grep -q 'mem_sleep_default=deep' "$BOOTLOADER_CONF"; then
+            echo "[✓] Already in GRUB config"
+        else
+            sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 mem_sleep_default=deep"/' "$BOOTLOADER_CONF"
+            echo "[+] Added mem_sleep_default=deep to $BOOTLOADER_CONF"
+            echo "    → Run 'sudo grub-mkconfig -o /boot/grub/grub.cfg' to apply"
+            NEEDS_UPDATE=true
+        fi
+    else
+        echo "    → No GRUB config found. Add manually to your bootloader."
+    fi
+else
+    echo "[!] Deep sleep not available in /sys/power/mem_sleep"
+    echo "    Current: $CURRENT_SLEEP"
+    echo "    → Your firmware may only support s2idle. Check BIOS for S3 option."
+fi
+
+echo ""
+if $NEEDS_UPDATE; then
+    echo "Changes made. Reboot to apply all settings."
+else
+    echo "Everything already configured. No changes needed."
+fi

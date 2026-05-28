@@ -1,0 +1,52 @@
+#!/bin/sh
+# Set up the ASUS 5M webcam suspend/resume fix.
+# Installs a udev rule and a systemd service that rebinds the xHCI
+# controller on resume so the webcam comes back.
+
+set -e
+
+UDEV_RULE="/etc/udev/rules.d/99-webcam-usb.rules"
+SYSTEMD_UNIT="/etc/systemd/system/fix-webcam-resume.service"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REBIND_SCRIPT="$SCRIPT_DIR/fix-webcam-resume"
+RULE_SOURCE="$SCRIPT_DIR/99-webcam-usb.rules"
+
+already_setup() {
+    [ -f "$UDEV_RULE" ] && [ -f "$SYSTEMD_UNIT" ] && systemctl is-enabled fix-webcam-resume.service >/dev/null 2>&1
+}
+
+if already_setup; then
+    echo "Webcam resume fix already set up. Nothing to do."
+    exit 0
+fi
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "install-webcam-fix: root required, re-running with sudo..." >&2
+    exec sudo "$0" "$@"
+fi
+
+# Install udev rule
+cp "$RULE_SOURCE" "$UDEV_RULE"
+udevadm control --reload-rules
+udevadm trigger
+echo "install-webcam-fix: udev rule installed"
+
+# Install systemd resume service
+cat > "$SYSTEMD_UNIT" << EOF
+[Unit]
+Description=Fix ASUS webcam after suspend/resume
+After=suspend.target hibernate.target hybrid-sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=$REBIND_SCRIPT
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target
+EOF
+
+systemctl daemon-reload
+systemctl enable fix-webcam-resume.service
+echo "install-webcam-fix: systemd service installed and enabled"
+
+echo "install-webcam-fix: done"
