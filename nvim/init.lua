@@ -42,6 +42,7 @@ vim.pack.add(vim.tbl_map(github, {
 	"nvim-telescope/telescope.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"nvim-treesitter/nvim-treesitter",
+	"saghen/blink.lib",
 	"saghen/blink.cmp",
 	"schickling/vim-bufonly",
 	"stevearc/conform.nvim",
