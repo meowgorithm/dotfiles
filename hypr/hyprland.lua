@@ -15,11 +15,18 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- eDP-1 (laptop) on the left, DP-2 (LG external 4K) primary on the right.
 hl.monitor({
-    output   = "",
+    output   = "eDP-1",
     mode     = "preferred",
-    position = "auto",
+    position = "-1600x0",
     scale    = "1.6",
+})
+hl.monitor({
+    output   = "DP-2",
+    mode     = "preferred",
+    position = "0x0",
+    scale    = "1.25",
 })
 
 
@@ -164,22 +171,17 @@ hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+-- Pin workspaces to monitors so each display has its own set
+hl.workspace_rule({ workspace = "1",  monitor = "DP-2",  default = true })
+hl.workspace_rule({ workspace = "2",  monitor = "DP-2" })
+hl.workspace_rule({ workspace = "3",  monitor = "DP-2" })
+hl.workspace_rule({ workspace = "4",  monitor = "DP-2" })
+hl.workspace_rule({ workspace = "5",  monitor = "DP-2" })
+hl.workspace_rule({ workspace = "6",  monitor = "eDP-1", default = true })
+hl.workspace_rule({ workspace = "7",  monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "8",  monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "9",  monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "10", monitor = "eDP-1" })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({

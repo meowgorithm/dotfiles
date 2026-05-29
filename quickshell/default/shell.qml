@@ -230,6 +230,8 @@ PanelWindow {
         onTriggered: if (!audioProc.running) audioProc.running = true
     }
 
+    screen: Quickshell.screens.find(s => s.name === "DP-2") ?? Quickshell.screens[0]
+
     anchors.top: true
     anchors.left: true
     anchors.right: true
