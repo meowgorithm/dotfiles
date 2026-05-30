@@ -189,6 +189,7 @@ if [[ -n "$lua_path" ]]; then
     z_lua_path=""
     for path in \
         "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
+        "/usr/share/z.lua/z.lua" \
         "$HOME/.local/share/z.lua/z.lua"; do
         [[ -f "$path" ]] && z_lua_path="$path" && break
     done
