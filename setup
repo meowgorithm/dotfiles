@@ -240,6 +240,7 @@ scripts=(
     "tmls"
     "uninstall-crush"
     "sessions"
+    "arch-pkgs"
 )
 if [[ $os == "darwin" ]]; then
     scripts+=("fix-docker-desktop")
@@ -264,10 +265,14 @@ fedora | linux)
     ;;
 esac
 
-# Arch Linux: helix symlink
+# Arch Linux
 if [[ $os == "arch" ]]; then
     mkdir -p ~/.local/bin
     ln -sf /usr/bin/helix ~/.local/bin/hx
+
+    if [[ $OP == "update" ]]; then
+        bash "./scripts/arch-pkgs" install
+    fi
 fi
 
 # Fonts

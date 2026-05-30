@@ -1,0 +1,8 @@
+1password
+losslesscut-bin
+maple-mono-nf-cn
+paru-debug
+slack-desktop-wayland
+ttf-geist-variable
+z.lua
+zoom
