@@ -4,6 +4,7 @@ import Quickshell.Io
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
 PanelWindow {
     id: root
@@ -46,6 +47,10 @@ PanelWindow {
     property int volume: 0
     property bool volumeMuted: false
     property bool micMuted: true
+    property int brightnessRaw: 0
+    property int brightnessMax: 1
+    property int brightness: Math.round(brightnessRaw / brightnessMax * 100)
+    property bool brightnessPopupShown: false
 
     function fmtRate(bps) {
         var n, unit
@@ -240,6 +245,35 @@ PanelWindow {
         triggeredOnStart: true
         onTriggered: if (!audioProc.running) audioProc.running = true
     }
+
+        FileView {
+            id: brightFile
+            path: "/sys/class/backlight/amdgpu_bl1/brightness"
+            blockLoading: true
+            onLoaded: root.brightnessRaw = parseInt(text(), 10) || 0
+        }
+
+        FileView {
+            id: brightMaxFile
+            path: "/sys/class/backlight/amdgpu_bl1/max_brightness"
+            blockLoading: true
+            onLoaded: root.brightnessMax = parseInt(text(), 10) || 1
+        }
+
+        Timer {
+            interval: 5000
+            running: true
+            repeat: true
+            triggeredOnStart: true
+            onTriggered: { brightFile.reload(); brightMaxFile.reload() }
+        }
+
+        Process {
+            id: brightSetProc
+            property int target: 0
+            command: ["brightnessctl", "set", Math.round(target * root.brightnessMax / 100).toString()]
+            onExited: brightFile.reload()
+        }
 
     screen: preferredScreen()
 
@@ -455,6 +489,28 @@ PanelWindow {
         }
 
 
+        // Brightness
+        Item {
+            id: brightItem
+            Layout.preferredWidth: brightIcon.width
+            Layout.preferredHeight: parent.height
+
+            Text {
+                id: brightIcon
+                text: "\uf042"
+                color: root.colFg
+                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.brightnessPopupShown = !root.brightnessPopupShown
+            }
+        }
+
+
         // Clock
         Text {
             id: clock
@@ -496,6 +552,96 @@ PanelWindow {
             color: root.batteryCapacity <= 15 && root.batteryStatus !== "Charging"
                 ? root.colCharple : root.colFg
             font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+        }
+    }
+
+    PopupWindow {
+        id: brightPopup
+        width: 260
+        height: 50
+
+        anchor {
+            window: root
+            rect.x: 0
+            rect.y: root.height
+            edges: Edges.Bottom | Edges.Left
+            gravity: Edges.Bottom | Edges.Right
+            adjustment: PopupAdjustment.Slide
+            onAnchoring: anchor.rect.x = brightItem.mapToItem(root.contentItem, 0, 0).x + brightItem.width / 2 - brightPopup.width / 2
+        }
+
+        visible: root.brightnessPopupShown
+        onVisibleChanged: if (!visible) root.brightnessPopupShown = false
+
+        color: "transparent"
+
+        Rectangle {
+            anchors.fill: parent
+            color: root.colBg
+            radius: 8
+            border.color: root.colSquid
+            border.width: 1
+        }
+
+        RowLayout {
+            anchors.fill: parent
+            anchors.margins: 12
+            spacing: 8
+
+            Text {
+                text: "\uf042"
+                color: root.colMuted
+                font { family: root.fontFamily; pixelSize: root.fontSize }
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            Slider {
+                id: brightSlider
+                from: 0
+                to: 100
+                value: root.brightness
+                onMoved: {
+                    brightSetProc.target = Math.round(value)
+                    brightSetProc.running = true
+                }
+                Layout.preferredWidth: 160
+                Layout.alignment: Qt.AlignVCenter
+
+                background: Rectangle {
+                    x: brightSlider.leftPadding
+                    y: brightSlider.topPadding + brightSlider.availableHeight / 2 - height / 2
+                    implicitWidth: 160
+                    implicitHeight: 4
+                    radius: height / 2
+                    color: "#605F6B"
+
+                    Rectangle {
+                        width: brightSlider.visualPosition * parent.width
+                        height: parent.height
+                        radius: height / 2
+                        color: "#A2A0AD"
+                    }
+                }
+
+                handle: Rectangle {
+                    x: brightSlider.leftPadding + brightSlider.visualPosition * (brightSlider.availableWidth - width)
+                    y: brightSlider.topPadding + brightSlider.availableHeight / 2 - height / 2
+                    implicitWidth: 14
+                    implicitHeight: 14
+                    radius: 7
+                    color: "#D6D3DC"
+                    border.color: "#A2A0AD"
+                    border.width: 0
+                }
+            }
+
+            Text {
+                text: Math.round(brightSlider.value) + "%"
+                color: "#A2A0AD"
+                font { family: root.fontFamily; pixelSize: root.fontSize }
+                Layout.alignment: Qt.AlignVCenter
+                Layout.preferredWidth: 36
+            }
         }
     }
 }
