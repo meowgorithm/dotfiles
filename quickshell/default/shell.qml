@@ -12,6 +12,9 @@ PanelWindow {
     property color colBg: "#CC3A3943"
     property color colFg: "#D6D3DC"
     property color colMuted: "#605F6B"
+    property color colSmoke: "#BFBCC8"
+    property color colSteam: "#A2A0AD"
+    property color colSteep: "#D6D3DC"
     property color colCyan: "#A2A0AD"
     property color colBlue: "#BFBCC8"
     property color colYellow: "#BFBCC8"
@@ -266,7 +269,7 @@ PanelWindow {
                 property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
                 property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
                 text: index + 1
-                color: isActive ? root.colCharple : (ws ? root.colBlue : root.colMuted)
+                color: isActive ? root.colSmoke : (ws ? root.colSquid : root.colMuted)
                 font { family: root.fontFamily; pixelSize: root.fontSize; weight: Font.Black }
                 MouseArea {
                     anchors.fill: parent
