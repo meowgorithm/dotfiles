@@ -57,6 +57,13 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("ssh-agent -a " .. os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")
 end)
 
+local function restartQuickshell()
+    hl.exec_cmd("sh -c 'sleep 1; restart-quickshell'")
+end
+
+hl.on("monitor.added", restartQuickshell)
+hl.on("monitor.removed", restartQuickshell)
+
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----

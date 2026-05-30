@@ -20,6 +20,8 @@ PanelWindow {
     property color colCoral: "#FF577D"
     property string fontFamily: "Maple Mono NF CN"
     property int fontSize: 14
+    property string externalScreenName: "DP-2"
+    property string deviceScreenName: "eDP-1"
 
     // System data
     property int cpuUsage: 0
@@ -65,6 +67,12 @@ PanelWindow {
         else if (bps < 1024 * 1024 * 1024) { n = (bps / 1048576).toFixed(1); unit = "M/s" }
         else                             { n = (bps / 1073741824).toFixed(2); unit = "G/s" }
         return n + " " + unit
+    }
+    function preferredScreen() {
+        var screens = Quickshell.screens
+        var external = screens.find(s => s.name === root.externalScreenName)
+            ?? screens.find(s => s.name !== root.deviceScreenName)
+        return external ?? screens.find(s => s.name === root.deviceScreenName) ?? screens[0]
     }
 
     // Processes and timers here...
@@ -230,7 +238,7 @@ PanelWindow {
         onTriggered: if (!audioProc.running) audioProc.running = true
     }
 
-    screen: Quickshell.screens.find(s => s.name === "DP-2") ?? Quickshell.screens[0]
+    screen: preferredScreen()
 
     anchors.top: true
     anchors.left: true

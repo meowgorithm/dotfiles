@@ -248,6 +248,7 @@ case "$os" in
 darwin) ;;
 *)
     scripts+=("screen-record")
+    scripts+=("restart-quickshell")
     ;;
 esac
 for script in "${scripts[@]}"; do

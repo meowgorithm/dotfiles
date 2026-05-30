@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v quickshell &>/dev/null; then
+	echo "restart-quickshell: quickshell not found" >&2
+	exit 1
+fi
+
+quickshell kill || true
+exec quickshell --daemonize
