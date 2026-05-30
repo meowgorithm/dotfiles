@@ -232,6 +232,7 @@ scripts=(
     "install-z.lua"
     "install-ghcup"
     "install-nix"
+    "install-paru"
     "make-vid"
     "setup-mouse"
     "setup-wacom"

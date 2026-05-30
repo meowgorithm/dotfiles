@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Install paru, an AUR helper for Arch Linux.
+# https://github.com/Morganamilo/paru
+
+if [[ ! -f /etc/os-release ]]; then
+    echo "Error: /etc/os-release not found" >&2
+    exit 1
+fi
+
+# shellcheck source=/etc/os-release
+source /etc/os-release
+
+if [[ "$ID" != "arch" ]]; then
+    echo "Error: this script only runs on Arch Linux (detected: $ID)" >&2
+    exit 1
+fi
+
+if command -v paru &>/dev/null; then
+    echo "paru is already installed."
+    exit 0
+fi
+
+# Ensure base-devel and git are installed.
+for pkg in base-devel git; do
+    if ! pacman -Qi "$pkg" &>/dev/null; then
+        echo "Installing $pkg (required to build paru)..."
+        sudo pacman -S --needed --noconfirm "$pkg"
+    fi
+done
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+echo "Cloning paru..."
+git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
+
+echo "Building and installing paru..."
+cd "$tmpdir/paru"
+makepkg -si --needed --noconfirm
+
+echo "paru installed successfully."
