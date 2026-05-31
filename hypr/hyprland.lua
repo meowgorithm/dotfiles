@@ -16,14 +16,20 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 -- eDP-1 (laptop) on the left, DP-2 (LG external 4K) primary on the right.
+local internalMonitor = "eDP-1"
+local internalMonitorMode = "preferred"
+local internalMonitorPosition = "-1600x0"
+local internalMonitorScale = "1.6"
+local externalMonitor = "DP-2"
+
 hl.monitor({
-    output   = "eDP-1",
-    mode     = "preferred",
-    position = "-1600x0",
-    scale    = "1.6",
+    output   = internalMonitor,
+    mode     = internalMonitorMode,
+    position = internalMonitorPosition,
+    scale    = internalMonitorScale,
 })
 hl.monitor({
-    output   = "DP-2",
+    output   = externalMonitor,
     mode     = "preferred",
     position = "0x0",
     scale    = "1.25",
@@ -179,16 +185,16 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- Pin workspaces to monitors so each display has its own set
-hl.workspace_rule({ workspace = "1",  monitor = "DP-2",  default = true })
-hl.workspace_rule({ workspace = "2",  monitor = "DP-2" })
-hl.workspace_rule({ workspace = "3",  monitor = "DP-2" })
-hl.workspace_rule({ workspace = "4",  monitor = "DP-2" })
-hl.workspace_rule({ workspace = "5",  monitor = "DP-2" })
-hl.workspace_rule({ workspace = "6",  monitor = "eDP-1", default = true })
-hl.workspace_rule({ workspace = "7",  monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "8",  monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "9",  monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "10", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "1",  monitor = externalMonitor,  default = true })
+hl.workspace_rule({ workspace = "2",  monitor = externalMonitor })
+hl.workspace_rule({ workspace = "3",  monitor = externalMonitor })
+hl.workspace_rule({ workspace = "4",  monitor = externalMonitor })
+hl.workspace_rule({ workspace = "5",  monitor = externalMonitor })
+hl.workspace_rule({ workspace = "6",  monitor = internalMonitor, default = true })
+hl.workspace_rule({ workspace = "7",  monitor = internalMonitor })
+hl.workspace_rule({ workspace = "8",  monitor = internalMonitor })
+hl.workspace_rule({ workspace = "9",  monitor = internalMonitor })
+hl.workspace_rule({ workspace = "10", monitor = internalMonitor })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -373,6 +379,11 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+local closeLidCommand = string.format([[sh -c 'hyprctl -j monitors | jq -e "map(select(.name != \"%s\")) | length > 0" >/dev/null && hyprctl eval '\''hl.monitor({ output = "%s", disabled = true })'\''']], internalMonitor, internalMonitor)
+local openLidCommand = string.format([[hyprctl eval 'hl.monitor({ output = "%s", mode = "%s", position = "%s", scale = "%s", disabled = false })']], internalMonitor, internalMonitorMode, internalMonitorPosition, internalMonitorScale)
+hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd(closeLidCommand), { locked = true })
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd(openLidCommand),  { locked = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
