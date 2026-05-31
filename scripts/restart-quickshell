@@ -7,4 +7,17 @@ if ! command -v quickshell &>/dev/null; then
 fi
 
 quickshell kill || true
+
+# Kill any lingering quickshell processes
+if pgrep -x quickshell &>/dev/null; then
+	pkill -x quickshell
+	sleep 0.5
+fi
+
+# Ensure no other instance is running before starting
+if pgrep -x quickshell &>/dev/null; then
+	echo "restart-quickshell: failed to stop existing instance" >&2
+	exit 1
+fi
+
 exec quickshell --daemonize
