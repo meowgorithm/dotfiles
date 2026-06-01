@@ -11,6 +11,7 @@ cachyos-mirrorlist
 cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 cliphist
+cmake
 direnv
 discord
 dolphin
@@ -25,6 +26,7 @@ git
 github-cli
 git-lfs
 go
+gofumpt
 go-task
 gum
 helix
@@ -37,6 +39,7 @@ hyprpaper
 hyprpolkitagent
 hyprshot
 iwd
+jujutsu
 kitty
 layer-shell-qt
 less
@@ -52,9 +55,11 @@ linux-headers
 mako
 mesa
 mise
+mpv
 neovim
 networkmanager
 nodejs
+noto-fonts-emoji
 npm
 obsidian
 openssh
