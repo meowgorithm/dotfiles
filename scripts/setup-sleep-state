@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Configure deep sleep and AMDGPU suspend/resume fixes for ASUS ROG Flow Z13
+# Configure s2idle sleep and AMDGPU suspend/resume fixes for ASUS ROG Flow Z13
 # (Strix Halo). Safe to re-run — idempotent, no-ops if already configured.
 #
 # Usage: sudo ./setup-sleep-state
@@ -14,23 +14,75 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-SLEEP_DROPIN="/etc/systemd/sleep.conf.d/deep-sleep.conf"
+SLEEP_DROPIN="/etc/systemd/sleep.conf.d/s2idle.conf"
+OLD_SLEEP_DROPIN="/etc/systemd/sleep.conf.d/deep-sleep.conf"
 AMDGPU_MODPROBE="/etc/modprobe.d/amdgpu-suspend.conf"
 SLEEP_HOOK="/usr/lib/systemd/system-sleep/amdgpu-resume"
 BOOTLOADER_CONF="/etc/default/grub"
 NEEDS_UPDATE=false
 
+ensure_kernel_param_in_grub() {
+    [[ -f "$BOOTLOADER_CONF" ]] || return 0
+
+    if grep -q 'mem_sleep_default=s2idle' "$BOOTLOADER_CONF"; then
+        echo "[✓] GRUB already defaults to s2idle"
+    elif grep -q 'mem_sleep_default=deep' "$BOOTLOADER_CONF"; then
+        sed -i 's/mem_sleep_default=deep/mem_sleep_default=s2idle/g' "$BOOTLOADER_CONF"
+        echo "[+] Replaced mem_sleep_default=deep with s2idle in $BOOTLOADER_CONF"
+        echo "    → Run 'sudo grub-mkconfig -o /boot/grub/grub.cfg' to apply"
+        NEEDS_UPDATE=true
+    elif grep -q '^GRUB_CMDLINE_LINUX_DEFAULT=' "$BOOTLOADER_CONF"; then
+        sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\([^"]*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 mem_sleep_default=s2idle"/' "$BOOTLOADER_CONF"
+        echo "[+] Added mem_sleep_default=s2idle to $BOOTLOADER_CONF"
+        echo "    → Run 'sudo grub-mkconfig -o /boot/grub/grub.cfg' to apply"
+        NEEDS_UPDATE=true
+    fi
+}
+
+ensure_kernel_param_in_systemd_boot() {
+    local entry
+    local found=false
+
+    shopt -s nullglob
+    for entry in /boot/loader/entries/*.conf; do
+        found=true
+        if grep -q '^options .*mem_sleep_default=s2idle' "$entry"; then
+            echo "[✓] $(basename "$entry") already defaults to s2idle"
+        elif grep -q 'mem_sleep_default=deep' "$entry"; then
+            sed -i 's/mem_sleep_default=deep/mem_sleep_default=s2idle/g' "$entry"
+            echo "[+] Replaced mem_sleep_default=deep with s2idle in $entry"
+            NEEDS_UPDATE=true
+        elif grep -q '^options ' "$entry"; then
+            sed -i '/^options / s/$/ mem_sleep_default=s2idle/' "$entry"
+            echo "[+] Added mem_sleep_default=s2idle to $entry"
+            NEEDS_UPDATE=true
+        fi
+    done
+    shopt -u nullglob
+
+    if ! $found && [[ ! -f "$BOOTLOADER_CONF" ]]; then
+        echo "[!] No GRUB or systemd-boot config found. Add 'mem_sleep_default=s2idle' to your bootloader."
+    fi
+}
+
 echo "=== Sleep State Setup for ASUS ROG Flow Z13 ==="
 echo ""
 
-# 1. Enable deep sleep (S3) instead of s2idle
-if [[ -f "$SLEEP_DROPIN" ]] && grep -q 'SuspendState=deep' "$SLEEP_DROPIN" 2>/dev/null; then
-    echo "[✓] Deep sleep already configured"
+# 1. Enable s2idle instead of deep sleep (S3)
+if [[ -f "$OLD_SLEEP_DROPIN" ]]; then
+    rm -f "$OLD_SLEEP_DROPIN"
+    echo "[+] Removed old deep sleep drop-in: $OLD_SLEEP_DROPIN"
+    NEEDS_UPDATE=true
+fi
+
+if [[ -f "$SLEEP_DROPIN" ]] && grep -q 'MemorySleepMode=s2idle' "$SLEEP_DROPIN" 2>/dev/null; then
+    echo "[✓] s2idle sleep already configured"
 else
     mkdir -p /etc/systemd/sleep.conf.d
-    cat > "$SLEEP_DROPIN" <<EOF
+    cat >"$SLEEP_DROPIN" <<EOF
 [Sleep]
-SuspendState=mem standby freeze
+SuspendState=mem
+MemorySleepMode=s2idle
 EOF
     echo "[+] Created $SLEEP_DROPIN"
     NEEDS_UPDATE=true
@@ -42,7 +94,7 @@ fi
 if [[ -f "$AMDGPU_MODPROBE" ]] && grep -q 'runpm=0' "$AMDGPU_MODPROBE" 2>/dev/null; then
     echo "[✓] AMDGPU suspend options already configured"
 else
-    cat > "$AMDGPU_MODPROBE" <<EOF
+    cat >"$AMDGPU_MODPROBE" <<EOF
 options amdgpu runpm=0 ppfeaturemask=0xffff7fff
 EOF
     echo "[+] Created $AMDGPU_MODPROBE"
@@ -55,7 +107,7 @@ fi
 if [[ -f "$SLEEP_HOOK" ]]; then
     echo "[✓] AMDGPU resume hook already installed"
 else
-    cat > "$SLEEP_HOOK" <<'HOOK'
+    cat >"$SLEEP_HOOK" <<'HOOK'
 #!/bin/bash
 # Workaround for AMDGPU resume issues on Strix Halo
 case "$1" in
@@ -75,29 +127,22 @@ HOOK
     echo "[+] Installed $SLEEP_HOOK"
 fi
 
-# 4. Check if mem_sleep_default=deep is needed in kernel cmdline
+# 4. Check and persist the shallow sleep default
 CURRENT_SLEEP=$(cat /sys/power/mem_sleep 2>/dev/null || echo "")
-if echo "$CURRENT_SLEEP" | grep -q '\[deep\]'; then
-    echo "[✓] Deep sleep already active"
-elif echo "$CURRENT_SLEEP" | grep -q 'deep'; then
-    echo "[!] Deep sleep available but not default. Add 'mem_sleep_default=deep' to kernel params."
-    echo "    Current: $CURRENT_SLEEP"
-    if [[ -f "$BOOTLOADER_CONF" ]]; then
-        if grep -q 'mem_sleep_default=deep' "$BOOTLOADER_CONF"; then
-            echo "[✓] Already in GRUB config"
-        else
-            sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 mem_sleep_default=deep"/' "$BOOTLOADER_CONF"
-            echo "[+] Added mem_sleep_default=deep to $BOOTLOADER_CONF"
-            echo "    → Run 'sudo grub-mkconfig -o /boot/grub/grub.cfg' to apply"
-            NEEDS_UPDATE=true
-        fi
+if echo "$CURRENT_SLEEP" | grep -q 's2idle'; then
+    if echo "$CURRENT_SLEEP" | grep -q '\[s2idle\]'; then
+        echo "[✓] s2idle sleep already active"
+    elif [[ -w /sys/power/mem_sleep ]]; then
+        echo s2idle >/sys/power/mem_sleep
+        echo "[+] Activated s2idle for the current boot"
     else
-        echo "    → No GRUB config found. Add manually to your bootloader."
+        echo "[!] s2idle available but not active: $CURRENT_SLEEP"
     fi
+    ensure_kernel_param_in_grub
+    ensure_kernel_param_in_systemd_boot
 else
-    echo "[!] Deep sleep not available in /sys/power/mem_sleep"
+    echo "[!] s2idle is not available in /sys/power/mem_sleep"
     echo "    Current: $CURRENT_SLEEP"
-    echo "    → Your firmware may only support s2idle. Check BIOS for S3 option."
 fi
 
 echo ""
