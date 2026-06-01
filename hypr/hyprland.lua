@@ -21,6 +21,8 @@ local internalMonitorMode = "preferred"
 local internalMonitorPosition = "-1600x0"
 local internalMonitorScale = "1.6"
 local externalMonitor = "DP-2"
+local externalMonitorScale = "1.25"
+local additionalExternalMonitor = "HDMI-A-1"
 
 hl.monitor({
     output   = internalMonitor,
@@ -32,7 +34,13 @@ hl.monitor({
     output   = externalMonitor,
     mode     = "preferred",
     position = "0x0",
-    scale    = "1.25",
+    scale    = externalMonitorScale,
+})
+hl.monitor({
+    output   = additionalExternalMonitor,
+    mode     = "preferred",
+    position = "auto",
+    scale    = externalMonitorScale,
 })
 
 
