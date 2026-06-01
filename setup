@@ -125,6 +125,7 @@ os="$(which_os)"
 
 # Generally install or update stuff.
 if [[ $OP == "update" ]]; then
+    git pull origin master
     git submodule update --init --recursive
 
     if [[ $os == "darwin" ]]; then
