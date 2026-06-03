@@ -121,12 +121,20 @@ pipx_install() {
     pipx upgrade "$pkg"
 }
 
-os="$(which_os)"
+if [[ "$(uname)" == "Darwin" ]]; then
+    os="darwin"
+elif [[ -f /etc/os-release ]]; then
+    # shellcheck disable=SC1091
+    source /etc/os-release
+    os="${ID,,}"
+else
+    os="linux"
+fi
 
 # Generally install or update stuff.
 if [[ $OP == "update" ]]; then
-    git pull origin master
-    git submodule update --init --recursive
+    git pull origin master || exit 1
+    git submodule update --init --recursive || exit 1
 
     if [[ $os == "darwin" ]]; then
         bash "./scripts/setup-bash"
@@ -138,6 +146,13 @@ if [[ $OP == "update" ]]; then
 
         brew bundle --verbose
         ensure "pipx" "pipx" "brew install pipx"
+        ;;
+    arch)
+        if command -v paru &>/dev/null; then
+            paru -Syu --noconfirm || exit 1
+        else
+            sudo pacman -Syu --noconfirm || exit 1
+        fi
         ;;
     esac
 
