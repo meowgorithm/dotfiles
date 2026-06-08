@@ -25,6 +25,8 @@
   # Enable dynamic linking.
   programs.nix-ld.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -50,10 +52,10 @@
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -86,38 +88,62 @@
   environment.systemPackages = with pkgs; [
     alejandra
     bash
+    brightnessctl
+    clang
     curl
+    delve
     direnv
     duf
+    efibootmgr
+    feh
+    ffmpeg
+    fuzzel
+    fzf
+    gcc
     ghostty
     git
     git-lfs
+    gmp
+    gnumake
     gnupg
     go
     go-task
     gofumpt
+    google-chrome
     gopls
     gum
-    fuzzel
+    haskellPackages.cabal-fmt
     helix
     hivemind
-    hyprlauncher
     kitty
     mako
+    mise
     neovim
     nil
     nix-bash-completions
     nodejs
+    optipng
+    pkg-config
     prettier
+    psmisc
     quickshell
+    rio
     ripgrep
     rtk
+    shellcheck
+    slack
     stylua
-    stylua
+    tailscale
+    taplo
     tmux
     vim
     wget
+    wl-clipboard
+    xz
+    yaml-language-server
+    z-lua
     zellij
+    zlib
   ];
 
   fonts.packages = with pkgs; [
@@ -150,6 +176,7 @@
         workstation = true;
       };
     };
+    postgresql.enable = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are

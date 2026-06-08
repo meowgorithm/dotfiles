@@ -66,6 +66,8 @@ nixos)
     alias ls='ls --color=auto'
     alias zzz="sudo systemctl suspend"
 
+    export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+
     # Git prompt on NixOS
     # shellcheck disable=1090
     for f in /nix/store/*-git-*/share/git/contrib/completion/git-prompt.sh; do

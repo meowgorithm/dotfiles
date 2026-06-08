@@ -20,6 +20,8 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
+          ./discord.nix
+          ./podman.nix
           ./gz302ea.nix
           ./baobao-hardware-configuration.nix
         ];
