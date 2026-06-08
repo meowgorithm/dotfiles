@@ -17,12 +17,14 @@
      ID_INPUT_TOUCHPAD_INTEGRATION=internal
   '';
 
-  # Prevent suspend on lid close. The GZ302EA is a detachable tablet
-  # and closing the lid should just turn off the internal display.
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
-    HandleLidSwitchDocked = "ignore";
+  # Suspend on lid close via ACPI event. Logind's HandleLidSwitch doesn't
+  # work reliably with UWSM-managed Wayland sessions, so we handle it directly.
+  services.acpid = {
+    enable = true;
+    handlers.lid-close = {
+      event = "button/lid.*close";
+      action = "systemctl suspend";
+    };
   };
 
   # Prevent USB autosuspend for ASUS 5M webcam (636e:0bda).
