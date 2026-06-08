@@ -120,6 +120,7 @@ in {
     haskellPackages.cabal-fmt
     helix
     hivemind
+    jq
     kitty
     mako
     mise

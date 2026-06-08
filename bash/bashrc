@@ -75,6 +75,7 @@ arch | fedora)
 
 nixos)
     alias ls='ls --color=auto'
+    alias rebuild="sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos"
     alias zzz="sudo systemctl suspend"
 
     export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
