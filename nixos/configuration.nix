@@ -22,6 +22,10 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  # Windows expects the clock to be in local time. This setting allows Windows
+  # and Linux to work on the same system.
+  time.hardwareClockInLocalTime = true;
+
   # Enable dynamic linking.
   programs.nix-ld.enable = true;
 
