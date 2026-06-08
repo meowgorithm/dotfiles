@@ -89,6 +89,7 @@ in {
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
+    _1password-gui
     air
     alejandra
     bash
@@ -135,8 +136,10 @@ in {
     ripgrep
     rtk
     shellcheck
+    shfmt
     slack
     stylua
+    swaybg
     tailscale
     taplo
     tmux
