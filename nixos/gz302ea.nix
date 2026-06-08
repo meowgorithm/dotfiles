@@ -1,4 +1,14 @@
 {...}: {
+  services.asusd.enable = true;
+
+  # Freeze workaround.
+  boot.kernelParams = ["amdgpu.cwsr_enable=0"];
+
+  # Suspend-drain fix.
+  boot.extraModprobeConfig = ''
+    options mt7925e disable_aspm=1
+  '';
+
   # Mark the ASUS ROG Flow Z13 (GZ302EA) detachable touchpad as internal
   # so libinput enables disable-while-typing. The touchpad connects over
   # USB and would otherwise be treated as external.
@@ -7,7 +17,7 @@
      ID_INPUT_TOUCHPAD_INTEGRATION=internal
   '';
 
-  # Prevent suspend on lid close — the GZ302EA is a detachable tablet
+  # Prevent suspend on lid close. The GZ302EA is a detachable tablet
   # and closing the lid should just turn off the internal display.
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";
