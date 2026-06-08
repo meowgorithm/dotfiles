@@ -112,14 +112,19 @@ in {
     gnumake
     gnupg
     go
-    go-task
     gofumpt
+    golangci-lint
+    golangci-lint-langserver
     google-chrome
     gopls
+    go-task
+    gotools
     gum
     haskellPackages.cabal-fmt
     helix
     hivemind
+    htop
+    imagemagick
     jq
     kitty
     mako
@@ -128,6 +133,7 @@ in {
     nil
     nix-bash-completions
     nodejs
+    obsidian
     optipng
     pkg-config
     prettier
@@ -149,9 +155,10 @@ in {
     wl-clipboard
     xz
     yaml-language-server
-    z-lua
     zellij
     zlib
+    zoom-us
+    z-lua
   ];
 
   fonts.packages = with pkgs; [
