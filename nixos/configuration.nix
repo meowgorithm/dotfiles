@@ -6,7 +6,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  mainUser = "christian";
+in {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -64,7 +66,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  users.users.christian = {
+  users.users.${mainUser} = {
     isNormalUser = true;
     extraGroups = ["wheel" "postgres"];
     packages = [];
@@ -72,7 +74,7 @@
 
   security.sudo.extraRules = [
     {
-      users = ["christian"];
+      users = [mainUser];
       commands = [
         {
           command = "ALL";
