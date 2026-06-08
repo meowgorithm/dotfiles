@@ -24,7 +24,18 @@ export CLICOLOR=1
 # Where our dotfiles repo lives
 export DOTFILES="$HOME/.dotfiles"
 
-os="$(which_os)"
+case "$OSTYPE" in
+darwin*) os="darwin" ;;
+linux*)
+    if [[ -f /etc/os-release ]]; then
+        # shellcheck disable=SC1091
+        source /etc/os-release
+        os="${ID,,}"
+    else
+        os="linux"
+    fi
+    ;;
+esac
 
 # Look for git-prompt and setup the first one we find
 gitPromptPaths=(
