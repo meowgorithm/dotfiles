@@ -60,13 +60,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      # tree
-    ];
+    extraGroups = ["wheel" "postgres"];
+    packages = [];
   };
 
   security.sudo.extraRules = [
@@ -86,6 +83,7 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
+    air
     alejandra
     bash
     brightnessctl
@@ -176,7 +174,24 @@
         workstation = true;
       };
     };
-    postgresql.enable = true;
+    postgresql = {
+      enable = true;
+      ensureDatabases = ["christian"];
+      ensureUsers = [
+        {
+          name = "christian";
+          ensureDBOwnership = true;
+          ensureClauses = {
+            superuser = true;
+          };
+        }
+      ];
+      authentication = lib.mkOverride 10 ''
+        local all all trust
+        host  all all 127.0.0.1/32 trust
+        host  all all ::1/128 trust
+      '';
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
