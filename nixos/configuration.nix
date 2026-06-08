@@ -126,6 +126,7 @@ in {
     htop
     imagemagick
     jq
+    jujutsu
     kitty
     mako
     mise
