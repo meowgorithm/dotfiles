@@ -22,6 +22,7 @@
           ./configuration.nix
           ./discord.nix
           ./podman.nix
+          ./zoom.nix
           ./gz302ea.nix
           ./baobao-hardware-configuration.nix
         ];

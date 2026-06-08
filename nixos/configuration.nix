@@ -157,7 +157,6 @@ in {
     yaml-language-server
     zellij
     zlib
-    zoom-us
     z-lua
   ];
 
