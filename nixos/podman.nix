@@ -6,6 +6,9 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  # Disable Docker compatibility notices.
+  environment.variables.CONTAINERS_CONF_SUPPRESS_COMPAT_WARNINGS = "1";
+
   environment.systemPackages = with pkgs; [
     podman-compose
     podman-tui
