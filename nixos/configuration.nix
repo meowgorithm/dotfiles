@@ -148,7 +148,6 @@ in {
     slack
     stylua
     swaybg
-    tailscale
     taplo
     tmux
     vim
@@ -179,6 +178,7 @@ in {
   };
 
   services = {
+    tailscale.enable = true;
     hypridle.enable = true;
     openssh.enable = true;
     avahi = {
