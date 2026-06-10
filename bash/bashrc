@@ -203,7 +203,7 @@ fi
 if [[ -n "$lua_path" ]]; then
     z_lua_path=""
     for path in \
-        "/run/current-system/sw/bin/z.lua" \
+        "/run/current-system/sw/bin/.z.lua-wrapped" \
         "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
         "/usr/share/z.lua/z.lua" \
         "$HOME/.local/share/z.lua/z.lua"; do
@@ -212,7 +212,7 @@ if [[ -n "$lua_path" ]]; then
 
     # Check nix store if not found
     if [[ -z "$z_lua_path" ]]; then
-        for f in /nix/store/*-z.lua-*/bin/z.lua; do
+        for f in /nix/store/*-z.lua-*/bin/.z.lua-wrapped; do
             [[ -f "$f" ]] && z_lua_path="$f" && break
         done
     fi
