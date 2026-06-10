@@ -75,7 +75,8 @@ arch | fedora)
 
 nixos)
     alias ls='ls --color=auto'
-    alias rebuild="sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos"
+    alias update="cd \"$HOME/.dotfiles/nixos\"; nix flake update; cd -"
+    alias switch="sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos"
     alias zzz="sudo systemctl suspend"
 
     export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
@@ -202,6 +203,7 @@ fi
 if [[ -n "$lua_path" ]]; then
     z_lua_path=""
     for path in \
+        "/run/current-system/sw/bin/z.lua" \
         "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
         "/usr/share/z.lua/z.lua" \
         "$HOME/.local/share/z.lua/z.lua"; do
@@ -210,7 +212,7 @@ if [[ -n "$lua_path" ]]; then
 
     # Check nix store if not found
     if [[ -z "$z_lua_path" ]]; then
-        for f in /nix/store/*-z.lua-*/share/z.lua/z.lua; do
+        for f in /nix/store/*-z.lua-*/bin/z.lua; do
             [[ -f "$f" ]] && z_lua_path="$f" && break
         done
     fi
