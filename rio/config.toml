@@ -1,6 +1,5 @@
 hide-cursor-when-typing = true
-padding-x = 16
-padding-y = [0, 8]
+margin = [8, 16]
 option-as-alt = 'left'
 
 confirm-before-quit = false
@@ -12,10 +11,8 @@ args = []
 [window]
 width = 600
 height = 640
-mode = "Windowed"
 opacity = 1.00
 blur = false
-decorations = "Buttonless"
 
 [cursor]
 blinking = true
