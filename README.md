@@ -3,7 +3,7 @@
 This repo contains configuration for:
 
 - macOS aarch64
-- Linux x86_64 (Fedora, NixOS, and others, including WSL)
+- NixOS x86_64
 
 ## Getting Started
 
