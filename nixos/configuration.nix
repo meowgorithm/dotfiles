@@ -124,6 +124,7 @@ in {
     helix
     hivemind
     htop
+    hyprshot
     imagemagick
     jq
     jujutsu
