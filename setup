@@ -147,13 +147,6 @@ if [[ $OP == "update" ]]; then
         brew bundle --verbose
         ensure "pipx" "pipx" "brew install pipx"
         ;;
-    arch)
-        if command -v paru &>/dev/null; then
-            paru -Syu --noconfirm || exit 1
-        else
-            sudo pacman -Syu --noconfirm || exit 1
-        fi
-        ;;
     esac
 
     # Ensure Nix is installed
@@ -219,7 +212,7 @@ link "containers/registries.conf" "$XDG_CONFIG_HOME/containers/registries.conf"
 
 # Hyprland.
 case "$os" in
-nixos | fedora | arch)
+nixos)
     link "hypr/hyprland.lua" "$XDG_CONFIG_HOME/hypr/hyprland.lua"
     link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
     link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
@@ -257,7 +250,6 @@ scripts=(
     "tmls"
     "uninstall-crush"
     "sessions"
-    "arch-pkgs"
 )
 if [[ $os == "darwin" ]]; then
     scripts+=("fix-docker-desktop")
@@ -272,25 +264,6 @@ esac
 for script in "${scripts[@]}"; do
     link "scripts/$script" "$HOME/.bin/$script"
 done
-
-# Fedora bundle script
-case "$os" in
-fedora | linux)
-    link "scripts/dnf-bundle" "$HOME/.bin/bundle"
-    link "DNFfile" "$XDG_DATA_HOME/meowgorithm/DNFfile"
-    link "DNFfile.lock" "$XDG_DATA_HOME/meowgorithm/DNFfile.lock"
-    ;;
-esac
-
-# Arch Linux
-if [[ $os == "arch" ]]; then
-    mkdir -p ~/.local/bin
-    ln -sf /usr/bin/helix ~/.local/bin/hx
-
-    if [[ $OP == "update" ]]; then
-        bash "./scripts/arch-pkgs" install
-    fi
-fi
 
 # Fonts
 if [[ -d "$HOME/Library/Fonts" ]]; then
