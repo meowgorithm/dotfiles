@@ -12,10 +12,7 @@ XDG_CONFIG_HOME="$HOME/.config"
 XDG_DATA_HOME="$HOME/.local/share"
 
 # What operation to perform: link, remove, or update.
-OP="${1:-}"
-if [[ "$OP" == "" ]]; then
-    OP="link"
-fi
+OP="${1:-link}"
 if [[ "$OP" != "link" && "$OP" != "remove" && "$OP" != "update" ]]; then
     usage
 fi
