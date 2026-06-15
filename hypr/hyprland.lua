@@ -16,31 +16,38 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 -- eDP-1 (laptop) on the left, DP-2 (LG external 4K) primary on the right.
-local internalMonitor = "eDP-1"
-local internalMonitorMode = "preferred"
-local internalMonitorPosition = "-1600x0"
-local internalMonitorScale = "1.6"
-local externalMonitor = "DP-2"
-local externalMonitorScale = "1.25"
-local additionalExternalMonitor = "HDMI-A-1"
+local internalDisplay = "eDP-1"
+local internalDisplayMode = "preferred"
+local internalDisplayPosition = "-1600x0"
+local internalDisplayScale = "1.6"
+local dp2External = "DP-2"
+local externalScale = "1.25"
+local hdmiExternal = "HDMI-A-1"
+local dp1External = "DP-1"
 
 hl.monitor({
-    output   = internalMonitor,
-    mode     = internalMonitorMode,
-    position = internalMonitorPosition,
-    scale    = internalMonitorScale,
+    output   = internalDisplay,
+    mode     = internalDisplayMode,
+    position = internalDisplayPosition,
+    scale    = internalDisplayScale,
 })
 hl.monitor({
-    output   = externalMonitor,
+    output   = dp2External,
     mode     = "preferred",
     position = "0x0",
-    scale    = externalMonitorScale,
+    scale    = externalScale,
 })
 hl.monitor({
-    output   = additionalExternalMonitor,
+    output   = hdmiExternal,
     mode     = "preferred",
     position = "auto",
-    scale    = externalMonitorScale,
+    scale    = externalScale,
+})
+hl.monitor({
+    output   = dp1External,
+    mode     = "preferred",
+    position = "auto",
+    scale    = externalScale,
 })
 
 
@@ -193,16 +200,16 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- Pin workspaces to monitors so each display has its own set
-hl.workspace_rule({ workspace = "1",  monitor = externalMonitor,  default = true })
-hl.workspace_rule({ workspace = "2",  monitor = externalMonitor })
-hl.workspace_rule({ workspace = "3",  monitor = externalMonitor })
-hl.workspace_rule({ workspace = "4",  monitor = externalMonitor })
-hl.workspace_rule({ workspace = "5",  monitor = externalMonitor })
-hl.workspace_rule({ workspace = "6",  monitor = internalMonitor, default = true })
-hl.workspace_rule({ workspace = "7",  monitor = internalMonitor })
-hl.workspace_rule({ workspace = "8",  monitor = internalMonitor })
-hl.workspace_rule({ workspace = "9",  monitor = internalMonitor })
-hl.workspace_rule({ workspace = "10", monitor = internalMonitor })
+hl.workspace_rule({ workspace = "1",  monitor = dp2External,  default = true })
+hl.workspace_rule({ workspace = "2",  monitor = dp2External })
+hl.workspace_rule({ workspace = "3",  monitor = dp2External })
+hl.workspace_rule({ workspace = "4",  monitor = dp2External })
+hl.workspace_rule({ workspace = "5",  monitor = dp2External })
+hl.workspace_rule({ workspace = "6",  monitor = internalDisplay, default = true })
+hl.workspace_rule({ workspace = "7",  monitor = internalDisplay })
+hl.workspace_rule({ workspace = "8",  monitor = internalDisplay })
+hl.workspace_rule({ workspace = "9",  monitor = internalDisplay })
+hl.workspace_rule({ workspace = "10", monitor = internalDisplay })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -388,8 +395,8 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-local closeLidCommand = string.format([[sh -c 'hyprctl -j monitors | jq -e "map(select(.name != \"%s\")) | length > 0" >/dev/null && hyprctl eval '\''hl.monitor({ output = "%s", disabled = true })'\''']], internalMonitor, internalMonitor)
-local openLidCommand = string.format([[hyprctl eval 'hl.monitor({ output = "%s", mode = "%s", position = "%s", scale = "%s", disabled = false })']], internalMonitor, internalMonitorMode, internalMonitorPosition, internalMonitorScale)
+local closeLidCommand = string.format([[sh -c 'hyprctl -j monitors | jq -e "map(select(.name != \"%s\")) | length > 0" >/dev/null && hyprctl eval '\''hl.monitor({ output = "%s", disabled = true })'\''']], laptopDisplay, laptopDisplay)
+local openLidCommand = string.format([[hyprctl eval 'hl.monitor({ output = "%s", mode = "%s", position = "%s", scale = "%s", disabled = false })']], laptopDisplay, laptopDisplayMode, laptopDisplayPosition, laptopDisplayScale)
 hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd(closeLidCommand), { locked = true })
 hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd(openLidCommand),  { locked = true })
 
