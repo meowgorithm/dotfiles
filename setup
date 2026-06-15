@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "$PWD/bash/bash_funcs"
+SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
+source "$SCRIPT_DIR/bash/bash_funcs"
 
 usage() {
     echo "Usage: $0 [link|remove|update]"
@@ -50,7 +51,7 @@ UNLINKED="$(status "UNLINK" "$GREEN" "$BLACK")"
 # Create or remove a symlink.
 symlink() {
     local op="$1"
-    local source="$PWD/$2"
+    local source="$SCRIPT_DIR/$2"
     local target="$3"
     local display_source="./$2"
     local display_target="${target/#$HOME/\~}"
@@ -275,7 +276,7 @@ if [[ -n "${fontDir:-}" ]]; then
     rm -rf "${fontDir/*:?/}"
     mkdir -p "$fontDir"
     if [[ $OP != "remove" ]]; then
-        find ./fonts/ -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
+        find "$SCRIPT_DIR/fonts/" -type f \( -name "*.otf" -o -name "*.ttf" \) -exec cp {} "$fontDir/" \;
         if command -v fc-cache &>/dev/null; then
             fc-cache -f "$fontDir"
         fi
