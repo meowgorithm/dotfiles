@@ -61,22 +61,10 @@ fi
 
 # OS/Distro specific stuff
 case "$os" in
-arch | fedora)
-    alias zzz="sudo systemctl suspend"
-    alias enable="sudo systemctl enable --now"
-    alias status="sudo systemctl status"
-    alias start="sudo systemctl start"
-    alias stop="sudo systemctl stop"
-    alias restart="sudo systemctl restart"
-    if [[ $os == "fedora" ]]; then
-        alias go-task="task"
-    fi
-    ;;
-
 nixos)
     alias ls='ls --color=auto'
     alias update="cd \"$HOME/.dotfiles/nixos\"; nix flake update; cd -"
-    alias switch="sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos"
+    alias switch="sudo nixos-rebuild switch -L --flake $HOME/.dotfiles/nixos#$HOSTNAME"
     alias zzz="sudo systemctl suspend"
 
     export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock

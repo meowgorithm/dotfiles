@@ -17,7 +17,10 @@
     nixosConfigurations = {
       baobao = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          hostname = "baobao";
+        };
         modules = [
           ./configuration.nix
           ./discord.nix
@@ -25,6 +28,21 @@
           ./zoom.nix
           ./gz302ea.nix
           ./baobao-hardware-configuration.nix
+        ];
+      };
+
+      whitenoise = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          hostname = "whitenoise";
+        };
+        modules = [
+          ./configuration.nix
+          ./discord.nix
+          ./podman.nix
+          ./zoom.nix
+          ./whitenoise-hardware-configuration.nix
         ];
       };
     };

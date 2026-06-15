@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  hostname,
   ...
 }: let
   mainUser = "christian";
@@ -16,7 +17,7 @@ in {
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "baobao"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
