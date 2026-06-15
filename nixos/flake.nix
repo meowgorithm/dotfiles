@@ -42,6 +42,7 @@
           ./discord.nix
           ./podman.nix
           ./zoom.nix
+          ./rtx3090.nix
           ./whitenoise-hardware-configuration.nix
         ];
       };
