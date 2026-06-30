@@ -188,3 +188,13 @@ language-servers = [
   "ty",
   { name = "ruff", except-features = ["hover"] },
 ]
+
+# Elm
+
+[[language]]
+name = "elm"
+auto-format = true
+
+[language.formatter]
+command = "elm-format"
+args = ["--stdin"]
