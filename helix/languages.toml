@@ -170,3 +170,21 @@ scope = ""
 [language.formatter]
 args = ["--pretty", "-"]
 command = "svgo"
+
+# Python
+
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[[language]]
+name = "python"
+auto-format = true
+language-servers = [
+  "ty",
+  { name = "ruff", except-features = ["hover"] },
+]

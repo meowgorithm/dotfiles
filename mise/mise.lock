@@ -31,3 +31,81 @@ url = "https://github.com/jj-vcs/jj/releases/download/v0.42.0/jj-v0.42.0-x86_64-
 [tools.jj."platforms.windows-x64"]
 checksum = "sha256:866461102d87fb49fc67e6e76682635683963eb9fdd05264edda5f1c894d85a6"
 url = "https://github.com/jj-vcs/jj/releases/download/v0.42.0/jj-v0.42.0-x86_64-pc-windows-msvc.zip"
+
+[[tools.ruff]]
+version = "0.15.20"
+backend = "aqua:astral-sh/ruff"
+
+[tools.ruff."platforms.linux-arm64"]
+checksum = "sha256:2e06ebae862dce74eb7b084081621f2d4183e18e60cb074e7906f862869fa1b6"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-aarch64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-arm64-musl"]
+checksum = "sha256:2e06ebae862dce74eb7b084081621f2d4183e18e60cb074e7906f862869fa1b6"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-aarch64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-x64"]
+checksum = "sha256:0715560b2402024b529a4ffd6ea7d3814a090eb255a6216259fb192823be3ad8"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-x86_64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-x64-musl"]
+checksum = "sha256:0715560b2402024b529a4ffd6ea7d3814a090eb255a6216259fb192823be3ad8"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-x86_64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.macos-arm64"]
+checksum = "sha256:cb41c48690c113dc08470e64103ce65ca15249c6ce3495d3ac792b329a83e8c1"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-aarch64-apple-darwin.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.macos-x64"]
+checksum = "sha256:36b91219b3aae00464e2a4fa361766abd47d0402ac88fbe6da5de44285738386"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-x86_64-apple-darwin.tar.gz"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.windows-x64"]
+checksum = "sha256:835fdea5b8d4e13d2cc49439006aa1fbe9b67a89371f03871fc7f70a0cf10516"
+url = "https://github.com/astral-sh/ruff/releases/download/0.15.20/ruff-x86_64-pc-windows-msvc.zip"
+provenance = "github-attestations"
+
+[[tools.ty]]
+version = "0.0.55"
+backend = "aqua:astral-sh/ty"
+
+[tools.ty."platforms.linux-arm64"]
+checksum = "sha256:a002a950a7e7ae1bc07a275b992414f4e2b001e8c46ac86c6e1086496e799701"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-aarch64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-arm64-musl"]
+checksum = "sha256:a002a950a7e7ae1bc07a275b992414f4e2b001e8c46ac86c6e1086496e799701"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-aarch64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-x64"]
+checksum = "sha256:654d2c98d65419aedeac57cf29ca8d60ee1798abd6d9f9a6a1789c50b76261e5"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-x86_64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-x64-musl"]
+checksum = "sha256:654d2c98d65419aedeac57cf29ca8d60ee1798abd6d9f9a6a1789c50b76261e5"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-x86_64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.macos-arm64"]
+checksum = "sha256:877d3b410f233bcc5746332ac999a3c94e4afab6fbd488b0712f971bbe590115"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-aarch64-apple-darwin.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.macos-x64"]
+checksum = "sha256:9dd2cd9041ca5d4bd44516ce71b9768bb289c3baa2c9bd65283d25cde7901df8"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-x86_64-apple-darwin.tar.gz"
+provenance = "github-attestations"
+
+[tools.ty."platforms.windows-x64"]
+checksum = "sha256:fbdc678c15dc1e85246dc4970a04f3ba99bd1ced3086c39a8f7c849c443a4b63"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.55/ty-x86_64-pc-windows-msvc.zip"
+provenance = "github-attestations"

@@ -1,2 +1,4 @@
 [tools]
 jj = "latest"
+ruff = "latest"
+ty = "latest"
