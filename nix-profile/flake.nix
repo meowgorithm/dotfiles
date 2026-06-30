@@ -14,16 +14,13 @@
     in {
       default = pkgs.buildEnv {
         name = "meowgorithm";
-        paths = with pkgs;
-          [
-            alejandra
-            haskellPackages.cabal-fmt
-            haskellPackages.fourmolu
-            sqlc
-          ]
-          ++ nixpkgs.lib.optionals (nixpkgs.lib.strings.hasSuffix "linux" system) [
-            hyprland-qtutils
-          ];
+        paths = with pkgs; [
+          alejandra
+          haskellPackages.cabal-fmt
+          haskellPackages.fourmolu
+          nil
+          sqlc
+        ];
       };
     });
   };
