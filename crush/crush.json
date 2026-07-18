@@ -1,7 +1,11 @@
 {
   "$schema": "https://charm.land/crush.json",
   "options": {
-    "progress": false
+    "progress": false,
+    "skills_paths": [
+      "./skills",
+      "$XDG_DATA_HOME/meowgorithm/skills"
+    ]
   },
   "mcp": {
     "github": {
