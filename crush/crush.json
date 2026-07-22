@@ -16,22 +16,12 @@
       }
     },
     "linear": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.linear.app/mcp"
-      ]
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
     },
     "ceramic": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.ceramic.ai/mcp"
-      ]
+      "type": "http",
+      "url": "https://mcp.ceramic.ai/mcp"
     }
   },
   "hooks": {
@@ -41,8 +31,5 @@
         "command": "~/.config/crush/hooks/rtk-rewrite.sh"
       }
     ]
-  },
-  "permissions": {
-    "allowed_tools": []
   }
 }

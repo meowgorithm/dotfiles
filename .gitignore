@@ -14,3 +14,4 @@ config/kak/plugins/*
 /emacs/auto-saves/*
 /emacs/backups/*
 *.backup
+crush/mcp-oauth-tokens.json
