@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+option progress false
+option skill-path ./skills
+option skill-path "$XDG_DATA_HOME/meowgorithm/skills"
+
+mcp add github --type http \
+    --url "https://api.githubcopilot.com/mcp/" \
+    --header Authorization "Bearer $GITHUB_TOKEN"
+
+mcp add linear --type http \
+    --url "https://mcp.linear.app/mcp" \
+    --oauth true
+
+mcp add ceramic --type http \
+    --url "https://mcp.ceramic.ai/mcp" \
+    --oauth true
+
+hook add PreToolUse \
+    --matcher "^bash$" \
+    --command "$HOME/.config/crush/hooks/rtk-rewrite.sh" \
+    --name rtk
