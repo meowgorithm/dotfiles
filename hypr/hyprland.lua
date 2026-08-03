@@ -75,7 +75,6 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("quickshell")
     hl.exec_cmd("wl-paste --type text  --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
-    hl.exec_cmd("ssh-agent -a " .. os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")
 end)
 
 local function restartQuickshell()
@@ -96,7 +95,6 @@ hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "Adwaita")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("SSH_AUTH_SOCK", os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")
 
 
 -----------------------

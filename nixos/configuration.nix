@@ -214,6 +214,20 @@ in {
     };
   };
 
+  # Persistent SSH agent (survives Hyprland restarts)
+  systemd.user.services.ssh-agent = {
+    description = "SSH key agent";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.openssh}/bin/ssh-agent -D -a %t/ssh-agent.socket";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+  };
+
+  environment.sessionVariables.SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/ssh-agent.socket";
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
