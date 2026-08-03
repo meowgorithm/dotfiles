@@ -1,4 +1,9 @@
 {config, ...}: {
+  # hardware.nvidia.* only tunes the driver; the driver itself is only
+  # activated (and nouveau blacklisted) when "nvidia" appears here.
+  # This is the supported way to use the NVIDIA driver on Wayland.
+  services.xserver.videoDrivers = ["nvidia"];
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
