@@ -67,11 +67,16 @@ in {
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  # User accounts.
   users.users.${mainUser} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "postgres"];
+    extraGroups = ["wheel" "postgres"] ++ lib.optionals (hostname == "whitenoise") ["i2c"];
     packages = [];
   };
+
+  # DDC/CI for external monitor brightness control (whitenoise only).
+  boot.kernelModules = lib.optionals (hostname == "whitenoise") ["i2c-dev"];
+  hardware.i2c.enable = lib.mkIf (hostname == "whitenoise") true;
 
   security.sudo.extraRules = [
     {
@@ -161,6 +166,8 @@ in {
     zellij
     zlib
     z-lua
+  ] ++ lib.optionals (hostname == "whitenoise") [
+    ddcutil
   ];
 
   fonts.packages = with pkgs; [

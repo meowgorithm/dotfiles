@@ -400,13 +400,25 @@ local openLidCommand = string.format([[hyprctl eval 'hl.monitor({ output = "%s",
 hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd(closeLidCommand), { locked = true })
 hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd(openLidCommand),  { locked = true })
 
--- Laptop multimedia keys for volume and LCD brightness
+-- Multimedia keys for volume and brightness.
+-- Brightness: use DDC/CI (ddcutil) on machines without a backlight device,
+-- otherwise use brightnessctl for laptop panels.
+local hasBacklight = io.popen("ls /sys/class/backlight/ 2>/dev/null"):read("*a"):match("%S") ~= nil
+local brightUp, brightDown
+if hasBacklight then
+  brightUp = "brightnessctl -e4 -n2 set 5%+"
+  brightDown = "brightnessctl -e4 -n2 set 5%-"
+else
+  brightUp = "ddcutil setvcp 10 + 5"
+  brightDown = "ddcutil setvcp 10 - 5"
+end
+
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd(brightUp),                                        { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd(brightDown),                                      { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })

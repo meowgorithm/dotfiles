@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Dim/restore brightness for hypridle.
+# Uses brightnessctl on laptops (sysfs backlight) or ddcutil on external monitors.
+#
+# Usage:
+#   brightness-dim <value>   # Set brightness to value (0-100)
+#   brightness-dim restore  # Restore previous brightness
+
+case "${1:-}" in
+    restore)
+        if [ -d /sys/class/backlight ] && [ -n "$(ls -A /sys/class/backlight 2>/dev/null)" ]; then
+            brightnessctl -r
+        else
+            ddcutil setvcp 10 100
+        fi
+        ;;
+    *)
+        if [ -d /sys/class/backlight ] && [ -n "$(ls -A /sys/class/backlight 2>/dev/null)" ]; then
+            brightnessctl -s set "${1}%"
+        else
+            ddcutil setvcp 10 "${1}"
+        fi
+        ;;
+esac

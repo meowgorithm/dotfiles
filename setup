@@ -261,6 +261,7 @@ darwin) ;;
 *)
     scripts+=("screen-record")
     scripts+=("restart-quickshell")
+    scripts+=("brightness-dim")
     ;;
 esac
 for script in "${scripts[@]}"; do

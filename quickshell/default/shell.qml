@@ -47,10 +47,9 @@ PanelWindow {
     property int volume: 0
     property bool volumeMuted: false
     property bool micMuted: true
-    property int brightnessRaw: 0
-    property int brightnessMax: 1
-    property int brightness: Math.round(brightnessRaw / brightnessMax * 100)
+    property int brightness: 0
     property bool brightnessPopupShown: false
+    property bool useDDC: false
 
     function fmtRate(bps) {
         var n, unit
@@ -246,34 +245,76 @@ PanelWindow {
         onTriggered: if (!audioProc.running) audioProc.running = true
     }
 
-        FileView {
-            id: brightFile
-            path: "/sys/class/backlight/amdgpu_bl1/brightness"
-            blockLoading: true
-            onLoaded: root.brightnessRaw = parseInt(text(), 10) || 0
+    // Detect brightness backend: sysfs backlight (laptop) or DDC/CI (external monitor).
+    Process {
+        id: backlightProbe
+        command: ["sh", "-c", "ls -A /sys/class/backlight 2>/dev/null | head -1"]
+        stdout: StdioCollector {
+            onStreamFinished: root.useDDC = this.text.trim() === ""
         }
+    }
 
-        FileView {
-            id: brightMaxFile
-            path: "/sys/class/backlight/amdgpu_bl1/max_brightness"
-            blockLoading: true
-            onLoaded: root.brightnessMax = parseInt(text(), 10) || 1
-        }
+    Component.onCompleted: backlightProbe.running = true
 
-        Timer {
-            interval: 5000
-            running: true
-            repeat: true
-            triggeredOnStart: true
-            onTriggered: { brightFile.reload(); brightMaxFile.reload() }
-        }
+    // Laptop: read from sysfs backlight device.
+    FileView {
+        id: brightFile
+        path: "/sys/class/backlight/amdgpu_bl1/brightness"
+        blockLoading: true
+        onLoaded: if (!root.useDDC) root.brightness = parseInt(text(), 10)
+    }
 
-        Process {
-            id: brightSetProc
-            property int target: 0
-            command: ["brightnessctl", "set", Math.round(target * root.brightnessMax / 100).toString()]
-            onExited: brightFile.reload()
+    FileView {
+        id: brightMaxFile
+        path: "/sys/class/backlight/amdgpu_bl1/max_brightness"
+        blockLoading: true
+        onLoaded: if (!root.useDDC) {
+            var max = parseInt(text(), 10) || 1
+            root.brightness = Math.round(root.brightness / max * 100)
         }
+    }
+
+    // Desktop: read brightness via DDC/CI (VCP feature 10).
+    Process {
+        id: brightGetDDC
+        command: ["sh", "-c", "ddcutil getvcp 10 --brief 2>/dev/null | awk '{print $NF}' | cut -d/ -f1"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                var v = parseInt(this.text.trim(), 10)
+                if (!isNaN(v)) root.brightness = v
+            }
+        }
+    }
+
+    // Desktop: set brightness via DDC/CI.
+    Process {
+        id: brightSetDDC
+        property int target: 0
+        command: ["ddcutil", "setvcp", "10", Math.round(target).toString()]
+        onExited: brightGetDDC.running = true
+    }
+
+    // Laptop: set brightness via brightnessctl.
+    Process {
+        id: brightSetSysfs
+        property int target: 0
+        command: ["brightnessctl", "set", Math.round(target).toString() + "%"]
+        onExited: { brightFile.reload(); brightMaxFile.reload() }
+    }
+
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if (root.useDDC) {
+                if (!brightSetDDC.running) brightGetDDC.running = true
+            } else {
+                if (!brightSetSysfs.running) { brightFile.reload(); brightMaxFile.reload() }
+            }
+        }
+    }
 
     screen: preferredScreen()
 
@@ -601,8 +642,9 @@ PanelWindow {
                 to: 100
                 value: root.brightness
                 onMoved: {
-                    brightSetProc.target = Math.round(value)
-                    brightSetProc.running = true
+                    var proc = root.useDDC ? brightSetDDC : brightSetSysfs
+                    proc.target = Math.round(value)
+                    proc.running = true
                 }
                 Layout.preferredWidth: 160
                 Layout.alignment: Qt.AlignVCenter
