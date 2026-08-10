@@ -1,4 +1,5 @@
 [tools]
+herdr = "latest"
 jj = "latest"
 ruff = "latest"
 ty = "latest"
