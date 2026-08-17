@@ -1,4 +1,6 @@
 [tools]
+glow = "latest"
+gum = "latest"
 jj = "latest"
 ruff = "latest"
 ty = "latest"
