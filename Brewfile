@@ -19,7 +19,6 @@ brew "gnu-sed"
 brew "gnu-tar"
 brew "gnupg"
 brew "go-task"
-brew "gum"
 brew "helix"
 brew "hivemind"
 brew "htop"
@@ -36,7 +35,6 @@ brew "neovim"
 brew "nodejs"
 brew "optipng"
 brew "pandoc"
-brew "playwright-cli"
 brew "postgresql"
 brew "prettier"
 brew "python3"
@@ -111,5 +109,4 @@ mas "Compressor", id: 424390742
 mas "Icon Slate", id: 439697913
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft Word", id: 462054704
-mas "NextDNS", id: 1464122853
 mas "WhatsApp", id: 310633997
