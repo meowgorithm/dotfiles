@@ -94,81 +94,85 @@ in {
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.systemPackages = with pkgs; [
-    _1password-gui
-    adwaita-icon-theme
-    air
-    alejandra
-    bash
-    brightnessctl
-    clang
-    curl
-    delve
-    direnv
-    duf
-    efibootmgr
-    feh
-    ffmpeg
-    fuzzel
-    fzf
-    gcc
-    ghostty
-    git
-    git-lfs
-    gmp
-    gnumake
-    gnupg
-    go
-    gofumpt
-    golangci-lint
-    golangci-lint-langserver
-    google-chrome
-    gopls
-    go-task
-    gotools
-    gum
-    haskellPackages.cabal-fmt
-    helix
-    hivemind
-    htop
-    hyprshot
-    imagemagick
-    jq
-    jujutsu
-    kitty
-    mako
-    mise
-    neovim
-    nil
-    nix-bash-completions
-    nodejs
-    obsidian
-    optipng
-    pkg-config
-    prettier
-    psmisc
-    quickshell
-    rio
-    ripgrep
-    rtk
-    shellcheck
-    shfmt
-    slack
-    stylua
-    swaybg
-    taplo
-    tmux
-    vim
-    wget
-    wl-clipboard
-    xz
-    yaml-language-server
-    zellij
-    zlib
-    z-lua
-  ] ++ lib.optionals (hostname == "whitenoise") [
-    ddcutil
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      _1password-gui
+      adwaita-icon-theme
+      air
+      alejandra
+      alsa-utils
+      bash
+      brightnessctl
+      clang
+      curl
+      delve
+      direnv
+      duf
+      efibootmgr
+      feh
+      ffmpeg
+      fuzzel
+      fzf
+      gcc
+      ghostty
+      git
+      git-lfs
+      glow
+      gmp
+      gnumake
+      gnupg
+      go
+      gofumpt
+      golangci-lint
+      golangci-lint-langserver
+      google-chrome
+      gopls
+      go-task
+      gotools
+      gum
+      haskellPackages.cabal-fmt
+      helix
+      hivemind
+      htop
+      hyprshot
+      imagemagick
+      jq
+      jujutsu
+      kitty
+      mako
+      mise
+      neovim
+      nil
+      nix-bash-completions
+      nodejs
+      obsidian
+      optipng
+      pkg-config
+      prettier
+      psmisc
+      quickshell
+      rio
+      ripgrep
+      rtk
+      shellcheck
+      shfmt
+      slack
+      stylua
+      swaybg
+      taplo
+      tmux
+      vim
+      wget
+      wl-clipboard
+      xz
+      yaml-language-server
+      zellij
+      zlib
+      z-lua
+    ]
+    ++ lib.optionals (hostname == "whitenoise") [
+      ddcutil
+    ];
 
   fonts.packages = with pkgs; [
     jetbrains-mono
@@ -224,7 +228,7 @@ in {
   # Persistent SSH agent (survives Hyprland restarts)
   systemd.user.services.ssh-agent = {
     description = "SSH key agent";
-    wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.openssh}/bin/ssh-agent -D -a %t/ssh-agent.socket";
