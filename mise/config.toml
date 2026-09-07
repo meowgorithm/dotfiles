@@ -1,6 +1,11 @@
 [tools]
+ffmpeg = "latest"
+fzf = "latest"
 glow = "latest"
 gum = "latest"
 jj = "latest"
 ruff = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+svgo = "latest"
 ty = "latest"
