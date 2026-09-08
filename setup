@@ -134,6 +134,10 @@ if [[ $OP == "update" ]]; then
     git pull origin master || exit 1
     git submodule update --init --recursive || exit 1
 
+    mainPwd="$PWD"
+    cd "$mainPwd/pantera" && git co master && git pull origin master
+    cd "$mainPwd"
+
     if [[ $os == "darwin" ]]; then
         bash "./scripts/setup-bash"
     fi
