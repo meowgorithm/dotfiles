@@ -148,6 +148,8 @@ if [[ $OP == "update" ]]; then
 
         brew bundle --verbose
         ensure "pipx" "pipx" "brew install pipx"
+
+        mise upgrade
         ;;
     esac
 
