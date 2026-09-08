@@ -179,33 +179,28 @@ export GOTOOLCHAIN="auto"
 # Direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
-# Find lua executable
-lua_path=$(command -v lua 2>/dev/null)
-if [[ -z "$lua_path" ]]; then
-    for f in /nix/store/*-lua-*/bin/lua; do
-        [[ -x "$f" ]] && lua_path="$f" && break
-    done
-fi
-
-# Find z.lua script and initialize
-if [[ -n "$lua_path" ]]; then
-    z_lua_path=""
-    for path in \
-        "/run/current-system/sw/bin/.z.lua-wrapped" \
-        "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
-        "/usr/share/z.lua/z.lua" \
-        "$HOME/.local/share/z.lua/z.lua"; do
-        [[ -f "$path" ]] && z_lua_path="$path" && break
-    done
-
-    # Check nix store if not found
-    if [[ -z "$z_lua_path" ]]; then
-        for f in /nix/store/*-z.lua-*/bin/.z.lua-wrapped; do
-            [[ -f "$f" ]] && z_lua_path="$f" && break
+# Initialize z.lua
+if command -v z.lua >/dev/null 2>&1; then
+    eval "$(z.lua --init bash)"
+elif [[ "$os" == "darwin" ]]; then
+    # macOS fallback: look for lua and z.lua manually
+    lua_path=$(command -v lua 2>/dev/null)
+    if [[ -z "$lua_path" ]]; then
+        for f in /nix/store/*-lua-*/bin/lua; do
+            [[ -x "$f" ]] && lua_path="$f" && break
         done
     fi
 
-    [[ -n "$z_lua_path" ]] && eval "$("$lua_path" "$z_lua_path" --init bash)"
+    if [[ -n "$lua_path" ]]; then
+        z_lua_path=""
+        for path in \
+            "$(brew --prefix 2>/dev/null)/opt/z.lua/share/z.lua/z.lua" \
+            "$HOME/.local/share/z.lua/z.lua"; do
+            [[ -f "$path" ]] && z_lua_path="$path" && break
+        done
+
+        [[ -n "$z_lua_path" ]] && eval "$("$lua_path" "$z_lua_path" --init bash)"
+    fi
 fi
 
 paths=(
