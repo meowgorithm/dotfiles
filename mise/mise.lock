@@ -6315,6 +6315,30 @@ url = "https://github.com/jgm/pandoc/releases/download/3.11/pandoc-3.11-windows-
 url_api = "https://api.github.com/repos/jgm/pandoc/releases/assets/534533568"
 provenance = "github-attestations"
 
+[[tools.pitchfork]]
+version = "2.25.0"
+backend = "packslip:github.com/jdx/pitchfork"
+
+[tools.pitchfork."platforms.linux-arm64"]
+checksum = "sha256:92b55dbe45ec30e6f24b7517e25801f2a1ddfc1b6050326390da303f971b68a1"
+url = "https://github.com/jdx/pitchfork/releases/download/v2.25.0/pitchfork-aarch64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/pitchfork/.github/workflows/release.yml"
+
+[tools.pitchfork."platforms.linux-x64"]
+checksum = "sha256:7ce68158201430d3f5bb5b6c96778e3f638abfa209147713b0392f54bfadef4a"
+url = "https://github.com/jdx/pitchfork/releases/download/v2.25.0/pitchfork-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/pitchfork/.github/workflows/release.yml"
+
+[tools.pitchfork."platforms.macos-arm64"]
+checksum = "sha256:c244393367ac84814f7a4e44b6a4cdf82d55d8fb6494d18d5c7cbcbf368c6a79"
+url = "https://github.com/jdx/pitchfork/releases/download/v2.25.0/pitchfork-aarch64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/pitchfork/.github/workflows/release.yml"
+
+[tools.pitchfork."platforms.windows-x64"]
+checksum = "sha256:02eb22a45af1b608fc0954335958cfe3c42c63d4b699091650781df8b42c89da"
+url = "https://github.com/jdx/pitchfork/releases/download/v2.25.0/pitchfork-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/jdx/pitchfork/.github/workflows/release.yml"
+
 [[tools.prettier]]
 version = "3.9.6"
 backend = "npm:prettier"

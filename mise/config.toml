@@ -1,3 +1,6 @@
+[settings]
+experimental = true
+
 [tools]
 ffmpeg = "latest"
 fzf = "latest"
@@ -17,6 +20,7 @@ lua-language-server = "latest"
 neovim = "latest"
 node = "lts"
 pandoc = "latest"
+pitchfork = "latest"
 prettier = "latest"
 python = "3.13"
 ripgrep = "latest"
