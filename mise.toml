@@ -1,0 +1,3 @@
+[tools]
+postgres = "latest"
+redis = "latest"

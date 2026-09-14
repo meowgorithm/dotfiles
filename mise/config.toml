@@ -1,6 +1,10 @@
 [settings]
 experimental = true
 
+[daemons.postgres]
+preset = "postgres"
+version = "latest"
+
 [tools]
 ffmpeg = "latest"
 fzf = "latest"
