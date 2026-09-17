@@ -136,6 +136,7 @@ if [[ $OP == "update" ]]; then
 
     mainPwd="$PWD"
     cd "$mainPwd/pantera" && git co master && git pull origin master
+    cd "$mainPwd/fonts" && git co master && git pull origin master
     cd "$mainPwd"
 
     if [[ $os == "darwin" ]]; then
