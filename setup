@@ -229,6 +229,14 @@ nixos)
     ;;
 esac
 
+# Noctalia shell and Umbriel compositor (NixOS only).
+case "$os" in
+nixos)
+    link "noctalia" "$XDG_CONFIG_HOME/noctalia"
+    link "umbriel/config.toml" "$XDG_CONFIG_HOME/umbriel/config.toml"
+    ;;
+esac
+
 # Mako (notification daemon).
 if [[ $os != "darwin" ]]; then
     link "mako/config" "$XDG_CONFIG_HOME/mako/config"

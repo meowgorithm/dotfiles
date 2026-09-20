@@ -1,0 +1,17 @@
+[wallpaper]
+directory = "/home/christian/Downloads"
+fill_mode = "span"
+
+[wallpaper.default]
+path = "/home/christian/.config/noctalia/bbq.png"
+
+[wallpaper.last]
+path = "/home/christian/.config/noctalia/bbq.png"
+
+[wallpaper.monitors.DP-1]
+path = "/home/christian/.config/noctalia/bbq.png"
+
+[widget.workspaces]
+focused_color = "#BFBCC8"
+occupied_color = "#858392"
+empty_color = "#605F6B"
