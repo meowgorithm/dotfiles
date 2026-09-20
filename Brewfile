@@ -34,40 +34,14 @@ brew "z.lua"
 brew "zlib"
 
 brew "go"
+brew "gopls"
+brew "goimports"
+brew "gofumpt"
+brew "golangci-lint-langserver"
+brew "delve"
 
-brew "pinchtab/tap/pinchtab"
-brew "kakoune-lsp/kakoune-lsp/kakoune-lsp"
-
-cask "1password"
-cask "adobe-creative-cloud"
-cask "airflow"
-cask "blender"
-cask "cleanshot"
-cask "discord"
-cask "dropbox"
-cask "figma"
-cask "firefox"
 cask "ghostty"
-cask "google-drive"
 cask "kitty"
-cask "linear"
-cask "monitorcontrol"
-cask "obsidian"
-cask "orbstack"
-cask "screen-studio"
-cask "slack"
-cask "superhuman"
-cask "tailscale-app"
-cask "telegram"
 
-cask "font-ibm-plex-mono"
-cask "font-ibm-plex-sans"
-cask "font-inter"
-cask "font-jetbrains-mono"
-
-mas "1Password for Safari", id: 1569813296
 mas "Compressor", id: 424390742
 mas "Icon Slate", id: 439697913
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft Word", id: 462054704
-mas "WhatsApp", id: 310633997
