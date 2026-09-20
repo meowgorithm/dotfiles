@@ -6,10 +6,23 @@
   lib,
   pkgs,
   hostname,
+  inputs,
   ...
 }: let
   mainUser = "christian";
 in {
+  imports = [
+    inputs.noctalia.nixosModules.default
+    inputs.umbriel.nixosModules.default
+  ];
+
+  # Binary cache for the noctalia flake input. Umbriel has no cache and
+  # builds from source.
+  nix.settings = {
+    extra-substituters = ["https://noctalia.cachix.org"];
+    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -21,6 +34,10 @@ in {
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+
+  hardware.bluetooth.enable = true;
+  services.tuned.enable = true;
+  services.upower.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -111,7 +128,6 @@ in {
       efibootmgr
       feh
       ffmpeg
-      fuzzel
       fzf
       gcc
       ghostty
@@ -150,7 +166,6 @@ in {
       pkg-config
       prettier
       psmisc
-      quickshell
       rio
       ripgrep
       rtk
@@ -182,6 +197,18 @@ in {
 
   programs = {
     uwsm.enable = true;
+    noctalia = {
+      enable = true;
+      package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # Start with the graphical session instead of from a compositor autostart;
+      # the session launcher (uwsm for Hyprland, start-umbriel for Umbriel)
+      # imports WAYLAND_DISPLAY into the user manager so the service can
+      # reach the compositor.
+      systemd.enable = true;
+    };
+    umbriel = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
       withUWSM = true;

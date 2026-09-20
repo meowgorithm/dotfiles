@@ -70,19 +70,13 @@ local menu        = "fuzzel"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 --
+-- Noctalia is started by its systemd user service (programs.noctalia.systemd)
+-- bound to graphical-session.target, so it is not started here.
 hl.on("hyprland.start", function ()
     hl.exec_cmd("swaybg -c '#3A3943'")
-    hl.exec_cmd("quickshell")
     hl.exec_cmd("wl-paste --type text  --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
-
-local function restartQuickshell()
-    hl.exec_cmd("sh -c 'sleep 1; restart-quickshell'")
-end
-
-hl.on("monitor.added", restartQuickshell)
-hl.on("monitor.removed", restartQuickshell)
 
 
 -------------------------------

@@ -226,7 +226,6 @@ nixos)
     link "hypr/hyprlock.conf" "$XDG_CONFIG_HOME/hypr/hyprlock.conf"
     link "hypr/hypridle.conf" "$XDG_CONFIG_HOME/hypr/hypridle.conf"
     link "hypr/hyprpaper.conf" "$XDG_CONFIG_HOME/hypr/hyprpaper.conf"
-    link "quickshell/default" "$XDG_CONFIG_HOME/quickshell/default"
     ;;
 esac
 

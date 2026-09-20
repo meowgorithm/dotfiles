@@ -6,12 +6,17 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+    };
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixos-hardware,
     ...
   } @ inputs: {
     nixosConfigurations = {
