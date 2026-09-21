@@ -1,9 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [
-    (pkgs.zoom-us.override {
-      hyprlandXdgDesktopPortalSupport = true;
-    })
-  ];
+  environment.systemPackages = [pkgs.zoom-us];
 
   # Ensure Zoom uses native Wayland for proper HiDPI rendering.
   systemd.user.services.zoom-wayland-fix = {

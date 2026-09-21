@@ -42,7 +42,7 @@ case "${1:-check}" in
         echo "Usage: $(basename "$0") {check|add-keys}"
         echo ""
         echo "ssh-agent is managed as a systemd user service (ssh-agent.service)."
-        echo "It starts automatically on login and persists across Hyprland restarts."
+        echo "It starts automatically on login and persists across session restarts."
         exit 1
         ;;
 esac

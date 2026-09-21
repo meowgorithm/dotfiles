@@ -151,7 +151,6 @@ in {
       helix
       hivemind
       htop
-      hyprshot
       imagemagick
       jq
       jujutsu
@@ -197,25 +196,17 @@ in {
   ];
 
   programs = {
-    uwsm.enable = true;
     noctalia = {
       enable = true;
       package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # Start with the graphical session instead of from a compositor autostart;
-      # the session launcher (uwsm for Hyprland, start-umbriel for Umbriel)
-      # imports WAYLAND_DISPLAY into the user manager so the service can
-      # reach the compositor.
+      # the session launcher (start-umbriel) imports WAYLAND_DISPLAY into the
+      # user manager so the service can reach the compositor.
       systemd.enable = true;
     };
     umbriel = {
       enable = true;
     };
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
-    };
-    hyprlock.enable = true;
     bash.completion.enable = true;
   };
 
@@ -237,7 +228,6 @@ in {
       };
     };
     tailscale.enable = true;
-    hypridle.enable = true;
     openssh.enable = true;
     avahi = {
       enable = true;
@@ -269,7 +259,7 @@ in {
     };
   };
 
-  # Persistent SSH agent (survives Hyprland restarts)
+  # Persistent SSH agent (survives session restarts)
   systemd.user.services.ssh-agent = {
     description = "SSH key agent";
     wantedBy = ["default.target"];

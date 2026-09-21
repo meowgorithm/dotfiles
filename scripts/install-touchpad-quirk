@@ -80,5 +80,4 @@ if command -v libinput &>/dev/null; then
 fi
 
 echo
-echo "Restart Hyprland (Super+M or log out/in) for libinput to re-read"
-echo "the device."
+echo "Log out and back in for libinput to re-read the device."

@@ -82,7 +82,7 @@ All user configurations are managed as direct symlinks from the repository:
 - **Shell**: `bash/` → `~/.bashrc`, `~/.bash_profile`, `~/.profile`
 - **Editors**: `nvim/`, `vim/`, `helix/` → `~/.config/`
 - **Terminal**: `kitty/`, `ghostty/` → `~/.config/`
-- **Window Manager (NixOS)**: `hypr/`, `waybar/` → `~/.config/`
+- **Compositor & Shell (NixOS)**: `umbriel/`, `noctalia/` → `~/.config/`
 - **Tools**: `tmux/`, `git/`, `ssh/`, `prettier/`, `fourmolu/` → various locations
 - **Scripts**: `scripts/` → `~/.bin/`
 
@@ -133,7 +133,7 @@ Common bash functions available in `bash/bash_funcs`:
 ### Desktop Environments
 
 - **macOS**: Native desktop with Kitty/Ghostty terminals
-- **Linux**: Hyprland + Waybar (config still present but NixOS module deprecated)
+- **Linux (NixOS)**: Umbriel compositor + Noctalia shell
 
 ## Important Notes
 
