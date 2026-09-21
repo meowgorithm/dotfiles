@@ -55,7 +55,7 @@ vim.pack.add(vim.tbl_map(github, {
 
 g.mapleader = " "
 
-vim.cmd("colorscheme pantera-negra")
+vim.cmd("colorscheme charmtone")
 
 local options = {
 	compatible = false,
@@ -189,27 +189,29 @@ if blast_ok then
 end
 
 -- TreeSitter
-require("nvim-treesitter").setup({
-	highlight = { enable = true, additional_vim_regex_highlighting = false },
-	indent = { enable = true },
-	ensure_installed = {
-		"bash",
-		"css",
-		"elm",
-		"go",
-		"gomod",
-		"gowork",
-		"haskell",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"scss",
-		"templ",
-		"typescript",
-		"yaml",
-	},
-	auto_install = true,
+require("nvim-treesitter").install({
+	"bash",
+	"css",
+	"elm",
+	"go",
+	"gomod",
+	"gowork",
+	"haskell",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"scss",
+	"templ",
+	"typescript",
+	"yaml",
+})
+augroup("treesitterStart", { clear = true })
+autocmd({ "FileType" }, {
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
+	group = "treesitterStart",
 })
 
 -- Colorizer
@@ -278,9 +280,6 @@ nmap("<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
 
 -- GitGutter
 g.gitgutter_sign_modified = "•"
-hi(0, "GitGutterAdd", { fg = "#009900" })
-hi(0, "GitGutterChange", { fg = "#bbbb00" })
-hi(0, "GitGutterDelete", { fg = "#ff2222" })
 
 -- Vsnip
 do

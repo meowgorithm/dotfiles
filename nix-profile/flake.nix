@@ -20,6 +20,7 @@
           haskellPackages.fourmolu
           nil
           sqlc
+          tree-sitter
         ];
       };
     });
