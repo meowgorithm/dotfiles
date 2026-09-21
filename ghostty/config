@@ -5,7 +5,7 @@ copy-on-select = true
 confirm-close-surface = false
 link-url = true
 
-background = #171717
+background = #201F26
 foreground = #C5C8C6
 palette = 0=#282a2e
 palette = 1=#D74E6F

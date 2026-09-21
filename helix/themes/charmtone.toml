@@ -117,7 +117,7 @@ bg = "#2D2C36"
 fg = "#ECEBF0"
 
 ["ui.statusline.inactive"]
-bg = "#201F26"
+bg = "#2D2C36"
 fg = "#605F6B"
 
 ["ui.statusline.insert"]
@@ -143,3 +143,6 @@ bg = "#2D2C36"
 
 ["ui.virtual.whitespace"]
 fg = "#3A3943"
+
+["ui.window"]
+fg = "#4D4C57"
