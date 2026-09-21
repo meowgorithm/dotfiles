@@ -319,7 +319,7 @@ follows_mouse = true                            # Focus under the pointer after 
 [keybinds]
 
 # Applications and session
-"Mod+Return" = "spawn:kitty"
+"Mod+Return" = "spawn:kitty-here" # New kitty in the focused terminal's directory
 "Mod" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+Q" = "window-close"
 

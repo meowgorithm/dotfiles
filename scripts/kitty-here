@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Open a new kitty window in the working directory of the focused terminal.
+#
+# Umbriel's spawn action hands the new process Umbriel's own working
+# directory, so ask the focused kitty instance over its remote control socket
+# to open an OS window with --cwd=current instead. Requires in kitty.conf:
+#
+#     allow_remote_control yes
+#     listen_on unix:/tmp/umbriel-kitty
+#
+# Each instance then listens on /tmp/umbriel-kitty-<pid>. Falls back to a
+# plain kitty launch when no instance is listening, for example on the first
+# terminal of a session or while focus is outside kitty.
+#
+# Usage: bind the compositor terminal keybind to this script.
+
+socket_prefix="/tmp/umbriel-kitty"
+
+focused_pid=$(umbriel windows --json 2>/dev/null | jq -r '
+    [.[] | select(.app_id == "kitty")] as $kitties
+    | (($kitties | map(select(.active)) | first)
+       // ($kitties | map(select(.focused)) | first)
+       // ($kitties | first))
+    | if . == null then empty else .pid end' 2>/dev/null || true)
+
+if [[ -n $focused_pid ]] &&
+	kitty @ --to "unix:$socket_prefix-$focused_pid" \
+		launch --type=os-window --cwd=current 2>/dev/null; then
+	exit 0
+fi
+
+exec kitty

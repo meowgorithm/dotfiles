@@ -175,6 +175,9 @@ Common bash functions available in `bash/bash_funcs`:
 - `install-nix`: Install the Nix package manager
 - `fix-docker-desktop`: Fix Docker Desktop issues
 - `setup-mouse`, `setup-wacom`: Peripheral setup
+- `kitty-here`: New kitty window in the focused terminal's directory (Umbriel
+  terminal keybind). Uses kitty's remote control socket, enabled by `listen_on`
+  in `kitty/kitty.conf`
 
 ### GPG
 
