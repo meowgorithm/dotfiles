@@ -1,0 +1,319 @@
+@media (prefers-color-scheme: dark) {
+  * {
+    --base:        {{colors.background.dark.hex}};
+    --surface:     {{colors.surface_variant.dark.hex}};
+    --overlay:     {{colors.surface_container_high.dark.hex}};
+    --hl:          {{colors.surface_container_highest.dark.hex}};
+    --outline:     {{colors.outline_variant.dark.hex}};
+    --muted:       {{colors.outline.dark.hex}};
+    --subtle:      {{colors.on_surface_variant.dark.hex}};
+    --text:        {{colors.on_surface.dark.hex}};
+    --primary:     {{colors.primary.dark.hex}};
+    --on-primary:  {{colors.on_primary.dark.hex}};
+    --secondary:   {{colors.secondary.dark.hex}};
+    --tertiary:    {{colors.tertiary.dark.hex}};
+    --on-tertiary: {{colors.on_tertiary.dark.hex}};
+    --error:       {{colors.error.dark.hex}};
+    --link:        {{colors.terminal_normal_blue.dark.hex}};
+    --success:     {{colors.terminal_normal_green.dark.hex}};
+    --warning:     {{colors.terminal_normal_yellow.dark.hex}};
+  }
+}
+@media (prefers-color-scheme: light) {
+  * {
+    --base:        {{colors.background.light.hex}};
+    --surface:     {{colors.surface_variant.light.hex}};
+    --overlay:     {{colors.surface_container_high.light.hex}};
+    --hl:          {{colors.surface_container_highest.light.hex}};
+    --outline:     {{colors.outline_variant.light.hex}};
+    --muted:       {{colors.outline.light.hex}};
+    --subtle:      {{colors.on_surface_variant.light.hex}};
+    --text:        {{colors.on_surface.light.hex}};
+    --primary:     {{colors.primary.light.hex}};
+    --on-primary:  {{colors.on_primary.light.hex}};
+    --secondary:   {{colors.secondary.light.hex}};
+    --tertiary:    {{colors.tertiary.light.hex}};
+    --on-tertiary: {{colors.on_tertiary.light.hex}};
+    --error:       {{colors.error.light.hex}};
+    --link:        {{colors.terminal_normal_blue.light.hex}};
+    --success:     {{colors.terminal_normal_green.light.hex}};
+    --warning:     {{colors.terminal_normal_yellow.light.hex}};
+  }
+}
+
+@-moz-document url-prefix("about:") {
+  :root {
+    --in-content-page-background: var(--base) !important;
+    --in-content-page-color: var(--text) !important;
+    --in-content-text-color: var(--text) !important;
+    --in-content-box-background: var(--surface) !important;
+    --in-content-box-background-odd: var(--overlay) !important;
+    --in-content-box-border-color: var(--outline) !important;
+    --in-content-box-info-background: var(--overlay) !important;
+    --in-content-border-color: var(--outline) !important;
+    --in-content-border-hover: var(--muted) !important;
+    --in-content-accent-color: var(--primary) !important;
+    --in-content-accent-color-hover: var(--primary) !important;
+    --in-content-link-color: var(--link) !important;
+    --in-content-link-color-hover: var(--primary) !important;
+    --in-content-link-color-active: var(--primary) !important;
+    --in-content-link-visited-color: var(--tertiary) !important;
+    --in-content-primary-button-background: var(--primary) !important;
+    --in-content-primary-button-background-hover: var(--primary) !important;
+    --in-content-primary-button-text-color: var(--on-primary) !important;
+    --in-content-primary-button-text-color-hover: var(--on-primary) !important;
+    --in-content-focus-outline-color: var(--primary) !important;
+    --in-content-danger-button-background: var(--error) !important;
+    --in-content-item-hover: var(--hl) !important;
+    --in-content-item-selected: var(--primary) !important;
+    --in-content-item-selected-text: var(--on-primary) !important;
+    --in-content-button-background: var(--overlay) !important;
+    --in-content-button-text-color: var(--text) !important;
+    --in-content-selected-text: var(--on-primary) !important;
+    --color-accent-primary: var(--primary) !important;
+    --color-accent-primary-hover: var(--primary) !important;
+    --link-color: var(--link) !important;
+    --link-color-hover: var(--primary) !important;
+    --link-color-active: var(--primary) !important;
+    --link-visited-color: var(--tertiary) !important;
+    --background-color-box: var(--surface) !important;
+    background: var(--base) !important;
+    color: var(--text) !important;
+  }
+
+  body {
+    background: var(--base) !important;
+    color: var(--text) !important;
+  }
+
+  moz-card,
+  .card,
+  .card-container,
+  message-bar {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="password"],
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    background: var(--overlay) !important;
+    color: var(--text) !important;
+    border-color: var(--outline) !important;
+    border-radius: 6px !important;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--primary) !important;
+    outline: 1px solid var(--primary) !important;
+  }
+
+  button {
+    background: var(--overlay) !important;
+    color: var(--text) !important;
+    border-radius: 6px !important;
+  }
+  button:hover {
+    background: var(--hl) !important;
+  }
+  button[aria-selected="true"],
+  moz-button[accent],
+  button.primary,
+  .primary-button {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+    border-color: transparent !important;
+  }
+  button.primary:hover,
+  moz-button[accent]:hover {
+    background: color-mix(in srgb, var(--primary) 85%, var(--base)) !important;
+  }
+
+  .toggle-button,
+  moz-toggle {
+    --toggle-background-color: var(--overlay) !important;
+    --toggle-background-color-hover: var(--hl) !important;
+    --toggle-background-color-pressed: var(--primary) !important;
+    --toggle-background-color-pressed-hover: var(--primary) !important;
+    --toggle-border-color: transparent !important;
+    --toggle-border-color-hover: transparent !important;
+    --toggle-dot-background-color: var(--subtle) !important;
+    --toggle-dot-background-color-on-pressed: var(--on-primary) !important;
+  }
+
+  .sidebar,
+  .sidebar-footer-list,
+  .sticky-container,
+  #categories,
+  .content-pane,
+  .main-search,
+  .search-container {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+
+  .category[selected],
+  .sidebar-item[selected] {
+    background: var(--hl) !important;
+    color: var(--text) !important;
+  }
+
+  richlistitem[selected="true"] {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+  }
+
+  .text-link,
+  a {
+    color: var(--link) !important;
+  }
+}
+
+@-moz-document url("about:newtab"), url("about:home"), url("about:welcome") {
+  :root {
+    --newtab-background-color: var(--base) !important;
+    --newtab-background-color-secondary: var(--surface) !important;
+    --newtab-card-background-color: var(--surface) !important;
+    --newtab-text-primary-color: var(--text) !important;
+    --newtab-text-secondary-color: var(--subtle) !important;
+    --newtab-element-hover-color: var(--hl) !important;
+    --newtab-element-secondary-color: var(--overlay) !important;
+    --newtab-wordmark-color: var(--text) !important;
+    --newtab-primary-action-background: var(--primary) !important;
+    --newtab-primary-action-text: var(--on-primary) !important;
+    --newtab-secondary-action-background: var(--surface) !important;
+    --newtab-border-color: color-mix(in srgb, var(--text) 15%, transparent) !important;
+    --newtab-focus-outline: var(--primary) !important;
+  }
+  body {
+    background: var(--base) !important;
+  }
+  .card-outer,
+  .top-site-outer .tile,
+  .fixup-wrapper {
+    background: var(--surface) !important;
+  }
+  .icon,
+  .search-wrapper .logo-and-wordmark .wordmark,
+  .card-title {
+    color: var(--text) !important;
+  }
+  .search-wrapper input,
+  .search-handoff-button {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border-color: var(--outline) !important;
+  }
+  .search-handoff-button:hover {
+    background: var(--overlay) !important;
+  }
+  .card-outer:is(:hover, :focus, .active) .card-title,
+  .icon.icon-bookmark-added {
+    color: var(--primary) !important;
+  }
+  .modal {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+}
+
+@-moz-document url-prefix("about:preferences") {
+  .main-content,
+  .sticky-container {
+    background: var(--base) !important;
+  }
+  .pane-container,
+  .settings-block {
+    background: var(--base) !important;
+    color: var(--text) !important;
+  }
+  .searchBoxWrapper {
+    --input-background-color: var(--surface) !important;
+  }
+}
+
+@-moz-document url-prefix("about:addons") {
+  .main-heading,
+  #sidebar,
+  .sticky-container {
+    background: var(--base) !important;
+  }
+  .addon-card {
+    background: var(--surface) !important;
+  }
+}
+
+@-moz-document url-prefix("about:config") {
+  #toolbar {
+    background: var(--surface) !important;
+  }
+  #warning {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+  tr {
+    color: var(--text) !important;
+  }
+  th {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+  tr:nth-child(even) {
+    background: var(--surface) !important;
+  }
+  #configs button {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+  }
+}
+
+@-moz-document url-prefix("about:downloads"),
+               url-prefix("about:profiles"),
+               url-prefix("about:cache"),
+               url-prefix("about:networking") {
+  :root {
+    background: var(--base) !important;
+  }
+  td,
+  th {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+  }
+}
+
+@-moz-document url-prefix("view-source:") {
+  html {
+    background: var(--base) !important;
+    color: var(--text) !important;
+  }
+  .tag {
+    color: var(--primary) !important;
+  }
+  .attr-value {
+    color: var(--warning) !important;
+  }
+  .attribute-name {
+    color: var(--tertiary) !important;
+  }
+  .comment {
+    color: var(--muted) !important;
+  }
+  .text {
+    color: var(--text) !important;
+  }
+  .attr-name {
+    color: var(--error) !important;
+  }
+  .doctype {
+    color: var(--subtle) !important;
+  }
+}
+
+::selection {
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+}

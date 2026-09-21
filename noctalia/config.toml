@@ -15,3 +15,13 @@ path = "/home/christian/.config/noctalia/bbq.png"
 focused_color = "#BFBCC8"
 occupied_color = "#858392"
 empty_color = "#605F6B"
+
+[theme.templates.user.firefox_chrome]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"
+output_path = "$XDG_CACHE_HOME/noctalia/firefox/userChrome.css"
+post_hook = "bash '{{ config_dir }}/templates/firefox/apply.sh'"
+
+[theme.templates.user.firefox_content]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userContent.css"
+output_path = "$XDG_CACHE_HOME/noctalia/firefox/userContent.css"
+post_hook = "bash '{{ config_dir }}/templates/firefox/apply.sh'"

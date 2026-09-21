@@ -1,0 +1,415 @@
+@media (prefers-color-scheme: dark) {
+  * {
+    --base:        {{colors.background.dark.hex}};
+    --surface:     {{colors.surface_variant.dark.hex}};
+    --overlay:     {{colors.surface_container_high.dark.hex}};
+    --hl:          {{colors.surface_container_highest.dark.hex}};
+    --outline:     {{colors.outline_variant.dark.hex}};
+    --muted:       {{colors.outline.dark.hex}};
+    --subtle:      {{colors.on_surface_variant.dark.hex}};
+    --text:        {{colors.on_surface.dark.hex}};
+    --primary:     {{colors.primary.dark.hex}};
+    --on-primary:  {{colors.on_primary.dark.hex}};
+    --secondary:   {{colors.secondary.dark.hex}};
+    --tertiary:    {{colors.tertiary.dark.hex}};
+    --on-tertiary: {{colors.on_tertiary.dark.hex}};
+    --error:       {{colors.error.dark.hex}};
+    --link:        {{colors.terminal_normal_blue.dark.hex}};
+    --success:     {{colors.terminal_normal_green.dark.hex}};
+    --warning:     {{colors.terminal_normal_yellow.dark.hex}};
+    --base-blur:    {{colors.surface.dark.hex | darken 6}};
+    --surface-blur: {{colors.surface_variant.dark.hex | darken 6}};
+    --text-blur:    {{colors.on_surface.dark.hex | darken 18}};
+    --icon-blur:    {{colors.on_surface_variant.dark.hex | darken 12}};
+  }
+}
+@media (prefers-color-scheme: light) {
+  * {
+    --base:        {{colors.background.light.hex}};
+    --surface:     {{colors.surface_variant.light.hex}};
+    --overlay:     {{colors.surface_container_high.light.hex}};
+    --hl:          {{colors.surface_container_highest.light.hex}};
+    --outline:     {{colors.outline_variant.light.hex}};
+    --muted:       {{colors.outline.light.hex}};
+    --subtle:      {{colors.on_surface_variant.light.hex}};
+    --text:        {{colors.on_surface.light.hex}};
+    --primary:     {{colors.primary.light.hex}};
+    --on-primary:  {{colors.on_primary.light.hex}};
+    --secondary:   {{colors.secondary.light.hex}};
+    --tertiary:    {{colors.tertiary.light.hex}};
+    --on-tertiary: {{colors.on_tertiary.light.hex}};
+    --error:       {{colors.error.light.hex}};
+    --link:        {{colors.terminal_normal_blue.light.hex}};
+    --success:     {{colors.terminal_normal_green.light.hex}};
+    --warning:     {{colors.terminal_normal_yellow.light.hex}};
+    --base-blur:    {{colors.surface.light.hex | darken 4}};
+    --surface-blur: {{colors.surface_variant.light.hex | darken 4}};
+    --text-blur:    {{colors.on_surface.light.hex | lighten 18}};
+    --icon-blur:    {{colors.on_surface_variant.light.hex | lighten 12}};
+  }
+}
+
+:root {
+  --lwt-frame: var(--base) !important;
+  --lwt-text-color: var(--text) !important;
+  --toolbar-bgcolor: var(--surface) !important;
+  --toolbar-color: var(--text) !important;
+  --toolbox-bgcolor-inactive: var(--base-blur) !important;
+  --toolbox-textcolor: var(--text) !important;
+  --toolbox-textcolor-inactive: var(--text-blur) !important;
+  --toolbar-field-background-color: var(--base) !important;
+  --toolbar-field-color: var(--text) !important;
+  --toolbar-field-focus-background-color: var(--base) !important;
+  --toolbar-field-focus-color: var(--text) !important;
+  --toolbar-field-border-color: transparent !important;
+  --toolbar-field-focus-border-color: var(--primary) !important;
+  --toolbar-field-highlight: var(--primary) !important;
+  --toolbar-field-highlight-color: var(--on-primary) !important;
+  --arrowpanel-background: var(--surface) !important;
+  --arrowpanel-color: var(--text) !important;
+  --arrowpanel-border-color: var(--outline) !important;
+  --panel-background: var(--surface) !important;
+  --panel-color: var(--text) !important;
+  --panel-border-color: var(--outline) !important;
+  --panel-item-hover-bgcolor: var(--hl) !important;
+  --tab-loading-fill: var(--primary) !important;
+  --tab-selected-bgcolor: var(--surface) !important;
+  --tabline-color: var(--primary) !important;
+  --toolbarbutton-icon-fill: var(--subtle) !important;
+  --toolbarbutton-hover-background: color-mix(in srgb, var(--text) 8%, transparent) !important;
+  --toolbarbutton-active-background: color-mix(in srgb, var(--text) 14%, transparent) !important;
+  --lwt-sidebar-background-color: var(--base) !important;
+  --lwt-sidebar-text-color: var(--text) !important;
+  --focus-outline-color: var(--primary) !important;
+  --input-border-color: var(--outline) !important;
+  --urlbarView-highlight-background: var(--hl) !important;
+  --urlbarView-highlight-color: var(--text) !important;
+  --urlbarView-url-color: var(--muted) !important;
+  --autocomplete-popup-background: var(--surface) !important;
+  --autocomplete-popup-color: var(--text) !important;
+  --autocomplete-popup-border-color: var(--outline) !important;
+  --autocomplete-popup-highlight-background: var(--hl) !important;
+  --autocomplete-popup-highlight-color: var(--text) !important;
+}
+
+#navigator-toolbox {
+  background: var(--base) !important;
+  border-bottom: 1px solid var(--outline) !important;
+}
+#nav-bar {
+  background: var(--surface) !important;
+  box-shadow: none !important;
+}
+#TabsToolbar,
+#titlebar {
+  background: var(--base) !important;
+}
+#PersonalToolbar {
+  background: var(--surface) !important;
+}
+#browser {
+  background: var(--base) !important;
+}
+
+.tabbrowser-tab .tab-background {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-top: 2px solid transparent !important;
+}
+.tabbrowser-tab[selected] .tab-background {
+  background: var(--surface) !important;
+  border-top: 2px solid var(--primary) !important;
+}
+.tabbrowser-tab:hover:not([selected]):not([multiselected]) .tab-background {
+  background: color-mix(in srgb, var(--text) 6%, transparent) !important;
+}
+.tab-label,
+.tab-text {
+  color: var(--muted) !important;
+}
+.tabbrowser-tab[selected] .tab-label,
+.tabbrowser-tab[selected] .tab-text {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+.tab-icon-image,
+.tab-throbber {
+  fill: var(--muted) !important;
+}
+.tabbrowser-tab[selected] .tab-icon-image {
+  fill: var(--text) !important;
+}
+.tab-close-button {
+  color: var(--muted) !important;
+}
+#tabs-newtab-button,
+#new-tab-button {
+  color: var(--subtle) !important;
+  fill: var(--subtle) !important;
+}
+#tabs-newtab-button:hover,
+#new-tab-button:hover {
+  color: var(--text) !important;
+  fill: var(--text) !important;
+  background: color-mix(in srgb, var(--text) 6%, transparent) !important;
+}
+
+toolbar .toolbarbutton-1:not([disabled]):not([aria-disabled="true"]) > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled]):not([aria-disabled="true"]) > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  fill: var(--subtle) !important;
+  color: var(--subtle) !important;
+  -moz-context-properties: fill, fill-opacity !important;
+}
+toolbar .toolbarbutton-1:not([disabled]):not([aria-disabled="true"]):hover > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled]):not([aria-disabled="true"]):hover > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  fill: var(--text) !important;
+  color: var(--text) !important;
+}
+toolbar .toolbarbutton-1[disabled] .toolbarbutton-icon {
+  opacity: 0.35 !important;
+}
+#star-button[starred] {
+  fill: var(--tertiary) !important;
+  color: var(--tertiary) !important;
+}
+.toolbarbutton-1[brighttext] .toolbarbutton-badge {
+  background: var(--tertiary) !important;
+  color: var(--on-tertiary) !important;
+}
+
+.urlbar-background,
+#searchbar {
+  background: var(--base) !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+#urlbar[focused] .urlbar-background,
+#searchbar:focus-within {
+  border-color: var(--primary) !important;
+}
+#urlbar-input::selection,
+#searchbar-input::selection,
+.urlbar-input-container ::selection {
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+.urlbarView {
+  background: var(--surface) !important;
+  border: 1px solid var(--outline) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+.urlbarView-row-inner {
+  border-radius: 6px !important;
+}
+.urlbarView-title,
+.urlbarView-action,
+.urlbarView-tag {
+  color: var(--text) !important;
+}
+.urlbarView-row[selected] .urlbarView-title,
+.urlbarView-row[selected] .urlbarView-action {
+  color: var(--text) !important;
+}
+.urlbarView-url {
+  color: var(--link) !important;
+}
+.urlbarView-row[selected] .urlbarView-url {
+  color: var(--primary) !important;
+}
+
+panel,
+menupopup {
+  --arrowpanel-background: var(--surface) !important;
+  --arrowpanel-color: var(--text) !important;
+  --panel-background: var(--surface) !important;
+  --panel-color: var(--text) !important;
+  --panel-border-color: var(--outline) !important;
+  border-radius: 10px !important;
+}
+menu,
+menuitem {
+  color: var(--text) !important;
+}
+menu[_moz-menuactive="true"]:not([disabled="true"]),
+menuitem[_moz-menuactive="true"]:not([disabled="true"]),
+.subviewbutton:hover,
+.panel-subview-footer-button:hover,
+toolbarbutton.subviewbutton:hover:not([disabled]) {
+  background: var(--hl) !important;
+  color: var(--text) !important;
+}
+menu:where([_moz-menuactive="true"]:not([disabled="true"])) :is(.menu-text, .menu-iconic-text, .menu-accel),
+menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) :is(.menu-text, .menu-iconic-text, .menu-accel) {
+  color: var(--text) !important;
+}
+menuseparator {
+  border-color: var(--outline) !important;
+}
+menupopup menuitem:is([checked="true"]) .menu-iconic-icon {
+  fill: var(--primary) !important;
+}
+
+#ContentSelectDropdown,
+#ContentSelectDropdown > menupopup {
+  --arrowpanel-background: var(--surface) !important;
+  --arrowpanel-color: var(--text) !important;
+  --panel-border-color: transparent !important;
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+#ContentSelectDropdown menupopup menuitem[_moz-menuactive="true"] {
+  background: var(--hl) !important;
+}
+#ContentSelectDropdown menupopup menuitem[selected="true"] {
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+
+#sidebar-box,
+#sidebar-header,
+#sidebar {
+  background: var(--base) !important;
+  color: var(--text) !important;
+}
+#sidebar-splitter {
+  background: var(--outline) !important;
+}
+
+findbar {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--outline) !important;
+  border-radius: 8px 0 0 0 !important;
+}
+.findbar-find-status,
+.find-status-icon,
+.found-matches {
+  color: var(--subtle) !important;
+}
+
+dialog,
+dialog#commonDialogWindow {
+  background: var(--base) !important;
+  color: var(--text) !important;
+}
+dialog button,
+panel button {
+  appearance: none !important;
+  background: var(--overlay) !important;
+  color: var(--text) !important;
+  border-radius: 6px !important;
+  border: 1px solid transparent !important;
+}
+dialog button:hover,
+panel button:hover {
+  background: var(--hl) !important;
+}
+dialog button[default="true"],
+dialog button[dlgtype="accept"],
+panel button[default="true"] {
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+dialog button[default="true"]:hover,
+dialog button[dlgtype="accept"]:hover,
+panel button[default="true"]:hover {
+  background: color-mix(in srgb, var(--primary) 85%, var(--base)) !important;
+}
+.text-link {
+  color: var(--link) !important;
+}
+
+#PopupAutoComplete > richlistbox,
+.autocomplete-richlistbox {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+.autocomplete-richlistitem[selected="true"] {
+  background: var(--hl) !important;
+  color: var(--text) !important;
+}
+
+tooltip {
+  background: var(--overlay) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--outline) !important;
+}
+
+scrollbar {
+  background-color: var(--base) !important;
+}
+scrollbar thumb {
+  background-color: var(--muted) !important;
+  border-radius: 4px !important;
+}
+
+*|input[type="checkbox"],
+*|input[type="radio"] {
+  accent-color: var(--primary) !important;
+}
+
+#editBMPanel_folderTree {
+  background: var(--base) !important;
+  color: var(--text) !important;
+}
+#editBMPanel_folderTree treechildren::-moz-tree-row(selected) {
+  background: var(--primary) !important;
+}
+#editBMPanel_folderTree treechildren::-moz-tree-cell-text(selected) {
+  color: var(--on-primary) !important;
+}
+
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+  #aboutDialogContainer,
+  #clientBox {
+    background: var(--base) !important;
+    color: var(--text) !important;
+  }
+  #bottomBox {
+    background: var(--surface) !important;
+    color: var(--subtle) !important;
+  }
+}
+
+#navigator-toolbox:-moz-window-inactive {
+  background: var(--base-blur) !important;
+}
+#TabsToolbar:-moz-window-inactive,
+#titlebar:-moz-window-inactive {
+  background: var(--base-blur) !important;
+}
+#nav-bar:-moz-window-inactive,
+#PersonalToolbar:-moz-window-inactive {
+  background: var(--surface-blur) !important;
+}
+#navigator-toolbox:-moz-window-inactive .tab-label,
+#navigator-toolbox:-moz-window-inactive .tab-text {
+  color: var(--text-blur) !important;
+}
+#navigator-toolbox:-moz-window-inactive .tab-icon-image,
+#navigator-toolbox:-moz-window-inactive .tab-throbber {
+  fill: var(--icon-blur) !important;
+}
+#navigator-toolbox:-moz-window-inactive .toolbarbutton-1:not([disabled]) .toolbarbutton-icon,
+#navigator-toolbox:-moz-window-inactive .toolbarbutton-icon {
+  fill: var(--icon-blur) !important;
+  color: var(--icon-blur) !important;
+}
+#navigator-toolbox:-moz-window-inactive .tabbrowser-tab[selected] .tab-background {
+  border-top-color: var(--muted) !important;
+}
+#navigator-toolbox:-moz-window-inactive .urlbar-background,
+#navigator-toolbox:-moz-window-inactive #searchbar {
+  background: var(--base-blur) !important;
+}
+#navigator-toolbox:-moz-window-inactive .urlbarView {
+  background: var(--surface-blur) !important;
+}
+#sidebar-box:-moz-window-inactive,
+#sidebar-header:-moz-window-inactive {
+  background: var(--base-blur) !important;
+}
