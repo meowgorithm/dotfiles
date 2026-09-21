@@ -14,6 +14,7 @@ in {
   imports = [
     inputs.noctalia.nixosModules.default
     inputs.umbriel.nixosModules.default
+    inputs.noctalia-greeter.nixosModules.default
   ];
 
   # Binary cache for the noctalia flake input. Umbriel has no cache and
@@ -219,6 +220,22 @@ in {
   };
 
   services = {
+    displayManager.noctalia-greeter = {
+      enable = true;
+      # Let Noctalia shell push its wallpaper/palette to the greeter
+      # without a Polkit prompt.
+      passwordless-sync-users = [mainUser];
+      cursorTheme.package = pkgs.adwaita-icon-theme;
+      settings = {
+        session.default = "Umbriel";
+        user.default = mainUser;
+        cursor = {
+          theme = "Adwaita";
+          size = 24;
+        };
+        keyboard.layout = "us";
+      };
+    };
     tailscale.enable = true;
     hypridle.enable = true;
     openssh.enable = true;

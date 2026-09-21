@@ -4,6 +4,14 @@
 {
   description = "System Configuration";
 
+  # Applies at evaluation time, so even the first rebuild on a fresh
+  # machine substitutes from the cache (nix.settings in configuration.nix
+  # only takes effect after activation).
+  nixConfig = {
+    extra-substituters = ["https://noctalia.cachix.org"];
+    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     noctalia = {
@@ -11,6 +19,11 @@
     };
     umbriel = {
       url = "github:noctalia-dev/umbriel";
+    };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      # No nixpkgs.follows: keeping the repo's own pin produces the same
+      # store paths CI pushes to noctalia.cachix.org, so builds are cached.
     };
   };
 
