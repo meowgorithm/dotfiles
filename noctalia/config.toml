@@ -16,6 +16,10 @@ focused_color = "#BFBCC8"
 occupied_color = "#858392"
 empty_color = "#605F6B"
 
+[shell.screenshot]
+save_to_file = true
+copy_to_clipboard = true
+
 [theme.templates.user.firefox_chrome]
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"
 output_path = "$XDG_CACHE_HOME/noctalia/firefox/userChrome.css"
