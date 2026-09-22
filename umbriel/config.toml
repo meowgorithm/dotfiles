@@ -340,6 +340,11 @@ follows_mouse = true                            # Focus under the pointer after 
 # Overview
 "Mod+O" = { action = "overview-toggle", repeat = false }
 
+# Screenshots (Noctalia)
+"Mod+S" = "spawn:noctalia msg screenshot-region"
+"Mod+Shift+S" = "spawn:noctalia msg screenshot-fullscreen"
+"Mod+Ctrl+Shift+S" = "spawn:noctalia msg screenshot-annotate"
+
 # Common keybinds
 "Mod+Escape" = "session-quit"
 # Keep one escape binding available when a game or remote desktop client asks
