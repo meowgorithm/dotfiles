@@ -127,7 +127,6 @@ in {
       direnv
       duf
       efibootmgr
-      feh
       ffmpeg
       fzf
       gcc
@@ -152,6 +151,7 @@ in {
       hivemind
       htop
       imagemagick
+      imv
       jq
       jujutsu
       kitty
@@ -179,6 +179,9 @@ in {
       vim
       wget
       wl-clipboard
+      thunar
+      thunar-volman
+      tumbler
       xz
       yaml-language-server
       zellij
