@@ -126,6 +126,8 @@ in {
       delve
       direnv
       duf
+      elmPackages.elm
+      elmPackages.elm-language-server
       efibootmgr
       ffmpeg
       fzf
@@ -171,6 +173,7 @@ in {
       rtk
       shellcheck
       shfmt
+      signal-desktop
       slack
       stylua
       swaybg
