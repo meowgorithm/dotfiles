@@ -29,3 +29,8 @@ post_hook = "bash '{{ config_dir }}/templates/firefox/apply.sh'"
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userContent.css"
 output_path = "$XDG_CACHE_HOME/noctalia/firefox/userContent.css"
 post_hook = "bash '{{ config_dir }}/templates/firefox/apply.sh'"
+
+[theme.templates.user.thunar_gtk]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/thunar/gtk.css"
+output_path = "$XDG_CACHE_HOME/noctalia/thunar/gtk.css"
+post_hook = "bash '{{ config_dir }}/templates/thunar/apply.sh'"

@@ -1,0 +1,421 @@
+/*
+ * Noctalia Charmtone theme for Thunar.
+ *
+ * Rendered by Noctalia from palettes/Charmtone.json and imported into
+ * ~/.config/gtk-3.0/gtk.css by apply.sh. All selectors are scoped to
+ * Thunar's "thunar" style class so other GTK3 apps are untouched.
+ * Selectors verified against Thunar 4.20 source.
+ */
+
+.thunar {
+  background-color: {{ colors.surface.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+/* Header bar (CSD mode) and menu bar */
+
+.thunar headerbar {
+  background-color: {{ colors.surface_variant.default.hex }};
+  color: {{ colors.on_surface_variant.default.hex }};
+  border-bottom: 1px solid {{ colors.outline_variant.default.hex }};
+}
+
+.thunar headerbar:backdrop {
+  color: {{ colors.outline.default.hex }};
+}
+
+.thunar headerbar button {
+  background-color: transparent;
+  color: {{ colors.on_surface_variant.default.hex }};
+  border: none;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.thunar headerbar button:hover {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar menubar {
+  background-color: {{ colors.surface_variant.default.hex }};
+  color: {{ colors.on_surface_variant.default.hex }};
+}
+
+.thunar menubar item:hover {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+/* Toolbar (location toolbar in non-CSD mode) */
+
+.thunar toolbar {
+  background-color: {{ colors.surface_variant.default.hex }};
+  padding: 2px 4px;
+}
+
+/* Navigation buttons (back, forward, home, ...): dim icons and text
+ * when the action is unavailable, e.g. back/forward without history.
+ * ToolItems use the "toolbutton" node, CSD/other buttons "button" */
+
+.thunar toolbutton:disabled,
+.thunar toolbar button:disabled,
+.thunar headerbar button:disabled,
+.thunar .path-bar button:disabled {
+  color: rgba({{ colors.on_surface.default.rgb_csv }}, 0.45);
+  -gtk-icon-effect: dim;
+}
+
+/* Path bar (button-style location bar) */
+
+.thunar .path-bar {
+  background-color: transparent;
+}
+
+.thunar .path-bar button {
+  background-color: transparent;
+  color: {{ colors.on_surface_variant.default.hex }};
+  border: none;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.thunar .path-bar button:hover {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar .path-bar button:checked {
+  background-color: {{ colors.primary.default.hex }};
+  color: {{ colors.on_primary.default.hex }};
+}
+
+/* Location entry (text-style location bar) */
+
+.thunar entry {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+  border: 1px solid {{ colors.outline_variant.default.hex }};
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.thunar entry:focus {
+  border-color: {{ colors.primary.default.hex }};
+}
+
+/* Sidebar: shortcuts pane and tree pane both carry the "sidebar" class */
+
+.thunar .sidebar {
+  background-color: {{ colors.surface_variant.default.hex }};
+  color: {{ colors.on_surface_variant.default.hex }};
+}
+
+.thunar .sidebar treeview {
+  background-color: transparent;
+  color: {{ colors.on_surface_variant.default.hex }};
+}
+
+.thunar .sidebar treeview row:hover {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar .sidebar treeview row:selected {
+  background-color: {{ colors.primary.default.hex }};
+  color: {{ colors.on_primary.default.hex }};
+}
+
+/* File view: the standard view is a scrolled window with the
+ * "standard-view" class; the actual view inside (ExoIconView or
+ * treeview) carries the "view" style class and paints its own
+ * background. The background stays a constant Charmtone Pepper
+ * across focus states */
+
+.thunar .standard-view {
+  background-color: {{ colors.surface.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar .standard-view .view {
+  background-color: {{ colors.surface.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+/* ExoIconView renders each item with a "cell" class and the SELECTED
+ * or PRELIGHT state. The hover background is darker than the view
+ * background so light (light-mode) file icons gain contrast instead
+ * of washing out */
+
+.thunar .standard-view .cell:hover {
+  background-color: {{ colors.surface.default.hex | darken 6 }};
+}
+
+.thunar .standard-view .cell:selected {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.85);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+/* Details view rows: hover darkens the row so light file icons
+ * gain contrast */
+
+.thunar .standard-view treeview {
+  background-color: {{ colors.surface.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar .standard-view treeview row:hover {
+  background-color: {{ colors.surface.default.hex | darken 6 }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar .standard-view treeview row:selected {
+  background-color: {{ colors.primary.default.hex }};
+  color: {{ colors.on_primary.default.hex }};
+}
+
+/* Rubberband selection rectangle */
+
+.thunar rubberband {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.25);
+  border: 1px solid {{ colors.primary.default.hex }};
+}
+
+/* Details view column headers */
+
+.thunar .standard-view header button {
+  background-color: {{ colors.surface_container.default.hex }};
+  color: {{ colors.on_surface_variant.default.hex }};
+  border: none;
+  border-bottom: 1px solid {{ colors.outline_variant.default.hex }};
+  border-radius: 0;
+}
+
+.thunar .standard-view header button:hover {
+  background-color: {{ colors.surface_container_high.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+/* Notebook tabs */
+
+.thunar notebook header {
+  background-color: {{ colors.surface_variant.default.hex }};
+}
+
+.thunar notebook tab {
+  background-color: transparent;
+  color: {{ colors.on_surface_variant.default.hex }};
+  padding: 4px 12px;
+}
+
+.thunar notebook tab:hover {
+  color: {{ colors.on_surface.default.hex }};
+}
+
+.thunar notebook tab:checked {
+  background-color: {{ colors.surface.default.hex }};
+  color: {{ colors.on_surface.default.hex }};
+}
+
+/* Status bar */
+
+.thunar statusbar {
+  background-color: {{ colors.surface_variant.default.hex }};
+  color: {{ colors.on_surface_variant.default.hex }};
+}
+
+/* Dividers: the paned separators between sections, plus the frame
+ * drawn around the view and side panes (shadow-type IN adds the
+ * "frame" class to those scrolled windows). Shadows and background
+ * images from the base theme are cleared so the divider is a single
+ * clean hairline instead of a wide shaded band. */
+
+.thunar paned separator {
+  background-color: {{ colors.outline_variant.default.hex }};
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.thunar separator {
+  background-color: {{ colors.outline_variant.default.hex }};
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.thunar scrolledwindow.frame {
+  background-image: none;
+  border: 1px solid {{ colors.outline_variant.default.hex }};
+  box-shadow: none;
+}
+
+/* Scrollbars */
+
+.thunar scrollbar {
+  background-color: transparent;
+  border: none;
+}
+
+.thunar scrollbar trough {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+.thunar scrollbar slider {
+  background-color: {{ colors.outline_variant.default.hex }};
+  border-radius: 6px;
+  min-width: 8px;
+  min-height: 8px;
+}
+
+.thunar scrollbar slider:hover {
+  background-color: {{ colors.outline.default.hex }};
+}
+
+/* Unfocused window: dim surfaces and text, mirroring the backdrop
+ * treatment of the Firefox theme in this repo */
+
+<* if {{ mode }} == "dark" *>
+
+.thunar:backdrop {
+  background-color: {{ colors.surface.default.hex | darken 6 }};
+  color: {{ colors.on_surface.default.hex | darken 18 }};
+}
+
+.thunar headerbar:backdrop,
+.thunar menubar:backdrop,
+.thunar toolbar:backdrop,
+.thunar statusbar:backdrop,
+.thunar notebook header:backdrop {
+  background-color: {{ colors.surface_variant.default.hex | darken 6 }};
+  color: {{ colors.on_surface_variant.default.hex | darken 12 }};
+}
+
+.thunar toolbutton:backdrop,
+.thunar toolbar button:backdrop,
+.thunar headerbar button:backdrop,
+.thunar .path-bar button:backdrop {
+  color: {{ colors.on_surface_variant.default.hex | darken 12 }};
+  -gtk-icon-effect: dim;
+}
+
+.thunar headerbar:backdrop {
+  border-color: {{ colors.outline_variant.default.hex | darken 12 }};
+}
+
+.thunar .sidebar:backdrop {
+  background-color: {{ colors.surface_variant.default.hex | darken 6 }};
+  color: {{ colors.on_surface_variant.default.hex | darken 12 }};
+}
+
+.thunar .sidebar treeview row:selected:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar .standard-view:backdrop,
+.thunar .standard-view .view:backdrop {
+  color: {{ colors.on_surface.default.hex | darken 18 }};
+}
+
+.thunar paned separator:backdrop,
+.thunar separator:backdrop {
+  background-color: {{ colors.outline_variant.default.hex | darken 12 }};
+}
+
+.thunar scrolledwindow.frame:backdrop {
+  border-color: {{ colors.outline_variant.default.hex | darken 12 }};
+}
+
+.thunar .standard-view .cell:selected:backdrop,
+.thunar .standard-view treeview row:selected:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar .path-bar button:checked:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar entry:backdrop {
+  background-color: {{ colors.surface_container_high.default.hex | darken 6 }};
+  color: {{ colors.on_surface.default.hex | darken 18 }};
+}
+
+<* else *>
+
+.thunar:backdrop {
+  background-color: {{ colors.surface.default.hex | lighten 4 }};
+  color: {{ colors.on_surface.default.hex | lighten 18 }};
+}
+
+.thunar headerbar:backdrop,
+.thunar menubar:backdrop,
+.thunar toolbar:backdrop,
+.thunar statusbar:backdrop,
+.thunar notebook header:backdrop {
+  background-color: {{ colors.surface_variant.default.hex | lighten 4 }};
+  color: {{ colors.on_surface_variant.default.hex | lighten 12 }};
+}
+
+.thunar toolbutton:backdrop,
+.thunar toolbar button:backdrop,
+.thunar headerbar button:backdrop,
+.thunar .path-bar button:backdrop {
+  color: {{ colors.on_surface_variant.default.hex | lighten 12 }};
+  -gtk-icon-effect: dim;
+}
+
+.thunar headerbar:backdrop {
+  border-color: {{ colors.outline_variant.default.hex | lighten 8 }};
+}
+
+.thunar .sidebar:backdrop {
+  background-color: {{ colors.surface_variant.default.hex | lighten 4 }};
+  color: {{ colors.on_surface_variant.default.hex | lighten 12 }};
+}
+
+.thunar .sidebar treeview row:selected:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar .standard-view:backdrop,
+.thunar .standard-view .view:backdrop {
+  color: {{ colors.on_surface.default.hex | lighten 18 }};
+}
+
+.thunar paned separator:backdrop,
+.thunar separator:backdrop {
+  background-color: {{ colors.outline_variant.default.hex | lighten 8 }};
+}
+
+.thunar scrolledwindow.frame:backdrop {
+  border-color: {{ colors.outline_variant.default.hex | lighten 8 }};
+}
+
+.thunar .standard-view .cell:selected:backdrop,
+.thunar .standard-view treeview row:selected:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar .path-bar button:checked:backdrop {
+  background-color: rgba({{ colors.primary.default.rgb_csv }}, 0.6);
+  color: {{ colors.on_primary.default.hex }};
+}
+
+.thunar entry:backdrop {
+  background-color: {{ colors.surface_container_high.default.hex | lighten 4 }};
+  color: {{ colors.on_surface.default.hex | lighten 18 }};
+}
+
+<* endif *>
