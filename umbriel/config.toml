@@ -331,6 +331,10 @@ follows_mouse = true                            # Focus under the pointer after 
 "Mod+Up" = "window-focus-up"
 "Mod+Right" = "window-focus-right"
 
+# Focus under the pointer. Umbriel exposes no action for this, so the script
+# flips input.focus.follows_mouse in this file and reloads the configuration.
+"Mod+Shift+H" = "spawn:~/.bin/umbriel-focus-follows-mouse"
+
 # Window state and layout
 "Mod+T" = "window-toggle-floating"
 "Mod+Shift+T" = "window-focus-switch-floating"

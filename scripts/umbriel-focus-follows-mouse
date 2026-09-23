@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Toggle focus-follows-mouse in Umbriel.
+#
+# Umbriel has no action for this, so flip `input.focus.follows_mouse` in the
+# config and ask the compositor to reload it. The config is usually a symlink
+# into a dotfiles repository, so resolve it first: an in-place edit on the link
+# would replace the link with a regular file.
+#
+# Usage: bind a compositor keybind to this script, for example:
+#   "Mod+Shift+H" = "spawn:~/.bin/umbriel-focus-follows-mouse"
+
+config="${XDG_CONFIG_HOME:-$HOME/.config}/umbriel/config.toml"
+
+if [[ ! -f $config ]]; then
+	echo "error: $config not found" >&2
+	exit 1
+fi
+
+target=$(readlink -f -- "$config")
+value=$(sed -n 's/^follows_mouse = \(true\|false\).*/\1/p' "$target" | head -n 1)
+
+case "$value" in
+true)
+	new=false
+	state="off"
+	;;
+false)
+	new=true
+	state="on"
+	;;
+*)
+	echo "error: no follows_mouse setting in $config" >&2
+	exit 1
+	;;
+esac
+
+# Replace only the value so any trailing comment survives.
+sed -i "s/^follows_mouse = [a-z]*/follows_mouse = $new/" "$target"
+
+umbriel msg config-reload
+
+# A missing shell must not fail a toggle that already applied.
+if command -v noctalia >/dev/null; then
+	noctalia msg notification-show "Umbriel" "Focus follows mouse: $state" || true
+fi

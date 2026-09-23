@@ -265,6 +265,7 @@ darwin) ;;
 *)
     scripts+=("screen-record")
     scripts+=("kitty-here")
+    scripts+=("umbriel-focus-follows-mouse")
     ;;
 esac
 for script in "${scripts[@]}"; do
