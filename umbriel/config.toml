@@ -251,8 +251,8 @@ enabled = true                                  # False disables tablet tools an
 # calibration_matrix = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0]
 
 [input.cursor]
-theme = ""                                      # Empty uses environment or default Xcursor theme
-size = 24                                       # Logical size, 1-512
+theme = "Adwaita"                              # Empty uses environment or default Xcursor theme
+size = 32                                       # Logical size, 1-512
 hardware_cursor = true                          # False can fix cursor flicker or disappearance
 follows_focus = false                           # Move the cursor to windows focused by actions or activation
 hide_when_typing = false                        # Keep visible while typing
