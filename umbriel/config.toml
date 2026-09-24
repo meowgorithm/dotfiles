@@ -36,7 +36,7 @@ files = []                                      # Example: ["~/.config/umbriel/n
 
 [general]
 autostart = []                                  # Commands run once when the session starts
-# mod_key = "Super"                             # Force Super instead of nested-session Alt
+mod_key = "Super"                               # Force Super instead of nested-session Alt
 xwayland = true                                 # Requires xwayland-satellite; restart to change
 show_cheatsheet = true                          # Show the keybind overlay on startup
 focus_on_activate = false                       # Do not let unsolicited requests steal focus
