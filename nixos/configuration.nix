@@ -176,6 +176,7 @@ in {
       signal-desktop
       slack
       stylua
+      svgo
       swaybg
       taplo
       tmux
