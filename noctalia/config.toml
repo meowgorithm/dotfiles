@@ -11,6 +11,12 @@ path = "/home/christian/.config/noctalia/bbq.png"
 [wallpaper.monitors.DP-1]
 path = "/home/christian/.config/noctalia/bbq.png"
 
+[wallpaper.monitors.eDP-1]
+path = "/home/christian/.config/noctalia/bbq.png"
+
+[bar.default]
+position = "bottom"
+
 [widget.workspaces]
 focused_color = "#BFBCC8"
 occupied_color = "#858392"
@@ -32,6 +38,9 @@ enabled = true
 [shell.screenshot]
 save_to_file = true
 copy_to_clipboard = true
+
+[theme]
+custom_palette = "Charmtone"
 
 [theme.templates.user.firefox_chrome]
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"

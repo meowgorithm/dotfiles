@@ -83,6 +83,9 @@ honor_restored_maximize = false                 # Honor restored maximized state
 
 [output.DP-1]
 scale = 1.25                                    # Logical size is mode size divided by scale
+
+[output.eDP-1]
+scale = 1.3                                     # Logical size is mode size divided by scale
 # enabled = true                                # False removes the output but preserves its state
 # mode = "2560x1440@144"                        # WIDTHxHEIGHT or WIDTHxHEIGHT@HZ
 # position = [0, 0]                             # Logical top-left; omit for automatic placement
@@ -259,7 +262,7 @@ hide_when_typing = false                        # Keep visible while typing
 hide_timeout_ms = 0                             # Idle hide timeout, 0 disables; maximum is 3600000
 
 [input.focus]
-follows_mouse = true                            # Focus under the pointer after pointer or layout changes
+follows_mouse = false                            # Focus under the pointer after pointer or layout changes
 # Refuse hover focus when revealing a window would scroll farther than this
 # many viewport widths. Omit the key for no limit.
 # follows_mouse_max_scroll = 0.5
@@ -512,6 +515,7 @@ follows_mouse = true                            # Focus under the pointer after 
 mode = "scrolling"                              # scrolling, dwindle, or master
 gap = 8                                         # Logical pixels between tiles, 0-500
 extent_presets = [0.333, 0.5, 0.667]             # Primary and secondary extent fractions
+new_exits_fullscreen = []                       # "tiled", "floating", "pinned", "all", or a list
 
 [layout.struts]
 # Signed logical pixels reserved after panel exclusive zones. Negative values
@@ -529,14 +533,12 @@ center_focused = "never"                        # never, always, or on_overflow
 
 [layout.dwindle]
 # preserve_split = false                        # Keep every split direction fixed after creation
-new_exits_fullscreen = false                    # Exits fullscreen when a new window is opened in the workspace
 
 [layout.master]
 position = "left"                               # left, right, or center master area
 default_width_fraction = 0.55                   # Initial master area fraction, 0.1-0.9
 new_on_top = true                               # Put new windows at the top of the stack
 new_becomes_master = false                      # New windows take the master slot
-new_exits_fullscreen = false                    # Exits fullscreen when a new window is opened in the workspace
 
 # ───────────────────────────── Window Rules ─────────────────────────────────
 # Match windows by application ID, title, XDG tag, content type, or focus state.
