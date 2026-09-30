@@ -37,6 +37,10 @@ in {
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
+
+  # ZSA keyboards (Moonlander, Voyager, etc.): udev rules for flashing.
+  hardware.keyboard.zsa.enable = true;
+
   services.tuned.enable = true;
   services.upower.enable = true;
 
@@ -88,7 +92,7 @@ in {
   # User accounts.
   users.users.${mainUser} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "postgres"] ++ lib.optionals (hostname == "whitenoise") ["i2c"];
+    extraGroups = ["wheel" "postgres" "plugdev"] ++ lib.optionals (hostname == "whitenoise") ["i2c"];
     packages = [];
   };
 
@@ -156,6 +160,7 @@ in {
       imv
       jq
       jujutsu
+      keymapp
       kitty
       mako
       mise
