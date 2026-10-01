@@ -12,7 +12,7 @@ source "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 # shellcheck disable=1090
 env="$XDG_DATA_HOME/meowgorithm/env.asc"
 # shellcheck disable=SC1090
-[ -f "$env" ] && source <(gpg --decrypt "$env" 2>/dev/null)
+[ -f "$env" ] && source <(timeout 5 gpg --decrypt "$env" 2>/dev/null)
 
 export HISTCONTROL=ignorespace:ignoredups:erasedups
 export HISTFILESIZE=100000
