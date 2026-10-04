@@ -16,6 +16,12 @@ mcp add ceramic --type http \
     --url "https://mcp.ceramic.ai/mcp" \
     --oauth true
 
+lsp add elm \
+    --command elm-language-server \
+    --filetypes elm \
+    --root-markers elm.json \
+    --root-markers '*/elm.json'
+
 hook add PreToolUse \
     --matcher "^bash$" \
     --command "$HOME/.config/crush/hooks/rtk-rewrite.sh" \
