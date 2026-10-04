@@ -136,6 +136,7 @@ in {
       ffmpeg
       fzf
       gcc
+      gh
       ghostty
       git
       git-lfs
