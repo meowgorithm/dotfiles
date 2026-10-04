@@ -14,14 +14,24 @@
     in {
       default = pkgs.buildEnv {
         name = "meowgorithm";
-        paths = with pkgs; [
-          alejandra
-          haskellPackages.cabal-fmt
-          haskellPackages.fourmolu
-          nil
-          sqlc
-          tree-sitter
-        ];
+        paths = with pkgs;
+          [
+            alejandra
+            nil
+            sqlc
+            tree-sitter
+          ]
+          ++ (with haskellPackages; [
+            cabal-fmt
+            fourmolu
+          ])
+          ++ (with pkgs.elmPackages; [
+            elm-language-server
+            elm-format
+            elm-review
+            elm-test
+            elm
+          ]);
       };
     });
   };
