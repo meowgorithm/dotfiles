@@ -5,7 +5,8 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
 source "$SCRIPT_DIR/bash/bash_funcs"
 
 usage() {
-    echo "Usage: $0 [link|remove|update]"
+    echo "Usage: $0 [link|remove|update] [--fetch]"
+    echo "  --fetch  Pull Git LFS objects for the fonts submodule before linking"
     exit 1
 }
 
@@ -13,10 +14,34 @@ XDG_CONFIG_HOME="$HOME/.config"
 XDG_DATA_HOME="$HOME/.local/share"
 
 # What operation to perform: link, remove, or update.
-OP="${1:-link}"
+# --fetch may be given alongside any operation.
+OP="link"
+FETCH_LFS=0
+for arg in "$@"; do
+    case "$arg" in
+    --fetch) FETCH_LFS=1 ;;
+    *) OP="$arg" ;;
+    esac
+done
 if [[ "$OP" != "link" && "$OP" != "remove" && "$OP" != "update" ]]; then
     usage
 fi
+
+# Ensure the fonts submodule holds real font files, not LFS pointer stubs.
+fetch_fonts() {
+    if [[ "$FETCH_LFS" != "1" ]]; then
+        return
+    fi
+    if [[ "$(command_exists git-lfs)" != "1" ]]; then
+        printf "git-lfs is not installed; skipping --fetch.\n" >&2
+        return
+    fi
+    git -C "$SCRIPT_DIR" submodule update --init fonts
+    git -C "$SCRIPT_DIR/fonts" lfs install --local
+    git -C "$SCRIPT_DIR/fonts" lfs fetch --all
+    git -C "$SCRIPT_DIR/fonts" lfs checkout
+    printf "%s Fetched LFS fonts\n" "$GREEN_CHECK"
+}
 
 GREEN_CHECK="$(printf '\x1b[32m✓\x1b[m')"
 
@@ -271,6 +296,8 @@ esac
 for script in "${scripts[@]}"; do
     link "scripts/$script" "$HOME/.bin/$script"
 done
+
+fetch_fonts
 
 # Fonts
 if [[ -d "$HOME/Library/Fonts" ]]; then
