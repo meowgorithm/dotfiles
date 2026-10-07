@@ -130,8 +130,6 @@ in {
       delve
       direnv
       duf
-      elmPackages.elm
-      elmPackages.elm-language-server
       efibootmgr
       ffmpeg
       fzf
@@ -153,7 +151,6 @@ in {
       go-task
       gotools
       gum
-      haskellPackages.cabal-fmt
       helix
       hivemind
       htop
@@ -182,6 +179,7 @@ in {
       signal-desktop
       slack
       stylua
+      sqlc
       svgo
       swaybg
       taplo
@@ -191,6 +189,7 @@ in {
       wl-clipboard
       thunar
       thunar-volman
+      tree-sitter
       tumbler
       xz
       yaml-language-server
@@ -198,6 +197,17 @@ in {
       zlib
       z-lua
     ]
+    ++ (with pkgs.haskellPackages; [
+      cabal-fmt
+      fourmolu
+    ])
+    ++ (with pkgs.elmPackages; [
+      elm
+      elm-format
+      elm-language-server
+      elm-review
+      elm-test
+    ])
     ++ lib.optionals (hostname == "whitenoise") [
       ddcutil
     ];
