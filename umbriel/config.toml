@@ -235,7 +235,7 @@ natural_scroll = true                           # Content moves with fingers, li
 # scroll_factor = { horizontal = 2.0, vertical = 1.5 }   # or per axis instead of the line above, 0.1-10.0
 # disable_while_typing = true                   # Omit to preserve the libinput default
 # disable_on_external_mouse = true              # Native sessions only
-# click_method = "clickfinger"                  # button_areas or clickfinger; omit for the device default
+click_method = "clickfinger"                    # 1 finger = left, 2 = right, 3 = middle
 
 [input.mouse]
 # natural_scroll = false                        # Omit to preserve the libinput default
