@@ -228,7 +228,7 @@ track_layout = "global"                         # global, or window to remember 
 
 [input.touchpad]
 tap = true                                      # Tap-to-click
-# natural_scroll = true                         # Omit to preserve the libinput default
+natural_scroll = true                           # Content moves with fingers, like macOS
 # accel_profile = "adaptive"                    # flat, adaptive, or custom <step> <points...>
 # sensitivity = 0.5                             # Pointer speed, -1.0 to 1.0
 # scroll_factor = 1.5                           # Two-finger scroll multiplier, 0.1-10.0
