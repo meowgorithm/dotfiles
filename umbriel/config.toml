@@ -233,7 +233,7 @@ natural_scroll = true                           # Content moves with fingers, li
 # sensitivity = 0.5                             # Pointer speed, -1.0 to 1.0
 # scroll_factor = 1.5                           # Two-finger scroll multiplier, 0.1-10.0
 # scroll_factor = { horizontal = 2.0, vertical = 1.5 }   # or per axis instead of the line above, 0.1-10.0
-# disable_while_typing = true                   # Omit to preserve the libinput default
+disable_while_typing = true                     # Ignore touchpad input while typing
 # disable_on_external_mouse = true              # Native sessions only
 click_method = "clickfinger"                    # 1 finger = left, 2 = right, 3 = middle
 
