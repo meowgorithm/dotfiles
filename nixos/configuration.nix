@@ -54,6 +54,12 @@ in {
   # Enable dynamic linking.
   programs.nix-ld.enable = true;
 
+  # Needed for ghcup
+  programs.nix-ld.libraries = with pkgs; [
+    gmp
+    ncurses
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   # Configure network proxy if necessary
