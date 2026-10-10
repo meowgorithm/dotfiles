@@ -3,19 +3,22 @@ directory = "/home/christian/Downloads"
 fill_mode = "span"
 
 [wallpaper.default]
-path = "/home/christian/.config/noctalia/bbq.png"
+path = "/home/christian/.config/noctalia/pepper.png"
 
 [wallpaper.last]
-path = "/home/christian/.config/noctalia/bbq.png"
+path = "/home/christian/.config/noctalia/pepper.png"
 
 [wallpaper.monitors.DP-1]
-path = "/home/christian/.config/noctalia/bbq.png"
+path = "/home/christian/.config/noctalia/pepper.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/christian/.config/noctalia/bbq.png"
+path = "/home/christian/.config/noctalia/pepper.png"
 
 [bar.default]
-position = "bottom"
+position = "left"
+
+[shell.shadow]
+alpha = 0.55
 
 [widget.workspaces]
 focused_color = "#BFBCC8"
