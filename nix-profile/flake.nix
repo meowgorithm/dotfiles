@@ -24,13 +24,6 @@
           ++ (with haskellPackages; [
             cabal-fmt
             fourmolu
-          ])
-          ++ (with pkgs.elmPackages; [
-            elm-language-server
-            elm-format
-            elm-review
-            elm-test
-            elm
           ]);
       };
     });
