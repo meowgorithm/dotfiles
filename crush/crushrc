@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 option progress false
+option attribution-trailer-style none
+option attribution-generated-with false
 option skill-path ./skills
 option skill-path "$XDG_DATA_HOME/meowgorithm/skills"
 
