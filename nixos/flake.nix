@@ -77,6 +77,7 @@
           ./discord.nix
           ./podman.nix
           ./zoom.nix
+          ./rtx4090.nix
           ./celeste-hardware-configuration.nix
         ];
       };
