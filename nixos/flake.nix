@@ -33,6 +33,7 @@
     ...
   } @ inputs: {
     nixosConfigurations = {
+
       baobao = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -64,6 +65,22 @@
           ./whitenoise-hardware-configuration.nix
         ];
       };
+
+      celeste = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          hostname = "celeste";
+        };
+        modules = [
+          ./configuration.nix
+          ./discord.nix
+          ./podman.nix
+          ./zoom.nix
+          ./celeste-hardware-configuration.nix
+        ];
+      };
+
     };
   };
 }
