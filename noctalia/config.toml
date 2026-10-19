@@ -44,6 +44,7 @@ copy_to_clipboard = true
 
 [theme]
 custom_palette = "Charmtone"
+source = "custom"
 
 [theme.templates.user.firefox_chrome]
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"
