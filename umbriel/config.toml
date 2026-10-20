@@ -84,6 +84,9 @@ honor_restored_maximize = false                 # Honor restored maximized state
 [output.DP-1]
 scale = 1.25                                    # Logical size is mode size divided by scale
 
+[output.DP-3]
+scale = 1.25                                    # Logical size is mode size divided by scale
+
 [output.eDP-1]
 scale = 1.3                                     # Logical size is mode size divided by scale
 # enabled = true                                # False removes the output but preserves its state

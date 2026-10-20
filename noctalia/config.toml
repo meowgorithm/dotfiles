@@ -11,6 +11,9 @@ path = "/home/christian/.config/noctalia/pepper.png"
 [wallpaper.monitors.DP-1]
 path = "/home/christian/.config/noctalia/pepper.png"
 
+[wallpaper.monitors.DP-3]
+path = "/home/christian/.config/noctalia/pepper.png"
+
 [wallpaper.monitors.eDP-1]
 path = "/home/christian/.config/noctalia/pepper.png"
 
