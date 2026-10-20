@@ -223,7 +223,7 @@ window_drag_toggle = "none"                     # none, floating, or pinned when
 # Physical keyboard XKB settings. Virtual keyboards provide their own keymaps.
 layout = ""                                     # Example: "us,de"; empty uses the system default
 variant = ""                                    # Example: ",nodeadkeys" for two layouts
-options = ""                                    # Example: "grp:alt_shift_toggle"
+options = "caps:escape"                         # XKB options; example: "grp:alt_shift_toggle"
 repeat_rate = 25                                # Key repeats per second, 0-1000
 repeat_delay = 600                              # Delay before repeating, 0-10000 ms
 numlock_toggle = true                           # Enable on connect; false preserves the current state
