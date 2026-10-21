@@ -1,0 +1,14 @@
+partial alphanumeric_keys
+xkb_symbols "dashes" {
+    include "us(basic)"
+    name[Group1] = "English (US, AltGr symbols)";
+
+    key <AE02> { [ 2, at, trademark, trademark ] };
+    key <AE11> { [ minus, underscore, endash, emdash ] };
+    key <AD05> { [ t, T, registered, registered ] };
+    key <AC05> { [ g, G, copyright, copyright ] };
+    key <AD11> { [ bracketleft, braceleft, leftdoublequotemark, rightdoublequotemark ] };
+    key <AD12> { [ bracketright, braceright, leftsinglequotemark, rightsinglequotemark ] };
+
+    include "level3(ralt_switch)"
+};

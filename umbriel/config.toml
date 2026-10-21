@@ -221,8 +221,8 @@ window_drag_toggle = "none"                     # none, floating, or pinned when
 
 [input.keyboard]
 # Physical keyboard XKB settings. Virtual keyboards provide their own keymaps.
-layout = ""                                     # Example: "us,de"; empty uses the system default
-variant = ""                                    # Example: ",nodeadkeys" for two layouts
+layout = "us"                                   # Example: "us,de"; empty uses the system default
+variant = "dashes"                              # Right Alt symbols: -, Shift+-, 2, t, g
 options = "caps:escape"                         # XKB options; example: "grp:alt_shift_toggle"
 repeat_rate = 25                                # Key repeats per second, 0-1000
 repeat_delay = 600                              # Delay before repeating, 0-10000 ms
