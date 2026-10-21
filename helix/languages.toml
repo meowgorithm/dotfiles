@@ -108,7 +108,14 @@ auto-format = true
 
 [language.formatter]
 command = "prettier"
-args = ["--parser", "markdown", "--prose-wrap", "always"]
+args = [
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "always",
+  "--embedded-language-formatting",
+  "off",
+]
 
 # Lua
 
