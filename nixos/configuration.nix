@@ -178,6 +178,7 @@ in {
       pkg-config
       prettier
       psmisc
+      python3
       rio
       ripgrep
       rtk
@@ -246,11 +247,11 @@ in {
       # Let Noctalia shell push its wallpaper/palette to the greeter
       # without a Polkit prompt.
       passwordless-sync-users = [mainUser];
-      cursorTheme.package = pkgs.adwaita-icon-theme;
       settings = {
         session.default = "Umbriel";
         user.default = mainUser;
         cursor = {
+          path = pkgs.adwaita-icon-theme;
           theme = "Adwaita";
           size = 24;
         };
@@ -263,10 +264,10 @@ in {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        workstation = true;
+      settings.publish = {
+        "disable-publishing" = false;
+        publish-addresses = true;
+        publish-workstation = true;
       };
     };
     postgresql = {
