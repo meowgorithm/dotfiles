@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "grok-bot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792917212,
+        "narHash": "sha256-8T4tBCiHMC3fp5+sJ8Atu2v1fGRKfaOOo9zotMbovNg=",
+        "owner": "jordangarrison",
+        "repo": "grok-bot-flake",
+        "rev": "e1fcb90bf28fa54367129799da28706f3284ce2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jordangarrison",
+        "repo": "grok-bot-flake",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1792773339,
@@ -93,6 +113,7 @@
     },
     "root": {
       "inputs": {
+        "grok-bot": "grok-bot",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",

@@ -204,6 +204,8 @@ in {
       zellij
       zlib
       z-lua
+
+      inputs.grok-bot.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ (with pkgs.haskellPackages; [
       cabal-fmt
