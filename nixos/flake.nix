@@ -25,6 +25,10 @@
       # No nixpkgs.follows: keeping the repo's own pin produces the same
       # store paths CI pushes to noctalia.cachix.org, so builds are cached.
     };
+    grok-bot = {
+      url = "github:jordangarrison/grok-bot-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

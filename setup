@@ -249,6 +249,7 @@ case "$os" in
 nixos)
     link "noctalia" "$XDG_CONFIG_HOME/noctalia"
     link "umbriel/config.toml" "$XDG_CONFIG_HOME/umbriel/config.toml"
+    link "xkb" "$XDG_CONFIG_HOME/xkb"
     ;;
 esac
 

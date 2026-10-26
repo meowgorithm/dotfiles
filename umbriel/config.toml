@@ -221,8 +221,8 @@ window_drag_toggle = "none"                     # none, floating, or pinned when
 
 [input.keyboard]
 # Physical keyboard XKB settings. Virtual keyboards provide their own keymaps.
-layout = ""                                     # Example: "us,de"; empty uses the system default
-variant = ""                                    # Example: ",nodeadkeys" for two layouts
+layout = "us"                                   # Example: "us,de"; empty uses the system default
+variant = "dashes"                              # Right Alt symbols: -, Shift+-, 2, t, g
 options = "caps:escape"                         # XKB options; example: "grp:alt_shift_toggle"
 repeat_rate = 25                                # Key repeats per second, 0-1000
 repeat_delay = 600                              # Delay before repeating, 0-10000 ms
@@ -775,9 +775,6 @@ duration_ms = 250
 curve = "easeout"
 dim = 0.5                                       # Backdrop dim amount, 0.0-1.0
 blur = false                                    # Requires appearance.blur.enabled
-scale = 0.0                                     # 0 keeps geometry; 0.1-1.0 centers and scales
-maximize = false                                # Maximize to usable-area edges while shown
-fullscreen = false                              # Make the scratchpad window fullscreen while shown
 
 # Focus border color
 [animation.border]
