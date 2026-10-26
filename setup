@@ -258,6 +258,7 @@ if [[ $os != "darwin" ]]; then
 fi
 
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
+link "pantera/scripts/install-superjoy" "$HOME/.bin/install-superjoy"
 
 # Scripts.
 scripts=(
