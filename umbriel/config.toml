@@ -265,7 +265,7 @@ hide_when_typing = false                        # Keep visible while typing
 hide_timeout_ms = 0                             # Idle hide timeout, 0 disables; maximum is 3600000
 
 [input.focus]
-follows_mouse = true                            # Focus under the pointer after pointer or layout changes
+follows_mouse = false                            # Focus under the pointer after pointer or layout changes
 # Refuse hover focus when revealing a window would scroll farther than this
 # many viewport widths. Omit the key for no limit.
 # follows_mouse_max_scroll = 0.5
@@ -325,8 +325,8 @@ follows_mouse = true                            # Focus under the pointer after 
 [keybinds]
 
 # Applications and session
-"Mod+Return" = "spawn:~/.bin/kitty-here" # New kitty in the focused terminal's directory
-"Mod" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+Return" = "spawn ~/.bin/kitty-here" # New kitty in the focused terminal's directory
+"Mod" = "spawn noctalia msg panel-toggle launcher"
 "Mod+Q" = "window-close"
 
 # Focus navigation. In overview, Mod+Up/Down retain normal layout focus, so they
@@ -339,7 +339,7 @@ follows_mouse = true                            # Focus under the pointer after 
 
 # Focus under the pointer. Umbriel exposes no action for this, so the script
 # flips input.focus.follows_mouse in this file and reloads the configuration.
-"Mod+Shift+M" = "spawn:~/.bin/umbriel-focus-follows-mouse"
+"Mod+Shift+M" = "spawn ~/.bin/umbriel-focus-follows-mouse"
 
 # Window state and layout
 "Mod+T" = "window-toggle-floating"
@@ -351,9 +351,9 @@ follows_mouse = true                            # Focus under the pointer after 
 "Mod+O" = { action = "overview-toggle", repeat = false }
 
 # Screenshots (Noctalia)
-"Mod+S" = "spawn:noctalia msg screenshot-region"
-"Mod+Shift+S" = "spawn:noctalia msg screenshot-fullscreen"
-"Mod+Ctrl+Shift+S" = "spawn:noctalia msg screenshot-annotate"
+"Mod+S" = "spawn noctalia msg screenshot-region"
+"Mod+Shift+S" = "spawn noctalia msg screenshot-fullscreen"
+"Mod+Ctrl+Shift+S" = "spawn noctalia msg screenshot-annotate"
 
 # Common keybinds
 "Mod+Escape" = "session-quit"
@@ -369,12 +369,12 @@ follows_mouse = true                            # Focus under the pointer after 
 "Mod+Shift+J" = "window-move-down"
 "Mod+Shift+K" = "window-move-up"
 "Mod+Shift+L" = "column-move-right"
-"Mod+Ctrl+H" = "window-modify-width-left:-0.05"
-"Mod+Ctrl+L" = "window-modify-width-right:0.05"
-"Mod+Ctrl+J" = "window-modify-height-up:0.05"
-"Mod+Ctrl+K" = "window-modify-height-down:0.05"
-"Mod+Ctrl+Shift+J" = "window-modify-height-up:-0.05"
-"Mod+Ctrl+Shift+K" = "window-modify-height-down:-0.05"
+"Mod+Ctrl+H" = "window-modify-width-left -0.05"
+"Mod+Ctrl+L" = "window-modify-width-right 0.05"
+"Mod+Ctrl+J" = "window-modify-height-up 0.05"
+"Mod+Ctrl+K" = "window-modify-height-down 0.05"
+"Mod+Ctrl+Shift+J" = "window-modify-height-up -0.05"
+"Mod+Ctrl+Shift+K" = "window-modify-height-down -0.05"
 "Mod+Shift+Left" = "column-move-left"
 "Mod+Shift+Down" = "window-move-down"
 "Mod+Shift+Up" = "window-move-up"
@@ -389,26 +389,26 @@ follows_mouse = true                            # Focus under the pointer after 
 "Mod+WheelDown" = "window-focus-right"
 
 # Workspaces. Bare digits are positions on the output under the pointer.
-"Mod+1" = "workspace-switch:1"
-"Mod+2" = "workspace-switch:2"
-"Mod+3" = "workspace-switch:3"
-"Mod+4" = "workspace-switch:4"
-"Mod+5" = "workspace-switch:5"
-"Mod+6" = "workspace-switch:6"
-"Mod+7" = "workspace-switch:7"
-"Mod+8" = "workspace-switch:8"
-"Mod+9" = "workspace-switch:9"
-"Mod+Shift+1" = "window-move-to-workspace:1"
-"Mod+Shift+2" = "window-move-to-workspace:2"
-"Mod+Shift+3" = "window-move-to-workspace:3"
-"Mod+Shift+4" = "window-move-to-workspace:4"
-"Mod+Shift+5" = "window-move-to-workspace:5"
-"Mod+Shift+6" = "window-move-to-workspace:6"
-"Mod+Shift+7" = "window-move-to-workspace:7"
-"Mod+Shift+8" = "window-move-to-workspace:8"
-"Mod+Shift+9" = "window-move-to-workspace:9"
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+Shift+1" = "window-move-to-workspace 1"
+"Mod+Shift+2" = "window-move-to-workspace 2"
+"Mod+Shift+3" = "window-move-to-workspace 3"
+"Mod+Shift+4" = "window-move-to-workspace 4"
+"Mod+Shift+5" = "window-move-to-workspace 5"
+"Mod+Shift+6" = "window-move-to-workspace 6"
+"Mod+Shift+7" = "window-move-to-workspace 7"
+"Mod+Shift+8" = "window-move-to-workspace 8"
+"Mod+Shift+9" = "window-move-to-workspace 9"
 # Quote an all-digit name to distinguish it from a position.
-# "Mod+Ctrl+2" = 'workspace-switch:"2"/DP-2'
+# "Mod+Ctrl+2" = 'workspace-switch "2" --output DP-2'
 
 # Scratchpads
 # These bare actions use the implicit `default` scratchpad because no named
@@ -432,12 +432,12 @@ follows_mouse = true                            # Focus under the pointer after 
 # Named mode recipe: uncomment the definitions above, then replace the four
 # action values with named forms such as these. Every scratchpad action needs a
 # configured name once named mode is active.
-# "Mod+Shift+Space" = "window-move-to-scratchpad:terminal"
-# "Mod+Space" = "scratchpad-toggle:terminal"
-# "Mod+Ctrl+Space" = "window-restore-from-scratchpad:terminal"
-# "Mod+Tab" = "scratchpad-focus-next:terminal"
-# "Mod+Ctrl+Shift+M" = "window-toggle-scratchpad:music"
-# "Mod+Ctrl+M" = "scratchpad-toggle:music"
+# "Mod+Shift+Space" = "window-move-to-scratchpad terminal"
+# "Mod+Space" = "scratchpad-toggle terminal"
+# "Mod+Ctrl+Space" = "window-restore-from-scratchpad terminal"
+# "Mod+Tab" = "scratchpad-focus-next terminal"
+# "Mod+Ctrl+Shift+M" = "window-toggle-scratchpad music"
+# "Mod+Ctrl+M" = "scratchpad-toggle music"
 
 # Optional navigation and sizing recipes. These chords do not replace active
 # bindings above when uncommented.
@@ -453,21 +453,21 @@ follows_mouse = true                            # Focus under the pointer after 
 # "Mod+Bracketleft" = "window-focus-previous"
 # "Mod+Shift+Bracketright" = "window-swap-next"
 # "Mod+Shift+Bracketleft" = "window-swap-previous"
-# "Mod+Minus" = "window-modify-primary-extent:-0.1"
-# "Mod+Equal" = "window-modify-primary-extent:0.1"
-# "Mod+Alt+Minus" = "window-modify-secondary-extent:-0.1"
-# "Mod+Alt+Equal" = "window-modify-secondary-extent:0.1"
-# "Mod+Ctrl+H" = "window-modify-width-left:0.1"
-# "Mod+Ctrl+L" = "window-modify-width-right:0.1"
-# "Mod+Ctrl+K" = "window-modify-height-up:0.1"
-# "Mod+Ctrl+J" = "window-modify-height-down:0.1"
+# "Mod+Minus" = "window-modify-primary-extent -0.1"
+# "Mod+Equal" = "window-modify-primary-extent 0.1"
+# "Mod+Alt+Minus" = "window-modify-secondary-extent -0.1"
+# "Mod+Alt+Equal" = "window-modify-secondary-extent 0.1"
+# "Mod+Ctrl+H" = "window-modify-width-left 0.1"
+# "Mod+Ctrl+L" = "window-modify-width-right 0.1"
+# "Mod+Ctrl+K" = "window-modify-height-up 0.1"
+# "Mod+Ctrl+J" = "window-modify-height-down 0.1"
 # "Mod+Alt+R" = "window-cycle-secondary-extent"
 # "Mod+Alt+Shift+R" = "window-cycle-secondary-extent-back"
 # "Mod+Grave" = "window-focus-last"
 # "Mod+BackSpace" = "window-consume-or-expel-left"
 # "Mod+C" = "column-center"
 # "Mod+Shift+C" = "window-center"
-# "Mod+Ctrl+T" = "workspace-set-layout:toggle"
+# "Mod+Ctrl+T" = "workspace-set-layout toggle"
 # "Mod+MouseMiddle" = "layout-scroll-drag"
 # "Mod+Alt+K" = "keyboard-layout-next"
 # "Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
@@ -487,26 +487,26 @@ follows_mouse = true                            # Focus under the pointer after 
 # binds must not repeat. A table-form bind can run an action and then reset one
 # level, while a global reset provides an emergency exit from any layer.
 # Submaps: https://docs.noctalia.dev/umbriel/keybinds/#submaps
-# "Mod+S" = { action = "submap:resize", repeat = false }
-# "submap[resize],1" = { action = "window-set-primary-extent:0.5", submap = "reset" }
-# "submap[resize],N" = { action = "submap:nudge", repeat = false }
-# "submap[resize],Escape" = "submap:reset"
-# "submap[nudge],Left" = "window-modify-primary-extent:-0.1"
-# "submap[nudge],Right" = "window-modify-primary-extent:0.1"
-# "submap[nudge],Escape" = "submap:reset"
-# "Escape" = "submap:reset"
+# "Mod+S" = { action = "submap resize", repeat = false }
+# "submap[resize],1" = { action = "window-set-primary-extent 0.5", submap = "reset" }
+# "submap[resize],N" = { action = "submap nudge", repeat = false }
+# "submap[resize],Escape" = "submap reset"
+# "submap[nudge],Left" = "window-modify-primary-extent -0.1"
+# "submap[nudge],Right" = "window-modify-primary-extent 0.1"
+# "submap[nudge],Escape" = "submap reset"
+# "Escape" = "submap reset"
 
 # Media and brightness
 # Documentation: https://docs.noctalia.dev/umbriel/keybinds/#example-media-and-brightness-keys
-# "XF86AudioRaiseVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-# "XF86AudioLowerVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-# "XF86AudioMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-# "XF86AudioPlay" = "spawn:playerctl play-pause"
-# "XF86AudioNext" = "spawn:playerctl next"
-# "XF86AudioPrev" = "spawn:playerctl previous"
+# "XF86AudioRaiseVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+# "XF86AudioLowerVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+# "XF86AudioMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+# "XF86AudioPlay" = "spawn playerctl play-pause"
+# "XF86AudioNext" = "spawn playerctl next"
+# "XF86AudioPrev" = "spawn playerctl previous"
 # Binds intended to work while locked use the table form.
-# "XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down 10", allow_when_locked = true }
-# "XF86MonBrightnessUp" = { action = "spawn:noctalia msg brightness-up 10", allow_when_locked = true }
+# "XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down 10", allow_when_locked = true }
+# "XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up 10", allow_when_locked = true }
 
 # ─────────────────────────────── Layout ─────────────────────────────────────
 # Configure the default tiling mode and shared sizing behavior. Workspace rules
@@ -839,7 +839,7 @@ action = "overview-toggle"
 [hot_corners.bottom_right]
 enabled = false
 delay_ms = 500
-action = "spawn:notify-send 'Bottom right'"
+action = "spawn notify-send 'Bottom right'"
 
 # ─────────────────────── Security Context Rules ─────────────────────────────
 # Sandboxed clients receive a restricted Wayland global set. Grant extra
