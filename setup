@@ -260,6 +260,7 @@ fi
 
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
 link "pantera/scripts/install-superjoy" "$HOME/.bin/install-superjoy"
+link "fonts/update-charmform" "$HOME/.bin/update-charmform"
 
 # Scripts.
 scripts=(
