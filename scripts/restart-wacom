@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $(uname -s) != "Darwin" ]]; then
+	echo "error: this script currently supports macOS only" >&2
+	exit 1
+fi
+
+service="gui/$(id -u)/com.wacom.wacomtablet"
+
+if ! launchctl print "$service" &>/dev/null; then
+	echo "error: Wacom tablet driver is not installed or loaded" >&2
+	exit 1
+fi
+
+launchctl kickstart -k "$service"
+
+echo "Wacom tablet driver restarted"
