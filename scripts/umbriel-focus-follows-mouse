@@ -19,15 +19,15 @@ if [[ ! -f $config ]]; then
 fi
 
 target=$(readlink -f -- "$config")
-value=$(sed -n 's/^follows_mouse = \(true\|false\).*/\1/p' "$target" | head -n 1)
+value=$(sed -n 's/^follows_mouse = "\([a-z]*\)".*/\1/p' "$target" | head -n 1)
 
 case "$value" in
-true)
-	new=false
+sloppy)
+	new="off"
 	state="off"
 	;;
-false)
-	new=true
+off)
+	new="sloppy"
 	state="on"
 	;;
 *)
@@ -37,7 +37,7 @@ false)
 esac
 
 # Replace only the value so any trailing comment survives.
-sed -i "s/^follows_mouse = [a-z]*/follows_mouse = $new/" "$target"
+sed -i "s/^follows_mouse = \"[a-z]*\"/follows_mouse = \"$new\"/" "$target"
 
 umbriel msg config-reload
 
