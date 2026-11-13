@@ -19,6 +19,15 @@ path = "/home/christian/.config/noctalia/pepper.png"
 
 [bar.default]
 position = "left"
+end = ["media", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "theme_toggle", "control-center", "session"]
+
+[widget.theme_toggle]
+type = "custom_button"
+glyph = "sun-moon"
+tooltip = "Toggle light and dark mode"
+
+[widget.theme_toggle.actions]
+left = "theme-mode-toggle"
 
 [shell.shadow]
 alpha = 0.55
@@ -48,6 +57,11 @@ copy_to_clipboard = true
 [theme]
 custom_palette = "Charmtone"
 source = "custom"
+
+[theme.templates.user.wallpaper_mode]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"
+output_path = "$XDG_CACHE_HOME/noctalia/wallpaper-mode.css"
+post_hook = "if [ '{{ mode }}' = light ]; then wallpaper='color:#F7F6FB'; else wallpaper=\"$XDG_CONFIG_HOME/noctalia/pepper.png\"; fi; if [ \"$(noctalia msg wallpaper-get)\" != \"$wallpaper\" ]; then noctalia msg wallpaper-set \"$wallpaper\"; fi"
 
 [theme.templates.user.firefox_chrome]
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/firefox/userChrome.css"
