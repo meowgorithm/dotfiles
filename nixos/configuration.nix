@@ -154,6 +154,7 @@ in {
       golangci-lint
       golangci-lint-langserver
       google-chrome
+      google-cloud-sdk
       gopls
       go-task
       gotools
