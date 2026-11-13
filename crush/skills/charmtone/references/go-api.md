@@ -1,6 +1,6 @@
 # CharmTone Go API Reference
 
-Package: `github.com/charmbracelet/x/exp/charmtone`
+Package: `charm.land/tone`
 
 ## Type
 
@@ -16,33 +16,38 @@ type Key int
 func (k Key) RGBA() (r, g, b, a uint32)   // 16-bit RGBA, satisfies color.Color
 func (k Key) String() string                // color name, e.g. "Cherry"
 func (k Key) Hex() string                   // e.g. "#FF388B"
-func (k Key) IsSpectrum() bool              // Cumin through Zest
+func (k Key) IsSpectrum() bool              // Tahini through Zest
 func (k Key) IsNeutral() bool               // Pepper through Soda
 func (k Key) IsCharple() bool               // Charple ramp member
 func (k Key) IsAddition() bool              // diff-addition color
 func (k Key) IsDeletion() bool              // diff-deletion color
 func (k Key) IsPrimary() bool               // core palette (8 colors)
-func (k Key) IsSecondary() bool             // secondary palette (7 colors)
+func (k Key) IsSecondary() bool             // secondary palette (9 colors)
 func (k Key) IsTertiary() bool              // Deprecated, calls IsSecondary()
 ```
 
 ## Functions (return []Key)
 
 ```go
-func Keys() []Key       // All colors (~72), in iota order
-func Spectrum() []Key   // Cumin through Zest (47 colors)
+func Keys() []Key       // All colors (79), in iota order
+func Spectrum() []Key   // Tahini through Zest (51 colors)
 func Neutrals() []Key   // Pepper through Soda (12 colors)
 func Charples() []Key   // Jelly → Darple → Charple → Larple → Hazy (5)
-func Additions() []Key  // Spinach → Gator → Pickle → Julep (4)
-func Deletions() []Key  // Toast → Steak → Pom → Cherry (4)
+func Additions() []Key  // Spinach → Dew (6)
+func Deletions() []Key  // Toast → Sakura (6)
 ```
+
+## Hex lookup
+
+`func NameFromHex(hex string) string` returns the color name for a case-insensitive `#rrggbb` value, or an empty string if unknown.
 
 ## All Color Constants
 
-### Main Spectrum (Cumin → Zest)
+### Main Spectrum (Tahini → Zest)
 
 | Constant | Hex | Constant | Hex | Constant | Hex |
 |----------|-----|----------|-----|----------|-----|
+| `Tahini` | `#A67F6C` | `Tandoor` | `#D9825E` | `Bisque` | `#D99A86` |
 | `Cumin` | `#BF976F` | `Tang` | `#FF985A` | `Yam` | `#FFB587` |
 | `Paprika` | `#D36C64` | `Bengal` | `#FF6E63` | `Uni` | `#FF937D` |
 | `Sriracha` | `#EB4268` | `Coral` | `#FF577D` | `Salmon` | `#FF7F90` |
@@ -73,7 +78,7 @@ func Deletions() []Key  // Toast → Steak → Pom → Cherry (4)
 | `Pepper` | `#201F26` | `BBQ` | `#2D2C36` | `Char` | `#3A3943` |
 | `Iron` | `#4D4C57` | `Oyster` | `#605F6B` | `Squid` | `#858392` |
 | `Steam` | `#A2A0AD` | `Smoke` | `#BFBCC8` | `Steep` | `#D6D3DC` |
-| `Sash` | `#ECEBF0` | `Salt` | `#F7F6FB` | `Soda` | `#FBFBFB` |
+| `Sash` | `#ECEBF0` | `Salt` | `#F7F6FB` | `Soda` | `#F1F0F5` |
 
 ### Charples
 
@@ -89,6 +94,8 @@ func Deletions() []Key  // Toast → Steak → Pom → Cherry (4)
 | `Pickle` | `#00A475` |
 | `Gator` | `#18463D` |
 | `Spinach` | `#1C3634` |
+| `Mojito` | `#4EBEA0` |
+| `Dew` | `#A8DCD0` |
 
 ### Diff Deletions
 
@@ -97,12 +104,16 @@ func Deletions() []Key  // Toast → Steak → Pom → Cherry (4)
 | `Pom` | `#AB2454` |
 | `Steak` | `#582238` |
 | `Toast` | `#412130` |
+| `Guava` | `#C36789` |
+| `Sakura` | `#DFB3C6` |
 
 ### Secondary
 
 | Constant | Hex |
 |----------|-----|
 | `Ice` | `#00FFFC` |
+| `Pinxy` | `#FF73FF` |
+| `Minty` | `#00FFD7` |
 
 ### Deprecated Aliases
 
@@ -116,9 +127,9 @@ const Ash = Sash       // Deprecated: renamed to Sash
 | Group | Count | Colors |
 |-------|-------|--------|
 | **Primary** | 8 | Charple, Dolly, Julep, Zest, Hazy, Blush, Bok, Butter |
-| **Secondary** | 7 | Uni, Coral, Tuna, Violet, Malibu, Turtle, Ice |
-| **Spectrum** | 47 | Cumin through Zest |
+| **Secondary** | 9 | Uni, Coral, Tuna, Pinxy, Violet, Malibu, Turtle, Ice, Minty |
+| **Spectrum** | 51 | Tahini, Tandoor, Bisque, Cumin through Zest |
 | **Neutrals** | 12 | Pepper through Soda |
 | **Charples** | 5 | Jelly, Darple, Charple, Larple, Hazy |
-| **Additions** | 4 | Spinach, Gator, Pickle, Julep |
-| **Deletions** | 4 | Toast, Steak, Pom, Cherry |
+| **Additions** | 6 | Spinach, Gator, Pickle, Julep, Mojito, Dew |
+| **Deletions** | 6 | Toast, Steak, Pom, Cherry, Guava, Sakura |

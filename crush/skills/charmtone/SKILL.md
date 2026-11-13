@@ -1,6 +1,6 @@
 ---
 name: charmtone
-description: Use charmtone colors via the `charmtone` CLI or Go API (`github.com/charmbracelet/x/exp/charmtone`). Triggers when the user asks to use charmtone colors, generate color palettes, get hex values, create CSS/SCSS/Vim color variables, or work with the CharmTone palette in Go code. Also triggers on mentions of specific charmtone color names (Cherry, Charple, Julep, Hazy, etc.) or requests to pick/choose/apply charmtone colors.
+description: Use charmtone colors via the `charmtone` CLI or Go API (`charm.land/tone`). Triggers when the user asks to use charmtone colors, generate color palettes, get hex values, create CSS/SCSS/Vim color variables, or work with the CharmTone palette in Go code. Also triggers on mentions of specific charmtone color names (Cherry, Charple, Julep, Hazy, etc.) or requests to pick/choose/apply charmtone colors.
 ---
 
 # CharmTone
@@ -35,34 +35,38 @@ palette.
 
 ## Go API
 
-Import: `github.com/charmbracelet/x/exp/charmtone`
+Repository: `github.com/charmbracelet/tone`
+
+Install: `go get charm.land/tone`
+
+Import: `charm.land/tone`
 
 ```go
-import "github.com/charmbracelet/x/exp/charmtone"
+import "charm.land/tone"
 
 // Color constants
-c := charmtone.Cherry
+c := tone.Cherry
 fmt.Println(c.Hex())    // "#FF388B"
 fmt.Println(c.String()) // "Cherry"
 r, g, b, a := c.RGBA()  // 16-bit RGBA
 
 // Key satisfies color.Color
-var _ color.Color = charmtone.Charple
+var _ color.Color = tone.Charple
 
 // Palette groups
-charmtone.Spectrum()   // Cumin through Zest (47 colors)
-charmtone.Neutrals()   // Pepper through Soda (12 colors)
-charmtone.Charples()   // Jelly → Darple → Charple → Larple → Hazy (5)
-charmtone.Additions()  // Spinach → Gator → Pickle → Julep (4)
-charmtone.Deletions()  // Toast → Steak → Pom → Cherry (4)
-charmtone.Keys()       // All colors (~72)
+tone.Spectrum()   // Tahini through Zest (51 colors)
+tone.Neutrals()   // Pepper through Soda (12 colors)
+tone.Charples()   // Jelly → Darple → Charple → Larple → Hazy (5)
+tone.Additions()  // Spinach → Dew (6)
+tone.Deletions()  // Toast → Sakura (6)
+tone.Keys()       // All colors (79)
 
 // Type checks on Key
-charmtone.Julep.IsPrimary()    // true
-charmtone.Coral.IsSecondary()  // true
-charmtone.Pepper.IsNeutral()   // true
-charmtone.Darple.IsCharple()   // true
-charmtone.Chili.IsSpectrum()   // true
+tone.Julep.IsPrimary()    // true
+tone.Coral.IsSecondary()  // true
+tone.Pepper.IsNeutral()   // true
+tone.Darple.IsCharple()   // true
+tone.Chili.IsSpectrum()   // true
 ```
 
 See [references/go-api.md](references/go-api.md) for full method signatures
@@ -70,12 +74,13 @@ and grouping details.
 
 ## Complete Color Palette
 
-All 68 CharmTone colors, grouped by palette.
+All 79 CharmTone colors, grouped by palette.
 
-### Spectrum (47 colors, Cumin → Zest)
+### Spectrum (51 colors, Tahini → Zest)
 
 | Color | Hex | Color | Hex | Color | Hex |
 |-------|-----|-------|-----|-------|-----|
+| Tahini | `#A67F6C` | Tandoor | `#D9825E` | Bisque | `#D99A86` |
 | Cumin | `#BF976F` | Tang | `#FF985A` | Yam | `#FFB587` |
 | Paprika | `#D36C64` | Bengal | `#FF6E63` | Uni | `#FF937D` |
 | Sriracha | `#EB4268` | Coral | `#FF577D` | Salmon | `#FF7F90` |
@@ -106,7 +111,7 @@ All 68 CharmTone colors, grouped by palette.
 | Pepper | `#201F26` | BBQ | `#2D2C36` | Char | `#3A3943` |
 | Iron | `#4D4C57` | Oyster | `#605F6B` | Squid | `#858392` |
 | Steam | `#A2A0AD` | Smoke | `#BFBCC8` | Steep | `#D6D3DC` |
-| Sash | `#ECEBF0` | Salt | `#F7F6FB` | Soda | `#FBFBFB` |
+| Sash | `#ECEBF0` | Salt | `#F7F6FB` | Soda | `#F1F0F5` |
 
 ### Charples (5 colors: Jelly → Darple → Charple → Larple → Hazy)
 
@@ -118,7 +123,7 @@ All 68 CharmTone colors, grouped by palette.
 | Larple | `#7B62FF` |
 | Hazy | `#8B75FF` |
 
-### Diff Additions (Spinach → Gator → Pickle → Julep)
+### Diff Additions (Spinach → Dew)
 
 | Color | Hex |
 |-------|-----|
@@ -126,8 +131,10 @@ All 68 CharmTone colors, grouped by palette.
 | Gator | `#18463D` |
 | Pickle | `#00A475` |
 | Julep | `#00FFB2` |
+| Mojito | `#4EBEA0` |
+| Dew | `#A8DCD0` |
 
-### Diff Deletions (Toast → Steak → Pom → Cherry)
+### Diff Deletions (Toast → Sakura)
 
 | Color | Hex |
 |-------|-----|
@@ -135,12 +142,16 @@ All 68 CharmTone colors, grouped by palette.
 | Steak | `#582238` |
 | Pom | `#AB2454` |
 | Cherry | `#FF388B` |
+| Guava | `#C36789` |
+| Sakura | `#DFB3C6` |
 
 ### Secondary extras
 
 | Color | Hex |
 |-------|-----|
 | Ice | `#00FFFC` |
+| Pinxy | `#FF73FF` |
+| Minty | `#00FFD7` |
 
 ### Deprecated aliases
 
@@ -154,11 +165,11 @@ All 68 CharmTone colors, grouped by palette.
 | Group | Count | Colors |
 |-------|-------|--------|
 | **Primary** | 8 | Charple, Dolly, Julep, Zest, Hazy, Blush, Bok, Butter |
-| **Secondary** | 7 | Uni, Coral, Tuna, Violet, Malibu, Turtle, Ice |
-| **Spectrum** | 47 | Cumin through Zest |
+| **Secondary** | 9 | Uni, Coral, Tuna, Pinxy, Violet, Malibu, Turtle, Ice, Minty |
+| **Spectrum** | 51 | Tahini, Tandoor, Bisque, Cumin through Zest |
 | **Neutrals** | 12 | Pepper through Soda |
 | **Charples** | 5 | Jelly, Darple, Charple, Larple, Hazy |
-| **Additions** | 4 | Spinach, Gator, Pickle, Julep |
-| **Deletions** | 4 | Toast, Steak, Pom, Cherry |
+| **Additions** | 6 | Spinach, Gator, Pickle, Julep, Mojito, Dew |
+| **Deletions** | 6 | Toast, Steak, Pom, Cherry, Guava, Sakura |
 
 Primary colors are marked with ● in the CLI output, secondary with ○.
