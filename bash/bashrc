@@ -170,6 +170,7 @@ fi
 
 # Go
 export GOPATH="$HOME/.go"
+export GOBIN="$GOPATH/bin"
 export GOTOOLCHAIN="auto"
 
 # GHCUP
