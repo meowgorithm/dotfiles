@@ -28,3 +28,13 @@ hook add PreToolUse \
     --matcher "^bash$" \
     --command "$HOME/.config/crush/hooks/rtk-rewrite.sh" \
     --name rtk
+
+hook add TurnEnd \
+    --command "$HOME/.config/crush/hooks/grokbot-notify.sh" \
+    --name grokbot \
+    --timeout 15
+
+hook add StopFailure \
+    --command "$HOME/.config/crush/hooks/grokbot-notify.sh" \
+    --name grokbot \
+    --timeout 15
