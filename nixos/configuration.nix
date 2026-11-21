@@ -187,6 +187,7 @@ in {
       nix-bash-completions
       nodejs
       obsidian
+      openssl
       optipng
       pkg-config
       prettier
