@@ -10,6 +10,7 @@
   ...
 }: let
   mainUser = "christian";
+  isStrixHalo = hostname == "baobao";
 in {
   imports = [
     inputs.noctalia.nixosModules.default
@@ -28,6 +29,17 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # For running local models.
+  boot.kernelParams = lib.mkIf isStrixHalo ["amdgpu.gttsize=126976" "ttm.pages_limit=32505856"];
+  security.pam.loginLimits = lib.mkIf isStrixHalo [
+    {
+      domain = "*";
+      type = "-";
+      item = "memlock";
+      value = "unlimited";
+    }
+  ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -261,8 +273,14 @@ in {
         keyboard.layout = "us";
       };
     };
+
     tailscale.enable = true;
-    openssh.enable = true;
+
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+    };
+
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -273,6 +291,7 @@ in {
         publish-workstation = true;
       };
     };
+
     postgresql = {
       enable = true;
       ensureDatabases = ["christian"];
