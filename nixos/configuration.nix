@@ -206,6 +206,7 @@ in {
       svgo
       swaybg
       taplo
+      telegram-desktop
       tmux
       vim
       wget
