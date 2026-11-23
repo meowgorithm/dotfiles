@@ -156,6 +156,7 @@ alias nrm='nix run -L -j"$(num_cores)" 2>&1 | tee >(mods "What does this NixOS o
 alias code-review='git --no-pager diff | mods -f "code review this patch" | glow'
 alias filterkill='ps | awk "NR>1" | gum choose --header="  Kill Process?" | xargs kill'
 alias tree='tree -C'
+alias gca="gcloud auth login"
 
 # Helper vars
 export MEOW='git@github.com:meowgorithm'
