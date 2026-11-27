@@ -1,31 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+usage() {
+	cat <<USAGE
+Usage: install-crush [method]
+
+Methods:
+  main      Build from source on main (default)
+  release   Build from source, latest release
+  numtide   Nix (numtide/nix-ai-tools)
+  nixpkgs   Nixpkgs
+  brew      Homebrew
+  npm       NPM
+  fedora    Fedora (dnf)
+USAGE
+}
+
 is_fedora=false
 if [[ -f /etc/os-release ]]; then
 	source /etc/os-release
-	if [[ "$ID" == "fedora" ]]; then
+	if [[ "${ID:-}" == "fedora" ]]; then
 		is_fedora=true
 	fi
 fi
-
-brewLocation="charmbracelet/tap/crush"
-npmLocation="@charmland/crush"
 
 is_linux=false
 if [[ "$(uname -s)" == "Linux" ]]; then
 	is_linux=true
 fi
 
-go="go install -v github.com/charmbracelet/crush"
-numtide="nix run github:numtide/nix-ai-tools#crush"
-nixunstable="nix-shell -p crush"
-brew="brew install $brewLocation"
-if [[ "$is_linux" == true ]]; then
-	npm="sudo npm install -g $npmLocation"
-else
-	npm="npm install -g $npmLocation"
-fi
+brewLocation="charmbracelet/tap/crush"
+npmLocation="@charmland/crush"
+goModule="github.com/charmbracelet/crush"
 
 fedora_setup_repo() {
 	if ! grep -q '\[charm\]' /etc/yum.repos.d/charm.repo 2>/dev/null; then
@@ -40,38 +46,65 @@ gpgkey=https://repo.charm.sh/yum/gpg.key' | sudo tee /etc/yum.repos.d/charm.repo
 	fi
 }
 
-fedora="fedora_setup_repo; if rpm -q crush >/dev/null 2>&1; then sudo dnf upgrade -y crush; else sudo dnf install -y crush; fi"
+method="${1:-main}"
 
-opts="$(
-	cat <<EOF
-Build from source (release):$go@latest
-Build from source (main):$go@main
-Nix (numtide):$numtide
-Nixpkgs:$nixunstable
-Homebrew:$brew
-NPM:$npm
-EOF
-)"
-
-if [[ "$is_fedora" == true ]]; then
-	opts="$(printf "Build from source (release):%s\nBuild from source (main):%s\nFedora (dnf):%s\nNix (numtide):%s\nNixpkgs:%s\nHomebrew:%s\nNPM:%s" "$go@latest" "$go@main" "$fedora" "$numtide" "$nixunstable" "$brew" "$npm")"
-fi
-
-selection="$(
-	printf "%s" "$opts" |
-		gum choose \
-			--header="Install which Crush?" \
-			--label-delimiter=":"
-)"
-
-if [ -n "$selection" ]; then
-	echo "Installing Crush..."
-	stty sane 2>/dev/null || true
-	if [[ "$is_fedora" == true && "$selection" == "$fedora" ]]; then
-		eval "$selection" </dev/tty
-	else
-		uninstall-crush </dev/tty || true
-		eval "$selection" </dev/tty
+case "$method" in
+-h | --help | help)
+	usage
+	exit 0
+	;;
+main | release | numtide | nixpkgs | brew | npm) ;;
+fedora)
+	if [[ "$is_fedora" != true ]]; then
+		echo "The fedora method only works on Fedora" >&2
+		exit 1
 	fi
-	echo "Done!"
+	;;
+*)
+	echo "Unknown method: $method" >&2
+	usage >&2
+	exit 1
+	;;
+esac
+
+echo "Installing Crush ($method)..."
+
+if [[ "$method" != "fedora" ]]; then
+	"$(dirname "$0")/uninstall-crush" || true
 fi
+
+case "$method" in
+main)
+	# Skip the module proxy so we always get the tip of main.
+	GOPROXY=direct go install -v "$goModule@main"
+	;;
+release)
+	go install -v "$goModule@latest"
+	;;
+numtide)
+	nix run github:numtide/nix-ai-tools#crush
+	;;
+nixpkgs)
+	nix-shell -p crush
+	;;
+brew)
+	brew install "$brewLocation"
+	;;
+npm)
+	if [[ "$is_linux" == true ]]; then
+		sudo npm install -g "$npmLocation"
+	else
+		npm install -g "$npmLocation"
+	fi
+	;;
+fedora)
+	fedora_setup_repo
+	if rpm -q crush >/dev/null 2>&1; then
+		sudo dnf upgrade -y crush
+	else
+		sudo dnf install -y crush
+	fi
+	;;
+esac
+
+echo "Done!"

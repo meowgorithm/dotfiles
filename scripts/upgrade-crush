@@ -44,4 +44,4 @@ if [[ -x "$go_crush" ]]; then
 fi
 
 echo "Crush not found. Running install-crush..."
-"$(dirname "$0")/install-crush" </dev/tty
+"$(dirname "$0")/install-crush"
