@@ -139,6 +139,7 @@ in {
     [
       _1password-gui
       adwaita-icon-theme
+      age
       air
       alejandra
       alsa-utils
