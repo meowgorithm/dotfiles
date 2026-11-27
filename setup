@@ -196,6 +196,7 @@ link "bash/bash_profile" "$HOME/.bash_profile"
 link "bash/bashrc" "$HOME/.bashrc"
 link "bash/bash_funcs" "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 link "pantera/env.asc" "$XDG_DATA_HOME/meowgorithm/env.asc"
+link "pantera/shell/meow-load.bash" "$XDG_DATA_HOME/meowgorithm/meow-load.bash"
 
 # Mise-en-Place
 link "mise" "$XDG_CONFIG_HOME/mise"
@@ -259,6 +260,7 @@ if [[ $os != "darwin" ]]; then
 fi
 
 link "pantera/sessions.asc" "$XDG_DATA_HOME/meowgorithm/sessions.asc"
+link "pantera/scripts/meow-env" "$HOME/.bin/meow-env"
 link "pantera/scripts/install-superjoy" "$HOME/.bin/install-superjoy"
 link "fonts/update-charmform" "$HOME/.bin/update-charmform"
 

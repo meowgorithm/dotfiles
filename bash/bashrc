@@ -9,11 +9,6 @@ shopt -s histappend
 # shellcheck disable=SC1091
 source "$XDG_DATA_HOME/meowgorithm/bash_funcs"
 
-# shellcheck disable=1090
-env="$XDG_DATA_HOME/meowgorithm/env.asc"
-# shellcheck disable=SC1090
-[ -f "$env" ] && source <(timeout 5 gpg --decrypt "$env" 2>/dev/null)
-
 export HISTCONTROL=ignorespace:ignoredups:erasedups
 export HISTFILESIZE=100000
 export HISTSIZE=10000
@@ -226,6 +221,16 @@ done
 if [[ "$os" == "darwin" ]]; then
     export PATH="/usr/bin:$PATH"
 fi
+
+meow_data="${XDG_DATA_HOME:-$HOME/.local/share}/meowgorithm"
+if [[ -f "$meow_data/meow-load.bash" ]]; then
+    # shellcheck disable=SC1091
+    source "$meow_data/meow-load.bash"
+    if [[ -f "$meow_data/env.asc" ]]; then
+        meow-load
+    fi
+fi
+unset meow_data
 
 # Activate mise if available
 command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
